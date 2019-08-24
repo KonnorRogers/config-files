@@ -1,0 +1,48 @@
+apt:
+  command: sudo apt install -y
+  packages:
+    # Libraries
+    - software-properties-common gnupg2 less ufw ack-grep libfuse2
+      apt-transport-https ca-certificates build-essential bison
+      zlib1g-dev libyaml-dev libcurl4-openssl-dev libssl-dev
+      libgdbm-dev libreadline-dev libffi-dev fuse make gcc libxml2-dev
+      re2c libbz2-dev libjpeg-turbo8-dev libpng-dev
+      libzip-dev libtidy-dev libxslt-dev automake libtool autoconf
+      flex libkrb5-dev libonig-dev
+
+    # Languages
+    - ruby ruby-dev golang php python3 python3-pip python-dev
+      python3-dev python-pip python3-neovim nodejs
+
+    # Tools
+    - curl tmux git vim zsh sqlite3 ctags rdoc libsqlite3-dev
+      openssh-client openssh-server dconf-cli gnome-terminal
+      postgresql pry rubygems fail2ban
+      neovim asciinema docker mosh yarn
+      silversearcher-ag virtualbox
+
+gems:
+  command: gem install
+  packages: colorls neovim rake pry rubocop gem-ctags rails yard
+            thor bundler solargraph
+
+npm_packages:
+  command: npm install -g
+  packages: neovim eslint
+            bash-language-server --unsafe-perm
+            vscode-html-languageserver-bin
+            vscode-css-languageserver-bin
+            javascript-typescript-langserv
+            dockerfile-language-server-nodejs
+
+pip2_packages:
+  command: pip2 install --user --upgrade
+  packages: pynvim neovim
+
+pip3_packages:
+  command: pip3 install --user --upgrade
+  packages: pynvim neovim
+
+snap_packages:
+  command: sudo snap install
+  packages: heroku
