@@ -1,4 +1,6 @@
+
 # sets up a new ruby version for use
+
 function add_new_ruby(){
   RUBY_VERSION="$1"
 
@@ -6,6 +8,6 @@ function add_new_ruby(){
   source $HOME/.zshrc
 
   chruby ruby-"$RUBY_VERSION"
-  gem install kubs_cli
-  kubs install_gems
+  gem install thor
+  vps-cli install_gems
 }
