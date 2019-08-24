@@ -1,0 +1,3 @@
+function install_phpenv(){
+  curl -L https://raw.githubusercontent.com/phpenv/phpenv-installer/master/bin/phpenv-installer \ | bash
+}

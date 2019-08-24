@@ -1,6 +1,4 @@
-
 # sets up a new ruby version for use
-
 function add_new_ruby(){
   RUBY_VERSION="$1"
 
