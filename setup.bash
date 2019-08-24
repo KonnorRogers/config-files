@@ -38,13 +38,9 @@ install_ruby(){
   RUBY_INSTALL_TAR="ruby-install-0.7.0.tar.gz"
   RUBY_INSTALL_DIR="ruby-install-0.7.0/"
 
-  if [[ ! -e "$RUBY_INSTALL_TAR" ]]; then
-    wget -O "$RUBY_INSTALL_TAR" https://github.com/postmodern/ruby-install/archive/v0.7.0.tar.gz
-  fi
+  wget -O "$RUBY_INSTALL_TAR" https://github.com/postmodern/ruby-install/archive/v0.7.0.tar.gz
 
-  if [[ ! -e "$RUBY_INSTALL_DIR" ]]; then
-    tar -xzvf "$RUBY_INSTALL_TAR"
-  fi
+  tar -xzvf "$RUBY_INSTALL_TAR"
 
   echo "$PWD"
   tar -xzvf "$RUBY_INSTALL_TAR"
@@ -57,13 +53,10 @@ install_ruby(){
 install_chruby(){
   CHRUBY_TAR="chruby-0.3.9.tar.gz"
   CHRUBY_DIR="chruby-0.3.9"
-  if [[ ! -e "$CHRUBY_TAR" ]]; then
-    wget -O "$CHRUBY_TAR" https://github.com/postmodern/chruby/archive/v0.3.9.tar.gz
-  fi
 
-  if [[ ! -e "$CHRUBY_DIR" ]]; then
-    tar -xzvf "$CHRUBY_TAR"
-  fi
+  wget -O "$CHRUBY_TAR" https://github.com/postmodern/chruby/archive/v0.3.9.tar.gz
+
+  tar -xzvf "$CHRUBY_TAR"
 
   cd "$CHRUBY_DIR" || exit 2
   sudo ./scripts/setup.sh
