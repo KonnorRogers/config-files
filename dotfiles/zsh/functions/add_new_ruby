@@ -7,5 +7,5 @@ function add_new_ruby(){
 
   chruby ruby-"$RUBY_VERSION"
   gem install kubs_cli
-  kubs-cli install_gems
+  kubs install_gems
 }
