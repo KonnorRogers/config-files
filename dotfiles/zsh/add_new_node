@@ -1,9 +1,0 @@
-function add_new_node(){
-  NODE_VERSION="$1"
-
-  nvm install "$NODE_VERSION"
-  # Restart the shell
-  source $HOME/.zshrc
-  nvm use "$NODE_VERSION"
-}
-
