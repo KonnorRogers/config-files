@@ -1,0 +1,23 @@
+snippet syntax
+alias syn
+options head
+  \`\`\`${1}
+  ${2:TARGET}
+  \`\`\`$0
+
+snippet metadata
+alias meta
+options head
+  ---
+  title: ${1}
+  date: "`strftime("%Y-%m-%dT%H:%M:%S")`"
+  description: "${2}"
+  ---
+  ${0}
+
+snippet link
+alias ln
+options word
+  [${1:#:text}](${2:#:link})${0}
+
+

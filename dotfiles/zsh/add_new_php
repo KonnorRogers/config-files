@@ -1,0 +1,6 @@
+function add_new_php(){
+  PHP_VERSION="$1"
+
+  phpenv install --skip-existing "$PHP_VERSION"
+  phpenv global "$PHP_VERSION"
+}

@@ -57,15 +57,14 @@ alias tag-gen="ctags -R --tag-relative -f .git/tags"
 alias ownthis="sudo chown -R $USER:$USER ."
 alias klight="~/bin/keyboard_light"
 
-# vps-cli
-alias v='vps-cli'
-alias vgp='vps-cli git_pull'
-alias vpp='vps-cli pull && vps-cli git_push'
-alias vgpc='vps-cli git_pull && vps-cli copy'
-alias vc='vps-cli copy'
-alias vu='vps-cli update'
-alias vfi='vps-cli fresh_install'
-alias vl='vps-cli login'
+# kubs-cli
+alias k='kubs'
+alias kgp='kubs git_pull'
+alias kpp='kubs pull && kubs git_push'
+alias kgpc='kubs git_pull && kubs copy'
+alias kc='kubs copy'
+alias ku='kubs update'
+alias kl='kubs login'
 
 # docker
 alias d='docker'

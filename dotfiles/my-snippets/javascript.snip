@@ -1,0 +1,31 @@
+snippet React
+alias imr
+options head
+  import React from "react"${0}
+
+snippet importX
+alias im
+options head
+  import ${1} from "${2}"${0}
+
+snippet importX{}
+alias imb
+options head
+  import { ${1} } from "${2}"${0}
+
+snippet export default
+alias exd
+options head
+  export default () => (
+    ${1:TARGET}
+  )${0}
+
+snippet single component
+alias -- 
+options word
+  <${1} ${2:TARGET} />${0}
+
+snippet double component
+alias ==
+options word
+  <${1} ${2}>${3:TARGET}</$1>${0}

@@ -1,0 +1,19 @@
+snippet describe
+alias desc
+options word
+  RSpec.describe ${1:#:class} do
+    ${2:TARGET}
+  end ${0}
+
+snippet context
+alias ctxt
+options word
+  context "${1}" do
+    ${2:TARGET}
+  end ${0}
+
+snippet it
+options word
+  it "${1}" do
+    ${2}
+  end ${0}

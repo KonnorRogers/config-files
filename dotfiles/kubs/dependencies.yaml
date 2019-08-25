@@ -32,7 +32,7 @@ npm_packages:
             bash-language-server --unsafe-perm
             vscode-html-languageserver-bin
             vscode-css-languageserver-bin
-            javascript-typescript-langserv
+            javascript-typescript-langserver
             dockerfile-language-server-nodejs
 
 pip2_packages:
