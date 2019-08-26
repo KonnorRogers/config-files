@@ -13,7 +13,7 @@ if empty(glob('~/.vim/autoload/plug.vim'))
 endif
 
 call plug#begin("~/.vim/plugged")
-  "Colorscheme
+  " Colorscheme
   Plug 'arcticicestudio/nord-vim'
   Plug 'flazz/vim-colorschemes'
   Plug 'rakr/vim-one'
@@ -42,7 +42,7 @@ call plug#begin("~/.vim/plugged")
 
   "Mark down previewing
   "Ensure you have nodejs and yarn
-  Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & yarn install'  }
+  " Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & yarn install'  }
 
   "file exploration
   Plug 'scrooloose/nerdtree'
