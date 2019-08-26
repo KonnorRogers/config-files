@@ -17,7 +17,6 @@ call plug#begin("~/.vim/plugged")
   Plug 'arcticicestudio/nord-vim'
   Plug 'flazz/vim-colorschemes'
   Plug 'rakr/vim-one'
-  Plug 'trevordmiller/nova-vim'
 
   "Javascript / React
   Plug 'pangloss/vim-javascript'
@@ -174,7 +173,7 @@ autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
 set background=dark
 let g:quantum_black = 1
 let g:nord_uniform_status_lines = 1
-colorscheme nova
+colorscheme apprentice
 " set background=light
 " colorscheme PaperColor
 
