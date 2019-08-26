@@ -225,8 +225,7 @@ if executable('ag')
   set grepprg=ag\ --nogroup\ --nocolor
 endif
 
-" " Search with silversearch
-
+" Search with silversearch
 ":Ag to grep shortcut
 command! -nargs=+ -complete=file -bar Ag silent! grep! <args>|cwindow|redraw!
 
@@ -236,6 +235,10 @@ nnoremap \ :Ag<SPACE>
 nnoremap <Leader>gc :grep! "\b<C-R><C-W>\b"<CR>:cw<CR>
 " Grep previous grep
 nnoremap <Leader>gp :grep /<C-r>// %<CR>
+
+" Global Search and Replace
+nnoremap <Leader>gd :args .
+nnoremap <Leader>gp :argdo %s/foo/bar/g
 
 " Navigation
 nnoremap <Leader>cn :cnext<CR>
@@ -250,7 +253,6 @@ nmap <Leader>ra :RuboCop -a<CR>
 
 " ragtag recommended keybinding
 inoremap <M-o> <Esc>o
-
 inoremap <C-j> <Down>
 let g:ragtag_global_maps = 1 "available globally
 
