@@ -60,7 +60,7 @@ alias klight="~/bin/keyboard_light"
 # kubs-cli
 alias k='kubs'
 alias kgp='kubs git_pull'
-alias kpp='kubs pull && kubs git_push'
+alias kpgp='kubs pull && kubs git_push'
 alias kgpc='kubs git_pull && kubs copy'
 alias kc='kubs copy'
 alias ku='kubs update'

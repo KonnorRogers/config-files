@@ -119,7 +119,7 @@ set history=50
 set incsearch "incremental searching
 set hidden
 set lazyredraw "Fixes files at the end of macros
-set relativenumber "if on line 5, line 4 will be 1 and line 6 will be 1 etc
+set cursorline "Adds a highlight to current line
 set guifont=DejavuSansMono\ Nerd\ Font\ 14
 set clipboard=unnamed "stupid clipboard crap
 set linespace=3
