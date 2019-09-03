@@ -17,11 +17,9 @@ call plug#begin("~/.vim/plugged")
   Plug 'arcticicestudio/nord-vim'
   Plug 'flazz/vim-colorschemes'
   Plug 'rakr/vim-one'
-  Plug 'gosukiwi/vim-atom-dark'
 
   "Javascript / React
   Plug 'pangloss/vim-javascript'
-  Plug 'mxw/vim-jsx'
   Plug 'elzr/vim-json'
 
 
@@ -187,7 +185,7 @@ set statusline+=\ %<%F\ %m\ %r\ %h\ %=%=%=%y\ [%c]%=
 " Fix status line in one colorscheme
 " call one#highlight('StatusLine', '', '', 'reverse')
 " Black background for my crappy glossy laptop
-" highlight Normal guibg=black ctermbg=black
+highlight Normal guibg=black ctermbg=black
 
 " Using splits
 map <Leader>s :split<CR>
@@ -318,7 +316,6 @@ call deoplete#custom#option({
       \ 'auto_complete_delay': 10,
       \ 'smart_case': v:true,
       \ })
-
 
 " Expands snippets with <C-e>
 imap <expr><C-k>
