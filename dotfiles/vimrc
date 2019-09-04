@@ -312,10 +312,6 @@ let g:user_emmet_leader_key = '<C-e>'
 
 " Deoplete settings
 let g:deoplete#enable_at_startup = 1
-call deoplete#custom#option({
-      \ 'auto_complete_delay': 10,
-      \ 'smart_case': v:true,
-      \ })
 
 " Expands snippets with <C-e>
 imap <expr><C-k>
