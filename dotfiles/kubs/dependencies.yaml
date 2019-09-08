@@ -37,6 +37,7 @@ npm_packages:
             vscode-css-languageserver-bin
             javascript-typescript-langserver
             dockerfile-language-server-nodejs
+            live-server
 
 pip2_packages:
   command: pip2 install --user --upgrade
