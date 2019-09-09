@@ -17,6 +17,7 @@ call plug#begin("~/.vim/plugged")
   Plug 'arcticicestudio/nord-vim'
   Plug 'flazz/vim-colorschemes'
   Plug 'rakr/vim-one'
+  Plug 'drewtempelmeyer/palenight.vim'
 
   "Javascript / React
   Plug 'pangloss/vim-javascript'
@@ -120,7 +121,7 @@ set hidden
 set lazyredraw "Fixes files at the end of macros
 set cursorline "Adds a highlight to current line
 set guifont=DejavuSansMono\ Nerd\ Font\ 14
-set clipboard=unnamed "stupid clipboard crap
+set clipboard=unnamedplus "stupid clipboard crap
 set linespace=3
 set cursorcolumn "Makes working with yaml files easier
 
@@ -172,7 +173,7 @@ autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
 set background=dark
 let g:quantum_black = 1
 let g:nord_uniform_status_lines = 1
-colorscheme apprentice
+colorscheme palenight
 
 " set background=light
 " colorscheme PaperColor
@@ -185,7 +186,8 @@ set statusline+=\ %<%F\ %m\ %r\ %h\ %=%=%=%y\ [%c]%=
 " Fix status line in one colorscheme
 " call one#highlight('StatusLine', '', '', 'reverse')
 " Black background for my crappy glossy laptop
-highlight Normal guibg=black ctermbg=black
+" highlight Normal guibg=black ctermbg=black
+highlight StatusLine guibg=#87875f guifg=#262626
 
 " Using splits
 map <Leader>s :split<CR>
