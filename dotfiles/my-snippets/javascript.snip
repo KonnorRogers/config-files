@@ -43,3 +43,29 @@ options word
   render() {
     ${1:TARGET}
   }${0}
+
+snippet myFunction
+alias fn
+options word
+  function ${1:#:functionName}(${2:#:args}) {
+    ${3:TARGET}
+  };${0}
+
+snippet anonymousFunction
+alias afn
+options word
+  function(){
+    ${1:TARGET}
+  };${0}
+
+snippet singleLineArrowFunction
+alias =>
+options word
+  (${1:#:args}) => ${2:TARGET}${0}
+
+snippet multiLineArrowFunction
+alias ==>
+options word
+  (${1:#:args}) => {
+    ${2:TARGET}
+  }${0}
