@@ -69,3 +69,10 @@ options word
   (${1:#:args}) => {
     ${2:TARGET}
   }${0}
+
+snippet test
+alias tst
+options word
+  test('${1:#:Should do X}', () => {
+    ${2:TARGET}
+  });${0}

@@ -22,7 +22,7 @@ call plug#begin("~/.vim/plugged")
   "Javascript / React
   Plug 'pangloss/vim-javascript'
   Plug 'elzr/vim-json'
-  Plug 'mxw/vim-jsx'
+  Plug 'maxmellon/vim-jsx-pretty'
 
 
   "Tpope plugins
