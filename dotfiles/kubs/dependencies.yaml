@@ -27,17 +27,17 @@ apt:
 gems:
   command: gem install
   packages: colorls neovim rake pry rubocop gem-ctags rails yard
-            thor bundler solargraph
+    thor bundler solargraph
 
 npm_packages:
   command: npm install -g
   packages: neovim eslint
-            bash-language-server --unsafe-perm
-            vscode-html-languageserver-bin
-            vscode-css-languageserver-bin
-            javascript-typescript-langserver
-            dockerfile-language-server-nodejs
-            live-server
+    bash-language-server --unsafe-perm
+    vscode-html-languageserver-bin
+    vscode-css-languageserver-bin
+    javascript-typescript-langserver
+    dockerfile-language-server-nodejs
+    live-server sass
 
 pip2_packages:
   command: pip2 install --user --upgrade
