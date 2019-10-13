@@ -125,7 +125,6 @@ set guifont=DejavuSansMono\ Nerd\ Font\ 14
 set clipboard=unnamedplus "stupid clipboard crap
 set linespace=3
 set cursorcolumn "Makes working with yaml files easier
-
 set wildignore+=node_modules
 
 "Fixing splits to be more natural
