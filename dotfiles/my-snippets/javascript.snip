@@ -72,13 +72,21 @@ options word
 
 snippet test
 alias tst
-options word
+options head indent
   test('${1:#:Should do X}', () => {
     ${2:TARGET}
   });${0}
 
 snippet jsdoc
 alias doc
+options head indent
   /**
    * ${1:TARGET}
    */${0}
+
+snippet describe
+alias desc
+options head indent
+  describe('${1}', () => {
+    ${2:TARGET}
+  });${0}
