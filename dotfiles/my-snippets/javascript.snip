@@ -46,30 +46,31 @@ options word
 
 snippet myFunction
 alias fn
-options word
+options word indent
   function ${1:#:functionName}(${2:#:args}) {
     ${3:TARGET}
   };${0}
 
 snippet anonymousFunction
 alias afn
-options word
+options word indent
   function(){
     ${1:TARGET}
   };${0}
 
 snippet singleLineArrowFunction
 alias =>
-options word
+options word indent
   (${1:#:args}) => ${2:TARGET}${0}
 
 snippet multiLineArrowFunction
 alias ==>
-options word
+options word indent
   (${1:#:args}) => {
     ${2:TARGET}
   }${0}
 
+# Testing snippets
 snippet test
 alias tst
 options head indent
@@ -77,6 +78,19 @@ options head indent
     ${2:TARGET}
   });${0}
 
+snippet describe
+alias desc
+options head indent
+  describe('${1}', () => {
+    ${2:TARGET}
+  });${0}
+
+snippet expect
+alias exp
+options head indent
+  expect(${1:#:thing}).${2:toBe}(${3:#:true});${0}
+
+# Documentation snippets
 snippet jsdoc
 alias doc
 options head indent
@@ -84,9 +98,7 @@ options head indent
    * ${1:TARGET}
    */${0}
 
-snippet describe
-alias desc
+snippet inline-jsdoc
+alias idoc
 options head indent
-  describe('${1}', () => {
-    ${2:TARGET}
-  });${0}
+  /** ${1:TARGET} */${0}

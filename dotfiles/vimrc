@@ -126,7 +126,6 @@ set clipboard=unnamedplus "stupid clipboard crap
 set linespace=3
 set cursorcolumn "Makes working with yaml files easier
 set wildignore+=node_modules
-set gdefault "Always use /g on substitutions
 
 "Fixing splits to be more natural
 set splitbelow
