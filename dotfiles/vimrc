@@ -18,6 +18,7 @@ call plug#begin("~/.vim/plugged")
   Plug 'flazz/vim-colorschemes'
   Plug 'rakr/vim-one'
   Plug 'drewtempelmeyer/palenight.vim'
+  Plug 'doums/darcula'
 
   "Javascript / React
   Plug 'pangloss/vim-javascript'
@@ -126,6 +127,7 @@ set clipboard=unnamedplus "stupid clipboard crap
 set linespace=3
 set cursorcolumn "Makes working with yaml files easier
 set wildignore+=node_modules
+set gdefault "Allows multiple substitutions per line
 
 "Fixing splits to be more natural
 set splitbelow
@@ -162,7 +164,7 @@ augroup END
 "strip trailing whitespace from all files
 autocmd BufWritePre * :%s/\s\+$//e
 
-:set bs=2 "fix backspace on some consoles
+set bs=2 "fix backspace on some consoles
 
 " set spacing on files
 autocmd FileType * setlocal expandtab shiftwidth=2 tabstop=2
