@@ -175,7 +175,7 @@ autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
 set background=dark
 let g:quantum_black = 1
 let g:nord_uniform_status_lines = 1
-colorscheme palenight
+colorscheme darcula
 
 " set background=light
 " colorscheme PaperColor
