@@ -389,3 +389,5 @@ autocmd FileType * call LC_maps()
 
 set completefunc=LanguageClient#complete
 set formatexpr=LanguageClient#textDocument_rangeFormatting_sync()
+
+let g:LanguageClient_diagnosticsList='Disabled'
