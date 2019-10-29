@@ -25,6 +25,8 @@ call plug#begin("~/.vim/plugged")
   Plug 'elzr/vim-json'
   Plug 'maxmellon/vim-jsx-pretty'
 
+  " Multicolored parentheses
+  Plug 'junegunn/rainbow_parentheses.vim'
 
   "Tpope plugins
   Plug 'tpope/vim-fugitive'

@@ -1,3 +1,6 @@
+update-apt:
+  command: sudo apt update && sudo apt upgrade -y
+  packages:
 apt:
   command: sudo apt install -y
   packages:
@@ -22,7 +25,7 @@ apt:
       silversearcher-ag virtualbox
 
     # Databases
-    - mysql-server mysql-workbench sqlite3 postgres
+    - mysql-server sqlite3 postgresql
 
 gems:
   command: gem install
