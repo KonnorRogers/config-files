@@ -54,6 +54,12 @@ call plug#begin("~/.vim/plugged")
   " Linting
   Plug 'w0rp/ale'
 
+  "Language Server
+  Plug 'autozimu/LanguageClient-neovim', {
+        \ 'branch': 'next',
+        \ 'do': 'bash install.sh',
+        \ }
+
   " Snippets
   Plug 'Shougo/neosnippet.vim'
   Plug 'Shougo/neosnippet-snippets' " prebuilt snippets
@@ -345,6 +351,7 @@ if has('conceal')
   set conceallevel=2 concealcursor=niv
 endif
 
+" Editing autocompletion
 " highlight Pmenu ctermbg=8 guibg=#606060
 " highlight PmenuSel ctermbg=1 guifg=#dddd00 guibg=#1f82cd
 " highlight PmenuSbar ctermbg=0 guibg=#d6d6d6
@@ -356,3 +363,14 @@ nmap <Leader>mt <Plug>MarkdownPreviewToggle<Paste>
 
 let g:prettier#autoformat = 0
 autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.md,*.vue,*.yaml,*.html PrettierAsync
+
+" implement additional language servers below
+" currently implements bash, css, html, ruby, and javascript
+let g:LanguageClient_autoStop = 0
+let g:LanguageClient_serverCommands = {
+    \ 'ruby': ['solargraph', 'stdio'],
+    \ 'html': ['html-language-server', '--stdio'],
+    \ 'css': ['css-language-server', '--stdio'],
+    \ 'javascript': ['javascript-typescript-stdio'],
+    \ 'bash': ['bash-language-server', 'start'],
+    \ }
