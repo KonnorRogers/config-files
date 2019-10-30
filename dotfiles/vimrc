@@ -334,11 +334,6 @@ if has('conceal')
   set conceallevel=2 concealcursor=niv
 endif
 
-" Editing autocompletion
-" highlight Pmenu ctermbg=8 guibg=#606060
-" highlight PmenuSel ctermbg=1 guifg=#dddd00 guibg=#1f82cd
-" highlight PmenuSbar ctermbg=0 guibg=#d6d6d6
-
 " Markdown preview mapping
 nmap <Leader>md <Plug>MarkdownPreview
 nmap <Leader>ms <Plug>MarkdownPreviewStop
@@ -457,3 +452,12 @@ nnoremap <silent> <space>j  :<C-u>CocNext<CR>
 nnoremap <silent> <space>k  :<C-u>CocPrev<CR>
 " Resume latest coc list
 nnoremap <silent> <space>p  :<C-u>CocListResume<CR>
+
+let g:coc_start_at_startup = 1
+let g:coc_global_extensions = [
+      \ 'coc-json',
+      \ 'coc-css',
+      \ 'coc-neosnippet',
+      \ 'coc-tsserver',
+      \ 'coc-emmet'
+      \ ]
