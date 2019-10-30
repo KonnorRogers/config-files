@@ -56,6 +56,9 @@ call plug#begin("~/.vim/plugged")
   " Linting
   Plug 'w0rp/ale'
 
+  "Function signature
+  Plug 'Shougo/echodoc.vim'
+
   "Language Server
   Plug 'autozimu/LanguageClient-neovim', {
         \ 'branch': 'next',
@@ -149,7 +152,7 @@ set diffopt+=vertical
 runtime macros/matchit.vim
 
 " Tags searching
-set tags=./tags
+set tags+=./tags
 
 if has('nvim') || has('termguicolors')
   set termguicolors
@@ -324,6 +327,11 @@ let g:user_emmet_leader_key = '<C-e>'
 
 " Deoplete settings
 let g:deoplete#enable_at_startup = 1
+let deoplete#tag#cache_limit_size = 5000000
+
+" Echodoc
+let g:echodoc#enable_at_startup = 1
+set cmdheight=2
 
 " Expands snippets with <C-e>
 imap <expr><C-k>
@@ -387,7 +395,7 @@ endfunction
 
 autocmd FileType * call LC_maps()
 
-set completefunc=LanguageClient#complete
+set completefunc+=LanguageClient#complete
 set formatexpr=LanguageClient#textDocument_rangeFormatting_sync()
 
 let g:LanguageClient_diagnosticsList='Disabled'
