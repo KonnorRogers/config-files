@@ -47,15 +47,18 @@ call plug#begin("~/.vim/plugged")
 
   "file exploration
   Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+  Plug 'junegunn/fzf.vim'
 
   " Snippets
   Plug 'Shougo/neosnippet.vim'
 
   " Autocompletion
   Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}
+
+  " Linting
+  Plug 'dense-analysis/ale'
 call plug#end()
 
-let mapleader = " " "space is now \
 
 " Autosave
 set autowrite
@@ -76,7 +79,7 @@ set shiftround
 set colorcolumn=81
 
 "Left hand column numbers
-set number
+set relativenumber
 set numberwidth=5
 
 "Display extra whitespace
@@ -134,7 +137,6 @@ set history=50
 "Keep buffers alive in background
 set hidden
 
-
 "Fixes files at the end of macros, better performance
 set lazyredraw
 
@@ -177,6 +179,21 @@ set shortmess+=c
 " always show signcolumns
 set signcolumn=yes
 
+
+"Colorscheme / appearance
+
+set background=dark
+colorscheme darcula
+
+"Status line
+set laststatus=2
+set statusline=
+set statusline+=\ %<%F\ %m\ %r\ %h\ %=%=%=%y\ [%c]%=
+
+highlight StatusLine guibg=#87875f guifg=#262626
+
+" Autocommands
+
 " Return cursor to original position
 if has("autocmd")
   au BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$")
@@ -196,24 +213,25 @@ autocmd BufWritePre * :%s/\s\+$//e
 "removes auto-commenting when hitting <CR>
 autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
 
-set background=dark
-colorscheme darcula
-
-"Status line
-set laststatus=2
-set statusline=
-set statusline+=\ %<%F\ %m\ %r\ %h\ %=%=%=%y\ [%c]%=
-
-highlight StatusLine guibg=#87875f guifg=#262626
-
-
 " Mappings
+
+"<Leader> is now <space>
+let mapleader = " "
+
+" Jump down sensibly
+nnoremap j gj
+nnoremap k gk
 
 " Using splits
 map <Leader>s :split<CR>
 
-" Go to last buffer
-nnoremap <Leader><Leader> <C-^>
+"Buffer switching
+nnoremap <Leader><Leader> :bprev
+nnoremap <Leader>bn :bnext
+
+"Tab switching
+nnoremap <Leader>tn :tabnext
+nnoremap <Leader>tp :tabprev
 
 " better window movement
 nnoremap <C-h> <C-w>h
@@ -232,43 +250,16 @@ map <Leader>wq :wq!<CR>
 " quit
 map <Leader>qq :q!<CR>
 
-"fzf config
-map <Leader>f :FZF <Esc>
-autocmd! FileType fzf
-autocmd  FileType fzf set laststatus=0 noshowmode noruler
-      \| autocmd BufLeave <buffer> set laststatus=2 showmode ruler
-
-" Navigation
-nnoremap <Leader>cn :cnext<CR>
-nnoremap <Leader>cp :cprevious<CR>
-nnoremap <Leader>cf :cfirst<CR>
-nnoremap <Leader>cl :clast<CR>
-
-
-" rubocop mapping
-nmap <Leader>rr :RuboCop<CR>
-nmap <Leader>ra :RuboCop -a<CR>
-
-" ragtag recommended keybinding
-inoremap <M-o> <Esc>o
-inoremap <C-j> <Down>
-let g:ragtag_global_maps = 1 "available globally
-
-" Rebinds ctrl-x ctrl-k to not interfere with snippet jumping
-inoremap <c-x><c-k> <c-k><c-x>
-
-" tag completion
-inoremap <c-x><c-]> <c-]>
+" Quickfix Navigation
+nnoremap ]q :cnext<CR>
+nnoremap [q :cprevious<CR>
+nnoremap [Q :cfirst<CR>
+nnoremap ]Q :clast<CR>
 
 " Treat <li> and <p> tags like the block tags they are
 let g:html_indent_tags = 'li\|p'
 
-" Plug commands
-map <Leader>pi :PlugInstall<CR>
-map <Leader>pu :PlugUpdate<CR>
-map <Leader>pru :UpdateRemotePlugins<CR>
-map <Leader>pc :PlugClean<CR>
-
+" Custom functions
 
 function! RenameFile()
   let old_name = expand('%')
@@ -291,25 +282,66 @@ endfunction
 
 map <Leader>nf :call Touch()<CR>
 
-" Jump down sensibly
-nnoremap j gj
-nnoremap k gk
+" Plug commands
+map <Leader>pi :PlugInstall<CR>
+map <Leader>pu :PlugUpdate<CR>
+map <Leader>pru :UpdateRemotePlugins<CR>
+map <Leader>pc :PlugClean<CR>
 
-" Toggle file explorer
-map <C-n> :NERDTreeToggle<CR>
+" rubocop mapping
+nmap <Leader>rr :RuboCop<CR>
+nmap <Leader>ra :RuboCop -a<CR>
 
+" ragtag recommended keybinding
+inoremap <M-o> <Esc>o
+inoremap <C-j> <Down>
+let g:ragtag_global_maps = 1 "available globally
+
+"fzf config
+
+" All files
+map <Leader>ff :Files<CR>
+
+" Git ls files
+map <Leader>fg :GFiles<CR>
+
+" Git status
+map <Leader>fs :GFiles?<CR>
+
+" Search buffers
+map <Leader>fb :Buffers<CR>
+
+"AG search
+map <Leader>ag :Ag<CR>
+
+"Ripgrep search
+map <Leader>rg :Rg<CR>
+
+"Tag search
+map <Leader>ft :Tags<CR>
+
+"Remove statusline when using fzf
+autocmd! FileType fzf
+autocmd  FileType fzf set laststatus=0 noshowmode noruler
+      \| autocmd BufLeave <buffer> set laststatus=2 showmode ruler
+
+" Toggle file explorer using netrw
+map <C-n> :Lexplore<CR>
+let g:netrw_winsize = 25
+
+"ALE config
 nmap <Leader>ad :ALEDetail<CR>
 let g:ale_lint_delay = 500
 
 " Dont let it override <C-y>
 let g:user_emmet_leader_key = '<C-e>'
 
-" Expands snippets with <C-e>
+" Expands snippets with <C-k>
 imap <expr><C-k>
       \ (pumvisible() && neosnippet#expandable()) ?
       \ "\<Plug>(neosnippet_expand)" : "\<CR>"
 
-" Expand snippets in dropdown with <C-e>
+" Expand snippets in dropdown with <C-k>
 xmap <expr><C-k>
       \ (pumvisible() && neosnippet#expandable()) ?
       \ "\<Plug>(neosnippet_expand_target)" : "\<CR>"
@@ -323,6 +355,11 @@ xmap <C-k>     <Plug>(neosnippet_expand_target)
 let g:neosnippet#snippets_directory='~/.my-snippets'
 
 map <Leader>ns :NeoSnippetEdit<CR>
+
+" Disable searching for default snippets
+let g:neosnippet#disable_runtime_snippets = {
+\   '_' : 1,
+\ }
 
 " Clear markers when not in insert mode
 autocmd InsertLeave * NeoSnippetClearMarkers
