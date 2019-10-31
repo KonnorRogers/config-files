@@ -22,7 +22,7 @@ apt:
       openssh-client openssh-server dconf-cli gnome-terminal
       pry rubygems fail2ban
       neovim asciinema docker mosh yarn
-      silversearcher-ag virtualbox
+      silversearcher-ag virtualbox ripgrep
 
     # Databases
     - mysql-server sqlite3 postgresql
