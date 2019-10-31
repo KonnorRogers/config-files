@@ -25,9 +25,6 @@ call plug#begin("~/.vim/plugged")
   Plug 'elzr/vim-json'
   Plug 'maxmellon/vim-jsx-pretty'
 
-  " Multicolored parentheses
-  Plug 'junegunn/rainbow_parentheses.vim'
-
   "Tpope plugins
   Plug 'tpope/vim-fugitive'
   Plug 'tpope/vim-commentary'
@@ -45,18 +42,16 @@ call plug#begin("~/.vim/plugged")
   Plug 'ap/vim-css-color'
   Plug 'prettier/vim-prettier', { 'do': 'yarn install' }
 
-  "Mark down previewing
-  "Ensure you have nodejs and yarn
+  "Markdown previewing, Ensure you have nodejs and yarn
   Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & yarn install'  }
 
   "file exploration
-  Plug 'scrooloose/nerdtree'
   Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 
   " Snippets
   Plug 'Shougo/neosnippet.vim'
-  Plug 'Shougo/neosnippet-snippets' " prebuilt snippets
 
+  " Autocompletion
   Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}
 call plug#end()
 
@@ -80,46 +75,80 @@ set shiftround
 "Make it obvious where 80 characters is
 set colorcolumn=81
 
-"Numbers
+"Left hand column numbers
 set number
 set numberwidth=5
 
 "Display extra whitespace
 set list listchars=tab:»·,trail:·,nbsp:·
 
-set showmatch       "show matching brackets
-set ruler           "show cursor position at all times
-set nohls           "don't highlight the previous search term
-set number          "turn on line numbering
-set wrap            "turn on visual word wrapping
-set linebreak       "only break lines on 'breakat' characters
+"show matching brackets
+set showmatch
+
+"show cursor position at all times
+set ruler
+
+"don't highlight the previous search term
+set nohls
+
+"incremental searching
+set incsearch
+
+"turn on visual word wrapping
+set wrap
+
+"only break lines on 'breakat' characters
+set linebreak
+
+" Folds
 set foldmethod=indent
 set nofoldenable
-syntax on           "turn on syntax highlighting
-set nobackup        "no backups
-set nowritebackup   "no backup file while editing
-set noswapfile      "no creation of swap files
-filetype plugin indent on
-set backspace=indent,eol,start "fixes backspace in vim
-set wildmenu
-set showcmd
-set history=50
-set incsearch "incremental searching
-set hidden
-set lazyredraw "Fixes files at the end of macros
-set cursorline "Adds a highlight to current line
-set guifont=DejavuSansMono\ Nerd\ Font\ 14
-set clipboard=unnamedplus "stupid clipboard crap
-set linespace=3
-set cursorcolumn "Makes working with yaml files easier
-set wildignore+=node_modules
-set gdefault "Allows multiple substitutions per line
 
-" CoC recommended config
-set cmdheight=2 " Better display for messages
-set updatetime=300 " You will have bad experience for diagnostic messages when it's default 4000.
-set shortmess+=c " don't give |ins-completion-menu| messages.
-set signcolumn=yes " always show signcolumns
+"Syntax highlighting
+syntax on
+
+"Enable filetypes, indentation and plugins
+filetype plugin indent on
+
+"Say no to file backups
+set nobackup
+set nowritebackup
+set noswapfile
+
+"fixes backspace in vim
+set backspace=indent,eol,start
+
+"fix backspace on some consoles
+set bs=2
+
+"Tabbing menu
+set wildmenu
+set wildignore+=node_modules
+
+"show command line
+set showcmd
+
+"keep small history
+set history=50
+
+"Keep buffers alive in background
+set hidden
+
+
+"Fixes files at the end of macros, better performance
+set lazyredraw
+
+"Stupid clipboard crap, configure this accordingly
+set clipboard+=unnamedplus
+
+"Provide a line of what column youre in
+set cursorcolumn
+
+"Adds a horizontal highlight to current line
+set cursorline
+
+" Global substitutions by default
+set gdefault
 
 "Fixing splits to be more natural
 set splitbelow
@@ -135,10 +164,18 @@ runtime macros/matchit.vim
 " Tags searching
 set tags+=./tags
 
-if has('nvim') || has('termguicolors')
-  set termguicolors
-  set t_Co=256
-endif
+" CoC recommended config
+
+" Better display for messages
+set cmdheight=2
+" You will have bad experience for diagnostic messages when it's default 4000.
+set updatetime=300
+
+" don't give |ins-completion-menu| messages.
+set shortmess+=c
+
+" always show signcolumns
+set signcolumn=yes
 
 " Return cursor to original position
 if has("autocmd")
@@ -156,32 +193,21 @@ augroup END
 "strip trailing whitespace from all files
 autocmd BufWritePre * :%s/\s\+$//e
 
-set bs=2 "fix backspace on some consoles
-
-" set spacing on files
-autocmd FileType * setlocal expandtab shiftwidth=2 tabstop=2
-
 "removes auto-commenting when hitting <CR>
 autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
 
 set background=dark
-let g:quantum_black = 1
-let g:nord_uniform_status_lines = 1
 colorscheme darcula
 
-" set background=light
-" colorscheme PaperColor
-
-" use default
+"Status line
 set laststatus=2
 set statusline=
 set statusline+=\ %<%F\ %m\ %r\ %h\ %=%=%=%y\ [%c]%=
 
-" Fix status line in one colorscheme
-" call one#highlight('StatusLine', '', '', 'reverse')
-" Black background for my crappy glossy laptop
-" highlight Normal guibg=black ctermbg=black
 highlight StatusLine guibg=#87875f guifg=#262626
+
+
+" Mappings
 
 " Using splits
 map <Leader>s :split<CR>
@@ -211,31 +237,6 @@ map <Leader>f :FZF <Esc>
 autocmd! FileType fzf
 autocmd  FileType fzf set laststatus=0 noshowmode noruler
       \| autocmd BufLeave <buffer> set laststatus=2 showmode ruler
-
-
-
-" The Silver Searcher for grep vs regular grep
-if executable('ag')
-  " uses silver searcher for faster searches
-  let $FZF_DEFAULT_COMMAND = 'ag -g ""'
-  " Use ag over grep
-  set grepprg=ag\ --nogroup\ --nocolor
-endif
-
-" Search with silversearch
-":Ag to grep shortcut
-command! -nargs=+ -complete=file -bar Ag silent! grep! <args>|cwindow|redraw!
-
-" Bind \ to :Ag
-nnoremap \ :Ag<SPACE>
-" bind <Leader>gc to grep word under cursor
-nnoremap <Leader>gc :grep! "\b<C-R><C-W>\b"<CR>:cw<CR>
-" Grep previous grep
-nnoremap <Leader>gp :grep /<C-r>// %<CR>
-
-" Global Search and Replace
-nnoremap <Leader>gd :args .
-nnoremap <Leader>gp :argdo %s/foo/bar/g
 
 " Navigation
 nnoremap <Leader>cn :cnext<CR>
@@ -289,9 +290,6 @@ function! Touch()
 endfunction
 
 map <Leader>nf :call Touch()<CR>
-
-map <Leader>bl :set background=light<CR>
-map <Leader>bd :set background=dark<CR>
 
 " Jump down sensibly
 nnoremap j gj
@@ -390,11 +388,11 @@ endfunction
 autocmd CursorHold * silent call CocActionAsync('highlight')
 
 " Remap for rename current word
-nmap <leader>rn <Plug>(coc-rename)
+nmap <leader>crn <Plug>(coc-rename)
 
 " Remap for format selected region
-xmap <leader>f  <Plug>(coc-format-selected)
-nmap <leader>f  <Plug>(coc-format-selected)
+xmap <leader>cfs  <Plug>(coc-format-selected)
+nmap <leader>cfs  <Plug>(coc-format-selected)
 
 augroup mygroup
   autocmd!
@@ -405,8 +403,8 @@ augroup mygroup
 augroup end
 
 " Remap for do codeAction of selected region, ex: `<leader>aap` for current paragraph
-xmap <leader>a  <Plug>(coc-codeaction-selected)
-nmap <leader>a  <Plug>(coc-codeaction-selected)
+xmap <leader>cas  <Plug>(coc-codeaction-selected)
+nmap <leader>cas  <Plug>(coc-codeaction-selected)
 
 " Remap for do codeAction of current line
 nmap <leader>ac  <Plug>(coc-codeaction)
@@ -437,21 +435,21 @@ set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
 
 " Using CocList
 " Show all diagnostics
-nnoremap <silent> <space>a  :<C-u>CocList diagnostics<cr>
+nnoremap <silent> <leader>cld  :<C-u>CocList diagnostics<cr>
 " Manage extensions
-nnoremap <silent> <space>e  :<C-u>CocList extensions<cr>
+nnoremap <silent> <leader>cle  :<C-u>CocList extensions<cr>
 " Show commands
-nnoremap <silent> <space>c  :<C-u>CocList commands<cr>
-" Find symbol of current document
-nnoremap <silent> <space>o  :<C-u>CocList outline<cr>
-" Search workspace symbols
-nnoremap <silent> <space>s  :<C-u>CocList -I symbols<cr>
-" Do default action for next item.
-nnoremap <silent> <space>j  :<C-u>CocNext<CR>
-" Do default action for previous item.
-nnoremap <silent> <space>k  :<C-u>CocPrev<CR>
+nnoremap <silent> <leader>clc  :<C-u>CocList commands<cr>
+" Find symbol of current dcocument
+nnoremap <silent> <leader>clo  :<C-u>CocList outline<cr>
+" Search workleader symbolcs
+nnoremap <silent> <leader>cls  :<C-u>CocList -I symbols<cr>
+" Do default action for necxt item.
+nnoremap <silent> <leader>cj  :<C-u>CocNext<CR>
+" Do default action for prcevious item.
+nnoremap <silent> <leader>ck  :<C-u>CocPrev<CR>
 " Resume latest coc list
-nnoremap <silent> <space>p  :<C-u>CocListResume<CR>
+nnoremap <silent> <leader>cp  :<C-u>CocListResume<CR>
 
 let g:coc_start_at_startup = 1
 let g:coc_global_extensions = [
