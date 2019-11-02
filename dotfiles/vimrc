@@ -54,6 +54,16 @@ call plug#begin("~/.vim/plugged")
 
   " Autocompletion
   Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}
+  let g:coc_global_extensions = [
+        \ 'coc-json',
+        \ 'coc-css',
+        \ 'coc-neosnippet',
+        \ 'coc-tsserver',
+        \ 'coc-emmet',
+        \ 'coc-tag',
+        \ 'coc-omni',
+        \ 'coc-syntax'
+        \ ]
 
   " Linting
   Plug 'dense-analysis/ale'
@@ -79,8 +89,8 @@ set shiftround
 set colorcolumn=81
 
 "Left hand column numbers
+set number
 set relativenumber
-set numberwidth=5
 
 "Display extra whitespace
 set list listchars=tab:»·,trail:·,nbsp:·
@@ -126,6 +136,7 @@ set bs=2
 
 "Tabbing menu
 set wildmenu
+set wildmode=list:longest,full
 set wildignore+=node_modules
 
 "show command line
@@ -191,6 +202,7 @@ set statusline=
 set statusline+=\ %<%F\ %m\ %r\ %h\ %=%=%=%y\ [%c]%=
 
 highlight StatusLine guibg=#87875f guifg=#262626
+highlight link netrwDir Constant
 
 " Autocommands
 
@@ -226,12 +238,12 @@ nnoremap k gk
 map <Leader>s :split<CR>
 
 "Buffer switching
-nnoremap <Leader><Leader> :bprev
-nnoremap <Leader>bn :bnext
+nnoremap <Leader><Leader> :bprev<CR>
+nnoremap <Leader>bn :bnext<CR>
 
 "Tab switching
-nnoremap <Leader>tn :tabnext
-nnoremap <Leader>tp :tabprev
+nnoremap <Leader>tn :tabnext<CR>
+nnoremap <Leader>tp :tabprev<CR>
 
 " better window movement
 nnoremap <C-h> <C-w>h
@@ -295,7 +307,9 @@ nmap <Leader>ra :RuboCop -a<CR>
 " ragtag recommended keybinding
 inoremap <M-o> <Esc>o
 inoremap <C-j> <Down>
-let g:ragtag_global_maps = 1 "available globally
+
+"available globally
+let g:ragtag_global_maps = 1
 
 "fzf config
 
@@ -325,9 +339,23 @@ autocmd! FileType fzf
 autocmd  FileType fzf set laststatus=0 noshowmode noruler
       \| autocmd BufLeave <buffer> set laststatus=2 showmode ruler
 
+"Netrw
 " Toggle file explorer using netrw
 map <C-n> :Lexplore<CR>
-let g:netrw_winsize = 25
+" absolute width of netrw window
+let g:netrw_winsize = 28
+
+" do not display info on the top of window
+let g:netrw_banner = 0
+
+" tree-view
+let g:netrw_liststyle = 3
+
+" sort is affecting only: directories on the top, files below
+let g:netrw_sort_sequence = '[\/]$,*'
+
+" use the previous window to open file
+let g:netrw_browse_split = 4
 
 "ALE config
 nmap <Leader>ad :ALEDetail<CR>
@@ -489,10 +517,7 @@ nnoremap <silent> <leader>ck  :<C-u>CocPrev<CR>
 nnoremap <silent> <leader>cp  :<C-u>CocListResume<CR>
 
 let g:coc_start_at_startup = 1
-let g:coc_global_extensions = [
-      \ 'coc-json',
-      \ 'coc-css',
-      \ 'coc-neosnippet',
-      \ 'coc-tsserver',
-      \ 'coc-emmet'
-      \ ]
+
+map <Leader>syn :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<'
+\ . synIDattr(synID(line("."),col("."),0),"name") . "> lo<"
+\ . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"<CR>
