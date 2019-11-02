@@ -47,7 +47,6 @@ call plug#begin("~/.vim/plugged")
 
   "file exploration
   Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
-  Plug 'junegunn/fzf.vim'
 
   " Snippets
   Plug 'Shougo/neosnippet.vim'
@@ -238,7 +237,8 @@ nnoremap k gk
 map <Leader>s :split<CR>
 
 "Buffer switching
-nnoremap <Leader><Leader> :bprev<CR>
+nnoremap <Leader><Leader> <C-^>
+nnoremap <Leader>bp :bprev<CR>
 nnoremap <Leader>bn :bnext<CR>
 
 "Tab switching
@@ -313,32 +313,43 @@ let g:ragtag_global_maps = 1
 
 "fzf config
 
-" All files
-map <Leader>ff :Files<CR>
+if executable('ag')
+  set grepprg=ag\ --nogroup\ --nocolor\ --column
+  set grepformat=%f:%l:%c%m
+  "Respect .gitignore
+  command! -bang -nargs=* AgG call fzf#run(fzf#wrap({'source': 'ag --hidden -g ""', 'sink': 'e'}))
 
-" Git ls files
-map <Leader>fg :GFiles<CR>
+  "Do not respect .gitignore
+  command! -bang -nargs=* Ag call fzf#run(fzf#wrap({'source': 'ag -u -g ""', 'sink': 'e'}))
+  nmap <Leader>f :AgG<CR>
+  nmap <Leader>ag :Ag<CR>
+endif
 
-" Git status
-map <Leader>fs :GFiles?<CR>
+nmap <Leader>F :FZF <CR>
 
-" Search buffers
-map <Leader>fb :Buffers<CR>
+" Customize fzf colors to match your color scheme
+let g:fzf_colors =
+\ { 'fg':      ['fg', 'Normal'],
+  \ 'bg':      ['bg', 'Normal'],
+  \ 'hl':      ['fg', 'Comment'],
+  \ 'fg+':     ['fg', 'CursorLine', 'CursorColumn', 'Normal'],
+  \ 'bg+':     ['bg', 'CursorLine', 'CursorColumn'],
+  \ 'hl+':     ['fg', 'Statement'],
+  \ 'info':    ['fg', 'PreProc'],
+  \ 'border':  ['fg', 'Ignore'],
+  \ 'prompt':  ['fg', 'Conditional'],
+  \ 'pointer': ['fg', 'Exception'],
+  \ 'marker':  ['fg', 'Keyword'],
+  \ 'spinner': ['fg', 'Label'],
+  \ 'header':  ['fg', 'Comment'] }
 
-"AG search
-map <Leader>ag :Ag<CR>
-
-"Ripgrep search
-map <Leader>rg :Rg<CR>
-
-"Tag search
-map <Leader>ft :Tags<CR>
 
 "Remove statusline when using fzf
 autocmd! FileType fzf
 autocmd  FileType fzf set laststatus=0 noshowmode noruler
       \| autocmd BufLeave <buffer> set laststatus=2 showmode ruler
 
+autocmd! User FzfStatusLine call <SID>fzf_statusline()
 "Netrw
 " Toggle file explorer using netrw
 map <C-n> :Lexplore<CR>
