@@ -46,6 +46,7 @@ call plug#begin("~/.vim/plugged")
   Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & yarn install'  }
 
   "file exploration
+  Plug 'scrooloose/nerdtree'
   Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 
   " Snippets
@@ -201,7 +202,7 @@ set statusline=
 set statusline+=\ %<%F\ %m\ %r\ %h\ %=%=%=%y\ [%c]%=
 
 highlight StatusLine guibg=#87875f guifg=#262626
-highlight link netrwDir Constant
+highlight link NERDTreeDir Constant
 
 " Autocommands
 
@@ -328,7 +329,7 @@ if executable('ag')
   nnoremap <Leader>gw :grep! "\b<C-R><C-W>\b"<CR>:cw<CR>
 
   "populate quickfix with \
-  command -nargs=+ -complete=file -bar Ag silent! grep! <args>|cwindow|redraw!
+  command! -nargs=+ -complete=file -bar Ag silent! grep! <args>|cwindow|redraw!
   nnoremap \ :Ag<space>
 endif
 
@@ -355,20 +356,10 @@ autocmd  FileType fzf set laststatus=0 noshowmode noruler
       \| autocmd BufLeave <buffer> set laststatus=2 showmode ruler
 
 autocmd! User FzfStatusLine call <SID>fzf_statusline()
-"Netrw
-" Toggle file explorer using netrw
-map <C-n> :Lexplore<CR>
-" absolute width of netrw window
-let g:netrw_winsize = 28
 
-" do not display info on the top of window
-let g:netrw_banner = 0
-
-" tree-view
-let g:netrw_liststyle = 3
-
-" use the previous window to open file
-let g:netrw_browse_split = 4
+"Nerdtree
+let g:NERDTreeShowHidden=1
+nnoremap <C-n> :NERDTreeToggle<CR>
 
 "ALE config
 nmap <Leader>ad :ALEDetail<CR>
