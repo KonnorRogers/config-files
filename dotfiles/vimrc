@@ -263,10 +263,10 @@ map <Leader>wq :wq!<CR>
 map <Leader>qq :q!<CR>
 
 " Quickfix Navigation
-nnoremap ]q :cnext<CR>
-nnoremap [q :cprevious<CR>
-nnoremap [Q :cfirst<CR>
-nnoremap ]Q :clast<CR>
+nnoremap ]q :cnext<CR>zz
+nnoremap [q :cprevious<CR>zz
+nnoremap [Q :cfirst<CR>zz
+nnoremap ]Q :clast<CR>zz
 
 " Treat <li> and <p> tags like the block tags they are
 let g:html_indent_tags = 'li\|p'
