@@ -317,15 +317,20 @@ if executable('ag')
   set grepprg=ag\ --nogroup\ --nocolor\ --column
   set grepformat=%f:%l:%c%m
   "Respect .gitignore
-  command! -bang -nargs=* AgG call fzf#run(fzf#wrap({'source': 'ag --hidden -g ""', 'sink': 'e'}))
+  command! -bang -nargs=* GitFiles call fzf#run(fzf#wrap({'source': 'ag --hidden -g ""', 'sink': 'e'}))
+  nnoremap <Leader>f :GitFiles<CR>
 
   "Do not respect .gitignore
-  command! -bang -nargs=* Ag call fzf#run(fzf#wrap({'source': 'ag -u -g ""', 'sink': 'e'}))
-  nmap <Leader>f :AgG<CR>
-  nmap <Leader>ag :Ag<CR>
-endif
+  command! -bang -nargs=* Files call fzf#run(fzf#wrap({'source': 'ag -u -g ""', 'sink': 'e'}))
+  nnoremap <Leader>F :Files<CR>
 
-nmap <Leader>F :FZF <CR>
+  " bind <Leader>gw to grep word under cursor
+  nnoremap <Leader>gw :grep! "\b<C-R><C-W>\b"<CR>:cw<CR>
+
+  "populate quickfix with \
+  command -nargs=+ -complete=file -bar Ag silent! grep! <args>|cwindow|redraw!
+  nnoremap \ :Ag<space>
+endif
 
 " Customize fzf colors to match your color scheme
 let g:fzf_colors =
@@ -361,9 +366,6 @@ let g:netrw_banner = 0
 
 " tree-view
 let g:netrw_liststyle = 3
-
-" sort is affecting only: directories on the top, files below
-let g:netrw_sort_sequence = '[\/]$,*'
 
 " use the previous window to open file
 let g:netrw_browse_split = 4
