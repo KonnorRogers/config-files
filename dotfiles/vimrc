@@ -20,22 +20,28 @@ call plug#begin("~/.vim/plugged")
   Plug 'drewtempelmeyer/palenight.vim'
   Plug 'doums/darcula'
 
-  "Javascript / React
-  Plug 'pangloss/vim-javascript'
-  Plug 'elzr/vim-json'
-  Plug 'maxmellon/vim-jsx-pretty'
-
   "Tpope plugins
   Plug 'tpope/vim-fugitive'
   Plug 'tpope/vim-commentary'
   Plug 'tpope/vim-surround'
   Plug 'tpope/vim-ragtag'
 
+  "Javascript / React
+  Plug 'pangloss/vim-javascript'
+  Plug 'elzr/vim-json'
+  Plug 'maxmellon/vim-jsx-pretty'
+
+
   "ruby / rails
   Plug 'vim-ruby/vim-ruby'
   Plug 'ngmy/vim-rubocop'
   Plug 'tpope/vim-rails'
   Plug 'tpope/vim-bundler'
+
+  "Elixir
+  Plug 'slashmili/alchemist.vim'
+  Plug 'elixir-editors/vim-elixir'
+
 
   "html / css
   Plug 'mattn/emmet-vim'
