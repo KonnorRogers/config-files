@@ -1,8 +1,6 @@
-snippet syntax
-alias syn
-options head
+snippet syn "syntax for markdown" i
   \`\`\`${1}
-  ${2:TARGET}
+  ${2${VISUAL}}
   \`\`\`$0
 
 snippet metadata
@@ -11,13 +9,13 @@ options head
   ---
   title: ${1}
   date: "`strftime("%Y-%m-%dT%H:%M:%S")`"
-  description: "${2}"
+  description: ${2}
   ---
   ${0}
 
 snippet link
 alias ln
 options word
-  [${1:#:text}](${2:#:link})${0}
+  [${1:#text}](${2:#link})${0}
 
 

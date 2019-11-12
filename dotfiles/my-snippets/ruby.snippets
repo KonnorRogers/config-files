@@ -1,0 +1,18 @@
+snippet rdesc "rspec describe block" i
+RSpec.describe ${1:#:class} do
+  ${2:TARGET}
+end${0}
+endsnippet
+
+snippet ctxt "context block" i
+options word
+context "${1}" do
+  ${2:TARGET}
+end${0}
+endsnippet
+
+snippet it "it block for rspec" i
+it "${1}" do
+  ${2}
+end${0}
+endsnippet

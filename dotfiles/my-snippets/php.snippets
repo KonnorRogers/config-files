@@ -1,0 +1,80 @@
+extends html
+
+# General
+snippet ? "php tag" b
+<?php
+
+${0:${VISUAL}}
+endsnippet
+
+snippet -- "Open close php tag" i
+<?php
+  ${0:${VISUAL}}
+?>
+endsnippet
+
+snippet - "Inline open close php tag" i
+<?php ${0:${VISUAL}} ?>
+endsnippet
+
+snippet = "Php echo" i
+<?= ${1:${VISUAL}} ?>${0}
+endsnippet
+
+# Arrays / loops
+
+snippet => "Key value pairing" i
+options word
+  ${1} => ${2}${0}
+endsnippet
+
+snippet foreach
+<?php foreach ($${1:#array} as $${2:item}) : ?>
+  ${3:${VISUAL}}
+<?php endforeach; ?>${0}
+endsnippet
+
+snippet fekv "For each key value" i
+options word
+<?php foreach ($${1:#:array} as $${2:key} => $${3:value}) : ?>
+  ${4:${VISUAL}}
+<?php endforeach; ?>${0}
+endsnippet
+
+snippet pee "Php enter exit" i
+<?php ${1} ?>
+  ${3:${VISUAL}}
+<?php ${2} ?>${0}
+endsnippet
+
+# functions
+
+snippet fn "function" i
+function ${1:#funcname}(${2:#args}){
+  ${3:${VISUAL}}
+}${0}
+endsnippet
+
+snippet pubfn "public-function" i
+public function ${1:#funcname}(${2:#args}){
+  ${3:${VISUAL}}
+}${0}
+endsnippet
+
+snippet profn "protected-function" i
+protected function ${1:#:funcname}(${2:#:args}){
+  ${3:${VISUAL}}
+}${0}
+endsnippet
+
+snippet prifn "private-function" i
+private function ${1:#:funcname}(${2:#:args}){
+  ${3:${VISUAL}}
+}${0}
+endsnippet
+
+snippet const "construct" i
+public function __construct(${1}){
+  ${2:${VISUAL}}
+}${0}
+endsnippet
