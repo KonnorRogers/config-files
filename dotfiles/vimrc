@@ -61,6 +61,8 @@ call plug#begin("~/.vim/plugged")
   Plug 'dense-analysis/ale'
 call plug#end()
 
+set path+=**
+
 " Autosave
 set autowrite
 
