@@ -37,26 +37,26 @@ function ${1:#functionName}(${2:#args}) {
 endsnippet
 
 snippet => "Arrow function" i
-  (${1:#args}) => ${2:${VISUAL}}${0}
+(${1:#args}) => ${2:${VISUAL}}${0}
 endsnippet
 
 snippet ==> "Multiline arrow function" i
-  (${1:#args}) => {
-    ${2:${VISUAL}}
-  }${0}
+(${1:#args}) => {
+  ${2:${VISUAL}}
+}${0}
 endsnippet
 
 # Testing snippets
 snippet jest "Jest test block" i
-  test('${1:#Should do X}', () => {
-    ${2:${VISUAL}}
-  });${0}
+test('${1:#Should do X}', () => {
+  ${2:${VISUAL}}
+});${0}
 endsnippet
 
 snippet desc "Describe block" i
-  describe('${1:#Do y}', () => {
-    ${2:${VISUAL}}
-  });${0}
+describe('${1:#Do y}', () => {
+  ${2:${VISUAL}}
+});${0}
 endsnippet
 
 snippet exp "Expect X" i

@@ -61,7 +61,6 @@ call plug#begin("~/.vim/plugged")
   Plug 'dense-analysis/ale'
 call plug#end()
 
-
 " Autosave
 set autowrite
 
@@ -361,15 +360,22 @@ let g:ale_lint_delay = 500
 let g:user_emmet_leader_key = '<C-e>'
 
 " Ultisnips
-let g:UltiSnipsExpandTrigger="<C-k>"
+let g:UltiSnipsExpandTrigger="<c-k>"
 let g:UltiSnipsJumpForwardTrigger="<c-j>"
 let g:UltiSnipsJumpBackwardTrigger="<c-b>"
+let g:UltiSnipsListSnippets="<c-l>"
 
 " If you want :UltiSnipsEdit to split your window.
 let g:UltiSnipsEditSplit="vertical"
 
+" Edit snippets
+nnoremap <Leader>us :UltiSnipsEdit<CR>
+
 " Set my snippets
-let g:UltiSnipsSnippetDirectories = [$HOME.'.my-snippets']
+let g:UltiSnipsSnippetDirectories = [$HOME.'/.my-snippets']
+
+" Remove backward jump interference
+inoremap <c-x><c-k> <c-x><c-k>
 
 " Markdown preview mapping
 nmap <Leader>md <Plug>MarkdownPreview
@@ -382,3 +388,5 @@ autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.gra
 map <Leader>syn :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<'
 \ . synIDattr(synID(line("."),col("."),0),"name") . "> lo<"
 \ . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"<CR>
+
+setlocal omnifunc=syntaxcomplete#Complete
