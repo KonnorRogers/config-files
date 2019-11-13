@@ -13,7 +13,6 @@ function full_install() {
   source_shell
 
   # use version managers
-  echo "Error here?"
   add_new_ruby "2.6.2"
 
   source_shell

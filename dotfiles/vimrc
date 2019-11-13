@@ -166,20 +166,6 @@ runtime macros/matchit.vim
 " Tags searching
 set tags+=./tags
 
-" CoC recommended config
-
-" Better display for messages
-set cmdheight=2
-" You will have bad experience for diagnostic messages when it's default 4000.
-set updatetime=300
-
-" don't give |ins-completion-menu| messages.
-set shortmess+=c
-
-" always show signcolumns
-set signcolumn=yes
-
-
 "Colorscheme / appearance
 
 set background=dark
@@ -403,6 +389,12 @@ inoremap <c-t> <c-x><c-]>
 
 " Omnicomplete
 inoremap <c-o> <c-x><c-o>
+
+" Ctags command
+command! -nargs=+ Ctags !ctags <args>
+
+" Run ctags
+nnoremap <Leader>ct :Ctags -R -f ./.git/tags .<CR>
 
 " Find what to highlight
 map <Leader>syn :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<'
