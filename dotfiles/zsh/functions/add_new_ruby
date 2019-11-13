@@ -8,6 +8,5 @@ function add_new_ruby(){
   source $HOME/.zshrc
 
   chruby ruby-"$RUBY_VERSION"
-  gem install thor
-  vps-cli install_gems
+  gem install kubs_cli
 }

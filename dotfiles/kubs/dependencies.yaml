@@ -31,8 +31,8 @@ ruby:
   command: ruby-install --no-reinstall
   packages: 2.6.2
 php:
-  command: php install --skip-existing
-  packages: 7.3.11
+  command: phpenv install --skip-existing
+  packages: master
 node:
   command: nvm install
   packages: 11.15.0
