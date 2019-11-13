@@ -61,7 +61,9 @@ call plug#begin("~/.vim/plugged")
   Plug 'dense-analysis/ale'
 call plug#end()
 
+" Path variables
 set path+=**
+set path-=/node_modules/
 
 " Autosave
 set autowrite
@@ -236,8 +238,10 @@ nnoremap <Leader>bp :bprev<CR>
 nnoremap <Leader>bn :bnext<CR>
 
 "Tab switching
+nnoremap <Leader>tm :tabnew<CR>
 nnoremap <Leader>tn :tabnext<CR>
 nnoremap <Leader>tp :tabprev<CR>
+nnoremap <Leader>tc :tabclose<CR>
 
 " better window movement
 nnoremap <C-h> <C-w>h
@@ -387,8 +391,11 @@ nmap <Leader>mt <Plug>MarkdownPreviewToggle<Paste>
 let g:prettier#autoformat = 0
 autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.md,*.vue,*.yaml,*.html PrettierAsync
 
+setlocal omnifunc=syntaxcomplete#Complete
+
+" Find what to highlight
 map <Leader>syn :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<'
 \ . synIDattr(synID(line("."),col("."),0),"name") . "> lo<"
 \ . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"<CR>
 
-setlocal omnifunc=syntaxcomplete#Complete
+
