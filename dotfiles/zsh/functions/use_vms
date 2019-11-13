@@ -1,0 +1,10 @@
+RUBY_VERSION="ruby-2.6.2"
+NODE_VERSION="11.15.0"
+PHP_VERSION="master"
+
+function use_vms() {
+  nvm use "$NODE_VERSION"
+  chruby "$RUBY_VERSION"
+  echo "Using Ruby $RUBY_VERSION"
+  phpenv global "$PHP_VERSION"
+}

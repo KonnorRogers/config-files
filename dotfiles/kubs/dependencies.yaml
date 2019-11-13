@@ -28,8 +28,8 @@ apt:
     - mysql-server sqlite3 postgresql
 
 ruby:
-  command: ruby-install --no-reinstall
-  packages: 2.6.2
+  command: sudo ruby-install --no-reinstall
+  packages: ruby 2.6.2
 php:
   command: phpenv install --skip-existing
   packages: master
