@@ -1,8 +1,8 @@
 update-apt:
-  command: sudo apt update && sudo apt upgrade -y || apt update && apt upgrade -y
+  command: sudo apt update && sudo apt upgrade -y
   packages:
 apt:
-  command: sudo apt install -y || apt install -y
+  command: sudo apt install -y
   packages:
     # Libraries
     - software-properties-common gnupg2 less ufw ack-grep libfuse2

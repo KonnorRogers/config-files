@@ -8,8 +8,8 @@ main(){
 }
 
 install_dependencies(){
-  sudo apt update || sudo apt-get update
-  sudo apt upgrade -y || sudo apt-get upgrade -y
+  sudo apt update
+  sudo apt upgrade -y
 
   libs='apt-transport-https ca-certificates build-essential bison
   zlib1g-dev libyaml-dev libcurl4-openssl-dev libssl-dev
@@ -18,9 +18,9 @@ install_dependencies(){
   libzip-dev libtidy-dev libxslt-dev automake libtool autoconf
   flex libkrb5-dev libonig-dev make gcc ruby ruby-dev golang php'
 
-  sudo apt install $libs -y || sudo apt-get install $libs -y
+  sudo apt install $libs -y
 
-  sudo apt autoremove -y || sudo apt-get autoremove -y
+  sudo apt autoremove -y
 }
 
 install_version_managers(){
@@ -83,5 +83,3 @@ install_phpenv(){
 }
 
 main
-
-echo "Restart your shell to use version managers"

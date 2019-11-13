@@ -2,11 +2,11 @@
 # sets up a new ruby version for use
 
 function add_new_ruby(){
-  RUBY_VERSION="$1"
+  RUBY_VER="$1"
 
-  ruby-install ruby "$RUBY_VERSION" --no-reinstall
+  sudo ruby-install ruby "$RUBY_VER" --no-reinstall
   source $HOME/.zshrc
 
-  chruby ruby-"$RUBY_VERSION"
+  chruby use "$RUBY_VER"
   gem install kubs_cli
 }

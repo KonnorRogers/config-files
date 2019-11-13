@@ -1,3 +1,32 @@
 function full_install() {
-  git clone https://github.com/ParamagicDev/config-files.git ~
+  # clone config files to home
+
+  if [[ ! -d "$HOME/config-files" ]]; then
+    git clone https://github.com/ParamagicDev/config-files.git $HOME
+  fi
+
+  cd $HOME/config-files
+  bash setup.bash
+
+  cd $HOME
+
+  source_shell
+
+  # use version managers
+  echo "Error here?"
+  add_new_ruby "2.6.2"
+
+  source_shell
+
+  gem install kubs_cli
+  kubs install_dependencies
+  use_vms
+
+  source_shell
+
+  kubs install_packages
+}
+
+function source_shell() {
+  source $HOME/.zshrc
 }
