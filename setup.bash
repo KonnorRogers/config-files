@@ -83,3 +83,5 @@ install_phpenv(){
 }
 
 main
+
+echo "Restart your shell to use version managers"

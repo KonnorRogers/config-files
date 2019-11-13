@@ -1,8 +1,8 @@
 update-apt:
-  command: sudo apt update && sudo apt upgrade -y
+  command: sudo apt update && sudo apt upgrade -y || apt update && apt upgrade -y
   packages:
 apt:
-  command: sudo apt install -y
+  command: sudo apt install -y || apt install -y
   packages:
     # Libraries
     - software-properties-common gnupg2 less ufw ack-grep libfuse2
@@ -18,7 +18,7 @@ apt:
       python3-dev python-pip python3-neovim nodejs
 
     # Tools
-    - curl tmux git vim zsh ctags rdoc
+    - curl tmux git vim zsh rdoc
       openssh-client openssh-server dconf-cli gnome-terminal
       pry rubygems fail2ban
       neovim asciinema docker mosh yarn
@@ -27,29 +27,12 @@ apt:
     # Databases
     - mysql-server sqlite3 postgresql
 
-gems:
-  command: gem install
-  packages: colorls neovim rake pry rubocop gem-ctags rails yard
-    thor bundler solargraph
-
-npm_packages:
-  command: npm install -g
-  packages: neovim eslint
-    bash-language-server --unsafe-perm
-    vscode-html-languageserver-bin
-    vscode-css-languageserver-bin
-    javascript-typescript-langserver
-    dockerfile-language-server-nodejs
-    live-server sass
-
-pip2_packages:
-  command: pip2 install --user --upgrade
-  packages: pynvim neovim
-
-pip3_packages:
-  command: pip3 install --user --upgrade
-  packages: pynvim neovim
-
-snap_packages:
-  command: sudo snap install
-  packages: heroku
+ruby:
+  command: ruby-install --no-reinstall
+  packages: 2.6.2
+php:
+  command: php install --skip-existing
+  packages: 7.3.11
+node:
+  command: nvm install
+  packages: 11.15.0

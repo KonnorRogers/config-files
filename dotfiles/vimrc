@@ -14,9 +14,7 @@ endif
 
 call plug#begin("~/.vim/plugged")
   " Colorscheme
-  Plug 'arcticicestudio/nord-vim'
   Plug 'flazz/vim-colorschemes'
-  Plug 'rakr/vim-one'
   Plug 'drewtempelmeyer/palenight.vim'
   Plug 'doums/darcula'
 
@@ -37,10 +35,6 @@ call plug#begin("~/.vim/plugged")
   Plug 'ngmy/vim-rubocop'
   Plug 'tpope/vim-rails'
   Plug 'tpope/vim-bundler'
-
-  "Elixir
-  Plug 'slashmili/alchemist.vim'
-  Plug 'elixir-editors/vim-elixir'
 
   "html / css
   Plug 'mattn/emmet-vim'
@@ -238,8 +232,8 @@ nnoremap <Leader>bp :bprev<CR>
 nnoremap <Leader>bn :bnext<CR>
 
 "Tab switching
-nnoremap <Leader>tm :tabnew<CR>
-nnoremap <Leader>tn :tabnext<CR>
+nnoremap <Leader>tn :tabnew<CR>
+nnoremap <Leader>tj :tabnext<CR>
 nnoremap <Leader>tp :tabprev<CR>
 nnoremap <Leader>tc :tabclose<CR>
 
@@ -322,13 +316,21 @@ if executable('ag')
   command! -bang -nargs=* Files call fzf#run(fzf#wrap({'source': 'ag -u -g ""', 'sink': 'e'}))
   nnoremap <Leader>F :Files<CR>
 
-  " bind <Leader>gw to grep word under cursor
-  nnoremap <Leader>gw :grep! "\b<C-R><C-W>\b"<CR>:cw<CR>
 
   "populate quickfix with \
   command! -nargs=+ -complete=file -bar Ag silent! grep! <args>|cwindow|redraw!
   nnoremap \ :Ag<space>
+else
+  " Default fzf if ag not installed
+  nnoremap <Leader>F :FZF
+
+  " Use git ls-files to respect .gitignore
+  command! -bang -nargs=* GitLsFiles call fzf#run(fzf#wrap({'source': 'git ls-files', 'sink': 'e'}))
+  nnoremap <Leader>f :GitLsFiles
 endif
+
+" bind <Leader>gw to grep word under cursor
+nnoremap <Leader>gw :grep! "\b<C-R><C-W>\b"<CR>:cw<CR>
 
 " Customize fzf colors to match your color scheme
 let g:fzf_colors =
@@ -363,7 +365,7 @@ nmap <Leader>ad :ALEDetail<CR>
 let g:ale_lint_delay = 500
 
 " Dont let it override <C-y>
-let g:user_emmet_leader_key = '<C-e>'
+let g:user_emmet_leader_key = '<C-y>'
 
 " Ultisnips
 let g:UltiSnipsExpandTrigger="<c-k>"
@@ -392,6 +394,15 @@ let g:prettier#autoformat = 0
 autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.md,*.vue,*.yaml,*.html PrettierAsync
 
 setlocal omnifunc=syntaxcomplete#Complete
+
+" File complete
+inoremap <c-f> <c-x><c-f>
+
+" Tag complete
+inoremap <c-t> <c-x><c-]>
+
+" Omnicomplete
+inoremap <c-o> <c-x><c-o>
 
 " Find what to highlight
 map <Leader>syn :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<'

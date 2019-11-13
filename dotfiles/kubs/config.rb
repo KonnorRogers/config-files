@@ -4,6 +4,7 @@ KubsCLI.configure do |config|
   # Where you want the dotfiles to be saved
   config.local_dir = Dir.home
   config.dependencies = File.join(Dir.home, '.kubs', 'dependencies.yaml')
+  config.packages = File.join(Dir.home, '.kubs', 'packages.yaml')
 
   # Where you have your dotfiles / misc_files saved
   config.config_files = File.join(Dir.home, 'config-files')
