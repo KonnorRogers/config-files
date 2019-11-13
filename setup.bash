@@ -24,23 +24,23 @@ install_dependencies(){
 }
 
 install_version_managers(){
-  install_chruby_and_ruby-install
+  install_chruby_and_ruby_install
   install_phpenv
   install_nvm
 }
 
 # this installs ruby & chruby under the .tmp folder within the repo
-install_chruby_and_ruby-install(){
+install_chruby_and_ruby_install(){
   temp_dir=".tmp"
   mkdir -p "$temp_dir"
   cd "$temp_dir" || exit 2
-  install_ruby-install
+  install_ruby_install
   install_chruby
   cd ..
   rm -rf "$temp_dir"
 }
 
-install_ruby-install(){
+install_ruby_install(){
   RUBY_INSTALL_TAR="ruby-install-0.7.0.tar.gz"
   RUBY_INSTALL_DIR="ruby-install-0.7.0/"
 
