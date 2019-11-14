@@ -29,7 +29,6 @@ call plug#begin("~/.vim/plugged")
   Plug 'elzr/vim-json'
   Plug 'maxmellon/vim-jsx-pretty'
 
-
   "ruby / rails
   Plug 'vim-ruby/vim-ruby'
   Plug 'ngmy/vim-rubocop'
@@ -58,6 +57,9 @@ call plug#end()
 " Path variables
 set path+=**
 set path-=/node_modules/
+
+" Change directory based on current file
+set autochdir
 
 " Autosave
 set autowrite
