@@ -55,11 +55,7 @@ call plug#begin("~/.vim/plugged")
 call plug#end()
 
 " Path variables
-set path+=**
-set path-=/node_modules/
-
-" Change directory based on current file
-set autochdir
+set path^=.,,**
 
 " Autosave
 set autowrite
@@ -127,7 +123,6 @@ set bs=2
 
 "Tabbing menu
 set wildmenu
-set wildmode=list:longest,full
 set wildignore+=node_modules
 
 "show command line
@@ -169,7 +164,6 @@ runtime macros/matchit.vim
 set tags+=./tags
 
 "Colorscheme / appearance
-
 set background=dark
 colorscheme darcula
 
@@ -353,7 +347,7 @@ nmap <Leader>ad :ALEDetail<CR>
 let g:ale_lint_delay = 500
 
 " Dont let it override <C-y>
-let g:user_emmet_leader_key = '<C-y>'
+let g:user_emmet_leader_key = '<C-e>'
 
 " Ultisnips
 let g:UltiSnipsExpandTrigger="<c-k>"
@@ -381,22 +375,24 @@ nmap <Leader>mt <Plug>MarkdownPreviewToggle<Paste>
 let g:prettier#autoformat = 0
 autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.md,*.vue,*.yaml,*.html PrettierAsync
 
-setlocal omnifunc=syntaxcomplete#Complete
-
-" File complete
-inoremap <c-f> <c-x><c-f>
-
-" Tag complete
-inoremap <c-t> <c-x><c-]>
-
-" Omnicomplete
-inoremap <c-o> <c-x><c-o>
-
 " Ctags command
 command! -nargs=+ Ctags !ctags <args>
 
 " Run ctags
 nnoremap <Leader>ct :Ctags -R -f ./.git/tags .<CR>
+
+" Completion
+setlocal omnifunc=syntaxcomplete#Complete
+setlocal completefunc=syntaxcomplete#Complete
+
+" Omnicompletion
+inoremap <c-o> <c-x><c-o>
+
+" File completion
+inoremap <c-f> <c-x><c-f>
+
+" Tag completion
+inoremap <c-t> <c-x><c-]>
 
 " Find what to highlight
 map <Leader>syn :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<'
