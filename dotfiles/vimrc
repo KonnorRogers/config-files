@@ -388,6 +388,9 @@ setlocal completefunc=syntaxcomplete#Complete
 " Omnicompletion
 inoremap <c-o> <c-x><c-o>
 
+" Include completion
+inoremap <c-i> <c-x><c-i>
+
 " File completion
 inoremap <c-f> <c-x><c-f>
 
