@@ -55,21 +55,36 @@ endsnippet
 
 snippet desc "Describe block" i
 describe('${1:#Do y}', () => {
-  ${2:${VISUAL}}
+${2:${VISUAL}}
 });${0}
 endsnippet
 
 snippet exp "Expect X" i
-  expect(${1:#thing}).${2:#toBe}(${3:#true});${0}
+expect(${1:#thing}).${2:#toBe}(${3:#true});${0}
 endsnippet
 
 # Documentation snippets
 snippet jsdoc "JSDoc snippet" b
-  /**
-   * ${1:${VISUAL}}
-   */${0}
+/**
+* ${1:${VISUAL}}
+*/${0}
 endsnippet
 
-snippet jsdoci "Inline jsdoc"
-  /** ${1:${VISUAL}} */${0}
+snippet jsdoci "Inline jsdoc" b
+/** ${1:${VISUAL}} */${0}
 endsnippet
+
+# Console snippets
+
+snippet cl "console.log" i
+console.log(${1:${VISUAL}});${0}
+endsnippet
+
+snippet ct "console.table" i
+console.table(${1:${VISUAL}});${0}
+endsnippet
+
+snippet ctr "console.trace" i
+console.trace(${1:${VISUAL}});${0}
+endsnippet
+

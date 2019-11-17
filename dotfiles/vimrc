@@ -188,10 +188,8 @@ augroup filetypedetect
   autocmd BufNewFile,BufReadPost *.ino,*.pde set filetype=cpp
 augroup END
 
-augroup filecompletion
-  autocmd InsertEnter * let save_cwd = getcwd() | set autochdir
-  autocmd InsertLeave * set noautochdir | execute 'cd' fnameescape(save_cwd)
-augroup END
+" autocmd InsertEnter * let save_cwd = getcwd() | set autochdir
+" autocmd InsertLeave * set noautochdir | execute 'cd' fnameescape(save_cwd)
 
 
 "strip trailing whitespace from all files
@@ -292,7 +290,7 @@ let g:ragtag_global_maps = 1
 "fzf config
 
 if executable('ag')
-  set grepprg=ag\ --nogroup\ --nocolor\ --column\
+  set grepprg=ag\ --nogroup\ --nocolor\ --column
   set grepformat=%f:%l:%c%m
   "Respect .gitignore
   command! -bang -nargs=* GitFiles call fzf#run(fzf#wrap({'source': 'ag --hidden -g ""', 'sink': 'e'}))
@@ -401,7 +399,7 @@ inoremap <c-i> <c-x><c-i>
 inoremap <c-f> <c-x><c-f>
 
 " Tag completion
-inoremap <c-t> <c-x><c-]>
+inoremap <c-]> <c-x><c-]>
 
 " Find what to highlight
 map <Leader>syn :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<'
