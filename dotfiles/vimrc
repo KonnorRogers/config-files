@@ -55,7 +55,7 @@ call plug#begin("~/.vim/plugged")
 call plug#end()
 
 " Path variables
-set path^=.,,**
+set path+=.,,
 
 " Autosave
 set autowrite
@@ -127,6 +127,7 @@ set wildignore+=node_modules
 
 "show command line
 set showcmd
+set cmdheight=2
 
 "keep small history
 set history=50
@@ -178,15 +179,18 @@ highlight link NERDTreeDir Constant
 " Autocommands
 
 " Return cursor to original position
-if has("autocmd")
-  au BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$")
-  \| exe "normal g'\"" | endif
-endif
+au BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$")
+      \| exe "normal g'\"" | endif
 
 augroup filetypedetect
   au! BufRead,BufNewFile *nc setfiletype nc "http://www.vim.org/scripts/script.php?script_id=1847
   "html.ep now handled by https://github.com/yko/mojo.vim
   autocmd BufNewFile,BufReadPost *.ino,*.pde set filetype=cpp
+augroup END
+
+augroup filecompletion
+  autocmd InsertEnter * let save_cwd = getcwd() | set autochdir
+  autocmd InsertLeave * set noautochdir | execute 'cd' fnameescape(save_cwd)
 augroup END
 
 
@@ -288,14 +292,16 @@ let g:ragtag_global_maps = 1
 "fzf config
 
 if executable('ag')
-  set grepprg=ag\ --nogroup\ --nocolor\ --column
+  set grepprg=ag\ --nogroup\ --nocolor\ --column\
   set grepformat=%f:%l:%c%m
   "Respect .gitignore
   command! -bang -nargs=* GitFiles call fzf#run(fzf#wrap({'source': 'ag --hidden -g ""', 'sink': 'e'}))
+  " command! -bang -nargs=* GitFiles call fzf#run(fzf#wrap({'source': 'ag --hidden, 'sink': 'e'}))
   nnoremap <Leader>f :GitFiles<CR>
 
   "Do not respect .gitignore
   command! -bang -nargs=* Files call fzf#run(fzf#wrap({'source': 'ag -u -g ""', 'sink': 'e'}))
+  " command! -bang -nargs=* Files call fzf#run(fzf#wrap({'source': 'ag', 'sink': 'e'}))
   nnoremap <Leader>F :Files<CR>
 
 
@@ -382,8 +388,8 @@ command! -nargs=+ Ctags !ctags <args>
 nnoremap <Leader>ct :Ctags -R -f ./.git/tags .<CR>
 
 " Completion
-setlocal omnifunc=syntaxcomplete#Complete
-setlocal completefunc=syntaxcomplete#Complete
+set omnifunc=syntaxcomplete#Complete
+set completefunc=syntaxcomplete#Complete
 
 " Omnicompletion
 inoremap <c-o> <c-x><c-o>
