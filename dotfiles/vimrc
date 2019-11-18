@@ -403,14 +403,14 @@ let g:coc_start_at_startup = 1
 let g:coc_global_extensions = [
       \ 'coc-json',
       \ 'coc-css',
-      \ 'coc-snippets',
+      \ 'coc-ultisnips',
       \ 'coc-tsserver',
       \ 'coc-emmet',
       \ 'coc-tag',
       \ 'coc-omni',
       \ 'coc-syntax',
-      \ 'coc-sources'
       \ ]
+
 
  " Better display for messages
 set cmdheight=2
