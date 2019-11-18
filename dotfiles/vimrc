@@ -164,7 +164,8 @@ set diffopt+=vertical
 runtime macros/matchit.vim
 
 " Tags searching
-set tags=./tags
+set tags^=./.git/tags
+set tags^=./tags
 
 "Colorscheme / appearance
 set background=dark
@@ -388,17 +389,7 @@ nnoremap <Leader>ct :Ctags -R -f ./.git/tags .<CR>
 setlocal omnifunc=syntaxcomplete#Complete
 setlocal completefunc=syntaxcomplete#Complete
 
-" Omnicompletion
-inoremap <c-o> <c-x><c-o>
-
-" File completion
-inoremap <c-f> <c-x><c-f>
-
-" Tag completion
-inoremap <c-t> <c-x><c-]>
-
 " CoC recommended config
-
 let g:coc_start_at_startup = 1
 let g:coc_global_extensions = [
       \ 'coc-json',
@@ -409,6 +400,9 @@ let g:coc_global_extensions = [
       \ 'coc-tag',
       \ 'coc-omni',
       \ 'coc-syntax',
+      \ 'coc-yaml',
+      \ 'coc-solargraph',
+      \ 'coc-phpls'
       \ ]
 
 

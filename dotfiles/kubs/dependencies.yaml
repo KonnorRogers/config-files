@@ -21,7 +21,7 @@ apt:
     - curl tmux git vim zsh rdoc
       openssh-client openssh-server dconf-cli gnome-terminal
       pry rubygems fail2ban
-      neovim asciinema docker mosh yarn
+      asciinema docker mosh yarn
       silversearcher-ag virtualbox ripgrep
 
     # Databases
@@ -37,3 +37,9 @@ php:
 node:
   command: nvm install
   packages: 11.15.0
+
+neovim:
+  command: curl -fLo ~/nvim https://github.com/neovim/neovim/releases/download/stable/nvim.appimage &&
+  packages: sudo chmod u+x ~/nvim &&
+    sudo ln -f -s ~/nvim /usr/bin/nvim &&
+    sudo ln -f -s ~/nvim /usr/share/nvim
