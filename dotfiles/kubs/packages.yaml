@@ -1,0 +1,34 @@
+# Install the packages to the given version managers, currently i do not use a python vm
+gems:
+  command: gem install
+  packages: colorls neovim rake pry rubocop gem-ctags rails yard
+    thor bundler solargraph
+
+npm_packages:
+  command: npm install -g
+  packages: neovim eslint sass
+
+pip2_packages:
+  command: pip2 install --user --upgrade
+  packages: pynvim neovim
+
+pip3_packages:
+  command: pip3 install --user --upgrade
+  packages: pynvim neovim
+
+# For some reason, 2 universal-ctags does not play nice with heroku
+snap_packages:
+  command: sudo snap install
+  packages: heroku
+
+snap_packages2:
+  command: sudo snap install
+  packages: universal-ctags
+
+vim_plugins:
+  command: vim
+  packages: +PlugInstall +PlugUpdate +PlugClean! +qa
+
+neovim_plugins:
+  command: nvim
+  packages: +PlugInstall +PlugUpdate +PlugClean! +qa

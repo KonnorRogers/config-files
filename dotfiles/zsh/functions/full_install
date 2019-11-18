@@ -19,11 +19,12 @@ function full_install() {
 
   gem install kubs_cli
   kubs install_dependencies
-  use_vms
 
   source_shell
 
   kubs install_packages
+
+  source_shell
 }
 
 function source_shell() {
