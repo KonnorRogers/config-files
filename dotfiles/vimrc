@@ -403,12 +403,13 @@ let g:coc_start_at_startup = 1
 let g:coc_global_extensions = [
       \ 'coc-json',
       \ 'coc-css',
-      \ 'coc-neosnippet',
+      \ 'coc-snippets',
       \ 'coc-tsserver',
       \ 'coc-emmet',
       \ 'coc-tag',
       \ 'coc-omni',
-      \ 'coc-syntax'
+      \ 'coc-syntax',
+      \ 'coc-sources'
       \ ]
 
  " Better display for messages
