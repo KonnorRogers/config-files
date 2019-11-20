@@ -16,7 +16,7 @@ call plug#begin("~/.vim/plugged")
   " Colorscheme
   Plug 'flazz/vim-colorschemes'
   Plug 'drewtempelmeyer/palenight.vim'
-  Plug 'doums/darcula'
+  Plug 'blueshirts/darcula'
 
   "Tpope plugins
   Plug 'tpope/vim-fugitive'
@@ -164,12 +164,12 @@ set diffopt+=vertical
 runtime macros/matchit.vim
 
 " Tags searching
-set tags^=./.git/tags
-set tags^=./tags
+set tags+=./.git/tags
+set tags+=./tags
 
 "Colorscheme / appearance
 set background=dark
-colorscheme darcula
+colorscheme apprentice
 
 "Status line
 set laststatus=2
@@ -319,20 +319,20 @@ endif
 nnoremap <Leader>gw :grep! "\b<C-R><C-W>\b"<CR>:cw<CR>
 
 " Customize fzf colors to match your color scheme
-let g:fzf_colors =
-\ { 'fg':      ['fg', 'Normal'],
-  \ 'bg':      ['bg', 'Normal'],
-  \ 'hl':      ['fg', 'Comment'],
-  \ 'fg+':     ['fg', 'CursorLine', 'CursorColumn', 'Normal'],
-  \ 'bg+':     ['bg', 'CursorLine', 'CursorColumn'],
-  \ 'hl+':     ['fg', 'Statement'],
-  \ 'info':    ['fg', 'PreProc'],
-  \ 'border':  ['fg', 'Ignore'],
-  \ 'prompt':  ['fg', 'Conditional'],
-  \ 'pointer': ['fg', 'Exception'],
-  \ 'marker':  ['fg', 'Keyword'],
-  \ 'spinner': ['fg', 'Label'],
-  \ 'header':  ['fg', 'Comment'] }
+" let g:fzf_colors =
+" \ { 'fg':      ['fg', 'Normal'],
+"   \ 'bg':      ['bg', 'Normal'],
+"   \ 'hl':      ['fg', 'Comment'],
+"   \ 'fg+':     ['fg', 'CursorLine', 'CursorColumn', 'Normal'],
+"   \ 'bg+':     ['bg', 'CursorLine', 'CursorColumn'],
+"   \ 'hl+':     ['fg', 'Statement'],
+"   \ 'info':    ['fg', 'PreProc'],
+"   \ 'border':  ['fg', 'Ignore'],
+"   \ 'prompt':  ['fg', 'Conditional'],
+"   \ 'pointer': ['fg', 'Exception'],
+"   \ 'marker':  ['fg', 'Keyword'],
+"   \ 'spinner': ['fg', 'Label'],
+"   \ 'header':  ['fg', 'Comment'] }
 
 
 "Remove statusline when using fzf
