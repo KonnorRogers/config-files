@@ -46,6 +46,13 @@ snippet ==> "Multiline arrow function" i
 }${0}
 endsnippet
 
+snippet qs "query selector" i
+document.querySelector(${1:${VISUAL}});${0}
+endsnippet
+
+snippet qsa "query selector all" i
+document.querySelectorAll(${1:${VISUAL}});${0}
+endsnippet
 # Testing snippets
 snippet jest "Jest test block" i
 test('${1:#Should do X}', () => {
