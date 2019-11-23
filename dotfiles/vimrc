@@ -16,7 +16,6 @@ call plug#begin("~/.vim/plugged")
   " Colorscheme
   Plug 'flazz/vim-colorschemes'
   Plug 'drewtempelmeyer/palenight.vim'
-  Plug 'blueshirts/darcula'
 
   "Tpope plugins
   Plug 'tpope/vim-fugitive'
