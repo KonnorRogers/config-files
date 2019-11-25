@@ -23,7 +23,3 @@ sudo mkdir -p "$pg_data" \
   && sudo chown -R "$pg_user":"$pg_user" "$pg_data" \
   && sudo chmod 777 "$pg_data"
 
-
-# Change to md5 to require a password
-# sudo sed -i 's/^\([^#]*\)trust/\1md5/g' /etc/postgresql/11/main/pg_hba.conf
-# sudo service postgresql restart
