@@ -26,7 +26,7 @@ install_dependencies(){
 install_version_managers(){
   install_chruby_and_ruby_install
   install_phpenv
-  install_nvm
+  install_fnm
 }
 
 # this installs ruby & chruby under the .tmp folder within the repo
@@ -68,14 +68,8 @@ install_chruby(){
   cd ..
 }
 
-install_nvm(){
-  # If the user already has an $NVM_DIR set but nvm not installed, create .nvm
-  if [[ ! -d "$NVM_DIR" ]]; then
-    mkdir -p "$NVM_DIR"
-  fi
-
-  # Pull in NVM
-  curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.34.0/install.sh | bash
+install_fnm(){
+  curl -fsSL https://github.com/Schniz/fnm/raw/master/.ci/install.sh | bash --skip-shell
 }
 
 install_phpenv(){

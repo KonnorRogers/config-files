@@ -155,3 +155,7 @@ for function in $DOT_ZSH/functions/*; do
   source $function
 done
 
+
+# fnm
+export PATH=/home/konnor/.fnm:$PATH
+eval "`fnm env --multi`"
