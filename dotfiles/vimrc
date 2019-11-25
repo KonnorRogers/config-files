@@ -189,7 +189,10 @@ endif
 augroup filetypedetect
   au! BufRead,BufNewFile *nc setfiletype nc "http://www.vim.org/scripts/script.php?script_id=1847
   "html.ep now handled by https://github.com/yko/mojo.vim
-  autocmd BufNewFile,BufReadPost *.ino,*.pde set filetype=cpp
+  autocmd BufNewFile,BufReadPost *.ino,*.pde setfiletype cpp
+
+  " Set markdown files to markdown filetype
+  autocmd BufNewFile,BufRead *.md,*markdown set filetype=markdown
 augroup END
 
 
