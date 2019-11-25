@@ -1,6 +1,6 @@
 RUBY_VERSION="ruby-2.6.2"
 NODE_VERSION="11.15.0"
-PHP_VERSION="master"
+PHP_VERSION="7.3.8"
 
 function use_vms() {
   fnm use "$NODE_VERSION"
