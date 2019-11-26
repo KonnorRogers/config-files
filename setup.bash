@@ -69,11 +69,11 @@ install_chruby(){
 }
 
 install_fnm(){
-  curl -fsSL https://github.com/Schniz/fnm/raw/master/.ci/install.sh | bash --skip-shell
+  curl -fsSL https://github.com/Schniz/fnm/raw/master/.ci/install.sh | bash -s -- --skip-shell
 }
 
 install_phpenv(){
-  curl -L https://raw.githubusercontent.com/phpenv/phpenv-installer/master/bin/phpenv-installer \ | bash
+  curl -L https://raw.githubusercontent.com/phpenv/phpenv-installer/master/bin/phpenv-installer | bash
 }
 
 main
