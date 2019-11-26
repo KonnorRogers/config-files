@@ -14,7 +14,7 @@ apt:
       flex libkrb5-dev libonig-dev libsqlite3-dev
 
     # Languages
-    - ruby ruby-dev golang php python3 python3-pip python-dev
+    - ruby ruby-dev golang php php-mysql php-pdo python3 python3-pip python-dev
       python3-dev python-pip python3-neovim nodejs
 
     # Tools
@@ -30,12 +30,12 @@ apt:
 # Install versions of ruby, php, and node
 ruby:
   command: sudo ruby-install --no-reinstall
-  packages: ruby 2.6.2
+  packages: ruby 2.6.5
 php:
   command: phpenv install --skip-existing
-  packages: master
+  packages: 7.3.8
 node:
-  command: nvm install
+  command: fnm install
   packages: 11.15.0
 
 neovim:

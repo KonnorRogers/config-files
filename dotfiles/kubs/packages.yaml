@@ -1,12 +1,30 @@
 # Install the packages to the given version managers, currently i do not use a python vm
+phpenv:
+  command: phpenv global
+  packages: 7.3.8
+
+fnm:
+  command: fnm use
+  packages: 11.15.0
+
 gems:
   command: gem install
   packages: colorls neovim rake pry rubocop gem-ctags rails yard
     thor bundler solargraph
 
-npm_packages:
-  command: npm install -g
-  packages: neovim eslint sass
+install_yarn:
+  command: curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
+  packages:
+    echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
+    && sudo apt update && sudo apt install yarn
+
+# npm_packages:
+#   command: npm install -g
+#   packages: neovim eslint sass gatsby
+
+yarn_packages:
+  command: yarn global add
+  packages: neovim eslint sass gatsby
 
 pip2_packages:
   command: pip2 install --user --upgrade
