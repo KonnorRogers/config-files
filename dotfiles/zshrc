@@ -163,8 +163,3 @@ done
 # fnm
 export PATH=/home/konnor/.fnm:$PATH
 eval "`fnm env --multi`"
-fpath=($fpath "/home/konnor/.zfunctions")
-
-  # Set Spaceship ZSH as a prompt
-  autoload -U promptinit; promptinit
-  prompt spaceship
