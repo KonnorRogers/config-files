@@ -35,8 +35,8 @@ php:
   command: phpenv install --skip-existing
   packages: 7.3.8
 node:
-  command: fnm install
-  packages: 11.15.0
+  command: asdf install
+  packages: node-js 11.15.0
 
 neovim:
   command: curl -fLo ~/nvim https://github.com/neovim/neovim/releases/download/stable/nvim.appimage &&

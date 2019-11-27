@@ -117,11 +117,6 @@ alias tag-gen="ctags -R --tag-relative -f .git/tags"
 source /usr/local/share/chruby/chruby.sh
 source /usr/local/share/chruby/auto.sh
 
-# NVM
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-
 # phpenv
 export PHPENV_ROOT="$HOME/.phpenv"
 if [ -d "${PHPENV_ROOT}" ]; then
@@ -160,6 +155,5 @@ for function in $DOT_ZSH/functions/*; do
 done
 
 
-# fnm
-export PATH=/home/konnor/.fnm:$PATH
-eval "`fnm env --multi`"
+source $HOME/.asdf/asdf.sh
+source $HOME/.asdf/completions/asdf.bash

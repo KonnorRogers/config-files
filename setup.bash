@@ -15,8 +15,8 @@ install_dependencies(){
   zlib1g-dev libyaml-dev libcurl4-openssl-dev libssl-dev
   libgdbm-dev libreadline-dev libffi-dev fuse make gcc libxml2-dev
   re2c libbz2-dev libjpeg-turbo8-dev libpng-dev
-  libzip-dev libtidy-dev libxslt-dev automake libtool autoconf
-  flex libkrb5-dev libonig-dev make gcc ruby ruby-dev golang php'
+  libzip-dev libtidy-dev libxslt-dev libncurses-dev automake libtool autoconf
+  flex libkrb5-dev libonig-dev make gcc ruby ruby-dev golang php git unixodbc-dev'
 
   sudo apt install $libs -y
 
@@ -26,7 +26,7 @@ install_dependencies(){
 install_version_managers(){
   install_chruby_and_ruby_install
   install_phpenv
-  install_fnm
+  install_asdf
 }
 
 # this installs ruby & chruby under the .tmp folder within the repo
@@ -68,8 +68,9 @@ install_chruby(){
   cd ..
 }
 
-install_fnm(){
-  curl -fsSL https://github.com/Schniz/fnm/raw/master/.ci/install.sh | bash -s -- --skip-shell
+install_asdf(){
+  git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.7.5
+  bash ~/.asdf/plugins/nodejs/bin/import-release-team-keyring
 }
 
 install_phpenv(){

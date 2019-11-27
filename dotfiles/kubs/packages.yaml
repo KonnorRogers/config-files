@@ -3,9 +3,9 @@ phpenv:
   command: phpenv global
   packages: 7.3.8
 
-fnm:
-  command: fnm use
-  packages: 11.15.0
+asdf:
+  command: asdf global
+  packages: node-js 11.15.0
 
 gems:
   command: gem install
