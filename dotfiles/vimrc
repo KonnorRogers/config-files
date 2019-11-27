@@ -357,8 +357,8 @@ let g:user_emmet_leader_key = '<C-e>'
 
 " Ultisnips
 let g:UltiSnipsExpandTrigger="<c-k>"
-let g:UltiSnipsJumpForwardTrigger="<c-j>"
-let g:UltiSnipsJumpBackwardTrigger="<c-b>"
+let g:UltiSnipsJumpForwardTrigger="<c-k>"
+let g:UltiSnipsJumpBackwardTrigger="<c-j>"
 let g:UltiSnipsListSnippets="<c-l>"
 
 " If you want :UltiSnipsEdit to split your window.

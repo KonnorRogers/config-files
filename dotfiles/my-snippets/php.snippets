@@ -29,14 +29,14 @@ options word
 endsnippet
 
 snippet foreach
-<?php foreach ($${1:#array} as $${2:item}) : ?>
+<?php foreach ($${1:#array} as $${2:#item}) : ?>
   ${3:${VISUAL}}
 <?php endforeach; ?>${0}
 endsnippet
 
 snippet fekv "For each key value" i
 options word
-<?php foreach ($${1:#:array} as $${2:key} => $${3:value}) : ?>
+<?php foreach ($${1:#array} as $${2:key} => $${3:value}) : ?>
   ${4:${VISUAL}}
 <?php endforeach; ?>${0}
 endsnippet
@@ -49,31 +49,31 @@ endsnippet
 
 # functions
 
-snippet fn "function" i
+snippet fn "function" b
 function ${1:#funcname}(${2:#args}){
   ${3:${VISUAL}}
 }${0}
 endsnippet
 
-snippet pubfn "public-function" i
+snippet pubfn "public-function" b
 public function ${1:#funcname}(${2:#args}){
   ${3:${VISUAL}}
 }${0}
 endsnippet
 
-snippet profn "protected-function" i
-protected function ${1:#:funcname}(${2:#:args}){
+snippet profn "protected-function" b
+protected function ${1:#funcname}(${2:#args}){
   ${3:${VISUAL}}
 }${0}
 endsnippet
 
-snippet prifn "private-function" i
-private function ${1:#:funcname}(${2:#:args}){
+snippet prifn "private-function" b
+private function ${1:#funcname}(${2:#args}){
   ${3:${VISUAL}}
 }${0}
 endsnippet
 
-snippet const "construct" i
+snippet const "construct" b
 public function __construct(${1}){
   ${2:${VISUAL}}
 }${0}
@@ -85,4 +85,13 @@ try {
 } catch(${2:#Exception}${3:$e}){
   ${4}
 }${0}
+endsnippet
+
+snippet class "Class" b
+class ${1:#Class}
+{
+  ${2:#Variables}
+
+  ${3:#Methods}
+}
 endsnippet
