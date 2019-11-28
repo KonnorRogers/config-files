@@ -44,6 +44,7 @@ call plug#begin("~/.vim/plugged")
 
   "file exploration
   Plug 'scrooloose/nerdtree'
+  Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 
   " Snippets
   Plug 'SirVer/ultisnips'
@@ -123,7 +124,9 @@ set bs=2
 set wildmenu
 set wildmode=full
 set wildignorecase
-set wildignore+=node_modules
+set wildignore+=*node_modules
+set wildignore+=*bin
+
 
 "show command line
 set showcmd
@@ -262,28 +265,49 @@ let g:html_indent_tags = 'li\|p'
 if executable('ag')
   set grepprg=ag\ --nogroup\ --nocolor\ --column
   set grepformat=%f:%l:%c%m
+  "Respect .gitignore
+  command! -bang -nargs=* GitFiles call fzf#run(fzf#wrap({'source': 'ag --hidden -g ""', 'sink': 'e'}))
+  nnoremap <Leader>f :GitFiles<CR>
+
+  "Do not respect .gitignore
+  command! -bang -nargs=* Files call fzf#run(fzf#wrap({'source': 'ag -u -g ""', 'sink': 'e'}))
+  nnoremap <Leader>F :Files<CR>
 
   "populate quickfix with \
   command! -nargs=+ -complete=file -bar Ag silent! grep! <args>|cwindow|redraw!
   nnoremap \ :Ag<space>
+else
+  " Default fzf if ag not installed
+  nnoremap <Leader>F :FZF
+
+  " Use git ls-files to respect .gitignore
+  command! -bang -nargs=* GitLsFiles call fzf#run(fzf#wrap({'source': 'git ls-files', 'sink': 'e'}))
+  nnoremap <Leader>f :GitLsFiles
 endif
+
+"Remove statusline when using fzf
+autocmd! FileType fzf
+autocmd  FileType fzf set laststatus=0 noshowmode noruler
+      \| autocmd BufLeave <buffer> set laststatus=2 showmode ruler
+
+autocmd! User FzfStatusLine call <SID>fzf_statusline()
 
 " bind <Leader>gw to grep word under cursor
 nnoremap <Leader>gw :grep! "\b<C-R><C-W>\b"<CR>:cw<CR>
 
-" File nav
+" Vim based file nav
 
 " Fuzzy Find based on cwd
-nnoremap <Leader>f :find ./**/*
+nnoremap <Leader>vf :find ./**/*
 
 " Find based on current file
-nnoremap <Leader>F :find <C-R>=expand('%:p:h') . '/'<CR>
+nnoremap <Leader>vF :find <C-R>=expand('%:p:h') . '/'<CR>
 
 " Edit based on current directory
-nnoremap <Leader>e :edit <C-R>=expand('%:p:h') . '/'<CR>
+nnoremap <Leader>ve :edit <C-R>=expand('%:p:h') . '/'<CR>
 
 " Edit based on root
-nnoremap <Leader>E :edit ./
+nnoremap <Leader>vE :edit ./
 
 " Custom functions
 
