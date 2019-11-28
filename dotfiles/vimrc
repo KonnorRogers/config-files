@@ -52,8 +52,8 @@ call plug#begin("~/.vim/plugged")
   Plug 'dense-analysis/ale'
 call plug#end()
 
-" Path variables
-set path+=.,,
+" Path variables, prepend current directory
+set path^=.,,
 
 " Autosave
 set autowrite
@@ -121,7 +121,7 @@ set bs=2
 
 "Tabbing menu
 set wildmenu
-set wildmode=longest,list
+set wildmode=longest,full
 set wildignorecase
 set wildignore+=node_modules
 
@@ -359,6 +359,18 @@ nnoremap <Leader>ct :Ctags -R -f ./.git/tags .<CR>
 " Completion
 setlocal omnifunc=syntaxcomplete#Complete
 setlocal completefunc=syntaxcomplete#Complete
+
+" File completion
+inoremap <C-f> <C-x><C-f>
+
+" Omni completion
+inoremap <C-o> <C-x><C-o>
+
+" Tag completion
+inoremap <C-t> <C-x><C-]>
+
+" Line completion
+inoremap <C-l> <C-x><C-l>
 
 set cmdheight=1
 
