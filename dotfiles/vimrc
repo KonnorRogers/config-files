@@ -404,6 +404,7 @@ let g:coc_global_extensions = [
       \ 'coc-syntax',
       \ 'coc-yaml',
       \ 'coc-solargraph',
+      \ 'coc-tailwindcss',
       \ 'coc-phpls'
       \ ]
 

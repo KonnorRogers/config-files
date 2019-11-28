@@ -1,0 +1,4 @@
+# Pipe man pages to vim
+function manv() {
+  man "$@" | vim
+}

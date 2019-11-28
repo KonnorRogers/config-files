@@ -1,0 +1,18 @@
+function wgethtml() {
+  url="$1"
+  dir="$2"
+
+  if [[ -z "$url" ]]; then
+    echo "Did not supply a url" 1>&2
+    exit 1
+  fi
+
+  if [[ -z "$dir" ]]; then
+    dir="$HOME/html_apis"
+  fi
+
+  mkdir -p "$dir"
+
+  # Recursive, convert links, include photos
+  wget --mirror --convert-links --page-requisites --directory-prefix="$dir" "$url"
+}
