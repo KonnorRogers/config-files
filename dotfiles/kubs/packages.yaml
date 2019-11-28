@@ -9,7 +9,7 @@ asdf:
 
 gems:
   command: gem install
-  packages: colorls neovim rake pry rubocop gem-ctags rails yard
+  packages: gem-ctags colorls neovim rake pry rubocop rails yard
     thor bundler solargraph
 
 install_yarn:
