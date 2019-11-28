@@ -121,7 +121,7 @@ set bs=2
 
 "Tabbing menu
 set wildmenu
-set wildmode=longest,full
+set wildmode=full
 set wildignorecase
 set wildignore+=node_modules
 
@@ -202,8 +202,11 @@ autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
 
 " Dont set autochdir, instead create an instance of current dir
 augroup filecompletion
-  autocmd InsertEnter * let save_cwd = getcwd() | set autochdir
-  autocmd InsertLeave * set noautochdir | execute 'cd' fnameescape(save_cwd)
+  " Change to directory of currently open file
+  autocmd InsertEnter * lcd %:p:h
+
+  " Change back to root directory
+  autocmd InsertLeave * cd -
 augroup END
 
 " Mappings
@@ -236,7 +239,7 @@ nnoremap <C-k> <C-w>k
 nnoremap <C-j> <C-w>j
 
 " editing vim
-map <Leader>ev :split $HOME/.vimrc<CR>
+map <Leader>sv :split $HOME/.vimrc<CR>
 map <Leader>rv :source $MYVIMRC<CR>
 
 " saving made eaiser
@@ -259,7 +262,6 @@ let g:html_indent_tags = 'li\|p'
 if executable('ag')
   set grepprg=ag\ --nogroup\ --nocolor\ --column
   set grepformat=%f:%l:%c%m
-  "Respect .gitignore
 
   "populate quickfix with \
   command! -nargs=+ -complete=file -bar Ag silent! grep! <args>|cwindow|redraw!
@@ -270,7 +272,18 @@ endif
 nnoremap <Leader>gw :grep! "\b<C-R><C-W>\b"<CR>:cw<CR>
 
 " File nav
+
+" Fuzzy Find based on cwd
 nnoremap <Leader>f :find ./**/*
+
+" Find based on current file
+nnoremap <Leader>F :find <C-R>=expand('%:p:h') . '/'<CR>
+
+" Edit based on current directory
+nnoremap <Leader>e :edit <C-R>=expand('%:p:h') . '/'<CR>
+
+" Edit based on root
+nnoremap <Leader>E :edit ./
 
 " Custom functions
 
@@ -285,15 +298,6 @@ function! RenameFile()
 endfunction
 
 map <Leader>rn :call RenameFile()<cr>
-
-function! Touch()
-  let current_dir = expand('%:h')
-  let file_name = input('New file name: ', current_dir . '/')
-
-  exec ':e ' . file_name
-endfunction
-
-map <Leader>nf :call Touch()<CR>
 
 " Plug commands
 map <Leader>pi :PlugInstall<CR>
@@ -354,7 +358,14 @@ autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.gra
 command! -nargs=+ Ctags !ctags <args>
 
 " Run ctags
-nnoremap <Leader>ct :Ctags -R -f ./.git/tags .<CR>
+function! GitCtags()
+  let s:git_root = systemlist('git rev-parse --show-toplevel')[0]
+  let s:tag_dir = '/.git/tags'
+
+  execute("Ctags -R -f " . s:git_root . s:tag_dir)
+endfunction
+
+nnoremap <Leader>ct :call GitCtags()<CR>
 
 " Completion
 setlocal omnifunc=syntaxcomplete#Complete
@@ -368,9 +379,6 @@ inoremap <C-o> <C-x><C-o>
 
 " Tag completion
 inoremap <C-t> <C-x><C-]>
-
-" Line completion
-inoremap <C-l> <C-x><C-l>
 
 set cmdheight=1
 
