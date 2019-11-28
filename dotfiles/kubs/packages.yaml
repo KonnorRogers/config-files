@@ -39,10 +39,6 @@ snap_packages:
   command: sudo snap install
   packages: heroku
 
-snap_packages2:
-  command: sudo snap install
-  packages: universal-ctags
-
 vim_plugins:
   command: vim
   packages: +PlugInstall +PlugUpdate +PlugClean! +qa
