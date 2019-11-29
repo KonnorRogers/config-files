@@ -1,10 +1,14 @@
+MY_RUBY_VERSION="2.6.3"
+
 main(){
   install_dependencies
+  install_oh_my_zsh
   install_version_managers
+  install_ruby
 
   echo ""
   echo "Restart your shell to use version managers like chruby"
-  echo "For example: chruby use $RUBY_VERSION"
+  echo "For example: chruby use $MY_RUBY_VERSION"
 }
 
 install_dependencies(){
@@ -16,11 +20,25 @@ install_dependencies(){
   libgdbm-dev libreadline-dev libffi-dev fuse make gcc libxml2-dev
   re2c libbz2-dev libjpeg-turbo8-dev libpng-dev
   libzip-dev libtidy-dev libxslt-dev libncurses-dev automake libtool autoconf
-  flex libkrb5-dev libonig-dev make gcc ruby ruby-dev golang php git unixodbc-dev'
+  flex libkrb5-dev libonig-dev make gcc ruby ruby-dev golang php git unixodbc-dev tmux'
 
   sudo apt install $libs -y
 
   sudo apt autoremove -y
+}
+
+install_oh_my_zsh(){
+  sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+}
+
+install_ruby(){
+  if [[ ! -x "command -v ruby-install" ]]; then
+    # fix permissions issues
+    sudo chown "$USER:$USER" /usr/local/share
+  fi
+
+  ruby-install ruby "$MY_RUBY_VERSION"
+  chruby ruby-"$MY_RUBY_VERSION"
 }
 
 install_version_managers(){
@@ -70,6 +88,7 @@ install_chruby(){
 
 install_asdf(){
   git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.7.5
+  asdf plugin-add nodejs https://github.com/asdf-vm/asdf-nodejs.git
   bash ~/.asdf/plugins/nodejs/bin/import-release-team-keyring
 }
 
