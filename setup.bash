@@ -39,6 +39,7 @@ install_ruby(){
 
   ruby-install ruby "$MY_RUBY_VERSION"
   chruby ruby-"$MY_RUBY_VERSION"
+  gem install kubs_cli
 }
 
 install_version_managers(){
@@ -89,7 +90,7 @@ install_chruby(){
 install_asdf(){
   git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.7.5
   asdf plugin-add nodejs https://github.com/asdf-vm/asdf-nodejs.git
-  bash ~/.asdf/plugins/nodejs/bin/import-release-team-keyring
+  bash ~/.asdf/plugins/nodejs/bin/import-release-team-keyring &>/dev/null
 }
 
 install_phpenv(){
