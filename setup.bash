@@ -1,3 +1,5 @@
+#!/bin/bash
+
 MY_RUBY_VERSION="2.6.3"
 
 main(){
@@ -38,6 +40,8 @@ install_ruby(){
   fi
 
   ruby-install ruby "$MY_RUBY_VERSION" --no-reinstall
+
+  source /usr/local/share/chruby/chruby.sh
   chruby ruby-"$MY_RUBY_VERSION"
   gem install kubs_cli
 }
