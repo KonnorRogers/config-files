@@ -44,7 +44,6 @@ call plug#begin("~/.vim/plugged")
 
   "file exploration
   Plug 'scrooloose/nerdtree'
-  Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 
   " Snippets
   Plug 'SirVer/ultisnips'
@@ -242,7 +241,7 @@ nnoremap <C-k> <C-w>k
 nnoremap <C-j> <C-w>j
 
 " editing vim
-map <Leader>sv :split $HOME/.vimrc<CR>
+map <Leader>dv :edit $HOME/.vimrc<CR>
 map <Leader>rv :source $MYVIMRC<CR>
 
 " saving made eaiser
@@ -265,49 +264,27 @@ let g:html_indent_tags = 'li\|p'
 if executable('ag')
   set grepprg=ag\ --nogroup\ --nocolor\ --column
   set grepformat=%f:%l:%c%m
-  "Respect .gitignore
-  command! -bang -nargs=* GitFiles call fzf#run(fzf#wrap({'source': 'ag --hidden -g ""', 'sink': 'e'}))
-  nnoremap <Leader>f :GitFiles<CR>
-
-  "Do not respect .gitignore
-  command! -bang -nargs=* Files call fzf#run(fzf#wrap({'source': 'ag -u -g ""', 'sink': 'e'}))
-  nnoremap <Leader>F :Files<CR>
 
   "populate quickfix with \
   command! -nargs=+ -complete=file -bar Ag silent! grep! <args>|cwindow|redraw!
   nnoremap \ :Ag<space>
-else
-  " Default fzf if ag not installed
-  nnoremap <Leader>F :FZF
-
-  " Use git ls-files to respect .gitignore
-  command! -bang -nargs=* GitLsFiles call fzf#run(fzf#wrap({'source': 'git ls-files', 'sink': 'e'}))
-  nnoremap <Leader>f :GitLsFiles
 endif
-
-"Remove statusline when using fzf
-autocmd! FileType fzf
-autocmd  FileType fzf set laststatus=0 noshowmode noruler
-      \| autocmd BufLeave <buffer> set laststatus=2 showmode ruler
-
-autocmd! User FzfStatusLine call <SID>fzf_statusline()
 
 " bind <Leader>gw to grep word under cursor
 nnoremap <Leader>gw :grep! "\b<C-R><C-W>\b"<CR>:cw<CR>
 
 " Vim based file nav
-
 " Fuzzy Find based on cwd
-nnoremap <Leader>vf :find ./**/*
+nnoremap <Leader>f :find<SPACE>
 
 " Find based on current file
-nnoremap <Leader>vF :find <C-R>=expand('%:p:h') . '/'<CR>
-
-" Edit based on current directory
-nnoremap <Leader>ve :edit <C-R>=expand('%:p:h') . '/'<CR>
+nnoremap <Leader>F :find <C-R>=expand('%:p:h') . '/'<CR>
 
 " Edit based on root
-nnoremap <Leader>vE :edit ./
+nnoremap <Leader>e :edit ./
+
+" Edit based on current directory
+nnoremap <Leader>E :edit <C-R>=expand('%:p:h') . '/'<CR>
 
 " Custom functions
 
@@ -324,6 +301,7 @@ endfunction
 map <Leader>rn :call RenameFile()<cr>
 
 " Plug commands
+map <Leader>pa :PlugInstall <bar> :PlugUpdate
 map <Leader>pi :PlugInstall<CR>
 map <Leader>pu :PlugUpdate<CR>
 map <Leader>pru :UpdateRemotePlugins<CR>
@@ -339,7 +317,6 @@ inoremap <C-j> <Down>
 
 "available globally
 let g:ragtag_global_maps = 1
-
 
 "Nerdtree
 let g:NERDTreeShowHidden=1
