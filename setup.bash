@@ -90,7 +90,7 @@ install_chruby(){
 install_asdf(){
   git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.7.5
   asdf plugin-add nodejs https://github.com/asdf-vm/asdf-nodejs.git
-  bash ~/.asdf/plugins/nodejs/bin/import-release-team-keyring &>/dev/null
+  bash ~/.asdf/plugins/nodejs/bin/import-release-team-keyring > /dev/null 2>&1
 }
 
 install_phpenv(){
