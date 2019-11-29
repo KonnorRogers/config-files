@@ -8,7 +8,7 @@ main(){
 
   echo ""
   echo "Restart your shell to use version managers like chruby"
-  echo "For example: chruby use $MY_RUBY_VERSION"
+  echo "For example: chruby ruby-$MY_RUBY_VERSION"
 }
 
 install_dependencies(){
