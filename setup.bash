@@ -37,7 +37,7 @@ install_ruby(){
     sudo chown "$USER:$USER" /usr/local/share
   fi
 
-  ruby-install ruby "$MY_RUBY_VERSION"
+  ruby-install ruby "$MY_RUBY_VERSION" --no-reinstall
   chruby ruby-"$MY_RUBY_VERSION"
   gem install kubs_cli
 }
