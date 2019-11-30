@@ -27,10 +27,6 @@ apt:
     # Databases
     - mysql-server sqlite3 postgresql
 
-# Install versions of ruby, php, and node
-ruby:
-  command: sudo ruby-install --no-reinstall
-  packages: ruby 2.6.3
 php:
   command: phpenv install --skip-existing
   packages: 7.3.8
