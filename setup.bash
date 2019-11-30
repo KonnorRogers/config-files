@@ -101,4 +101,22 @@ install_phpenv(){
   curl -L https://raw.githubusercontent.com/phpenv/phpenv-installer/master/bin/phpenv-installer | bash
 }
 
+install_zsh_auto_suggestions() {
+  git clone https://github.com/zsh-users/zsh-autosuggestions "${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions" --quiet
+}
+
+install_zsh_syntax_highlighting() {
+  git clone https://github.com/zsh-users/zsh-syntax-highlighting.git "${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting" --quiet
+}
+
+install_tmux_plugin_manager() {
+  git clone https://github.com/tmux-plugins/tpm "~/.tmux/plugins/tpm" --quiet
+}
+
+add_dejavu_sans_mono_font() {
+  mkdir -p ~/.local/share/fonts && cd ~/.local/share/fonts || return
+  curl --silent -fLo "DejaVu Sans Mono for Powerline Nerd Font Complete.otf" https://github.com/ryanoasis/nerd-fonts/blob/master/patched-fonts/DejaVuSansMono/Regular/complete/DejaVu%20Sans%20Mono%20Nerd%20Font%20Complete.ttf && fc-cache -fv
+  cd - || return
+}
+
 main

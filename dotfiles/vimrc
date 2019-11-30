@@ -121,7 +121,7 @@ set bs=2
 
 "Tabbing menu
 set wildmenu
-set wildmode=full
+set wildmode=full:longest,full
 set wildignorecase
 set wildignore+=*node_modules
 set wildignore+=*bin
@@ -241,7 +241,7 @@ nnoremap <C-k> <C-w>k
 nnoremap <C-j> <C-w>j
 
 " editing vim
-map <Leader>dv :edit $HOME/.vimrc<CR>
+map <Leader>rc :edit $HOME/.vimrc<CR>
 map <Leader>rv :source $MYVIMRC<CR>
 
 " saving made eaiser
