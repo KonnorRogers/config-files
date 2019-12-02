@@ -44,7 +44,6 @@ call plug#begin("~/.vim/plugged")
 
   "file exploration
   Plug 'scrooloose/nerdtree'
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 
   " Snippets
   Plug 'SirVer/ultisnips'
@@ -122,11 +121,10 @@ set bs=2
 
 "Tabbing menu
 set wildmenu
-set wildmode=full:longest,full
+set wildmode=full
 set wildignorecase
-set wildignore+=node_modules
-set wildignore+=coverage
-set wildignore+=bin
+set wildignore+=*node_modules
+set wildignore+=*bin
 
 
 "show command line
@@ -263,6 +261,15 @@ nnoremap ]Q :clast<CR>zz
 let g:html_indent_tags = 'li\|p'
 
 " Searching
+if executable('ag')
+  set grepprg=ag\ --nogroup\ --nocolor\ --column
+  set grepformat=%f:%l:%c%m
+
+  "populate quickfix with \
+  command! -nargs=+ -complete=file -bar Ag silent! grep! <args>|cwindow|redraw!
+  nnoremap \ :Ag<space>
+endif
+
 " bind <Leader>gw to grep word under cursor
 nnoremap <Leader>gw :grep! "\b<C-R><C-W>\b"<CR>:cw<CR>
 
@@ -279,42 +286,6 @@ nnoremap <Leader>e :edit ./
 " Edit based on current directory
 nnoremap <Leader>E :edit <C-R>=expand('%:p:h') . '/'<CR>
 
-if executable('ag')
-  set grepprg=ag\ --nogroup\ --nocolor\ --column
-  set grepprg=ag\ --nogroup\ --nocolor\ --column
-  set grepformat=%f:%l:%c%m
-  set grepformat=%f:%l:%c%m
-  "Respect .gitignore
-  command! -bang -nargs=* GitFiles call fzf#run(fzf#wrap({'source': 'ag --hidden -g ""', 'sink': 'e'}))
-  nnoremap <Leader>f :GitFiles<CR>
-
-  "Do not respect .gitignore
-  command! -bang -nargs=* Files call fzf#run(fzf#wrap({'source': 'ag -u -g ""', 'sink': 'e'}))
-  nnoremap <Leader>F :Files<CR>
-
-
-  "populate quickfix with \
-  "populate quickfix with \
-  command! -nargs=+ -complete=file -bar Ag silent! grep! <args>|cwindow|redraw!
-  command! -nargs=+ -complete=file -bar Ag silent! grep! <args>|cwindow|redraw!
-  nnoremap \ :Ag<space>
-  nnoremap \ :Ag<space>
-else
-  " Default fzf if ag not installed
-  nnoremap <Leader>F :FZF
-
-  " Use git ls-files to respect .gitignore
-  command! -bang -nargs=* GitLsFiles call fzf#run(fzf#wrap({'source': 'git ls-files', 'sink': 'e'}))
-  nnoremap <Leader>f :GitLsFiles
-endif
-
-
-"Remove statusline when using fzf
-autocmd! FileType fzf
-autocmd  FileType fzf set laststatus=0 noshowmode noruler
-      \| autocmd BufLeave <buffer> set laststatus=2 showmode ruler
-
-autocmd! User FzfStatusLine call <SID>fzf_statusline()
 " Custom functions
 
 function! RenameFile()
