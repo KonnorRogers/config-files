@@ -354,15 +354,12 @@ nmap <Leader>mt <Plug>MarkdownPreviewToggle<Paste>
 let g:prettier#autoformat = 0
 autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.md,*.vue,*.yaml,*.html PrettierAsync
 
-" Ctags command
-command! -nargs=+ Ctags !ctags <args>
-
 " Run ctags
 function! GitCtags()
   let s:git_root = systemlist('git rev-parse --show-toplevel')[0]
   let s:tag_dir = '/.git/tags'
 
-  execute("Ctags -R -f " . s:git_root . s:tag_dir)
+  execute "!ctags -R --tag-relative -f " . s:git_root . s:tag_dir
 endfunction
 
 nnoremap <Leader>ct :call GitCtags()<CR>
