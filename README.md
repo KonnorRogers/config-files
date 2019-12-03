@@ -5,6 +5,8 @@ I use this in conjunction with my [Kubs-CLI Gem](https://github.com/paramagicdev
 Typical use case:
 
 ```bash
+git clone https://github.com/ParamagicDev/config-files ~/config-files
+cd ~/config-files
 ./setup.bash
 
 source /usr/local/share/chruby/chruby.sh
