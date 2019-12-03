@@ -42,9 +42,6 @@ call plug#begin("~/.vim/plugged")
   "Markdown previewing, Ensure you have nodejs and yarn
   Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & yarn install'  }
 
-  "file exploration
-  Plug 'scrooloose/nerdtree'
-
   " Snippets
   Plug 'SirVer/ultisnips'
 
@@ -123,8 +120,7 @@ set bs=2
 set wildmenu
 set wildmode=full
 set wildignorecase
-set wildignore+=*node_modules
-set wildignore+=*bin
+set wildignore+=*/node_modules/*
 
 
 "show command line
@@ -262,7 +258,7 @@ let g:html_indent_tags = 'li\|p'
 
 " Searching
 if executable('ag')
-  set grepprg=ag\ --nogroup\ --nocolor\ --column
+  set grepprg=ag\ --vimgrep
   set grepformat=%f:%l:%c%m
 
   "populate quickfix with \
@@ -274,16 +270,16 @@ endif
 nnoremap <Leader>gw :grep! "\b<C-R><C-W>\b"<CR>:cw<CR>
 
 " Vim based file nav
-" Fuzzy Find based on cwd
-nnoremap <Leader>f :find<SPACE>
+" Fuzzy Find based on path
+nnoremap <Leader>f :find<SPACE>**/*
 
 " Find based on current file
 nnoremap <Leader>F :find <C-R>=expand('%:p:h') . '/'<CR>
 
 " Edit based on root
-nnoremap <Leader>e :edit ./
+nnoremap <Leader>e :edit
 
-" Edit based on current directory
+" Edit based on current file
 nnoremap <Leader>E :edit <C-R>=expand('%:p:h') . '/'<CR>
 
 " Custom functions
@@ -318,9 +314,12 @@ inoremap <C-j> <Down>
 "available globally
 let g:ragtag_global_maps = 1
 
-"Nerdtree
-let g:NERDTreeShowHidden=1
-nnoremap <C-n> :NERDTreeToggle<CR>
+"Netrw
+let g:netrw_banner = 0
+let g:netrw_liststyle = 3
+let g:netrw_browse_split = 2
+let g:netrw_winsize = 25
+nnoremap <C-n> :Lexplore<CR>
 
 "ALE config
 nmap <Leader>ad :ALEDetail<CR>
