@@ -45,6 +45,9 @@ call plug#begin("~/.vim/plugged")
   " Snippets
   Plug 'SirVer/ultisnips'
 
+  "Fuzzy findings
+  Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+
   " Linting
   Plug 'dense-analysis/ale'
 call plug#end()
@@ -256,34 +259,42 @@ nnoremap ]Q :clast<CR>zz
 " Treat <li> and <p> tags like the block tags they are
 let g:html_indent_tags = 'li\|p'
 
-" Searching
 if executable('ag')
   set grepprg=ag\ --vimgrep
   set grepformat=%f:%l:%c%m
+  "Respect .gitignore
+  command! -bang -nargs=* GitFiles call fzf#run(fzf#wrap({'source': 'ag --hidden -g ""', 'sink': 'e'}, <bang>0))
+  nnoremap <Leader>f :GitFiles!<CR>
 
+   "Do not respect .gitignore
+  command! -bang -nargs=* Files call fzf#run(fzf#wrap({'source': 'ag -u -g ""', 'sink': 'e'}, <bang>0))
+  nnoremap <Leader>F :Files!<CR>
+
+
+   "populate quickfix with \
   "populate quickfix with \
   command! -nargs=+ -complete=file -bar Ag silent! grep! <args>|cwindow|redraw!
   nnoremap \ :Ag<space>
+else
+  " Default fzf if ag not installed
+  nnoremap <Leader>F :FZF!
+
+   " Use git ls-files to respect .gitignore
+  command! -bang -nargs=* GitLsFiles call fzf#run(fzf#wrap({'source': 'git ls-files', 'sink': 'e'}, <bang>0))
+  nnoremap <Leader>f :GitLsFiles!
 endif
+
+ "Remove statusline when using fzf
+autocmd! FileType fzf
+autocmd  FileType fzf set laststatus=0 noshowmode noruler
+      \| autocmd BufLeave <buffer> set laststatus=2 showmode ruler
+
+ autocmd! User FzfStatusLine call <SID>fzf_statusline()
 
 " bind <Leader>gw to grep word under cursor
 nnoremap <Leader>gw :grep! "\b<C-R><C-W>\b"<CR>:cw<CR>
 
-" Vim based file nav
-" Fuzzy Find based on path
-nnoremap <Leader>f :find<SPACE>**/*
-
-" Find based on current file
-nnoremap <Leader>F :find <C-R>=expand('%:p:h') . '/'<CR>
-
-" Edit based on root
-nnoremap <Leader>e :edit
-
-" Edit based on current file
-nnoremap <Leader>E :edit <C-R>=expand('%:p:h') . '/'<CR>
-
 " Custom functions
-
 function! RenameFile()
   let old_name = expand('%')
   let new_name = input('New file name: ', expand('%'), 'file')
@@ -317,7 +328,7 @@ let g:ragtag_global_maps = 1
 "Netrw
 let g:netrw_banner = 0
 let g:netrw_liststyle = 3
-let g:netrw_browse_split = 2
+let g:netrw_browse_split = 4
 let g:netrw_winsize = 25
 nnoremap <C-n> :Lexplore<CR>
 
