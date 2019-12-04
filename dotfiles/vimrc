@@ -44,7 +44,7 @@ call plug#begin("~/.vim/plugged")
 
   "file exploration
   Plug 'scrooloose/nerdtree'
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+  Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 
   " Snippets
   Plug 'SirVer/ultisnips'
@@ -124,10 +124,8 @@ set bs=2
 set wildmenu
 set wildmode=full:longest,full
 set wildignorecase
-set wildignore+=node_modules
-set wildignore+=coverage
-set wildignore+=bin
-
+set wildignore+=*/node_modules/*
+set wildignore+=*/coverage/*
 
 "show command line
 set showcmd
@@ -222,18 +220,21 @@ let mapleader = " "
 nnoremap j gj
 nnoremap k gk
 
+set helpheight=20
+
 " Using splits
-map <Leader>s :split<CR>
+map <Leader>sp :split<CR>
 
 "Buffer switching
 nnoremap <Leader><Leader> <C-^>
 nnoremap <Leader>bp :bprev<CR>
 nnoremap <Leader>bn :bnext<CR>
+nnoremap <Leader>bc :bclose<CR>
 
 "Tab switching
 nnoremap <Leader>tn :tabnew<CR>
 nnoremap <Leader>tj :tabnext<CR>
-nnoremap <Leader>tp :tabprev<CR>
+nnoremap <Leader>tk :tabprev<CR>
 nnoremap <Leader>tc :tabclose<CR>
 
 " better window movement
@@ -266,23 +267,9 @@ let g:html_indent_tags = 'li\|p'
 " bind <Leader>gw to grep word under cursor
 nnoremap <Leader>gw :grep! "\b<C-R><C-W>\b"<CR>:cw<CR>
 
-" Vim based file nav
-" Fuzzy Find based on cwd
-nnoremap <Leader>f :find<SPACE>
-
-" Find based on current file
-nnoremap <Leader>F :find <C-R>=expand('%:p:h') . '/'<CR>
-
-" Edit based on root
-nnoremap <Leader>e :edit ./
-
-" Edit based on current directory
-nnoremap <Leader>E :edit <C-R>=expand('%:p:h') . '/'<CR>
-
+"File nav
 if executable('ag')
-  set grepprg=ag\ --nogroup\ --nocolor\ --column
-  set grepprg=ag\ --nogroup\ --nocolor\ --column
-  set grepformat=%f:%l:%c%m
+  set grepprg=ag\ --vimgrep
   set grepformat=%f:%l:%c%m
   "Respect .gitignore
   command! -bang -nargs=* GitFiles call fzf#run(fzf#wrap({'source': 'ag --hidden -g ""', 'sink': 'e'}))
@@ -294,10 +281,7 @@ if executable('ag')
 
 
   "populate quickfix with \
-  "populate quickfix with \
   command! -nargs=+ -complete=file -bar Ag silent! grep! <args>|cwindow|redraw!
-  command! -nargs=+ -complete=file -bar Ag silent! grep! <args>|cwindow|redraw!
-  nnoremap \ :Ag<space>
   nnoremap \ :Ag<space>
 else
   " Default fzf if ag not installed
