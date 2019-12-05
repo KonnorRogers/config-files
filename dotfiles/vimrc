@@ -42,9 +42,6 @@ call plug#begin("~/.vim/plugged")
   "Markdown previewing, Ensure you have nodejs and yarn
   Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & yarn install'  }
 
-  "file exploration
-  Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
-
   " Snippets
   Plug 'SirVer/ultisnips'
 
@@ -128,6 +125,7 @@ set wildmode=full
 set wildignorecase
 set wildignore+=*/node_modules/*
 set wildignore+=*/coverage/*
+set wildignore+=*/.git/*,*/tmp/*
 
 "show command line
 set showcmd
