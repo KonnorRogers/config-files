@@ -45,9 +45,6 @@ call plug#begin("~/.vim/plugged")
   " Snippets
   Plug 'SirVer/ultisnips'
 
-  "Fuzzy findings
-  Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
-
   " Linting
   Plug 'dense-analysis/ale'
 call plug#end()
@@ -123,9 +120,12 @@ set bs=2
 set wildmenu
 set wildmode=full
 set wildignorecase
+
 set wildignore+=*/node_modules/*
 set wildignore+=*/coverage/*
-set wildignore+=*/.git/*,*/tmp/*
+set wildignore+=*/.git/*,*/tmp/*,*/.tmp/*
+set wildignore+=*/.bundle/*,*/vendor/*,*/log/*
+
 
 "show command line
 set showcmd
@@ -267,37 +267,19 @@ let g:html_indent_tags = 'li\|p'
 if executable('ag')
   set grepprg=ag\ --vimgrep
   set grepformat=%f:%l:%c%m
-  "Respect .gitignore
-  command! -bang -nargs=* GitFiles call fzf#run(fzf#wrap({'source': 'ag --hidden -g ""', 'sink': 'e'}, <bang>0))
-  nnoremap <Leader>f :GitFiles!<CR>
 
-   "Do not respect .gitignore
-  command! -bang -nargs=* Files call fzf#run(fzf#wrap({'source': 'ag -u -g ""', 'sink': 'e'}, <bang>0))
-  nnoremap <Leader>F :Files!<CR>
-
-
-   "populate quickfix with \
   "populate quickfix with \
   command! -nargs=+ -complete=file -bar Ag silent! grep! <args>|cwindow|redraw!
   nnoremap \ :Ag<space>
-else
-  " Default fzf if ag not installed
-  nnoremap <Leader>F :FZF!
-
-   " Use git ls-files to respect .gitignore
-  command! -bang -nargs=* GitLsFiles call fzf#run(fzf#wrap({'source': 'git ls-files', 'sink': 'e'}, <bang>0))
-  nnoremap <Leader>f :GitLsFiles!
 endif
-
- "Remove statusline when using fzf
-autocmd! FileType fzf
-autocmd  FileType fzf set laststatus=0 noshowmode noruler
-      \| autocmd BufLeave <buffer> set laststatus=2 showmode ruler
-
- autocmd! User FzfStatusLine call <SID>fzf_statusline()
 
 " bind <Leader>gw to grep word under cursor
 nnoremap <Leader>gw :grep! "\b<C-R><C-W>\b"<CR>:cw<CR>
+
+" Vim based file navigation
+nnoremap <Leader>f :find<space>./**/*
+nnoremap <Leader>F :find<space>
+nnoremap <Leader>e :edit<space>
 
 " Custom functions
 function! RenameFile()
