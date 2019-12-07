@@ -11,7 +11,7 @@ apt:
       libgdbm-dev libreadline-dev libffi-dev fuse make gcc libxml2-dev
       re2c libbz2-dev libjpeg-turbo8-dev libpng-dev
       libzip-dev libtidy-dev libxslt-dev automake libtool autoconf
-      flex libkrb5-dev libonig-dev libsqlite3-dev
+      flex libkrb5-dev libonig-dev libsqlite3-dev snapd
 
     # Languages
     - ruby ruby-dev golang php php-mysql php-pdo python3 python3-pip python-dev
@@ -35,7 +35,7 @@ php:
   command: phpenv install --skip-existing
   packages: 7.3.8
 node:
-  command: asdf install
+  command: asdf plugin-add
   packages: node-js 11.15.0
 
 neovim:

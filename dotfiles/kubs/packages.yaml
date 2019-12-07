@@ -13,10 +13,10 @@ gems:
     thor bundler solargraph
 
 install_yarn:
-  command: curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
-  packages:
+  command:
+    curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
     echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
-    && sudo apt update && sudo apt install yarn
+  packages: && sudo apt update && sudo apt install yarn
 
 # npm_packages:
 #   command: npm install -g
@@ -34,7 +34,6 @@ pip3_packages:
   command: pip3 install --user --upgrade
   packages: pynvim neovim
 
-# For some reason, 2 universal-ctags does not play nice with heroku
 snap_packages:
   command: sudo snap install
   packages: heroku
