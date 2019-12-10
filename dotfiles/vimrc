@@ -315,7 +315,7 @@ let g:ragtag_global_maps = 1
 "Netrw
 let g:netrw_banner = 0
 let g:netrw_liststyle = 3
-let g:netrw_browse_split = 2
+let g:netrw_browse_split = 4
 let g:netrw_winsize = 25
 nnoremap <C-n> :Lexplore<CR>
 
@@ -337,6 +337,7 @@ let g:UltiSnipsEditSplit="vertical"
 
 " Edit snippets
 nnoremap <Leader>us :UltiSnipsEdit<CR>
+nnoremap <Leader>ud :edit $HOME/.my-snippets
 
 " Set my snippets
 let g:UltiSnipsSnippetDirectories = [$HOME.'/.my-snippets']
