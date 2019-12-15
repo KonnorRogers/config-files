@@ -100,7 +100,6 @@ alias tag-gen="ctags -R --tag-relative -f .git/tags"
 # chruby
 source /usr/local/share/chruby/chruby.sh
 source /usr/local/share/chruby/auto.sh
-chruby ruby-2.6.3
 
 # phpenv
 export PHPENV_ROOT="$HOME/.phpenv"
