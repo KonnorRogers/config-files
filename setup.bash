@@ -110,7 +110,7 @@ install_zsh_syntax_highlighting() {
 }
 
 install_tmux_plugin_manager() {
-  git clone https://github.com/tmux-plugins/tpm "~/.tmux/plugins/tpm" --quiet
+  git clone https://github.com/tmux-plugins/tpm "$HOME/.tmux/plugins/tpm" --quiet
 }
 
 add_dejavu_sans_mono_font() {

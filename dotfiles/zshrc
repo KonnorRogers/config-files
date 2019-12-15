@@ -138,6 +138,7 @@ for function in $DOT_ZSH/functions/*; do
   source $function
 done
 
-
 source $HOME/.asdf/asdf.sh
 source $HOME/.asdf/completions/asdf.bash
+
+autoload -Uz compinit && compinit -i
