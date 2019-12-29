@@ -15,6 +15,7 @@ endif
 call plug#begin("~/.vim/plugged")
   " Colorscheme
   Plug 'flazz/vim-colorschemes'
+  Plug 'dracula/vim'
   Plug 'drewtempelmeyer/palenight.vim'
 
   "Tpope plugins
@@ -168,7 +169,7 @@ set tags+=./tags
 
 "Colorscheme / appearance
 set background=dark
-colorscheme apprentice
+colorscheme dracula
 
 "Status line
 set laststatus=2
@@ -227,9 +228,9 @@ map <Leader>sp :split<CR>
 
 "Buffer switching
 nnoremap <Leader><Leader> <C-^>
-nnoremap <Leader>bp :bprev<CR>
-nnoremap <Leader>bn :bnext<CR>
-nnoremap <Leader>bc :bclose<CR>
+nnoremap [b :bprev<CR>
+nnoremap ]b :bnext<CR>
+nnoremap ]B :bclose<CR>
 
 "Tab switching
 nnoremap <Leader>tn :tabnew<CR>
@@ -294,6 +295,8 @@ endfunction
 
 map <Leader>rn :call RenameFile()<cr>
 
+map <Leader>to :edit <C-R>=expand('%:p:h') . '/'<CR>
+
 " Plug commands
 map <Leader>pa :PlugInstall <bar> :PlugUpdate
 map <Leader>pi :PlugInstall<CR>
@@ -315,11 +318,11 @@ let g:ragtag_global_maps = 1
 "Netrw
 let g:netrw_banner = 0
 let g:netrw_liststyle = 3
-let g:netrw_browse_split = 4
+let g:netrw_browse_split = 0
 let g:netrw_altv = 1
-let g:netrw_winsize = 25
+let g:netrw_winsize = 100
 let g:netrw_list_hide = &wildignore
-nnoremap <C-n> :Lexplore<CR>
+nnoremap <C-n> :Explore<CR>
 
 "ALE config
 nmap <Leader>ad :ALEDetail<CR>
