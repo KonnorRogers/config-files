@@ -1,18 +1,25 @@
 snippet rdesc "rspec describe block" i
-RSpec.describe ${1:#:class} do
-  ${2:TARGET}
+RSpec.describe ${1:#class} do
+  ${2:${VISUAL}}
 end${0}
 endsnippet
 
 snippet ctxt "context block" i
 options word
-context "${1}" do
-  ${2:TARGET}
+context "$1" do
+  ${2:${VISUAL}}
 end${0}
 endsnippet
 
 snippet it "it block for rspec" i
-it "${1}" do
-  ${2}
-end${0}
+it "$1" do
+  $2
+end$0
+endsnippet
+
+snippet test "testing" i
+test '${1:should do something}' do
+  ${2:${VISUAL}}
+end
+$0
 endsnippet

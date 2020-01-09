@@ -132,6 +132,7 @@ filetype plugin indent on
 set nobackup
 set nowritebackup
 set noswapfile
+" set backupcopy=yes
 
 "fixes backspace in vim
 set backspace=indent,eol,start
