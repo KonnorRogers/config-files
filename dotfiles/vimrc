@@ -48,6 +48,28 @@ call plug#begin("~/.vim/plugged")
 
   " Linting
   Plug 'dense-analysis/ale'
+
+  " Autocompletion
+  Plug 'neoclide/coc.nvim', {'branch': 'release'}
+  " CoC recommended config
+  let g:coc_start_at_startup = 1
+  let g:coc_global_extensions = [
+        \ 'coc-json',
+        \ 'coc-css',
+        \ 'coc-ultisnips',
+        \ 'coc-tsserver',
+        \ 'coc-emmet',
+        \ 'coc-tag',
+        \ 'coc-omni',
+        \ 'coc-syntax',
+        \ 'coc-yaml',
+        \ 'coc-solargraph',
+        \ 'coc-phpls',
+        \ 'coc-html',
+        \ 'coc-tailwindcss',
+        \ 'coc-markdownlint',
+        \ 'coc-git'
+        \ ]
 call plug#end()
 
 " Path variables, prepend current directory
