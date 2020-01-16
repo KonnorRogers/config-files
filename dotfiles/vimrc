@@ -446,7 +446,7 @@ endfunction
 autocmd CursorHold * silent call CocActionAsync('highlight')
 
 " Remap for rename current word
-nmap <leader>rn <Plug>(coc-rename)
+nmap <leader>crn <Plug>(coc-rename)
 
 " Remap for format selected region
 xmap <leader>cf  <Plug>(coc-format-selected)
@@ -495,9 +495,9 @@ set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
 " Show all diagnostics
 nnoremap <silent> <Leader>a  :<C-u>CocList diagnostics<cr>
 " Manage extensions
-nnoremap <silent> <Leader>e  :<C-u>CocList extensions<cr>
+nnoremap <silent> <Leader>ce  :<C-u>CocList extensions<cr>
 " Show commands
-nnoremap <silent> <Leader>c  :<C-u>CocList commands<cr>
+nnoremap <silent> <Leader>cc  :<C-u>CocList commands<cr>
 " Find symbol of current document
 nnoremap <silent> <Leader>o  :<C-u>CocList outline<cr>
 " Search workLeader symbols
