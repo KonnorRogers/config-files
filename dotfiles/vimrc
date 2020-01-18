@@ -147,6 +147,7 @@ set wildignorecase
 
 set wildignore+=*/node_modules/*
 set wildignore+=*/coverage/*
+set wildignore+=*/public/*
 set wildignore+=*/.git/*,*/tmp/*,*/.tmp/*
 set wildignore+=*/.bundle/*,*/vendor/*,*/log/*
 
@@ -217,6 +218,7 @@ augroup filetypedetect
 
   " Set markdown files to markdown filetype
   autocmd BufNewFile,BufRead *.md,*markdown set filetype=markdown
+  autocmd BufNewFile,BufRead Dockerfile* set filetype=dockerfile
 augroup END
 
 
@@ -417,7 +419,7 @@ inoremap <silent><expr> <c-space> coc#refresh()
 
 " Use <cr> to confirm completion, `<C-g>u` means break undo chain at current position.
 " Coc only does snippet and additional edit on confirm.
-inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
+" inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 " Or use `complete_info` if your vim support it, like:
 " inoremap <expr> <cr> complete_info()["selected"] != "-1" ? "\<C-y>" : "\<C-g>u\<CR>"
 
