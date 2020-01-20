@@ -28,6 +28,7 @@ call plug#begin("~/.vim/plugged")
   Plug 'pangloss/vim-javascript'
   Plug 'elzr/vim-json'
   Plug 'maxmellon/vim-jsx-pretty'
+  Plug 'jxnblk/vim-mdx-js'
 
   "ruby / rails
   Plug 'vim-ruby/vim-ruby'
