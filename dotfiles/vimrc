@@ -219,6 +219,9 @@ augroup filetypedetect
 
   " Set markdown files to markdown filetype
   autocmd BufNewFile,BufRead *.md,*markdown set filetype=markdown
+  autocmd BufNew,BufEnter *.md,*.mdx execute "silent! CocDisable"
+  autocmd BufLeave *.mdx,*.md execute "silent! CocEnable"
+
   autocmd BufNewFile,BufRead Dockerfile* set filetype=dockerfile
 augroup END
 
@@ -511,3 +514,4 @@ nnoremap <silent> <Leader>cj  :<C-u>CocNext<CR>
 nnoremap <silent> <Leader>ck  :<C-u>CocPrev<CR>
 " Resume latest coc list
 nnoremap <silent> <Leader>cp  :<C-u>CocListResume<CR>
+
