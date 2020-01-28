@@ -219,6 +219,7 @@ augroup filetypedetect
 
   " Set markdown files to markdown filetype
   autocmd BufNewFile,BufRead *.md,*markdown set filetype=markdown
+  autocmd BufNewFile,BufRead *.mdx set filetype=javascript
   autocmd BufNew,BufEnter *.md,*.mdx execute "silent! CocDisable"
   autocmd BufLeave *.mdx,*.md execute "silent! CocEnable"
 
