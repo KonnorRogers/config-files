@@ -219,9 +219,7 @@ augroup filetypedetect
 
   " Set markdown files to markdown filetype
   autocmd BufNewFile,BufRead *.md,*markdown set filetype=markdown
-  autocmd BufNewFile,BufRead *.mdx set filetype=javascript
-  " autocmd BufNew,BufEnter *.md,*.mdx execute "silent! CocDisable"
-  " autocmd BufLeave *.mdx,*.md execute "silent! CocEnable"
+  autocmd BufNewFile,BufRead *.mdx set filetype=mdx
 
   autocmd BufNewFile,BufRead Dockerfile* set filetype=dockerfile
 augroup END
@@ -386,7 +384,7 @@ nmap <Leader>ms <Plug>MarkdownPreviewStop
 nmap <Leader>mt <Plug>MarkdownPreviewToggle<Paste>
 
 let g:prettier#autoformat = 0
-autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.md,*.vue,*.yaml,*.html PrettierAsync
+autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.md,*.vue,*.yaml,*.html,*.mdx PrettierAsync
 
 " Run ctags
 function! GitCtags()
