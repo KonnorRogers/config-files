@@ -1,0 +1,11 @@
+snippet anodif "assert_no_difference" i
+assert_no_difference '${1:Model.count}', ${2:1} do
+  ${3:${VISUAL}}
+end$0
+endsnippet
+
+snippet adif "assert_difference" i
+assert_difference '${1:Model.count}', ${2:1} do
+  ${3:${VISUAL}}
+end
+endsnippet
