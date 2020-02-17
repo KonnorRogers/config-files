@@ -17,4 +17,10 @@ snippet link "Links for markdown" i
 [${1:#text}](${2:#link})${0}
 endsnippet
 
+snippet emt "EMTLevel snippet" b
+<EMTLevel level="$1" ${2:medControl=${3:"true"}}>
+  ${4:${VISUAL}}
+</EMTLevel>
+endsnippet
 
+extends javascript
