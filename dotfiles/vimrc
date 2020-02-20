@@ -194,7 +194,7 @@ set tags+=./tags
 
 "Colorscheme / appearance
 set background=dark
-colorscheme apprentice
+colorscheme dracula
 
 "Status line
 set laststatus=2
