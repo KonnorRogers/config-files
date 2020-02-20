@@ -39,10 +39,7 @@ call plug#begin("~/.vim/plugged")
   "html / css
   Plug 'mattn/emmet-vim'
   Plug 'ap/vim-css-color'
-  Plug 'prettier/vim-prettier', {
-    \ 'do': 'yarn install',
-    \ 'branch': 'release/0.x'
-    \ }
+  Plug 'prettier/vim-prettier', { 'do': 'yarn install && yarn upgrade' }
 
   "Markdown previewing, Ensure you have nodejs and yarn
   Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & yarn install'  }
@@ -197,7 +194,7 @@ set tags+=./tags
 
 "Colorscheme / appearance
 set background=dark
-colorscheme dracula
+colorscheme apprentice
 
 "Status line
 set laststatus=2
