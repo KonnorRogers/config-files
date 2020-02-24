@@ -93,6 +93,7 @@ set shiftround
 
 "Make it obvious where 80 characters is
 set colorcolumn=81
+highlight ColorColumn ctermbg=0
 
 "Left hand column numbers
 set number
@@ -170,6 +171,7 @@ set clipboard+=unnamedplus
 
 "Provide a line of what column youre in
 set cursorcolumn
+highlight CursorColumn ctermbg=0
 
 "Adds a horizontal highlight to current line
 set cursorline
@@ -194,7 +196,7 @@ set tags+=./tags
 
 "Colorscheme / appearance
 set background=dark
-colorscheme dracula
+colorscheme smyck
 
 "Status line
 set laststatus=2
