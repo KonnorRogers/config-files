@@ -93,7 +93,6 @@ set shiftround
 
 "Make it obvious where 80 characters is
 set colorcolumn=81
-highlight ColorColumn ctermbg=0
 
 "Left hand column numbers
 set number
@@ -171,7 +170,6 @@ set clipboard+=unnamedplus
 
 "Provide a line of what column youre in
 set cursorcolumn
-highlight CursorColumn ctermbg=0
 
 "Adds a horizontal highlight to current line
 set cursorline
@@ -204,6 +202,12 @@ set statusline=
 set statusline+=\ %<%F\ %m\ %r\ %h\ %=%=%=%y\ [%c]%=
 
 highlight StatusLine guibg=#87875f guifg=#262626 ctermbg=101 ctermfg=235 cterm=NONE gui=NONE
+highlight StatusLineNC guibg=#87875f guifg=#262626 ctermbg=101 ctermfg=235 cterm=inverse gui=inverse
+
+highlight VertSplit ctermbg=8 ctermfg=8
+highlight ColorColumn ctermbg=0
+highlight CursorColumn ctermbg=0
+highlight SignColumn ctermbg=NONE guibg=NONE
 highlight link NERDTreeDir Constant
 
 " Autocommands
@@ -253,6 +257,7 @@ set helpheight=20
 
 " Using splits
 map <Leader>sp :split<CR>
+nnoremap <Leader>vs :vsplit<CR>
 
 "Buffer switching
 nnoremap <Leader><Leader> <C-^>
@@ -354,7 +359,13 @@ nnoremap <C-n> :Explore<CR>
 
 "ALE config
 nmap <Leader>ad :ALEDetail<CR>
+let g:ale_fixers = {'javascript': ['eslint']}
+let g:ale_linters = {'javascript': ['eslint']}
+let g:ale_fix_on_save = 1
 let g:ale_lint_delay = 500
+
+let g:ale_sign_error = '❌'
+let g:ale_sign_warning = '⚠️'
 
 " Dont let it override <C-y>
 let g:user_emmet_leader_key = '<C-e>'

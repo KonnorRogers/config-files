@@ -1,12 +1,9 @@
-snippet imr "import react" b
-import React from "react";${0}
-endsnippet
 
 snippet imd "import default" b
 import ${1} from "${2}";${0}
 endsnippet
 
-snippet imb "import with brackets" b
+snippet imn "import named exports" b
 import { ${1} } from "${2}";${0}
 
 snippet exd "export default" i
@@ -54,19 +51,19 @@ snippet qsa "query selector all" i
 document.querySelectorAll(${1:${VISUAL}});${0}
 endsnippet
 # Testing snippets
-snippet jest "Jest test block" i
+snippet jest "Jest test block" w
 test('${1:#Should do X}', () => {
   ${2:${VISUAL}}
 });${0}
 endsnippet
 
-snippet desc "Describe block" i
+snippet desc "Describe block" w
 describe('${1:#Do y}', () => {
 ${2:${VISUAL}}
 });${0}
 endsnippet
 
-snippet exp "Expect X" i
+snippet expect "Expect X" w
 expect(${1:#thing}).${2:#toBe}(${3:#true});${0}
 endsnippet
 
@@ -83,16 +80,22 @@ endsnippet
 
 # Console snippets
 
-snippet cl "console.log" i
+snippet cl "console.log" w
 console.log(${1:${VISUAL}});${0}
 endsnippet
 
-snippet ct "console.table" i
+snippet ct "console.table" w
 console.table(${1:${VISUAL}});${0}
 endsnippet
 
-snippet ctr "console.trace" i
-console.trace(${1:${VISUAL}});${0}
+snippet ctr "console.trace" w
+console.trace(${1:${VISUAL}});$0
+endsnippet
+
+# Libraries
+
+snippet react "import react" b
+import React from "react";${0}
 endsnippet
 
 snippet emotion "import emotion" i
@@ -101,6 +104,10 @@ endsnippet
 
 snippet theme-ui "import theme-ui" b
 /** @jsx jsx */
-import { jsx } from 'theme-ui'
-$0
+import { jsx } from 'theme-ui'$0
 endsnippet
+
+snippet proptypes "import PropTypes from 'prop-types'" b
+import ${1:PropTypes} from "prop-types"$0
+endsnippet
+
