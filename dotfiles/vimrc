@@ -235,15 +235,6 @@ autocmd BufWritePre * :%s/\s\+$//e
 "removes auto-commenting when hitting <CR>
 autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
 
-" Dont set autochdir, instead create an instance of current dir
-augroup filecompletion
-  " Change to directory of currently open file
-  autocmd InsertEnter * lcd %:p:h
-
-  " Change back to root directory
-  autocmd InsertLeave * cd -
-augroup END
-
 " Mappings
 
 "<Leader> is now <space>
