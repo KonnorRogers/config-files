@@ -56,6 +56,7 @@ alias rgmi='rails generate migration'
 alias tag-gen="ctags -R --tag-relative -f .git/tags"
 alias ownthis="sudo chown -R $USER:$USER ."
 alias klight="~/bin/keyboard_light"
+alias rnger='ranger'
 
 # kubs-cli
 alias k='kubs'
@@ -90,4 +91,5 @@ alias yr='yarn run'
 alias ya='yarn add'
 alias yad='yard add -D'
 alias yag='yarn add global'
+
 
