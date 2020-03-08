@@ -30,6 +30,10 @@ call plug#begin("~/.vim/plugged")
   Plug 'maxmellon/vim-jsx-pretty'
   Plug 'jxnblk/vim-mdx-js'
 
+  " Typescript
+  Plug 'leafgarland/typescript-vim'
+  Plug 'peitalin/vim-jsx-typescript'
+
   "ruby / rails
   Plug 'vim-ruby/vim-ruby'
   Plug 'ngmy/vim-rubocop'
@@ -194,7 +198,7 @@ set tags+=./tags
 
 "Colorscheme / appearance
 set background=dark
-colorscheme smyck
+colorscheme nord
 
 "Status line
 set laststatus=2
@@ -313,6 +317,8 @@ function! RenameFile()
   if new_name != '' && new_name != old_name
     exec ':saveas ' . new_name
     exec ':silent !rm ' . old_name
+    exec ':e ' . new_name
+    exec ':bdelete ' . old_name
     redraw!
   endif
 endfunction
