@@ -200,11 +200,15 @@ set tags+=./tags
 set background=dark
 colorscheme kolor
 
+" let g:kolor_inverted_matchparen=1
+" let g:kolor_alternative_matchparen=1
+
 "Status line
 set laststatus=2
 set statusline=
 set statusline+=\ %<%F\ %m\ %r\ %h\ %=%=%=%y\ [%c]%=
 
+hi MatchParen ctermbg=8 ctermfg=13 cterm=NONE guibg=#1c1c1c guifg=#FF5FD7 gui=NONE
 highlight StatusLine guibg=#87875f guifg=#262626 ctermbg=101 ctermfg=235 cterm=NONE gui=NONE
 highlight StatusLineNC guibg=#87875f guifg=#262626 ctermbg=101 ctermfg=235 cterm=inverse gui=inverse
 
@@ -318,7 +322,7 @@ function! RenameFile()
     exec ':saveas ' . new_name
     exec ':silent !rm ' . old_name
     exec ':e ' . new_name
-    exec ':bdelete ' . old_name
+    exec ':bwipeout ' . old_name
     redraw!
   endif
 endfunction
