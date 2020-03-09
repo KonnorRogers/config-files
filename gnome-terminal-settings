@@ -323,7 +323,7 @@ visible-name='Smyck'
 
 [legacy/profiles:/:76a12318-ddaa-4862-bd95-db021a9804d9]
 audible-bell=false
-background-color='rgb(46,45,43)'
+background-color='rgb(38,38,38)'
 bold-color-same-as-fg=true
 bold-is-bright=true
 cell-height-scale=1.5
