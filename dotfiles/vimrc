@@ -124,7 +124,7 @@ set wrap
 set linebreak
 
 " Folds
-set foldmethod=indent
+set foldmethod=manual
 set nofoldenable
 
 "Syntax highlighting
