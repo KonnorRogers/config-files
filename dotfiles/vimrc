@@ -198,7 +198,7 @@ set tags+=./tags
 
 "Colorscheme / appearance
 set background=dark
-colorscheme nord
+colorscheme kolor
 
 "Status line
 set laststatus=2
