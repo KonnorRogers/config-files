@@ -64,8 +64,6 @@ alias kgp='kubs git_pull'
 alias kpgp='kubs pull && kubs git_push'
 alias kgpc='kubs git_pull && kubs copy'
 alias kc='kubs copy'
-alias ku='kubs update'
-alias kl='kubs login'
 
 # docker
 alias d='docker'
