@@ -8,7 +8,7 @@ if empty(glob('~/.vim/autoload/plug.vim'))
 endif
 
 call plug#begin("~/.vim/plugged")
-  " Colorscheme
+  "Colorscheme
   Plug 'flazz/vim-colorschemes'
   Plug 'dracula/vim'
   Plug 'drewtempelmeyer/palenight.vim'
@@ -20,7 +20,7 @@ call plug#begin("~/.vim/plugged")
   Plug 'tpope/vim-ragtag'
 
   "Javascript / React
-  Plug 'pangloss/vim-javascript'
+  Plug 'yuezk/vim-js'
   Plug 'elzr/vim-json'
   Plug 'maxmellon/vim-jsx-pretty'
   Plug 'jxnblk/vim-mdx-js'
@@ -48,6 +48,11 @@ call plug#begin("~/.vim/plugged")
 
   " Linting
   Plug 'dense-analysis/ale'
+
+  "Misc
+  Plug 'junegunn/rainbow_parentheses.vim'
+  let g:rainbow#max_level = 16
+  let g:rainbow#pairs = [['(', ')'], ['[', ']'], ['{', '}'], ['<', '>']]
 
   " Autocompletion
   Plug 'neoclide/coc.nvim', {'branch': 'release'}
@@ -229,6 +234,11 @@ augroup filetypedetect
   " Set markdown files to markdown filetype
   autocmd BufNewFile,BufRead *.md,*markdown set filetype=markdown
   autocmd BufNewFile,BufRead Dockerfile* set filetype=dockerfile
+augroup END
+
+augroup rainbow_parentheses
+  autocmd!
+  autocmd FileType * RainbowParentheses
 augroup END
 
 
