@@ -38,7 +38,10 @@ call plug#begin("~/.vim/plugged")
   "html / css
   Plug 'mattn/emmet-vim'
   Plug 'ap/vim-css-color'
-  Plug 'prettier/vim-prettier', { 'do': 'yarn install && yarn upgrade' }
+  Plug 'prettier/vim-prettier', { 'do':
+        \ 'rm -rf node_modules && ',
+        \ 'yarn install &&',
+        \ 'yarn upgrade' }
 
   "Markdown previewing, Ensure you have nodejs and yarn
   Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & yarn install'  }
@@ -53,6 +56,9 @@ call plug#begin("~/.vim/plugged")
   Plug 'junegunn/rainbow_parentheses.vim'
   let g:rainbow#max_level = 16
   let g:rainbow#pairs = [['(', ')'], ['[', ']'], ['{', '}'], ['<', '>']]
+
+  "File Explorer
+  Plug 'preservim/nerdtree'
 
   " Autocompletion
   Plug 'neoclide/coc.nvim', {'branch': 'release'}
@@ -199,9 +205,6 @@ set tags+=./tags
 "Colorscheme / appearance
 set background=dark
 colorscheme kolor
-
-" let g:kolor_inverted_matchparen=1
-" let g:kolor_alternative_matchparen=1
 
 "Status line
 set laststatus=2
@@ -354,14 +357,10 @@ inoremap <C-j> <Down>
 "available globally
 let g:ragtag_global_maps = 1
 
-"Netrw
-let g:netrw_banner = 0
-let g:netrw_liststyle = 3
-let g:netrw_browse_split = 0
-let g:netrw_altv = 1
-let g:netrw_winsize = 100
-let g:netrw_list_hide = &wildignore
-nnoremap <C-n> :Explore<CR>
+"NerdTree
+let g:NERDTreeMinimalUI = 1
+let g:NERDTreeDirArrows = 1
+nnoremap <C-n> :NERDTreeToggle<CR>
 
 "ALE config
 nmap <Leader>ad :ALEDetail<CR>
