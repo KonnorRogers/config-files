@@ -38,10 +38,7 @@ call plug#begin("~/.vim/plugged")
   "html / css
   Plug 'mattn/emmet-vim'
   Plug 'ap/vim-css-color'
-  Plug 'prettier/vim-prettier', { 'do':
-        \ 'rm -rf node_modules && ',
-        \ 'yarn install &&',
-        \ 'yarn upgrade' }
+  Plug 'prettier/vim-prettier', { 'do': 'yarn install' }
 
   "Markdown previewing, Ensure you have nodejs and yarn
   Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & yarn install'  }
