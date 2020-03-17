@@ -260,8 +260,8 @@ nnoremap k gk
 set helpheight=20
 
 " Using splits
-map <Leader>sp :split<CR>
-nnoremap <Leader>vs :vsplit<CR>
+map <Leader>sp :split<space>
+nnoremap <Leader>vs :vsplit<space>
 
 "Buffer switching
 nnoremap <Leader><Leader> <C-^>
