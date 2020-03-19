@@ -39,7 +39,6 @@ call plug#begin("~/.vim/plugged")
   "html / css
   Plug 'mattn/emmet-vim'
   Plug 'ap/vim-css-color'
-  Plug 'prettier/vim-prettier', { 'do': 'yarn install' }
 
   "Markdown previewing, Ensure you have nodejs and yarn
   Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & yarn install'  }
@@ -77,7 +76,8 @@ call plug#begin("~/.vim/plugged")
         \ 'coc-html',
         \ 'coc-tailwindcss',
         \ 'coc-markdownlint',
-        \ 'coc-git'
+        \ 'coc-git',
+        \ 'coc-prettier'
         \ ]
 call plug#end()
 
@@ -397,9 +397,6 @@ nmap <Leader>md <Plug>MarkdownPreview
 nmap <Leader>ms <Plug>MarkdownPreviewStop
 nmap <Leader>mt <Plug>MarkdownPreviewToggle<Paste>
 
-let g:prettier#autoformat = 0
-autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.md,*.vue,*.yaml,*.html PrettierAsync
-
 " Run ctags
 function! GitCtags()
   let s:git_root = systemlist('git rev-parse --show-toplevel')[0]
@@ -507,8 +504,9 @@ command! -nargs=? Fold :call     CocAction('fold', <f-args>)
 " use `:OR` for organize import of current buffer
 command! -nargs=0 OR   :call     CocAction('runCommand', 'editor.action.organizeImport')
 
-" Add status line support, for integration with other plugin, checkout `:h coc-status`
-set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
+command! -nargs=0 Prettier :call CocAction('runCommand', 'prettier.formatFile')
+
+autocmd BufWritePre typescript,css,html,javascript,markdown Prettier
 
 " Using CocList
 " Show all diagnostics
