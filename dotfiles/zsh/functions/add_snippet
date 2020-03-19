@@ -1,6 +1,6 @@
 add_snippet() {
-  _dir = "$1"
-  _config_dir = "$HOME/config-files/dotfiles/snippets"
+  dir="$1"
+  config_dir="$HOME/config-files/dotfiles/my-snippets"
 
-  cp "_dir" "_config_dir"
+  cp "$dir" "$config_dir"
 }

@@ -9,6 +9,7 @@ endif
 
 call plug#begin("~/.vim/plugged")
   "Colorscheme
+  Plug 'wakatime/vim-wakatime'
   Plug 'flazz/vim-colorschemes'
   Plug 'dracula/vim'
   Plug 'drewtempelmeyer/palenight.vim'
