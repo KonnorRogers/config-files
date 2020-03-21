@@ -1,91 +1,93 @@
-
-snippet imd "import default" b
-import ${1} from "${2}";${0}
+snippet im "import default" b
+import $1 from "$2";$0
 endsnippet
 
-snippet imn "import named exports" b
-import { ${1} } from "${2}";${0}
+snippet imb "import named exports" b
+import { $1 } from "$2";$0
+endsnippet
 
 snippet exd "export default" i
 export default () => (
   ${1:${VISUAL}}
-)${0}
+)$0
+endsnippet
 
 snippet html "HTML tag" i
-<${1} ${2}>${3:{VISUAL}}</$1>${0}
+<$1 $2>${3:${VISUAL}}</$1>$0
 endsnippet
 
 snippet rclass "React class" b
-class ${1:#ClassName} extends React.Component {
+class $1 extends React.Component {
   ${2:${VISUAL}}
-}${0}
+}$0
 endsnippet
 
 snippet rndr
 render() {
   ${1:${VISUAL}}
-}${0}
+}$0
 endsnippet
 
 snippet fn "function" i
-function ${1:#functionName}(${2:#args}) {
+function $1($2) {
   ${3:${VISUAL}}
-}${0}
+}$0
 endsnippet
 
 snippet => "Arrow function" i
-(${1:#args}) => ${2:${VISUAL}}${0}
+($1) => ${2:${VISUAL}}$0
 endsnippet
 
 snippet ==> "Multiline arrow function" i
-(${1:#args}) => {
+($1) => {
   ${2:${VISUAL}}
-}${0}
+}$0
 endsnippet
 
-snippet qs "query selector" i
-document.querySelector(${1:${VISUAL}});${0}
+snippet qs "query selector" w
+document.querySelector(${1:${VISUAL}});$0
 endsnippet
 
-snippet qsa "query selector all" i
-document.querySelectorAll(${1:${VISUAL}});${0}
+snippet qsa "query selector all" w
+document.querySelectorAll(${1:${VISUAL}});$0
 endsnippet
+
 # Testing snippets
 snippet jest "Jest test block" w
 test('${1:#Should do X}', () => {
   ${2:${VISUAL}}
-});${0}
+});$0
 endsnippet
 
 snippet desc "Describe block" w
 describe('${1:#Do y}', () => {
 ${2:${VISUAL}}
-});${0}
+});$0
 endsnippet
 
 snippet expect "Expect X" w
-expect(${1:#thing}).${2:#toBe}(${3:#true});${0}
+expect($1).${2:toBe}(${3:true});$0
 endsnippet
 
 # Documentation snippets
 snippet jsdoc "JSDoc snippet" b
 /**
 * ${1:${VISUAL}}
-*/${0}
+*/$0
 endsnippet
 
 snippet jsdoci "Inline jsdoc" b
-/** ${1:${VISUAL}} */${0}
+/** ${1:${VISUAL}} */$0
 endsnippet
 
 # Console snippets
 
 snippet cl "console.log" w
-console.log(${1:${VISUAL}});${0}
+console.log(${1:${VISUAL}});$0
 endsnippet
 
 snippet ct "console.table" w
-console.table(${1:${VISUAL}});${0}
+console.table(${1:${VISUAL}});$0
 endsnippet
 
 snippet ctr "console.trace" w
@@ -95,10 +97,10 @@ endsnippet
 # Libraries
 
 snippet react "import react" b
-import * as React from "react";${0}
+import * as React from "react";$0
 endsnippet
 
-snippet emotion "import emotion" i
+snippet emotion "import emotion" b
 import { css } from "@emotion/core"$0
 endsnippet
 
