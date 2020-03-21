@@ -16,6 +16,16 @@ snippet html "HTML tag" i
 <$1 $2>${3:${VISUAL}}</$1>$0
 endsnippet
 
+snippet class "class" b
+class $1 {
+  ${2:constructor() {
+    $3
+  }
+
+  }${4:${VISUAL}}
+}$0
+endsnippet
+
 snippet rclass "React class" b
 class $1 extends React.Component {
   ${2:${VISUAL}}
@@ -115,4 +125,8 @@ endsnippet
 
 snippet rtl "import react-testing-library" b
 import { $1 } from "@react/testing-library"
+endsnippet
+
+snippet jq "jquery's $('') function" w
+$('$1')$0
 endsnippet
