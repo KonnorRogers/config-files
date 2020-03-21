@@ -243,8 +243,6 @@ augroup rainbow_parentheses
 augroup END
 
 
-"strip trailing whitespace from all files
-autocmd BufWritePost * :%s/\s\+$//e
 
 "removes auto-commenting when hitting <CR>
 autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
@@ -506,7 +504,12 @@ command! -nargs=0 OR   :call     CocAction('runCommand', 'editor.action.organize
 
 command! -nargs=0 Prettier :call CocAction('runCommand', 'prettier.formatFile')
 
-autocmd BufWritePost *.html,*.css,*.js,*.jsx,*.ts,*.tsx Prettier
+augroup formatting
+  autocmd!
+  "strip trailing whitespace from all files
+  autocmd BufWritePre * :%s/\s\+$//e
+  autocmd BufWritePre *.html,*.css,*.js,*.jsx,*.ts,*.tsx Prettier
+augroup END
 
 " Using CocList
 " Show all diagnostics
