@@ -296,6 +296,15 @@ nnoremap [q :cprevious<CR>zz
 nnoremap [Q :cfirst<CR>zz
 nnoremap ]Q :clast<CR>zz
 
+" Insert filename
+inoremap <c-f> <C-R>=expand('%:t')<CR>
+
+" Insert directory
+inoremap <c-d> <C-R>=expand('%')<CR>
+
+" Insert full path
+inoremap <c-p> <C-R>=expand('%')<CR>
+
 " Treat <li> and <p> tags like the block tags they are
 let g:html_indent_tags = 'li\|p'
 
