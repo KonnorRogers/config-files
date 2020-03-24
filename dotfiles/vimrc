@@ -297,13 +297,16 @@ nnoremap [Q :cfirst<CR>zz
 nnoremap ]Q :clast<CR>zz
 
 " Insert filename
-inoremap <c-f> <C-R>=expand('%:t')<CR>
+inoremap =f <C-R>=expand('%:t')<CR>
+
+" Insert file basename
+inoremap =b <C-R>=expand('%:t:r')<CR>
 
 " Insert directory
-inoremap <c-d> <C-R>=expand('%')<CR>
+inoremap =d <C-R>=expand('%')<CR>
 
 " Insert full path
-inoremap <c-p> <C-R>=expand('%')<CR>
+inoremap =p <C-R>=expand('%')<CR>
 
 " Treat <li> and <p> tags like the block tags they are
 let g:html_indent_tags = 'li\|p'
@@ -514,8 +517,9 @@ command! -nargs=0 Prettier :call CocAction('runCommand', 'prettier.formatFile')
 
 augroup formatting
   autocmd!
-  autocmd BufWritePre * :%s/\s\+$//e
-  autocmd InsertLeave * Format
+  autocmd BufWritePre * %s/\s\+$//e
+  autocmd BufWritePre * Format
+  autocmd BufWritePre * write
 augroup END
 
 nnoremap <Leader>pp :Prettier<CR>:w!<CR>
