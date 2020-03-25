@@ -44,19 +44,19 @@ neovim:
 install_zsh_auto_suggestions:
   command: git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions >/dev/null 2>&1
   packages:
-    '|| cd ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
-    && git pull && cd -'
+    "|| cd ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
+    && git pull && cd -"
 
 install_zsh_syntax_highlighting:
   command: git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting >/dev/null 2>&1
   packages:
-    '|| cd ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
-    && git pull && cd -'
+    "|| cd ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
+    && git pull && cd -"
 
 install_tmux_plugin_manager:
   command: git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm >/dev/null 2>&1
-  packages: '|| cd $HOME/.tmux/plugins/tpm && git pull && cd -'
+  packages: "|| cd $HOME/.tmux/plugins/tpm && git pull && cd -"
 
 add_dejavu_sans_mono_font:
   command: mkdir -p ~/.local/share/fonts && cd ~/.local/share/fonts
-  kpackages: curl -fLo "DejaVu Sans Mono for Powerline Nerd Font Complete.otf" https://github.com/ryanoasis/nerd-fonts/blob/master/patched-fonts/DejaVuSansMono/Regular/complete/DejaVu%20Sans%20Mono%20Nerd%20Font%20Complete.ttf && fc-cache -fv >/dev/null 2&>1
+  packages: curl -fLo "DejaVu Sans Mono for Powerline Nerd Font Complete.otf" https://github.com/ryanoasis/nerd-fonts/blob/master/patched-fonts/DejaVuSansMono/Regular/complete/DejaVu%20Sans%20Mono%20Nerd%20Font%20Complete.ttf && fc-cache -fv >/dev/null 2&>1
