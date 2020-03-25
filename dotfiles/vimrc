@@ -204,7 +204,7 @@ set tags+=./tags
 
 "Colorscheme / appearance
 set background=dark
-colorscheme kolor
+colorscheme vividchalk
 
 "Status line
 set laststatus=2
