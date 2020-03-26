@@ -370,10 +370,10 @@ default-size-rows=26
 cjk-utf8-ambiguous-width='narrow'
 use-system-font=false
 background-transparency-percent=0
-palette=['rgb(0,0,0)', 'rgb(255,165,0)', 'rgb(102,255,0)', 'rgb(255,204,0)', 'rgb(51,153,153)', 'rgb(153,51,204)', 'rgb(170,221,238)', 'rgb(255,255,255)', 'rgb(128,128,128)', 'rgb(255,102,0)', 'rgb(153,204,153)', 'rgb(255,238,152)', 'rgb(51,153,153)', 'rgb(153,51,204)', 'rgb(170,221,238)', 'rgb(169,169,169)']
+palette=['rgb(0,0,0)', 'rgb(255,165,0)', 'rgb(102,255,0)', 'rgb(255,204,0)', 'rgb(51,153,153)', 'rgb(153,51,204)', 'rgb(136,181,195)', 'rgb(255,255,255)', 'rgb(128,128,128)', 'rgb(255,102,0)', 'rgb(153,204,153)', 'rgb(255,238,152)', 'rgb(51,201,201)', 'rgb(170,27,242)', 'rgb(170,187,238)', 'rgb(169,169,169)']
 foreground-color='rgb(238,238,238)'
 cell-height-scale=1.5
-bold-is-bright=true
+bold-is-bright=false
 cursor-blink-mode='off'
 audible-bell=false
 
