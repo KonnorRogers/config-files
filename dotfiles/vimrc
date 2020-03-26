@@ -215,6 +215,7 @@ set statusline+=\ %<%F\ %m\ %r\ %h\ %=%=%=%y\ [%c]%=
 " highlight StatusLine guibg=#87875f guifg=#262626 ctermbg=101 ctermfg=235 cterm=NONE gui=NONE
 " highlight StatusLineNC guibg=#87875f guifg=#262626 ctermbg=101 ctermfg=235 cterm=inverse gui=inverse
 
+
 " Autocommands
 
 " Return cursor to original position
