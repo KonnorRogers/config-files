@@ -162,7 +162,6 @@ set wildignore+=*/public/*
 set wildignore+=*/.git/*,*/tmp/*,*/.tmp/*
 set wildignore+=*/.bundle/*,*/vendor/*,*/log/*
 
-
 "show command line
 set showcmd
 
@@ -204,17 +203,25 @@ set tags+=./tags
 
 "Colorscheme / appearance
 set background=dark
-colorscheme kolor
+colorscheme vividchalk
 
 "Status line
 set laststatus=2
 set statusline=
 set statusline+=\ %<%F\ %m\ %r\ %h\ %=%=%=%y\ [%c]%=
 
-hi MatchParen ctermbg=8 ctermfg=13 cterm=NONE guibg=#1c1c1c guifg=#FF5FD7 gui=NONE
-highlight StatusLine guibg=#87875f guifg=#262626 ctermbg=101 ctermfg=235 cterm=NONE gui=NONE
-highlight StatusLineNC guibg=#87875f guifg=#262626 ctermbg=101 ctermfg=235 cterm=inverse gui=inverse
+" For Kolor colorscheme
+" hi MatchParen ctermbg=8 ctermfg=13 cterm=NONE guibg=#1c1c1c guifg=#FF5FD7 gui=NONE
 
+
+" highlight StatusLine guibg=#87875f guifg=#262626 ctermbg=101 ctermfg=235 cterm=NONE gui=NONE
+" highlight StatusLineNC guibg=#87875f guifg=#262626 ctermbg=101 ctermfg=235 cterm=inverse gui=inverse
+
+highlight StatusLine guibg=#808080 guifg=#000000 ctermbg=8 ctermfg=0 cterm=NONE gui=NONE
+highlight StatusLineNC guibg=#808080 guifg=#000000 ctermbg=8 ctermfg=0 cterm=inverse gui=inverse
+
+hi MatchParen ctermbg=8 ctermfg=2 cterm=NONE guibg=#808080 guifg=#66FF00 gui=NONE
+highlight CursorLine cterm=NONE gui=NONE
 highlight VertSplit ctermbg=8 ctermfg=8
 highlight ColorColumn ctermbg=0
 highlight CursorColumn ctermbg=0
