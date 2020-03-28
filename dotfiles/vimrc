@@ -154,6 +154,7 @@ set bs=2
 "Tabbing menu
 set wildmenu
 set wildmode=full
+set wildoptions=pum
 set wildignorecase
 
 set wildignore+=*/node_modules/*
@@ -214,7 +215,6 @@ set statusline+=\ %<%F\ %m\ %r\ %h\ %=%=%=%y\ [%c]%=
 " hi MatchParen ctermbg=8 ctermfg=13 cterm=NONE guibg=#1c1c1c guifg=#FF5FD7 gui=NONE
 " highlight StatusLine guibg=#87875f guifg=#262626 ctermbg=101 ctermfg=235 cterm=NONE gui=NONE
 " highlight StatusLineNC guibg=#87875f guifg=#262626 ctermbg=101 ctermfg=235 cterm=inverse gui=inverse
-
 
 " Autocommands
 
@@ -295,16 +295,16 @@ nnoremap [Q :cfirst<CR>zz
 nnoremap ]Q :clast<CR>zz
 
 " Insert filename
-inoremap =f <C-R>=expand('%:t')<CR>
+inoremap =f% <C-R>=expand('%:t')<CR>
 
 " Insert file basename
-inoremap =b <C-R>=expand('%:t:r')<CR>
+inoremap =b% <C-R>=expand('%:t:r')<CR>
 
 " Insert directory
-inoremap =d <C-R>=expand('%')<CR>
+inoremap =d% <C-R>=expand('%')<CR>
 
 " Insert full path
-inoremap =p <C-R>=expand('%')<CR>
+inoremap =p% <C-R>=expand('%')<CR>
 
 " Treat <li> and <p> tags like the block tags they are
 let g:html_indent_tags = 'li\|p'
@@ -419,9 +419,10 @@ setlocal omnifunc=syntaxcomplete#Complete
 setlocal completefunc=syntaxcomplete#Complete
 
 " Find what to highlight
-map <Leader>syn :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<'
+map <F12> :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<'
 \ . synIDattr(synID(line("."),col("."),0),"name") . "> lo<"
 \ . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"<CR>
+
 
 " Better display for messages
 set cmdheight=2
@@ -515,9 +516,7 @@ command! -nargs=0 Prettier :call CocAction('runCommand', 'prettier.formatFile')
 
 augroup formatting
   autocmd!
-  autocmd BufWritePre * %s/\s\+$//e
-  autocmd BufWritePre * Format
-  autocmd BufWritePre * write
+  autocmd BufWritePre * %s/\s\+$//e | Format
 augroup END
 
 nnoremap <Leader>pp :Prettier<CR>:w!<CR>
