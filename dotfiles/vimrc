@@ -204,7 +204,7 @@ set tags+=./tags
 
 "Colorscheme / appearance
 set background=dark
-colorscheme medic_chalk
+colorscheme kolor
 
 "Status line
 set laststatus=2
