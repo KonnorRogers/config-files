@@ -516,7 +516,7 @@ command! -nargs=0 Prettier :call CocAction('runCommand', 'prettier.formatFile')
 
 augroup formatting
   autocmd!
-  autocmd BufWritePre * %s/\s\+$//e | Format
+  autocmd BufWrite * %s/\s\+$//e | Format
 augroup END
 
 nnoremap <Leader>pp :Prettier<CR>:w!<CR>

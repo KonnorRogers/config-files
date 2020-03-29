@@ -106,16 +106,19 @@ endsnippet
 
 # Libraries
 
+snippet jsx "jsx pragma" b
+/** @jsx jsx */$0
+endsnippet
+
 snippet react "import react" b
 import * as React from "react";$0
 endsnippet
 
 snippet emotion "import emotion" b
-import { css } from "@emotion/core"$0
+import { jsx, css } from "@emotion/core"$0
 endsnippet
 
 snippet theme-ui "import theme-ui" b
-/** @jsx jsx */
 import { jsx } from 'theme-ui'$0
 endsnippet
 
