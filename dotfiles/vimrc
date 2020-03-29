@@ -202,6 +202,19 @@ runtime macros/matchit.vim
 set tags+=./.git/tags
 set tags+=./tags
 
+
+function! KolorHighlights() abort
+  highlight MatchParen ctermbg=8 ctermfg=13 cterm=NONE guibg=#1c1c1c guifg=#FF5FD7 gui=NONE
+  highlight StatusLine guibg=#87875f guifg=#262626 ctermbg=101 ctermfg=235 cterm=NONE gui=NONE
+  highlight StatusLineNC guibg=#87875f guifg=#262626 ctermbg=101 ctermfg=235 cterm=inverse gui=inverse
+endfunction
+
+" For Kolor colorscheme
+augroup MyColors
+  autocmd!
+  autocmd ColorScheme kolor call KolorHighlights()
+augroup END
+
 "Colorscheme / appearance
 set background=dark
 colorscheme kolor
@@ -211,10 +224,6 @@ set laststatus=2
 set statusline=
 set statusline+=\ %<%F\ %m\ %r\ %h\ %=%=%=%y\ [%c]%=
 
-" For Kolor colorscheme
-" hi MatchParen ctermbg=8 ctermfg=13 cterm=NONE guibg=#1c1c1c guifg=#FF5FD7 gui=NONE
-" highlight StatusLine guibg=#87875f guifg=#262626 ctermbg=101 ctermfg=235 cterm=NONE gui=NONE
-" highlight StatusLineNC guibg=#87875f guifg=#262626 ctermbg=101 ctermfg=235 cterm=inverse gui=inverse
 
 " Autocommands
 
