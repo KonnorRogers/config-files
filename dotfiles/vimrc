@@ -525,6 +525,8 @@ command! -nargs=0 Prettier :call CocAction('runCommand', 'prettier.formatFile')
 
 augroup formatting
   autocmd!
+
+  autocmd BufRead,BufNewFile *.md,*.mdx setlocal textwidth=72
   autocmd BufWritePre * s/\s\+$//e
 augroup END
 
