@@ -170,4 +170,4 @@ bar {
 }
 
 # Start network manager in background
-exec --no-startup-id nm-applet
+exec --no-startup-id nm-tray

@@ -217,7 +217,7 @@ augroup END
 
 "Colorscheme / appearance
 set background=dark
-colorscheme kolor
+colorscheme medic_chalk
 
 "Status line
 set laststatus=2
