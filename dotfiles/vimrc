@@ -59,6 +59,9 @@ call plug#begin("~/.vim/plugged")
   "File Explorer
   Plug 'preservim/nerdtree'
 
+  "Fuzzy finder
+  Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+
   " Autocompletion
   Plug 'neoclide/coc.nvim', {'branch': 'release'}
   " CoC recommended config
@@ -124,7 +127,9 @@ set nohls
 set incsearch
 
 " incremental commands
-set inccommand
+if has('inccommand')
+  set inccommand=nosplit
+endif
 
 "turn on visual word wrapping
 set wrap
@@ -133,7 +138,7 @@ set wrap
 set linebreak
 
 " Folds
-set foldmethod=manual
+set foldmethod=syntax
 set nofoldenable
 
 "Syntax highlighting
@@ -334,10 +339,6 @@ endif
 " bind <Leader>gw to grep word under cursor
 nnoremap <Leader>gw :grep! "\b<C-R><C-W>\b"<CR>:cw<CR>
 
-" Vim based file navigation
-nnoremap <Leader>f :find<space>./**/*
-nnoremap <Leader>F :find<space>
-nnoremap <Leader>e :edit<space>
 
 " Custom functions
 function! RenameFile()
@@ -435,6 +436,41 @@ map <F12> :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans
 \ . synIDattr(synID(line("."),col("."),0),"name") . "> lo<"
 \ . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"<CR>
 
+" FZF options
+let g:fzf_action = {
+  \ 'ctrl-t': 'tab split',
+  \ 'ctrl-x': 'split',
+  \ 'ctrl-v': 'vsplit' }
+
+let g:fzf_colors = {
+  \ 'fg':      ['fg', 'Normal'],
+  \ 'bg':      ['bg', 'Normal'],
+  \ 'hl':      ['fg', 'Comment'],
+  \ 'fg+':     ['fg', 'String', 'CursorColumn', 'Normal'],
+  \ 'bg+':     ['bg', 'CursorLine', 'CursorColumn'],
+  \ 'hl+':     ['fg', 'Statement'],
+  \ 'info':    ['fg', 'PreProc'],
+  \ 'border':  ['fg', 'Ignore'],
+  \ 'prompt':  ['fg', 'Conditional'],
+  \ 'pointer': ['fg', 'Exception'],
+  \ 'marker':  ['fg', 'Keyword'],
+  \ 'spinner': ['fg', 'Label'],
+  \ 'header':  ['fg', 'Comment'] }
+
+command! -bang -complete=file -nargs=* GitFiles call fzf#run(fzf#wrap({'source': 'ag --hidden -g ""', 'sink': 'e'}, <bang>0))
+
+command! -bang -complete=file -nargs=* Files call fzf#run(fzf#wrap({'source': 'ag -u -g ""', 'sink': 'e'}, <bang>0))
+
+  "Do not respect .gitignore
+nnoremap <Leader>F :Files!<CR>
+
+"Respect .gitignore
+nnoremap <Leader>f :GitFiles!<CR>
+
+" Vim based file navigation
+nnoremap <Leader>n :find<space>./**/*
+nnoremap <Leader>N :find<space>
+nnoremap <Leader>e :edit<space>
 
 " Better display for messages
 set cmdheight=2
