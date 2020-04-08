@@ -138,8 +138,7 @@ set wrap
 set linebreak
 
 " Folds
-set foldmethod=syntax
-set nofoldenable
+set foldmethod=indent
 
 "Syntax highlighting
 syntax on
@@ -217,11 +216,17 @@ function! KolorHighlights() abort
   highlight StatusLineNC guibg=#87875f guifg=#262626 ctermbg=101 ctermfg=235 cterm=inverse gui=inverse
 endfunction
 
+function! MedicChalkHighlights() abort
+  highlight Folded ctermbg=0 ctermfg=5 guibg=#000000 guifg=#CD00CD
+endfunction
+
 " For Kolor colorscheme
 augroup MyColors
   autocmd!
   autocmd ColorScheme kolor call KolorHighlights()
-augroup END
+  autocmd Colorscheme medic_chalk call MedicChalkHighlights()
+augroup END 
+
 
 "Colorscheme / appearance
 set background=dark
@@ -583,9 +588,9 @@ nnoremap <silent> <Leader>co  :<C-u>CocList outline<cr>
 " Search workLeader symbols
 nnoremap <silent> <Leader>cs  :<C-u>CocList -I symbols<cr>
 " Do default action for next item.
-nnoremap <silent> <Leader>cj  :<C-u>CocNext<CR>
+nnoremap <silent> <Leader>cn  :<C-u>CocNext<CR>
 " Do default action for previous item.
-nnoremap <silent> <Leader>ck  :<C-u>CocPrev<CR>
+nnoremap <silent> <Leader>cp  :<C-u>CocPrev<CR>
 " Resume latest coc list
-nnoremap <silent> <Leader>cp  :<C-u>CocListResume<CR>
+nnoremap <silent> <Leader>cr  :<C-u>CocListResume<CR>
 
