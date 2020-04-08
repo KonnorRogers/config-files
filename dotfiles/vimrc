@@ -123,6 +123,9 @@ set nohls
 "incremental searching
 set incsearch
 
+" incremental commands
+set inccommand
+
 "turn on visual word wrapping
 set wrap
 
