@@ -22,7 +22,8 @@ apt:
       openssh-client openssh-server dconf-cli gnome-terminal
       pry rubygems fail2ban
       asciinema docker docker-compose mosh yarn
-      silversearcher-ag virtualbox ripgrep ctags ranger i3 wicd
+      silversearcher-ag virtualbox ripgrep ctags ranger i3 wicd wicd-gtk
+      wicd-curses wicd-cli
 
     # Databases
     - mysql-server sqlite3 postgresql
