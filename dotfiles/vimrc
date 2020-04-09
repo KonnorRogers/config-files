@@ -138,7 +138,7 @@ set wrap
 set linebreak
 
 " Folds
-set foldmethod=indent
+set foldmethod=syntax
 
 "Syntax highlighting
 syntax on
@@ -252,7 +252,8 @@ augroup filetypedetect
   autocmd BufNewFile,BufReadPost *.ino,*.pde setfiletype cpp
 
   " Set markdown files to markdown filetype
-  autocmd BufNewFile,BufRead *.md,*markdown set filetype=markdown
+  autocmd BufNewFile,BufRead *.md,*.markdown setfiletype=markdown
+  autocmd BufNewFile,BufRead *.mdx,*.md,*.markdown setlocal foldmethod=indent
   autocmd BufNewFile,BufRead Dockerfile* set filetype=dockerfile
 augroup END
 
@@ -465,6 +466,13 @@ let g:fzf_colors = {
 command! -bang -complete=file -nargs=* GitFiles call fzf#run(fzf#wrap({'source': 'ag --hidden -g ""', 'sink': 'e'}, <bang>0))
 
 command! -bang -complete=file -nargs=* Files call fzf#run(fzf#wrap({'source': 'ag -u -g ""', 'sink': 'e'}, <bang>0))
+
+
+if has('nvim') && !exists('g:fzf_layout')
+  autocmd! FileType fzf
+  autocmd  FileType fzf set laststatus=0 noshowmode noruler
+    \| autocmd BufLeave <buffer> set laststatus=2 showmode ruler
+endif
 
   "Do not respect .gitignore
 nnoremap <Leader>F :Files!<CR>

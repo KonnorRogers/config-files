@@ -170,4 +170,4 @@ bar {
 }
 
 # Start network manager in background
-exec --no-startup-id nm-tray
+exec --no-startup-id wicd-client -t
