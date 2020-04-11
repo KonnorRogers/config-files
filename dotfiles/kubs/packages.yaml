@@ -19,7 +19,7 @@ install_yarn:
 
 npm_packages:
   command: npm install -g
-  packages: neovim eslint sass gatsby serve
+  packages: neovim eslint sass gatsby browser-sync
 
 yarn_packages:
   command: yarn global add
