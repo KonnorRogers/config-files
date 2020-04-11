@@ -161,7 +161,6 @@ set bs=2
 "Tabbing menu
 set wildmenu
 set wildmode=full
-set wildoptions=pum
 set wildignorecase
 
 set wildignore+=*/node_modules/*
