@@ -462,9 +462,15 @@ let g:fzf_colors = {
   \ 'spinner': ['fg', 'Label'],
   \ 'header':  ['fg', 'Comment'] }
 
-command! -bang -complete=file -nargs=* GitFiles call fzf#run(fzf#wrap({'source': 'ag --hidden -g ""', 'sink': 'e'}, <bang>0))
+" If ag is installed, use ag
+" if executable('ag')
+"   command! -bang -complete=file GitFiles call fzf#run(fzf#wrap({'source': 'ag --hidden -g ""', 'sink': 'e'}, <bang>0))
+"   command! -bang -complete=file Files call fzf#run(fzf#wrap({'source': 'ag -u -g ""', 'sink': 'e'}, <bang>0))
+" else
+  command! -bang -complete=file GitFiles call fzf#run(fzf#wrap({'source': 'git ls-files', 'sink': 'e'}, <bang>0))
+  command! -bang -complete=file Files call fzf#run(fzf#wrap({'source': 'find .', 'sink': 'e'}, <bang>0))
+" endif
 
-command! -bang -complete=file -nargs=* Files call fzf#run(fzf#wrap({'source': 'ag -u -g ""', 'sink': 'e'}, <bang>0))
 
 
 if has('nvim') && !exists('g:fzf_layout')
@@ -480,8 +486,8 @@ nnoremap <Leader>F :Files!<CR>
 nnoremap <Leader>f :GitFiles!<CR>
 
 " Vim based file navigation
-nnoremap <Leader>n :find<space>./**/*
-nnoremap <Leader>N :find<space>
+nnoremap <Leader>d :find<space>./**/*
+nnoremap <Leader>D :find<space>
 nnoremap <Leader>e :edit<space>
 
 " Better display for messages
