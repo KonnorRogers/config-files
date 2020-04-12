@@ -210,9 +210,26 @@ set tags+=./tags
 
 
 function! KolorHighlights() abort
+  highlight Normal ctermbg=0
+
+  " Gutter
+  highlight CursorLineNR ctermbg=0
+  highlight LineNR ctermbg=08
+  highlight SignColumn ctermbg=0
+  highlight CursorLine ctermbg=08
+
+  " Columns
+  highlight VertSplit ctermbg=08
+  highlight ColorColumn ctermbg=08
+  highlight CursorColumn ctermbg=08
+
+  "Blank buffer
+  highlight EndOfBuffer ctermbg=0
+
+  " Parens
   highlight MatchParen ctermbg=8 ctermfg=13 cterm=NONE guibg=#1c1c1c guifg=#FF5FD7 gui=NONE
-  highlight StatusLine guibg=#87875f guifg=#262626 ctermbg=101 ctermfg=235 cterm=NONE gui=NONE
-  highlight StatusLineNC guibg=#87875f guifg=#262626 ctermbg=101 ctermfg=235 cterm=inverse gui=inverse
+  highlight StatusLine guibg=#87875f guifg=#262626 ctermbg=101 ctermfg=0 cterm=NONE gui=NONE
+  highlight StatusLineNC guibg=#87875f guifg=#262626 ctermbg=101 ctermfg=0 cterm=inverse gui=inverse
 endfunction
 
 function! MedicChalkHighlights() abort
@@ -223,13 +240,13 @@ endfunction
 augroup MyColors
   autocmd!
   autocmd ColorScheme kolor call KolorHighlights()
-  autocmd Colorscheme medic_chalk call MedicChalkHighlights()
+  autocmd ColorScheme medic_chalk call MedicChalkHighlights()
 augroup END 
 
 
 "Colorscheme / appearance
 set background=dark
-colorscheme medic_chalk
+colorscheme kolor
 
 "Status line
 set laststatus=2
