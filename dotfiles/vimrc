@@ -211,6 +211,9 @@ set tags+=./tags
 
 function! KolorHighlights() abort
   highlight Normal ctermbg=0
+  highlight Folded ctermbg=08 ctermfg=12
+  highlight FoldColumn ctermbg=0
+  " highlight WhiteSpace ctermbg=0
 
   " Gutter
   highlight CursorLineNR ctermbg=0
