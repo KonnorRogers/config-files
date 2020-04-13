@@ -59,9 +59,6 @@ call plug#begin("~/.vim/plugged")
   "File Explorer
   Plug 'preservim/nerdtree'
 
-  "Fuzzy finder
-  Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-
   " Autocompletion
   Plug 'neoclide/coc.nvim', {'branch': 'release'}
   " CoC recommended config
@@ -210,24 +207,24 @@ set tags+=./tags
 
 
 function! KolorHighlights() abort
-  highlight Normal ctermbg=0
-  highlight Folded ctermbg=08 ctermfg=12
-  highlight FoldColumn ctermbg=0
-  " highlight WhiteSpace ctermbg=0
+  "highlight Normal ctermbg=0
+  "highlight Folded ctermbg=08 ctermfg=12
+  "highlight FoldColumn ctermbg=0
+  "" highlight WhiteSpace ctermbg=0
 
-  " Gutter
-  highlight CursorLineNR ctermbg=0
-  highlight LineNR ctermbg=08
-  highlight SignColumn ctermbg=0
-  highlight CursorLine ctermbg=08
+  "" Gutter
+  "highlight CursorLineNR ctermbg=0
+  "highlight LineNR ctermbg=08
+  "highlight SignColumn ctermbg=0
+  "highlight CursorLine ctermbg=08
 
-  " Columns
-  highlight VertSplit ctermbg=08
-  highlight ColorColumn ctermbg=08
-  highlight CursorColumn ctermbg=08
+  "" Columns
+  "highlight VertSplit ctermbg=08
+  "highlight ColorColumn ctermbg=08
+  "highlight CursorColumn ctermbg=08
 
-  "Blank buffer
-  highlight EndOfBuffer ctermbg=0
+  ""Blank buffer
+  "highlight EndOfBuffer ctermbg=0
 
   " Parens
   highlight MatchParen ctermbg=8 ctermfg=13 cterm=NONE guibg=#1c1c1c guifg=#FF5FD7 gui=NONE
@@ -461,54 +458,11 @@ map <F12> :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans
 \ . synIDattr(synID(line("."),col("."),0),"name") . "> lo<"
 \ . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"<CR>
 
-" FZF options
-let g:fzf_action = {
-  \ 'ctrl-t': 'tab split',
-  \ 'ctrl-x': 'split',
-  \ 'ctrl-v': 'vsplit' }
-
-let g:fzf_colors = {
-  \ 'fg':      ['fg', 'Normal'],
-  \ 'bg':      ['bg', 'Normal'],
-  \ 'hl':      ['fg', 'Comment'],
-  \ 'fg+':     ['fg', 'String', 'CursorColumn', 'Normal'],
-  \ 'bg+':     ['bg', 'Normal', 'CursorColumn'],
-  \ 'hl+':     ['fg', 'Statement'],
-  \ 'info':    ['fg', 'PreProc'],
-  \ 'border':  ['fg', 'Ignore'],
-  \ 'prompt':  ['fg', 'Conditional'],
-  \ 'pointer': ['fg', 'Exception'],
-  \ 'marker':  ['fg', 'Keyword'],
-  \ 'spinner': ['fg', 'Label'],
-  \ 'header':  ['fg', 'Comment'] }
-
-" If ag is installed, use ag
-" if executable('ag')
-"   command! -bang -complete=file GitFiles call fzf#run(fzf#wrap({'source': 'ag --hidden -g ""', 'sink': 'e'}, <bang>0))
-"   command! -bang -complete=file Files call fzf#run(fzf#wrap({'source': 'ag -u -g ""', 'sink': 'e'}, <bang>0))
-" else
-  command! -bang -complete=file GitFiles call fzf#run(fzf#wrap({'source': 'git ls-files', 'sink': 'e'}, <bang>0))
-  command! -bang -complete=file Files call fzf#run(fzf#wrap({'source': 'find .', 'sink': 'e'}, <bang>0))
-" endif
-
-
-
-if has('nvim') && !exists('g:fzf_layout')
-  autocmd! FileType fzf
-  autocmd  FileType fzf set laststatus=0 noshowmode noruler
-    \| autocmd BufLeave <buffer> set laststatus=2 showmode ruler
-endif
-
-  "Do not respect .gitignore
-nnoremap <Leader>F :Files!<CR>
-
-"Respect .gitignore
-nnoremap <Leader>f :GitFiles!<CR>
-
 " Vim based file navigation
-nnoremap <Leader>d :find<space>./**/*
-nnoremap <Leader>D :find<space>
-nnoremap <Leader>e :edit<space>
+nnoremap <Leader>f :find ./**/*
+nnoremap <Leader>F :find<space>
+nnoremap <Leader>e :edit ./
+nnoremap <Leader>E :edit<space>
 
 " Better display for messages
 set cmdheight=2
