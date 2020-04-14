@@ -525,13 +525,13 @@ augroup mygroup
 augroup end
 
 " Remap for do codeAction of selected region, ex: `<Leader>aap` for current paragraph
-xmap <Leader>ca  <Plug>(coc-codeaction-selected)
-nmap <Leader>ca  <Plug>(coc-codeaction-selected)
+xmap <Leader>cas  <Plug>(coc-codeaction-selected)
+nmap <Leader>cas  <Plug>(coc-codeaction-selected)
 
 " Remap for do codeAction of current line
-nmap <Leader>ac  <Plug>(coc-codeaction)
+nmap <Leader>cact  <Plug>(coc-codeaction)
 " Fix autofix problem of current line
-nmap <Leader>fix  <Plug>(coc-fix-current)
+nmap <Leader>cfix  <Plug>(coc-fix-current)
 
 " Create mappings for function text object, requires document symbols feature of languageserver.
 xmap if <Plug>(coc-funcobj-i)
