@@ -32,6 +32,11 @@ floating_modifier $mod
 # start a terminal
 bindsym $mod+Return exec i3-sensible-terminal
 
+# start browsers
+bindsym $mod+c exec google-chrome
+bindsym $mod+f exec firefox
+
+
 # kill focused window
 bindsym $mod+q kill
 
@@ -171,3 +176,4 @@ bar {
 
 # Start network manager in background
 exec --no-startup-id wicd-client -t &
+
