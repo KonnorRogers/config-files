@@ -1,4 +1,6 @@
 {
-  "coc.preferences.formatOnSaveFiletypes": ["css", "javascript", "typescript", "html"]
+  "coc.preferences.formatOnSaveFiletypes": ["css", "javascript", "typescript", "html"],
+  "javascript.suggest.autoImports": true,
+  "coc.preferences.extensionUpdateCheck": "never"
 }
 
