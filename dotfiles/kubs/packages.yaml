@@ -35,7 +35,7 @@ pip3_packages:
 
 snap_packages:
   command: sudo snap install
-  packages: heroku
+  packages: heroku pick-colour-picker
 
 vim_plugins:
   command: vim
