@@ -23,7 +23,7 @@ apt:
       pry rubygems fail2ban
       asciinema docker docker-compose mosh yarn
       silversearcher-ag virtualbox ripgrep ctags ranger i3 wicd wicd-gtk
-      wicd-curses wicd-cli
+      wicd-curses wicd-cli pick
 
     # Databases
     - mysql-server sqlite3 postgresql
