@@ -25,17 +25,17 @@ yarn_packages:
   command: yarn global add
   packages: neovim eslint sass gatsby
 
-pip2_packages:
-  command: pip2 install --user --upgrade
-  packages: pynvim neovim
-
 pip3_packages:
   command: pip3 install --user --upgrade
   packages: pynvim neovim
 
-snap_packages:
+heroku:
   command: sudo snap install
-  packages: heroku pick-colour-picker
+  packages: heroku --classic 
+
+pick_colour_picker:
+  command: sudo snap install
+  packages: pick-colour-picker
 
 vim_plugins:
   command: vim
