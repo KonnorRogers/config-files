@@ -22,7 +22,7 @@ install_dependencies(){
   libgdbm-dev libreadline-dev libffi-dev fuse make gcc libxml2-dev
   re2c libbz2-dev libjpeg-turbo8-dev libpng-dev
   libzip-dev libtidy-dev libxslt-dev libncurses-dev automake libtool autoconf
-  flex libkrb5-dev libonig-dev make gcc ruby ruby-dev golang php git unixodbc-dev tmux'
+  flex libkrb5-dev libonig-dev make gcc ruby ruby-dev golang php git unixodbc-dev tmux vim neovim curl git zsh'
 
   sudo apt install $libs -y
 
