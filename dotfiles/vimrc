@@ -8,8 +8,6 @@ endif
 
 call plug#begin("~/.vim/plugged")
   "Colorscheme
-  Plug 'dracula/vim'
-  Plug 'drewtempelmeyer/palenight.vim'
   Plug 'zeis/vim-kolor'
   Plug 'paramagicdev/vim-medic-chalk'
 
@@ -39,9 +37,6 @@ call plug#begin("~/.vim/plugged")
   Plug 'mattn/emmet-vim'
   Plug 'ap/vim-css-color'
 
-  "Markdown previewing, Ensure you have nodejs and yarn
-  Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & yarn install'  }
-
   " Snippets
   Plug 'SirVer/ultisnips'
 
@@ -55,29 +50,6 @@ call plug#begin("~/.vim/plugged")
 
   "File Explorer
   Plug 'preservim/nerdtree'
-
-  " Autocompletion
-  Plug 'neoclide/coc.nvim', {'branch': 'release'}
-  " CoC recommended config
-  let g:coc_start_at_startup = 1
-  let g:coc_global_extensions = [
-        \ 'coc-json',
-        \ 'coc-css',
-        \ 'coc-ultisnips',
-        \ 'coc-tsserver',
-        \ 'coc-emmet',
-        \ 'coc-tag',
-        \ 'coc-omni',
-        \ 'coc-syntax',
-        \ 'coc-yaml',
-        \ 'coc-solargraph',
-        \ 'coc-phpls',
-        \ 'coc-html',
-        \ 'coc-tailwindcss',
-        \ 'coc-markdownlint',
-        \ 'coc-git',
-        \ 'coc-prettier'
-        \ ]
 call plug#end()
 
 " Path variables, prepend current directory
@@ -460,121 +432,3 @@ nnoremap <Leader>f :find ./**/*
 nnoremap <Leader>F :find<space>
 nnoremap <Leader>e :edit ./
 nnoremap <Leader>E :edit<space>
-
-" Better display for messages
-set cmdheight=2
-
-" You will have bad experience for diagnostic messages when it's default 4000.
-set updatetime=300
-
-" don't give |ins-completion-menu| messages.
-set shortmess+=c
-
-" always show signcolumns
-set signcolumn=yes
-
-" Use <c-space> to trigger completion.
-inoremap <silent><expr> <c-space> coc#refresh()
-
-" Use <cr> to confirm completion, `<C-g>u` means break undo chain at current position.
-" Coc only does snippet and additional edit on confirm.
-inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
-" Or use `complete_info` if your vim support it, like:
-" inoremap <expr> <cr> complete_info()["selected"] != "-1" ? "\<C-y>" : "\<C-g>u\<CR>"
-
-" Use `[g` and `]g` to navigate diagnostics
-nmap <silent> [g <Plug>(coc-diagnostic-prev)
-nmap <silent> ]g <Plug>(coc-diagnostic-next)
-
-" Remap keys for gotos
-nmap <silent> <Leader>cd <Plug>(coc-definition)
-nmap <silent> <Leader>ct <Plug>(coc-type-definition)
-nmap <silent> <Leader>ci <Plug>(coc-implementation)
-nmap <silent> <Leader>cr <Plug>(coc-references)
-
-" Use K to show documentation in preview window
-nnoremap <silent> K :call <SID>show_documentation()<CR>
-
-function! s:show_documentation()
-  if (index(['vim','help'], &filetype) >= 0)
-    execute 'h '.expand('<cword>')
-  else
-    call CocAction('doHover')
-  endif
-endfunction
-
-" Highlight symbol under cursor on CursorHold
-autocmd CursorHold * silent call CocActionAsync('highlight')
-
-" Remap for rename current word
-nmap <Leader>crn <Plug>(coc-rename)
-
-" Remap for format selected region
-xmap <Leader>cf  <Plug>(coc-format-selected)
-nmap <Leader>cf  <Plug>(coc-format-selected)
-
-augroup mygroup
-  autocmd!
-  " Setup formatexpr specified filetype(s).
-  autocmd FileType typescript,json setl formatexpr=CocAction('formatSelected')
-  " Update signature help on jump placeholder
-  autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
-augroup end
-
-" Remap for do codeAction of selected region, ex: `<Leader>aap` for current paragraph
-xmap <Leader>cas  <Plug>(coc-codeaction-selected)
-nmap <Leader>cas  <Plug>(coc-codeaction-selected)
-
-" Remap for do codeAction of current line
-nmap <Leader>cact  <Plug>(coc-codeaction)
-" Fix autofix problem of current line
-nmap <Leader>cfix  <Plug>(coc-fix-current)
-
-" Create mappings for function text object, requires document symbols feature of languageserver.
-xmap if <Plug>(coc-funcobj-i)
-xmap af <Plug>(coc-funcobj-a)
-omap if <Plug>(coc-funcobj-i)
-omap af <Plug>(coc-funcobj-a)
-
-" Use <TAB> for select selections ranges, needs server support, like: coc-tsserver, coc-python
-nmap <silent> <TAB> <Plug>(coc-range-select)
-xmap <silent> <TAB> <Plug>(coc-range-select)
-
-" Use `:Format` to format current buffer
-command! -nargs=0 Format :call CocAction('format')
-
-" Use `:Fold` to fold current buffer
-command! -nargs=? Fold :call     CocAction('fold', <f-args>)
-
-" use `:OR` for organize import of current buffer
-command! -nargs=0 OR   :call     CocAction('runCommand', 'editor.action.organizeImport')
-
-command! -nargs=0 Prettier :call CocAction('runCommand', 'prettier.formatFile')
-
-augroup formatting
-  autocmd!
-
-  autocmd BufRead,BufNewFile *.md,*.mdx setlocal textwidth=72
-  autocmd BufWritePre * s/\s\+$//e
-augroup END
-
-nnoremap <Leader>pp :Prettier<CR>:w!<CR>
-
-" Using CocList
-" Show all diagnostics
-nnoremap <silent> <Leader>cl  :<C-u>CocList diagnostics<cr>
-" Manage extensions
-nnoremap <silent> <Leader>ce  :<C-u>CocList extensions<cr>
-" Show commands
-nnoremap <silent> <Leader>cc  :<C-u>CocList commands<cr>
-" Find symbol of current document
-nnoremap <silent> <Leader>co  :<C-u>CocList outline<cr>
-" Search workLeader symbols
-nnoremap <silent> <Leader>cs  :<C-u>CocList -I symbols<cr>
-" Do default action for next item.
-nnoremap <silent> <Leader>cn  :<C-u>CocNext<CR>
-" Do default action for previous item.
-nnoremap <silent> <Leader>cp  :<C-u>CocPrev<CR>
-" Resume latest coc list
-nnoremap <silent> <Leader>cr  :<C-u>CocListResume<CR>
-
