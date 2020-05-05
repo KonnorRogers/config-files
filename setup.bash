@@ -107,7 +107,7 @@ install_chruby(){
 
 install_asdf(){
   git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.7.5
-  bash ~/.asdf/bin/asdf plugin-add nodejs https://github.com/asdf-vm/asdf-nodejs.git
+  "$HOME/.asdf/bin/asdf" plugin-add nodejs https://github.com/asdf-vm/asdf-nodejs.git
   bash ~/.asdf/plugins/nodejs/bin/import-release-team-keyring > /dev/null 2>&1
 }
 
@@ -116,15 +116,15 @@ install_phpenv(){
 }
 
 install_zsh_auto_suggestions() {
-  git clone https://github.com/zsh-users/zsh-autosuggestions "${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions" --quiet
+  git clone https://github.com/zsh-users/zsh-autosuggestions "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/zsh-autosuggestions"
 }
 
 install_zsh_syntax_highlighting() {
-  git clone https://github.com/zsh-users/zsh-syntax-highlighting.git "${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting" --quiet
+  git clone https://github.com/zsh-users/zsh-syntax-highlighting.git "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting"
 }
 
 install_tmux_plugin_manager() {
-  git clone https://github.com/tmux-plugins/tpm "$HOME/.tmux/plugins/tpm" --quiet
+  git clone https://github.com/tmux-plugins/tpm "$HOME/.tmux/plugins/tpm"
 }
 
 add_dejavu_sans_mono_font() {
