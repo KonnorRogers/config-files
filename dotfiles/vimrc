@@ -7,9 +7,6 @@ if empty(glob('~/.vim/autoload/plug.vim'))
 endif
 
 call plug#begin("~/.vim/plugged")
-  " Time tracker
-  Plug 'wakatime/vim-wakatime'
-
   "Colorscheme
   Plug 'dracula/vim'
   Plug 'drewtempelmeyer/palenight.vim'

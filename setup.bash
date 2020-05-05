@@ -2,6 +2,15 @@
 
 MY_RUBY_VERSION="2.6.3"
 
+check_if_file_exists() {
+  __file="$1"
+  if [[ -z "$__file" ]]; then
+    return 1;
+  fi
+
+  return 0;
+}
+
 main(){
   install_dependencies
   install_oh_my_zsh
@@ -30,7 +39,12 @@ install_dependencies(){
 }
 
 install_oh_my_zsh(){
-  sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+  cd "$HOME"
+  echo "$PWD"
+  (sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" && exit 1 && echo "oh-my-zsh successfully installed") || (echo "unable to install oh my zsh" && exit 1)
+  cd -
+  install_zsh_auto_suggestions
+  install_zsh_syntax_highlighting
 }
 
 install_ruby(){
@@ -93,7 +107,7 @@ install_chruby(){
 
 install_asdf(){
   git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.7.5
-  asdf plugin-add nodejs https://github.com/asdf-vm/asdf-nodejs.git
+  bash ~/.asdf/bin/asdf plugin-add nodejs https://github.com/asdf-vm/asdf-nodejs.git
   bash ~/.asdf/plugins/nodejs/bin/import-release-team-keyring > /dev/null 2>&1
 }
 
