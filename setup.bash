@@ -106,9 +106,17 @@ install_chruby(){
 }
 
 install_asdf(){
-  git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.7.5
+  _ASDF_HOME="$HOME/.asdf"
+  if [[ ! -z "$_ASDF_HOME" ]]; then
+    git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.7.5
+  fi
+
   "$HOME/.asdf/bin/asdf" plugin-add nodejs https://github.com/asdf-vm/asdf-nodejs.git
   bash ~/.asdf/plugins/nodejs/bin/import-release-team-keyring > /dev/null 2>&1
+}
+
+install_yarn(){
+  curl -o- -L https://yarnpkg.com/install.sh | sudo bash
 }
 
 install_phpenv(){
