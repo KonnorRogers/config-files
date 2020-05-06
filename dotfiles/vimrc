@@ -29,7 +29,6 @@ call plug#begin("~/.vim/plugged")
 
   "ruby / rails
   Plug 'vim-ruby/vim-ruby'
-  Plug 'ngmy/vim-rubocop'
   Plug 'tpope/vim-rails'
   Plug 'tpope/vim-bundler'
 
@@ -355,10 +354,6 @@ map <Leader>pu :PlugUpdate<CR>
 map <Leader>pru :UpdateRemotePlugins<CR>
 map <Leader>pc :PlugClean<CR>
 
-" rubocop mapping
-nmap <Leader>rr :RuboCop<CR>
-nmap <Leader>ra :RuboCop -a<CR>
-
 " ragtag recommended keybinding
 inoremap <M-o> <Esc>o
 inoremap <C-j> <Down>
@@ -432,3 +427,37 @@ nnoremap <Leader>f :find ./**/*
 nnoremap <Leader>F :find<space>
 nnoremap <Leader>e :edit ./
 nnoremap <Leader>E :edit<space>
+
+" Formatting
+function! Format() abort
+  let s:currentLine = line(".")
+
+  " gg (top of file) gq{motion} formats over the motion
+  " formats the entire buffer
+  silent execute "normal gggqG"
+
+  let s:command = s:currentLine . "G"
+  silent execute 'normal' s:command
+endfunction
+
+if executable('prettier')
+  augroup javascriptFormatting
+    autocmd!
+    autocmd FileType javascript setlocal formatprg=prettier\ 
+                                            \--stdin-filepath\ %
+    autocmd BufWritePre *.js call Format()
+  augroup END
+end
+
+function! MyRuboCop()
+  let s:rubocop_command = "rubocop -a " . shellescape(expand('%'))
+  let s:output = system(s:rubocop_command)
+  edit
+endfunction
+
+if executable('rubocop')
+  augroup rubyFormatting
+    autocmd!
+    autocmd BufWritePre *.rb call MyRuboCop()
+  augroup END
+end
