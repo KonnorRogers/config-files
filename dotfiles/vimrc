@@ -458,6 +458,9 @@ endfunction
 if executable('rubocop')
   augroup rubyFormatting
     autocmd!
-    autocmd BufWritePre *.rb call MyRuboCop()
+    autocmd FileType ruby setlocal makeprg=rubocop\ -a\ --format\ emacs
+    autocmd BufWritePost *.rb silent make! | silent redraw!
+
+    " autocmd BufWritePre *.rb call MyRuboCop()
   augroup END
 end
