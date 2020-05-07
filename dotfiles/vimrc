@@ -39,9 +39,6 @@ call plug#begin("~/.vim/plugged")
   " Snippets
   Plug 'SirVer/ultisnips'
 
-  " Linting
-  Plug 'dense-analysis/ale'
-
   "Misc
   Plug 'junegunn/rainbow_parentheses.vim'
   let g:rainbow#max_level = 16
@@ -366,16 +363,6 @@ let g:NERDTreeMinimalUI = 1
 let g:NERDTreeDirArrows = 1
 nnoremap <C-n> :NERDTreeToggle<CR>
 
-"ALE config
-nmap <Leader>ad :ALEDetail<CR>
-let g:ale_fixers = {'javascript': ['eslint']}
-let g:ale_linters = {'javascript': ['eslint']}
-let g:ale_fix_on_save = 1
-let g:ale_lint_delay = 500
-
-let g:ale_sign_error = '❌'
-let g:ale_sign_warning = '⚠️'
-
 " Dont let it override <C-y>
 let g:user_emmet_leader_key = '<C-e>'
 
@@ -429,37 +416,24 @@ nnoremap <Leader>e :edit ./
 nnoremap <Leader>E :edit<space>
 
 " Formatting
-function! Format() abort
-  let s:currentLine = line(".")
-
-  " gg (top of file) gq{motion} formats over the motion
-  " formats the entire buffer
-  silent execute "normal gggqG"
-
-  let s:command = s:currentLine . "G"
-  silent execute 'normal' s:command
-endfunction
-
 if executable('prettier')
   augroup javascriptFormatting
     autocmd!
-    autocmd FileType javascript setlocal formatprg=prettier\ 
-                                            \--stdin-filepath\ %
-    autocmd BufWritePre *.js call Format()
+    autocmd FileType javascript setlocal makeprg=prettier\ --stdin-filepath\ %\ --write
+    autocmd BufWritePre *.js silent make! % | edit
   augroup END
-end
 
-function! MyRuboCop()
-  let s:rubocop_command = "rubocop -a " . shellescape(expand('%'))
-  let s:output = system(s:rubocop_command)
-  edit
-endfunction
+  augroup mdxFormatting
+    autocmd!
+    autocmd FileType mdx setlocal makeprg=prettier\ --stdin-filepath\ %\ --parser\ mdx\ --write
+    autocmd BufWritePost *.mdx silent make! % | silent redraw!
+end
 
 if executable('rubocop')
   augroup rubyFormatting
     autocmd!
-    autocmd FileType ruby setlocal makeprg=rubocop\ -a\ --format\ emacs
-    autocmd BufWritePost *.rb silent make! | silent redraw!
+    autocmd FileType ruby setlocal makeprg=rubocop\ -a\ --format\ emacs\ %
+    autocmd BufWritePost *.rb silent make! % | silent redraw!
 
     " autocmd BufWritePre *.rb call MyRuboCop()
   augroup END
