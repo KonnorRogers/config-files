@@ -16,6 +16,7 @@ main(){
   install_oh_my_zsh
   install_version_managers
   install_ruby
+  fix_docker
 
   echo ""
   echo "Restart your shell to use version managers like chruby"
@@ -31,7 +32,7 @@ install_dependencies(){
   libgdbm-dev libreadline-dev libffi-dev fuse make gcc libxml2-dev
   re2c libbz2-dev libjpeg-turbo8-dev libpng-dev
   libzip-dev libtidy-dev libxslt-dev libncurses-dev automake libtool autoconf
-  flex libkrb5-dev libonig-dev make gcc ruby ruby-dev golang php git unixodbc-dev tmux vim neovim curl git zsh'
+  flex libkrb5-dev libonig-dev make gcc ruby ruby-dev golang php git unixodbc-dev tmux vim neovim curl git zsh docker'
 
   sudo apt install $libs -y
 
@@ -139,6 +140,12 @@ add_dejavu_sans_mono_font() {
   mkdir -p ~/.local/share/fonts && cd ~/.local/share/fonts || return
   curl --silent -fLo "DejaVu Sans Mono for Powerline Nerd Font Complete.otf" https://github.com/ryanoasis/nerd-fonts/blob/master/patched-fonts/DejaVuSansMono/Regular/complete/DejaVu%20Sans%20Mono%20Nerd%20Font%20Complete.ttf && fc-cache -fv
   cd - || return
+}
+
+fix_docker() {
+  sudo groupadd docker
+  sudo gpasswd -a $USER docker
+  sudo service docker restart
 }
 
 main
