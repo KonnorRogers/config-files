@@ -231,7 +231,8 @@ nnoremap <C-k> <C-w>k
 nnoremap <C-j> <C-w>j
 
 " editing vim
-map <Leader>rc :edit $HOME/.vimrc<CR>
+map <Leader>rc :edit $HOME/.vim/vimrc<CR>
+map <Leader>dv :edit $HOME/.vim<CR>
 map <Leader>rv :source $MYVIMRC<CR>
 
 " saving made eaiser
