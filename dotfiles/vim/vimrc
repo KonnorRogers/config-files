@@ -175,9 +175,9 @@ augroup MyColors
   autocmd ColorScheme medic_chalk call myhighlights#MedicChalkHighlights()
 augroup END 
 
-" if exists(':RainbowParentheses') == 2
-"   autocmd FileType * RainbowParentheses
-" endif
+if exists(':RainbowParentheses') == 2
+  autocmd FileType * RainbowParentheses
+endif
 
 "Colorscheme / appearance
 set background=dark
