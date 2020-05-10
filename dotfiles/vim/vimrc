@@ -173,7 +173,7 @@ augroup MyColors
   autocmd!
   autocmd ColorScheme kolor call myhighlights#KolorHighlights()
   autocmd ColorScheme medic_chalk call myhighlights#MedicChalkHighlights()
-augroup END 
+augroup END
 
 if exists(':RainbowParentheses') == 2
   autocmd FileType * RainbowParentheses
