@@ -179,6 +179,8 @@ if exists(':RainbowParentheses') == 2
   autocmd FileType * RainbowParentheses
 endif
 
+autocmd BufWritePre * %s/\s\+$//e
+
 "Colorscheme / appearance
 set background=dark
 colorscheme kolor
@@ -297,6 +299,7 @@ let g:ragtag_global_maps = 1
 "NerdTree
 let g:NERDTreeMinimalUI = 1
 let g:NERDTreeDirArrows = 1
+let g:NERDTreeShowHidden = 1
 nnoremap <C-n> :NERDTreeToggle<CR>
 
 " Dont let it override <C-y>
