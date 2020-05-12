@@ -3,6 +3,6 @@ if executable('rubocop')
 
   augroup rubyFormatting
     autocmd!
-    autocmd BufWritePre *.rb silent make! % | edit
+    autocmd BufWritePost *.rb silent make! % | edit
   augroup END
 endif
