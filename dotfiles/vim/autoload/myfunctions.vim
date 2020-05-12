@@ -18,3 +18,12 @@ function! myfunctions#GitCtags()
 
   execute "!ctags -R --tag-relative -f " . s:git_root . s:tag_dir
 endfunction
+
+function! myfunctions#Rubocop()
+  let l:filename = %
+  let l:rubocop_cmd = 'rubocop -a --format emacs ' . l:filename
+  let l:rubocop_output = system(l:rubocop_cmd)
+  edit
+endfunction
+
+command! -nargs=0 RuboCop :call myfunctions#Rubocop()
