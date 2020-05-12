@@ -1,6 +1,6 @@
 if executable("rubocop")
-  augroup rubyFormatting
+  augroup RubyFormatting
     autocmd!
-    autocmd BufWritePost *.rb RuboCop
+    autocmd BufWritePre *.rb execute ":RuboCop -a"
   augroup END
 endif
