@@ -28,8 +28,8 @@ call plug#begin("~/.vim/plugged")
   Plug 'peitalin/vim-jsx-typescript'
 
   "ruby / rails
-  Plug 'vim-ruby/vim-ruby'
   Plug 'ngmy/vim-rubocop'
+  Plug 'vim-ruby/vim-ruby'
   Plug 'tpope/vim-rails'
   Plug 'tpope/vim-bundler'
 
@@ -337,3 +337,7 @@ nnoremap <Leader>gt :call myfunctions#GitCtags()<CR>
 " Completion
 setlocal omnifunc=syntaxcomplete#Complete
 setlocal completefunc=syntaxcomplete#Complete
+
+" Rubocop
+nnoremap <Leader>rr :Rubocop<CR>
+nnoremap <Leader>ra :Rubocop -a<CR>
