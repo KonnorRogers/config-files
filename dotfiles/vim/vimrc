@@ -16,6 +16,7 @@ call plug#begin("~/.vim/plugged")
   Plug 'tpope/vim-commentary'
   Plug 'tpope/vim-surround'
   Plug 'tpope/vim-ragtag'
+  Plug 'tpope/vim-vinegar'
 
   "Javascript / React
   Plug 'yuezk/vim-js'
@@ -42,12 +43,8 @@ call plug#begin("~/.vim/plugged")
 
   "Misc
   Plug 'junegunn/rainbow_parentheses.vim'
-
-  "File Explorer
-  Plug 'preservim/nerdtree'
 call plug#end()
 
-set termguicolors
 
 " Path variables, prepend current directory
 set path^=.,,
@@ -185,7 +182,8 @@ autocmd BufWritePre * %s/\s\+$//e
 
 "Colorscheme / appearance
 set background=dark
-colorscheme kolor
+colorscheme medic_chalk
+" set termguicolors
 
 "Status line
 set laststatus=2
@@ -297,12 +295,6 @@ inoremap <C-j> <Down>
 
 "available globally
 let g:ragtag_global_maps = 1
-
-"NerdTree
-let g:NERDTreeMinimalUI = 1
-let g:NERDTreeDirArrows = 1
-let g:NERDTreeShowHidden = 1
-nnoremap <C-n> :NERDTreeToggle<CR>
 
 " Dont let it override <C-y>
 let g:user_emmet_leader_key = '<C-e>'
