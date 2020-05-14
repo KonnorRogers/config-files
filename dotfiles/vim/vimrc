@@ -43,6 +43,9 @@ call plug#begin("~/.vim/plugged")
 
   "Misc
   Plug 'junegunn/rainbow_parentheses.vim'
+
+  "Linting
+  Plug 'dense-analysis/ale'
 call plug#end()
 
 
@@ -191,8 +194,6 @@ set statusline=
 set statusline+=\ %<%F\ %m\ %r\ %h\ %=%=%=%y\ [%c]%=
 
 
-" Autocommands
-
 " Return cursor to original position
 if has("autocmd")
   au BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$")
@@ -331,5 +332,28 @@ setlocal omnifunc=syntaxcomplete#Complete
 setlocal completefunc=syntaxcomplete#Complete
 
 " Rubocop
-nnoremap <Leader>rr :Rubocop<CR>
-nnoremap <Leader>ra :Rubocop -a<CR>
+nnoremap <Leader>rr :RuboCop<CR>
+nnoremap <Leader>ra :RuboCop -a<CR>
+
+" Netrw
+let g:netrw_dirhistmax = 10
+let g:netrw_home = "$HOME/.netrwhist"
+let g:netrw_hide = 0
+
+" ALE
+let g:ale_fix_on_save = 1
+set omnifunc=ale#completion#OmniFunc
+
+" Autoimports for Typescript
+let g:ale_completion_tsserver_autoimport = 1
+let g:ale_sign_error = '>>'
+let g:ale_sign_warning = '--'
+let g:ale_set_highlights = 0
+let g:ale_lint_on_text_changed = 'never'
+let g:ale_lint_on_insert_leave = 0
+let g:ale_lint_on_enter = 1
+let g:ale_set_loclist = 0
+let g:ale_set_quickfix = 1
+
+nmap <silent> [a <Plug>(ale_previous_wrap)
+nmap <silent> ]a <Plug>(ale_next_wrap)

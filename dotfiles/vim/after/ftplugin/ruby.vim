@@ -1,6 +1,1 @@
-if executable("rubocop")
-  augroup RubyFormatting
-    autocmd!
-    autocmd BufWritePre *.rb execute ":RuboCop -a"
-  augroup END
-endif
+let b:ale_fixers = ['rubocop']
