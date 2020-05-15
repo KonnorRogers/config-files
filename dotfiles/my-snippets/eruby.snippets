@@ -6,4 +6,8 @@ snippet - "noeval" i
 <% ${1:${VISUAL}} %>${0}
 endsnippet
 
-
+snippet fwith "form_with" b
+<%= form_with($1) do |form| %>
+  ${2:${VISUAL}}
+<% end %>
+endsnippet

@@ -185,7 +185,7 @@ autocmd BufWritePre * %s/\s\+$//e
 
 "Colorscheme / appearance
 set background=dark
-colorscheme medic_chalk
+colorscheme kolor
 " set termguicolors
 
 "Status line
@@ -216,10 +216,12 @@ map <Leader>sp :split<space>
 nnoremap <Leader>vs :vsplit<space>
 
 "Buffer switching
+
+" Prev buffer
 nnoremap <Leader><Leader> <C-^>
 nnoremap [b :bprev<CR>
 nnoremap ]b :bnext<CR>
-nnoremap ]B :bclose<CR>
+nnoremap <C-b> :bdelete<CR>
 
 "Tab switching
 nnoremap <Leader>tn :tabnew<CR>
@@ -328,8 +330,8 @@ let g:rainbow#pairs = [['(', ')'], ['[', ']'], ['{', '}'], ['<', '>']]
 nnoremap <Leader>gt :call myfunctions#GitCtags()<CR>
 
 " Completion
-setlocal omnifunc=syntaxcomplete#Complete
-setlocal completefunc=syntaxcomplete#Complete
+" setlocal omnifunc=syntaxcomplete#Complete
+" setlocal completefunc=syntaxcomplete#Complete
 
 " Rubocop
 nnoremap <Leader>rr :RuboCop<CR>
@@ -339,6 +341,17 @@ nnoremap <Leader>ra :RuboCop -a<CR>
 let g:netrw_dirhistmax = 10
 let g:netrw_home = "$HOME/.netrwhist"
 let g:netrw_hide = 0
+let g:netrw_banner = 0
+let g:netrw_winsize=30
+
+" Open a 'file drawer' on the left
+noremap <C-f> :Lexplore<CR>
+
+" Open netrw in place of current buffer
+noremap <C-n> :Explore<CR>
+
+" Split vertical netrw from current buffer
+noremap <C-s> :Vexplore<CR>
 
 " ALE
 let g:ale_fix_on_save = 1

@@ -1,3 +1,11 @@
+extends ruby
+
+snippet redir "redirect_to" b
+redirect_to ${1:path}
+endsnippet
+
+# Testing
+
 snippet anodif "assert_no_difference" i
 assert_no_difference '${1:Model.count}', ${2:1} do
   ${3:${VISUAL}}
