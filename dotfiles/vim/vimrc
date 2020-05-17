@@ -181,7 +181,15 @@ if exists(':RainbowParentheses') == 2
   autocmd FileType * RainbowParentheses
 endif
 
+" Strip whitespace
 autocmd BufWritePre * %s/\s\+$//e
+
+" Proper file completion
+augroup FilenameCompletion
+  autocmd!
+  autocmd InsertEnter * execute 'cd %:h'
+  autocmd InsertLeave * execute 'cd -'
+augroup END
 
 "Colorscheme / appearance
 set background=dark
@@ -270,6 +278,8 @@ iabbrev %d <C-R>=expand('%')<CR>
 
 " Insert full path
 iabbrev %p <C-R>=expand('%')<CR>
+
+
 
 " Treat <li> and <p> tags like the block tags they are
 let g:html_indent_tags = 'li\|p'
