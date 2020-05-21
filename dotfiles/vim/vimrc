@@ -339,14 +339,6 @@ let g:rainbow#pairs = [['(', ')'], ['[', ']'], ['{', '}'], ['<', '>']]
 " Run ctags on current directory
 nnoremap <Leader>gt :call myfunctions#GitCtags()<CR>
 
-" Completion
-" setlocal omnifunc=syntaxcomplete#Complete
-" setlocal completefunc=syntaxcomplete#Complete
-
-" Rubocop
-nnoremap <Leader>rr :RuboCop<CR>
-nnoremap <Leader>ra :RuboCop -a<CR>
-
 " Netrw
 let g:netrw_dirhistmax = 10
 let g:netrw_home = "$HOME/.netrwhist"
