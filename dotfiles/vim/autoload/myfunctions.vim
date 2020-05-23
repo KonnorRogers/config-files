@@ -24,19 +24,19 @@ function! myfunctions#InstallLanguageClientServers()
   let s:npm_install = 'npm install -g '
 
   " key = executable, value = install
-  let s:npm_lang_servers = [
-        \ 'dockerfile-language-server-nodejs',
-        \ 'bash-language-server',
-        \ 'yaml-language-server',
-        \ 'typescript-language-server',
-        \ 'vim-language-server',
-        \ ]
+  let s:npm_lang_servers = {
+        \ 'docker-langserver': 'dockerfile-language-server-nodejs',
+        \ 'bash-language-server': 'bash-language-server',
+        \ 'yaml-language-server': 'yaml-language-server',
+        \ 'typescript-language-server': 'typescript-language-server',
+        \ 'vim-language-server': 'vim-language-server',
+        \ }
 
   let s:npm_servers_to_install = ''
 
-  for item in s:npm_lang_servers
-    if !filereadable($ASDF_DIR . '/shims/' . item)
-      let s:npm_servers_to_install = s:npm_servers_to_install . item . ' '
+  for key in keys(s:npm_lang_servers)
+    if !filereadable($ASDF_DIR . '/shims/' . key)
+      let s:npm_servers_to_install = s:npm_servers_to_install . s:npm_lang_servers[key] . ' '
     endif
   endfor
 
