@@ -384,8 +384,6 @@ nnoremap <Leader>af :ALEFindReferences<CR>
 nnoremap <Leader>as :ALESymbolSearch
 
 " LSP
-
-let
 let npm_install = 'npm install -g '
 
 " key = executable, value = install
