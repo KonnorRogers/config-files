@@ -12,7 +12,6 @@ call plug#begin("~/.vim/plugged")
   Plug 'zeis/vim-kolor'
   Plug 'paramagicdev/vim-medic-chalk'
 
-  g:ale_sign_warning
   "Tpope plugins
   Plug 'tpope/vim-fugitive'
   Plug 'tpope/vim-commentary'
@@ -386,7 +385,8 @@ nnoremap <Leader>af :ALEFindReferences<CR>
 nnoremap <Leader>as :ALESymbolSearch
 
 " Remove scratch buffer at bottom
-set complete-=preview
+" set completeopt-=preview
+autocmd! CompleteDone * if pumvisible() == 0 | pclose | endif
 
 " Remove scanning of files / included files for keyword
 set complete-=i
