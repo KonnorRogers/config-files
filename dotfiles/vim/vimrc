@@ -7,10 +7,12 @@ if empty(glob('~/.vim/autoload/plug.vim'))
 endif
 
 call plug#begin("~/.vim/plugged")
-  "Colorscheme
+  "Colorschemes
+  Plug 'flazz/vim-colorschemes'
   Plug 'zeis/vim-kolor'
   Plug 'paramagicdev/vim-medic-chalk'
 
+  g:ale_sign_warning
   "Tpope plugins
   Plug 'tpope/vim-fugitive'
   Plug 'tpope/vim-commentary'
@@ -350,6 +352,7 @@ let g:netrw_dirhistmax = 10
 let g:netrw_home = "$HOME/.netrwhist"
 let g:netrw_hide = 0
 let g:netrw_banner = 0
+let g:netrw_liststyle=3
 let g:netrw_winsize=30
 
 " Open a 'file drawer' on the left
@@ -363,7 +366,6 @@ noremap <C-s> :Vexplore<CR>
 
 " ALE
 let g:ale_fix_on_save = 1
-set omnifunc=ale#completion#OmniFunc
 
 "Errors
 let g:ale_sign_error = '>>'
@@ -383,7 +385,11 @@ nmap <silent> ]a <Plug>(ale_next_wrap)
 nnoremap <Leader>af :ALEFindReferences<CR>
 nnoremap <Leader>as :ALESymbolSearch
 
-" LanguageClient neovim
+" Remove scratch buffer at bottom
+set complete-=preview
+
+" Remove scanning of files / included files for keyword
+set complete-=i
 
 let g:LanguageClient_autoStart = 1
 
