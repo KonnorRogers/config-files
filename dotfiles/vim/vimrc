@@ -364,7 +364,7 @@ noremap <C-n> :Explore<CR>
 noremap <C-s> :Vexplore<CR>
 
 " ALE
-let g:ale_fix_on_save = 1
+let g:ale_fix_on_save = 0
 
 "Errors
 let g:ale_sign_error = '>>'
