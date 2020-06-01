@@ -1,23 +1,23 @@
-snippet rdesc "rspec describe block" i
+snippet rdesc "rspec describe block" w
 RSpec.describe ${1:#class} do
   ${2:${VISUAL}}
 end${0}
 endsnippet
 
-snippet ctxt "context block" i
+snippet ctxt "context block" w
 options word
 context "$1" do
   ${2:${VISUAL}}
 end${0}
 endsnippet
 
-snippet it "it block for rspec" i
+snippet it "it block for rspec" w
 it "$1" do
   $2
 end$0
 endsnippet
 
-snippet test "testing" i
+snippet test "testing" w
 test '${1:should do something}' do
   ${2:${VISUAL}}
 end
