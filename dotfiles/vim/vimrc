@@ -18,6 +18,7 @@ call plug#begin("~/.vim/plugged")
   Plug 'tpope/vim-surround'
   Plug 'tpope/vim-ragtag'
   Plug 'tpope/vim-vinegar'
+  Plug 'tpope/vim-dispatch'
 
   "Javascript / React
   Plug 'yuezk/vim-js'
@@ -34,6 +35,9 @@ call plug#begin("~/.vim/plugged")
   Plug 'vim-ruby/vim-ruby'
   Plug 'tpope/vim-rails'
   Plug 'tpope/vim-bundler'
+
+  " Tests
+  Plug 'janko/vim-test'
 
   "html / css
   Plug 'mattn/emmet-vim'
@@ -425,3 +429,11 @@ endfunction
 
 autocmd FileType * call LC_maps()
 
+
+nmap <silent> t<C-n> :TestNearest<CR>
+nmap <silent> t<C-f> :TestFile<CR>
+nmap <silent> t<C-s> :TestSuite<CR>
+nmap <silent> t<C-l> :TestLast<CR>
+nmap <silent> t<C-g> :TestVisit<CR>
+
+let g:test#strategy = "dispatch"
