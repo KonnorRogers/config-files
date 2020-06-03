@@ -9,6 +9,7 @@ endif
 call plug#begin("~/.vim/plugged")
   "Colorschemes
   Plug 'flazz/vim-colorschemes'
+  Plug "https://gitlab.com/protesilaos/tempus-themes-vim.git"
   Plug 'zeis/vim-kolor'
   Plug 'paramagicdev/vim-medic-chalk'
 
