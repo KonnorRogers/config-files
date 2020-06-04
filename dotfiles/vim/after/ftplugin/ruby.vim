@@ -1,2 +1,2 @@
 setlocal foldmethod=indent
-let b:ale_fixers = ['rubocop']
+" let b:ale_fixers = ['rubocop']

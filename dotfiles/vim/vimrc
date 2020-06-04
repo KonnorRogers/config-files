@@ -31,7 +31,7 @@ call plug#begin("~/.vim/plugged")
   Plug 'peitalin/vim-jsx-typescript'
 
   "ruby / rails
-  Plug 'ngmy/vim-rubocop'
+  " Plug 'ngmy/vim-rubocop'
   Plug 'vim-ruby/vim-ruby'
   Plug 'tpope/vim-rails'
   Plug 'tpope/vim-bundler'
