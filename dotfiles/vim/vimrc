@@ -54,20 +54,21 @@ call plug#begin("~/.vim/plugged")
 
   "completion
   Plug 'neoclide/coc.nvim', {'branch': 'release'}
-  let g:coc_global_extensions = {
-        \ "coc-tsserver",
-        \ "coc-spell-checker",
-        \ "coc-tailwindcss",
-        \ "coc-vimlsp",
-        \ "coc-solargraph",
-        \ "coc-yaml",
-        \ "coc-json",
-        \ "coc-snippets",
-        \ "coc-css",
-        \ "coc-emmet",
-        \ "coc-git",
-        \ "coc-html"
-        \ }
+
+  let g:coc_global_extensions = [
+        \ 'coc-tsserver',
+        \ 'coc-spell-checker',
+        \ 'coc-tailwindcss',
+        \ 'coc-vimlsp',
+        \ 'coc-solargraph',
+        \ 'coc-yaml',
+        \ 'coc-json',
+        \ 'coc-snippets',
+        \ 'coc-css',
+        \ 'coc-emmet',
+        \ 'coc-git',
+        \ 'coc-html'
+        \ ]
 call plug#end()
 
 
@@ -550,3 +551,4 @@ nnoremap <silent> <Leader>cn  :<C-u>CocNext<CR>
 nnoremap <silent> <Leader>cp  :<C-u>CocPrev<CR>
 " Resume latest coc list.
 nnoremap <silent> <Leader>cl  :<C-u>CocListResume<CR>
+
