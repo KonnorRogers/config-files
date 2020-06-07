@@ -292,12 +292,16 @@ let g:fzf_action = {
   \ 'ctrl-x': 'split',
   \ 'ctrl-v': 'vsplit' }
 
+let g:fzf_layout = {
+    \ 'down': '~40%'
+    \ }
+
 let g:fzf_colors = {
   \ 'fg':      ['fg', 'Normal'],
   \ 'bg':      ['bg', 'Normal'],
   \ 'hl':      ['fg', 'Comment'],
   \ 'fg+':     ['fg', 'String', 'CursorColumn', 'Normal'],
-  \ 'bg+':     ['bg', 'Normal', 'CursorColumn'],
+  \ 'bg+':     ['bg', 'Search', 'CursorColumn'],
   \ 'hl+':     ['fg', 'Statement'],
   \ 'info':    ['fg', 'PreProc'],
   \ 'border':  ['fg', 'Ignore'],
@@ -308,13 +312,13 @@ let g:fzf_colors = {
   \ 'header':  ['fg', 'Comment'] }
 
 " If ag is installed, use ag
-" if executable('ag')
-"   command! -bang -complete=file GitFiles call fzf#run(fzf#wrap({'source': 'ag --hidden -g ""', 'sink': 'e'}, <bang>0))
-"   command! -bang -complete=file Files call fzf#run(fzf#wrap({'source': 'ag -u -g ""', 'sink': 'e'}, <bang>0))
-" else
+if executable('ag')
+  command! -bang -complete=file GitFiles call fzf#run(fzf#wrap({'source': 'ag --hidden -g ""', 'sink': 'e'}, <bang>0))
+  command! -bang -complete=file Files call fzf#run(fzf#wrap({'source': 'ag -u -g ""', 'sink': 'e'}, <bang>0))
+else
   command! -bang -complete=file GitFiles call fzf#run(fzf#wrap({'source': 'git ls-files', 'sink': 'e'}, <bang>0))
   command! -bang -complete=file Files call fzf#run(fzf#wrap({'source': 'find .', 'sink': 'e'}, <bang>0))
-" endif
+endif
 
 
 
@@ -325,15 +329,15 @@ if has('nvim') && !exists('g:fzf_layout')
 endif
 
   "Do not respect .gitignore
-nnoremap <Leader>F :Files!<CR>
+nnoremap <Leader>F :Files<CR>
 
 "Respect .gitignore
-nnoremap <Leader>f :GitFiles!<CR>
+nnoremap <Leader>f :GitFiles<CR>
 nnoremap <Leader>e :edit ./
 nnoremap <Leader>E :edit<space>
 
 " Insert filename
-iabbrev %f <C-R>=expand('%:t')<CR>
+inoreabbrev %f <C-R>=expand('%:t')<CR>
 
 " Insert file basename
 iabbrev %b <C-R>=expand('%:t:r')<CR>
