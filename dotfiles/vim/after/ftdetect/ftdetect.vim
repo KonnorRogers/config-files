@@ -7,6 +7,7 @@ augroup filetypedetect
   autocmd BufNewFile,BufRead *.md,*.markdown setfiletype=markdown
   autocmd BufNewFile,BufRead *.mdx,*.md,*.markdown setlocal foldmethod=indent
   autocmd BufNewFile,BufRead Dockerfile* set filetype=dockerfile
+  autocmd BufNewFile,BufRead *.tt set filetype=eruby
   "removes auto-commenting when hitting <CR>
   autocmd BufNewFile,BufRead * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
 augroup END
