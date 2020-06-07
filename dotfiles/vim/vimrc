@@ -333,6 +333,10 @@ nnoremap <Leader>F :Files<CR>
 
 "Respect .gitignore
 nnoremap <Leader>f :GitFiles<CR>
+
+" Vim based file navigation
+nnoremap <Leader>vf :find ./**/*
+nnoremap <Leader>vF :find
 nnoremap <Leader>e :edit ./
 nnoremap <Leader>E :edit<space>
 
