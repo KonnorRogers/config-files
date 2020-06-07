@@ -31,7 +31,6 @@ call plug#begin("~/.vim/plugged")
   Plug 'peitalin/vim-jsx-typescript'
 
   "ruby / rails
-  " Plug 'ngmy/vim-rubocop'
   Plug 'vim-ruby/vim-ruby'
   Plug 'tpope/vim-rails'
   Plug 'tpope/vim-bundler'
@@ -51,6 +50,9 @@ call plug#begin("~/.vim/plugged")
 
   "Linting
   Plug 'dense-analysis/ale'
+
+  " fuzzy finding
+  Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 
   "completion
   Plug 'neoclide/coc.nvim', {'branch': 'release'}
@@ -284,9 +286,49 @@ nnoremap [q :cprevious<CR>zz
 nnoremap [Q :cfirst<CR>zz
 nnoremap ]Q :clast<CR>zz
 
-" Vim based file navigation
-nnoremap <Leader>f :find ./**/*
-nnoremap <Leader>F :find<space>
+" FZF options
+let g:fzf_action = {
+  \ 'ctrl-t': 'tab split',
+  \ 'ctrl-x': 'split',
+  \ 'ctrl-v': 'vsplit' }
+
+let g:fzf_colors = {
+  \ 'fg':      ['fg', 'Normal'],
+  \ 'bg':      ['bg', 'Normal'],
+  \ 'hl':      ['fg', 'Comment'],
+  \ 'fg+':     ['fg', 'String', 'CursorColumn', 'Normal'],
+  \ 'bg+':     ['bg', 'Normal', 'CursorColumn'],
+  \ 'hl+':     ['fg', 'Statement'],
+  \ 'info':    ['fg', 'PreProc'],
+  \ 'border':  ['fg', 'Ignore'],
+  \ 'prompt':  ['fg', 'Conditional'],
+  \ 'pointer': ['fg', 'Exception'],
+  \ 'marker':  ['fg', 'Keyword'],
+  \ 'spinner': ['fg', 'Label'],
+  \ 'header':  ['fg', 'Comment'] }
+
+" If ag is installed, use ag
+" if executable('ag')
+"   command! -bang -complete=file GitFiles call fzf#run(fzf#wrap({'source': 'ag --hidden -g ""', 'sink': 'e'}, <bang>0))
+"   command! -bang -complete=file Files call fzf#run(fzf#wrap({'source': 'ag -u -g ""', 'sink': 'e'}, <bang>0))
+" else
+  command! -bang -complete=file GitFiles call fzf#run(fzf#wrap({'source': 'git ls-files', 'sink': 'e'}, <bang>0))
+  command! -bang -complete=file Files call fzf#run(fzf#wrap({'source': 'find .', 'sink': 'e'}, <bang>0))
+" endif
+
+
+
+if has('nvim') && !exists('g:fzf_layout')
+  autocmd! FileType fzf
+  autocmd  FileType fzf set laststatus=0 noshowmode noruler
+    \| autocmd BufLeave <buffer> set laststatus=2 showmode ruler
+endif
+
+  "Do not respect .gitignore
+nnoremap <Leader>F :Files!<CR>
+
+"Respect .gitignore
+nnoremap <Leader>f :GitFiles!<CR>
 nnoremap <Leader>e :edit ./
 nnoremap <Leader>E :edit<space>
 
@@ -324,6 +366,7 @@ map <Leader>rn :call myfunctions#RenameFile()<cr>
 
 " Create a new file
 map <Leader>to :edit <C-R>=expand('%:p:h') . '/'<CR>
+map <Leader>mk :!mkdir -p <C-R>=expand('%:p:h') . '/'<CR>
 
 " ragtag recommended keybinding
 inoremap <M-o> <Esc>o
@@ -433,11 +476,11 @@ endif
 " Use tab for trigger completion with characters ahead and navigate.
 " NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
 " other plugin before putting this into your config.
-" inoremap <silent><expr> <TAB>
-"       \ pumvisible() ? "\<C-n>" :
-"       \ <SID>check_back_space() ? "\<TAB>" :
-"       \ coc#refresh()
-" inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+inoremap <silent><expr> <TAB>
+      \ pumvisible() ? "\<C-n>" :
+      \ <SID>check_back_space() ? "\<TAB>" :
+      \ coc#refresh()
+inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
 
 function! s:check_back_space() abort
   let col = col('.') - 1
@@ -457,14 +500,14 @@ else
 endif
 
 " Use `[g` and `]g` to navigate diagnostics
-nmap <silent> [g <Plug>(coc-diagnostic-prev)
-nmap <silent> ]g <Plug>(coc-diagnostic-next)
+nmap <silent> [d <Plug>(coc-diagnostic-prev)
+nmap <silent> ]d <Plug>(coc-diagnostic-next)
 
 " GoTo code navigation.
-nmap <silent> gd <Plug>(coc-definition)
-nmap <silent> gy <Plug>(coc-type-definition)
-nmap <silent> gi <Plug>(coc-implementation)
-nmap <silent> gr <Plug>(coc-references)
+nmap <silent> <Leader>gd <Plug>(coc-definition)
+nmap <silent> <Leader>gy <Plug>(coc-type-definition)
+nmap <silent> <Leader>gi <Plug>(coc-implementation)
+nmap <silent> <Leader>gr <Plug>(coc-references)
 
 " Use K to show documentation in preview window.
 nnoremap <silent> K :call <SID>show_documentation()<CR>
@@ -503,7 +546,7 @@ nmap <leader>ca  <Plug>(coc-codeaction-selected)
 " Remap keys for applying codeAction to the current buffer.
 nmap <leader>ac  <Plug>(coc-codeaction)
 " Apply AutoFix to problem on the current line.
-nmap <leader>qf  <Plug>(coc-fix-current)
+nmap <leader>af  <Plug>(coc-fix-current)
 
 " Map function and class text objects
 " NOTE: Requires 'textDocument.documentSymbol' support from the language server.
@@ -536,19 +579,19 @@ command! -nargs=0 OR   :call     CocAction('runCommand', 'editor.action.organize
 
 " Mappings using CoCList:
 " Show all diagnostics.
-nnoremap <silent> <Leader>cd  :<C-u>CocList diagnostics<cr>
+nnoremap <silent> <Leader>ld  :<C-u>CocList diagnostics<cr>
 " Manage extensions.
-nnoremap <silent> <Leader>ce  :<C-u>CocList extensions<cr>
+nnoremap <silent> <Leader>le  :<C-u>CocList extensions<cr>
 " Show commands.
-nnoremap <silent> <Leader>cmd  :<C-u>CocList commands<cr>
+nnoremap <silent> <Leader>lc  :<C-u>CocList commands<cr>
 " Find symbol of current document.
-nnoremap <silent> <Leader>co  :<C-u>CocList outline<cr>
+nnoremap <silent> <Leader>lo  :<C-u>CocList outline<cr>
 " Search workspace symbols.
-nnoremap <silent> <Leader>cs  :<C-u>CocList -I symbols<cr>
+nnoremap <silent> <Leader>ls  :<C-u>CocList -I symbols<cr>
 " Do default action for next item.
-nnoremap <silent> <Leader>cn  :<C-u>CocNext<CR>
+nnoremap <silent> <Leader>ln  :<C-u>CocNext<CR>
 " Do default action for previous item.
-nnoremap <silent> <Leader>cp  :<C-u>CocPrev<CR>
+nnoremap <silent> <Leader>lp  :<C-u>CocPrev<CR>
 " Resume latest coc list.
-nnoremap <silent> <Leader>cl  :<C-u>CocListResume<CR>
+nnoremap <silent> <Leader>lr  :<C-u>CocListResume<CR>
 
