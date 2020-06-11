@@ -5,7 +5,7 @@ end$0
 endsnippet
 
 snippet init "initialize method" b
-def initialize${1:($2)}
+def initialize${1/(\S+)/(?1:\()/}$1${1/(\S+)/(?1:\))/}
   ${2:${VISUAL}}
 end$0
 endsnippet
@@ -42,10 +42,10 @@ class $1 < Minitest::Test
 end
 endsnippet
 
-snippet a "assert" b
+snippet as "assert" b
 assert($1)
 endsnippet
 
-snippet a= "assert_equal" b
+snippet as= "assert_equal" b
 assert_equal($1, $2)
 endsnippet

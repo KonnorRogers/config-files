@@ -1,17 +1,19 @@
-alias dotzsh="vim ~/.zsh"
-alias aliases="vim ~/.zsh/aliases"
+alias dotzsh='vim ~/.zsh'
+alias aliases='vim ~/.zsh/aliases'
+alias functions='vim ~/.zsh/functions'
+alias snippets='vim ~/.my-snippets'
 alias vim='nvim'
-alias zshrc="vim ~/.zshrc"
-alias omz="vim ~/.oh-my-zsh"
-alias vimrc="vim ~/.vim/vimrc"
-alias dotvim="vim ~/.vim"
-alias ncfg="vim ~/.config/nvim/init.vim"
-alias tcfg="vim ~/.tmux.conf"
+alias zshrc='vim ~/.zshrc'
+alias omz='vim ~/.oh-my-zsh'
+alias vimrc='vim ~/.vim/vimrc'
+alias dotvim='vim ~/.vim'
+alias ncfg='vim ~/.config/nvim/init.vim'
+alias tcfg='vim ~/.tmux.conf'
 alias lsc='colorls'
 alias ls='ls --color=always'
 
+
 # git
-alias g='git'
 alias gaa='git add -A'
 alias gdiff='git diff'
 alias gcm='git commit -m'
@@ -41,35 +43,35 @@ alias h-m:off='heroku maintenance:off'
 alias h-migrate='heroku run rails db:migrate'
 
 # bundler
-alias bi='bundle install'
-alias b='bundle'
-alias be='bundle exec'
+alias buni='bundle install'
+alias bun='bundle'
+alias bune='bundle exec'
 
 # rails
-alias r='rails'
-alias rg='rails generate'
-alias rgc='rails generate controller'
-alias rgmo='rails generate model'
-alias rgit='rails generate integration_test'
-alias rgmi='rails generate migration'
+alias rs='rails'
+alias rsg='rails generate'
+alias rsgc='rails generate controller'
+alias rsgmo='rails generate model'
+alias rsgit='rails generate integration_test'
+alias rsgmi='rails generate migration'
 
 # misc
-alias tag-gen="ctags -R --tag-relative -f .git/tags"
-alias ownthis="sudo chown -R $USER:$USER ."
-alias klight="~/bin/keyboard_light"
+alias tag-gen='ctags -R --tag-relative -f .git/tags'
+alias ownthis='sudo chown -R $USER:$USER .'
+alias klight='~/bin/keyboard_light'
 alias rngr='ranger'
 
 # kubs-cli
-alias k='kubs'
-alias kgp='kubs git_pull'
-alias kpgp='kubs pull && kubs git_push'
-alias kgpc='kubs git_pull && kubs copy'
-alias kc='kubs copy'
+alias kc='kubs'
+alias kccgp='kubs git_pull'
+alias kcpgp='kubs pull && kubs git_push'
+alias kcgpc='kubs git_pull && kubs copy'
+alias kcc='kubs copy'
 
 # docker
-alias d='docker'
-alias db='docker build'
-alias dcon='docker container'
+alias dk='docker'
+alias dkb='docker build'
+alias dkc='docker container'
 alias dc='docker-compose'
 alias di='docker image'
 alias dr='docker run'
@@ -79,16 +81,15 @@ alias dra-images='docker image rm $(docker image ls -a -q) --force'
 alias ddebug='docker-compose run --service-ports'
 
 # npm
-alias n='npm'
-alias nr='npm run'
-alias ni='npm install'
-alias nid='npm install --save-dev'
+alias npr='npm run'
+alias npi='npm install'
+alias npid='npm install --save-dev'
 
 # yarn
-alias y='yarn'
-alias yr='yarn run'
-alias ya='yarn add'
-alias yad='yard add -D'
-alias yag='yarn add global'
+alias yn='yarn'
+alias ynr='yarn run'
+alias yna='yarn add'
+alias ynad='yard add -D'
+alias ynag='yarn add global'
 
 

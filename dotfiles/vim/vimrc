@@ -203,7 +203,7 @@ augroup MyColors
 augroup END
 
 if exists(':RainbowParentheses') == 2
-  autocmd FileType * RainbowParentheses
+  RainbowParentheses
 endif
 
 " Strip whitespace
