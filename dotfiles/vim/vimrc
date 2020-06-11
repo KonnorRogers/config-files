@@ -203,7 +203,10 @@ augroup MyColors
 augroup END
 
 if exists(':RainbowParentheses') == 2
-  RainbowParentheses
+  augroup parentheses
+    autocmd!
+    autocmd BufEnter,BufRead * RainbowParentheses
+  augroup END
 endif
 
 " Strip whitespace
