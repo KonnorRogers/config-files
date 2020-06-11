@@ -10,6 +10,12 @@ def initialize${1/(\S+)/(?1:\()/}$1${1/(\S+)/(?1:\))/}
 end$0
 endsnippet
 
+snippet def "define a method" w
+def ${1:method_name}${2/(\S+)/(?2:\()/}$2${2/(\S+)/(?2:\))/}
+  ${3:${VISUAL}}
+end
+endsnippet
+
 snippet rdesc "rspec describe block" w
 RSpec.describe ${1:#class} do
   ${2:${VISUAL}}
