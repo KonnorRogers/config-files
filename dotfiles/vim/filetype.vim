@@ -1,13 +1,10 @@
 augroup filetypedetect
-  au! BufRead,BufNewFile *nc setfiletype nc "http://www.vim.org/scripts/script.php?script_id=1847
-  "html.ep now handled by https://github.com/yko/mojo.vim
+  au! BufRead,BufNewFile *nc setfiletype nc
   autocmd BufNewFile,BufReadPost *.ino,*.pde setfiletype cpp
-
-  " Set markdown files to markdown filetype
-  autocmd BufNewFile,BufRead *.md,*.markdown setfiletype=markdown
+  autocmd BufNewFile,BufRead *.md,*.markdown setfiletype markdown
   autocmd BufNewFile,BufRead *.mdx,*.md,*.markdown setlocal foldmethod=indent
-  autocmd BufNewFile,BufRead Dockerfile* set filetype=dockerfile
-  "removes auto-commenting when hitting <CR>
+  autocmd BufNewFile,BufRead Dockerfile* if &ft != '' | set filetype+=.dockerfile | else | set filetype=dockerfile | fi
+  autocmd BufNewFile,BufRead *.tt if &ft != '' | set filetype+=.eruby | else | set filetype=eruby | fi
   autocmd BufNewFile,BufRead * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
 augroup END
 
