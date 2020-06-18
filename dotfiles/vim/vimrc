@@ -398,7 +398,7 @@ let g:UltiSnipsEditSplit="vertical"
 
 " Edit snippets
 nnoremap <Leader>us :UltiSnipsEdit<CR>
-nnoremap <Leader>ud :edit $HOME/.my-snippets
+nnoremap <Leader>ue :edit $HOME/.my-snippets<CR>
 
 " Set my snippets
 let g:UltiSnipsSnippetDirectories = [$HOME.'/.my-snippets']
@@ -603,4 +603,5 @@ nnoremap <silent> <Leader>ln  :<C-u>CocNext<CR>
 nnoremap <silent> <Leader>lp  :<C-u>CocPrev<CR>
 " Resume latest coc list.
 nnoremap <silent> <Leader>lr  :<C-u>CocListResume<CR>
+
 
