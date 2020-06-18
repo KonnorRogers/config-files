@@ -355,8 +355,6 @@ iabbrev %d <C-R>=expand('%')<CR>
 " Insert full path
 iabbrev %p <C-R>=expand('%')<CR>
 
-
-
 " Treat <li> and <p> tags like the block tags they are
 let g:html_indent_tags = 'li\|p'
 
