@@ -373,7 +373,7 @@ map <Leader>rn :call myfunctions#RenameFile()<cr>
 
 " Create a new file
 map <Leader>to :edit <C-R>=expand('%:p:h') . '/'<CR>
-map <Leader>mk :!mkdir -p <C-R>=expand('%:p:h') . '/'<CR>
+map <Leader>td :!mkdir -p <C-R>=expand('%:p:h') . '/'<CR>
 
 " ragtag recommended keybinding
 inoremap <M-o> <Esc>o
