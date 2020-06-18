@@ -205,10 +205,7 @@ augroup MyColors
 augroup END
 
 if exists(':RainbowParentheses') == 2
-  augroup parentheses
-    autocmd!
-    autocmd BufEnter,BufRead * RainbowParentheses
-  augroup END
+  :RainbowParentheses
 endif
 
 " Strip whitespace
@@ -230,7 +227,6 @@ colorscheme medic_chalk
 set laststatus=2
 set statusline=
 set statusline+=\ %<%F\ %m\ %r\ %h\ %=%=%=%y\ [%c]%=
-
 
 " Return cursor to original position
 if has("autocmd")
@@ -594,3 +590,6 @@ nnoremap <silent> <Leader>lr  :<C-u>CocListResume<CR>
 map <C-n> :NERDTreeToggle<CR>
 let g:NERDTreeDirArrowExpandable = '▸'
 let g:NERDTreeDirArrowCollapsible = '▾'
+let g:NERDTreeShowHidden = 1
+let g:NERDTreeHijackNetrw = 1
+let g:NERDTreeQuitOnOpen = 1
