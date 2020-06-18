@@ -17,7 +17,6 @@ call plug#begin("~/.vim/plugged")
   Plug 'tpope/vim-commentary'
   Plug 'tpope/vim-surround'
   Plug 'tpope/vim-ragtag'
-  Plug 'tpope/vim-vinegar'
   Plug 'tpope/vim-dispatch'
 
   "Javascript / React
@@ -53,6 +52,9 @@ call plug#begin("~/.vim/plugged")
 
   " fuzzy finding
   Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+
+  " File explorer
+  Plug 'preservim/nerdtree'
 
   "completion
   Plug 'neoclide/coc.nvim', {'branch': 'release'}
@@ -414,23 +416,6 @@ let g:rainbow#pairs = [['(', ')'], ['[', ']'], ['{', '}'], ['<', '>']]
 " Run ctags on current directory
 nnoremap <Leader>gt :call myfunctions#GitCtags()<CR>
 
-" Netrw
-let g:netrw_dirhistmax = 10
-let g:netrw_home = "$HOME/.netrwhist"
-let g:netrw_hide = 0
-let g:netrw_banner = 0
-let g:netrw_liststyle=3
-let g:netrw_winsize=30
-
-" Open a 'file drawer' on the left
-noremap <C-f> :Lexplore<CR>
-
-" Open netrw in place of current buffer
-noremap <C-n> :Explore<CR>
-
-" Split vertical netrw from current buffer
-noremap <C-s> :Vexplore<CR>
-
 " ALE
 let g:ale_fix_on_save = 1
 
@@ -605,3 +590,7 @@ nnoremap <silent> <Leader>lp  :<C-u>CocPrev<CR>
 nnoremap <silent> <Leader>lr  :<C-u>CocListResume<CR>
 
 
+" Nerdtree
+map <C-n> :NERDTreeToggle<CR>
+let g:NERDTreeDirArrowExpandable = '▸'
+let g:NERDTreeDirArrowCollapsible = '▾'
