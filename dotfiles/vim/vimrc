@@ -594,3 +594,6 @@ let g:NERDTreeShowHidden = 1
 let g:NERDTreeHijackNetrw = 1
 let g:NERDTreeMinimalUI = 1
 let g:NERDTreeQuitOnOpen = 1
+
+autocmd BufNew,BufEnter *.css execute "silent! CocDisable"
+autocmd BufLeave *.css execute "silent! CocEnable"
