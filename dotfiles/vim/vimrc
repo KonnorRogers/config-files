@@ -594,13 +594,3 @@ let g:NERDTreeShowHidden = 1
 let g:NERDTreeHijackNetrw = 1
 let g:NERDTreeMinimalUI = 1
 let g:NERDTreeQuitOnOpen = 1
-
-nmap - :NERDTreeFind
-
-" augroup NERDTreeBindings
-"   autocmd!
-"   autocmd BufEnter,BufRead * setlocal nmap - :NERDTreeFind<CR>
-  " autocmd BufNewFile,BufRead,BufNewFile * if &ft == 'nerdtree' nmap - :NERDTreeFind | else  fi
-" augroup END
-
-
