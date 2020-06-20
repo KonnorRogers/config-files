@@ -61,7 +61,6 @@ call plug#begin("~/.vim/plugged")
 
   let g:coc_global_extensions = [
         \ 'coc-tsserver',
-        \ 'coc-spell-checker',
         \ 'coc-tailwindcss',
         \ 'coc-vimlsp',
         \ 'coc-solargraph',
@@ -595,5 +594,5 @@ let g:NERDTreeHijackNetrw = 1
 let g:NERDTreeMinimalUI = 1
 let g:NERDTreeQuitOnOpen = 1
 
-autocmd BufNew,BufEnter *.css execute "silent! CocDisable"
-autocmd BufLeave *.css execute "silent! CocEnable"
+autocmd BufNew,BufEnter,BufRead *.css execute "silent! CocDisable" | execute "silent! ALEDisable"
+autocmd BufLeave *.css execute "silent! CocEnable" | execute "silent! ALEEnable"
