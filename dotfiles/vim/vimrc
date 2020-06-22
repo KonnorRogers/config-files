@@ -594,5 +594,5 @@ let g:NERDTreeHijackNetrw = 1
 let g:NERDTreeMinimalUI = 1
 let g:NERDTreeQuitOnOpen = 1
 
-autocmd BufNew,BufEnter,BufRead *.css execute "silent! CocDisable" | execute "silent! ALEDisable"
-autocmd BufLeave *.css execute "silent! CocEnable" | execute "silent! ALEEnable"
+autocmd BufNew,BufEnter,BufRead *.css,*.fzf execute "silent! CocDisable"
+autocmd BufLeave *.css,*.fzf execute "silent! CocEnable"

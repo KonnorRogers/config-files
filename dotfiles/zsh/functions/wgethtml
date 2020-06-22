@@ -14,5 +14,5 @@ function wgethtml() {
   mkdir -p "$dir"
 
   # Recursive, convert links, include photos
-  wget --mirror --convert-links --page-requisites --directory-prefix="$dir" "$url"
+  wget -l inf --mirror --convert-links --page-requisites --directory-prefix="$dir" "$url"
 }
