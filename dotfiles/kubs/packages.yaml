@@ -9,7 +9,7 @@ asdf:
 
 gems:
   command: gem install
-  packages: gem-ctags colorls neovim rake pry rubocop rails yard thor bundler solargraph
+  packages: colorls neovim rake pry rubocop rails yard thor bundler solargraph
 
 install_yarn:
   command:
@@ -27,7 +27,7 @@ pip3_packages:
 
 heroku:
   command: sudo snap install
-  packages: heroku --classic 
+  packages: heroku --classic
 
 pick_colour_picker:
   command: sudo snap install
