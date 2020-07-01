@@ -101,7 +101,7 @@ endsnippet
 # Console snippets
 
 snippet cl "console.log" w
-console.log(${1:${VISUAL}});$0
+console.log(${1:${VISUAL}})$0
 endsnippet
 
 snippet ct "console.table" w
@@ -147,4 +147,15 @@ for(${1:i = 0; i < $2; i++}) {
 	${3:${VISUAL}}
 }
 $0
+endsnippet
+
+snippet refcy "Cypress reference" b
+/// <reference types="Cypress" />
+$0
+endsnippet
+
+snippet cyit "it('test', () => {})" b
+it("$1", () => {
+  ${2:${VISUAL}}
+})$0
 endsnippet

@@ -412,7 +412,7 @@ let g:rainbow#pairs = [['(', ')'], ['[', ']'], ['{', '}'], ['<', '>']]
 nnoremap <Leader>gt :call myfunctions#GitCtags()<CR>
 
 " ALE
-let g:ale_fix_on_save = 1
+let g:ale_fix_on_save = 0
 
 "Errors
 let g:ale_sign_error = '>>'
@@ -516,8 +516,8 @@ autocmd CursorHold * silent call CocActionAsync('highlight')
 nmap <leader>crn <Plug>(coc-rename)
 
 " Formatting selected code.
-xmap <leader>cf  <Plug>(coc-format-selected)
-nmap <leader>cf  <Plug>(coc-format-selected)
+xmap <leader>cfs  <Plug>(coc-format-selected)
+nmap <leader>cfs  <Plug>(coc-format-selected)
 
 augroup mygroup
   autocmd!
@@ -562,9 +562,8 @@ command! -nargs=? Fold :call     CocAction('fold', <f-args>)
 " Add `:OR` command for organize imports of the current buffer.
 command! -nargs=0 OR   :call     CocAction('runCommand', 'editor.action.organizeImport')
 
-" Add (Neo)Vim's native statusline support.
-" NOTE: Please see `:h coc-status` for integrations with external plugins that
-" provide custom statusline: lightline.vim, vim-airline.
+nnoremap <Leader>fmt :Format<CR>
+nnoremap <Leader>org :OR<CR>
 
 " Mappings using CoCList:
 " Show all diagnostics.
