@@ -563,7 +563,7 @@ command! -nargs=? Fold :call     CocAction('fold', <f-args>)
 command! -nargs=0 OR   :call     CocAction('runCommand', 'editor.action.organizeImport')
 
 nnoremap <Leader>m :Format<CR>
-nnoremap <Leader>org :OR<CR>
+nnoremap <Leader>or :OR<CR>
 
 " Mappings using CoCList:
 " Show all diagnostics.
@@ -591,7 +591,7 @@ let g:NERDTreeDirArrowCollapsible = '▾'
 let g:NERDTreeShowHidden = 1
 let g:NERDTreeHijackNetrw = 1
 let g:NERDTreeMinimalUI = 1
-let g:NERDTreeQuitOnOpen = 1
+let g:NERDTreeQuitOnOpen = 0
 
 autocmd BufNew,BufEnter,BufRead *.css,*.fzf execute "silent! CocDisable"
 autocmd BufLeave *.css,*.fzf execute "silent! CocEnable"
