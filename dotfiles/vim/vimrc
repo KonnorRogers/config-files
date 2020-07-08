@@ -413,7 +413,7 @@ augroup END
 nnoremap <Leader>gt :call myfunctions#GitCtags()<CR>
 
 " ALE
-let g:ale_fix_on_save = 1
+let g:ale_fix_on_save = 0
 
 "Errors
 let g:ale_sign_error = '>>'
@@ -600,5 +600,5 @@ let g:NERDTreeHijackNetrw = 1
 let g:NERDTreeMinimalUI = 1
 let g:NERDTreeQuitOnOpen = 0
 
-autocmd BufNew,BufEnter,BufRead *.css,*.fzf execute "silent! CocDisable"
-autocmd BufLeave *.css,*.fzf execute "silent! CocEnable"
+" autocmd BufNew,BufEnter,BufRead *.css,*.fzf execute 'silent! CocDisable'
+" autocmd BufLeave *.css,*.fzf execute 'silent! CocEnable'
