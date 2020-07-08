@@ -203,9 +203,6 @@ augroup MyColors
   autocmd ColorScheme medic_chalk call myhighlights#MedicChalkHighlights()
 augroup END
 
-if exists(':RainbowParentheses') == 2
-  :RainbowParentheses
-endif
 
 " Strip whitespace
 autocmd BufWritePre * %s/\s\+$//e
@@ -407,12 +404,16 @@ inoremap <c-x><c-k> <c-x><c-k>
 let g:rainbow#max_level = 16
 let g:rainbow#pairs = [['(', ')'], ['[', ']'], ['{', '}'], ['<', '>']]
 
+augroup rainbow_parentheses
+  autocmd!
+  autocmd VimEnter * RainbowParentheses if exists(':RainbowParentheses') == 2
+augroup END
 
 " Run ctags on current directory
 nnoremap <Leader>gt :call myfunctions#GitCtags()<CR>
 
 " ALE
-let g:ale_fix_on_save = 0
+let g:ale_fix_on_save = 1
 
 "Errors
 let g:ale_sign_error = '>>'
@@ -420,7 +421,7 @@ let g:ale_sign_warning = '--'
 let g:ale_set_highlights = 0
 
 " Linting
-let g:ale_lint_on_text_changed = 0
+let g:ale_lint_on_text_changed = 1
 let g:ale_lint_on_insert_leave = 1
 let g:ale_lint_on_enter = 1
 let g:ale_set_loclist = 1
@@ -531,7 +532,7 @@ augroup mygroup
   autocmd FileType typescript,json setl formatexpr=CocAction('formatSelected')
   " Update signature help on jump placeholder.
   autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
-augroup end
+augroup END
 
 " Applying codeAction to the selected region.
 " Example: `<leader>aap` for current paragraph
