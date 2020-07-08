@@ -409,6 +409,8 @@ augroup rainbow_parentheses
   autocmd VimEnter * RainbowParentheses if exists(':RainbowParentheses') == 2
 augroup END
 
+nnoremap <Leader>pp :RainbowParentheses!!<CR>
+
 " Run ctags on current directory
 nnoremap <Leader>gt :call myfunctions#GitCtags()<CR>
 
@@ -602,3 +604,4 @@ let g:NERDTreeQuitOnOpen = 0
 
 " autocmd BufNew,BufEnter,BufRead *.css,*.fzf execute 'silent! CocDisable'
 " autocmd BufLeave *.css,*.fzf execute 'silent! CocEnable'
+
