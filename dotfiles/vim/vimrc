@@ -59,19 +59,6 @@ call plug#begin("~/.vim/plugged")
   "completion
   Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
-  let g:coc_global_extensions = [
-        \ 'coc-tsserver',
-        \ 'coc-tailwindcss',
-        \ 'coc-vimlsp',
-        \ 'coc-solargraph',
-        \ 'coc-yaml',
-        \ 'coc-json',
-        \ 'coc-snippets',
-        \ 'coc-css',
-        \ 'coc-emmet',
-        \ 'coc-git',
-        \ 'coc-html'
-        \ ]
 call plug#end()
 
 
@@ -415,31 +402,32 @@ nnoremap <Leader>pp :RainbowParentheses!!<CR>
 nnoremap <Leader>gt :call myfunctions#GitCtags()<CR>
 
 "" ALE
-"let g:ale_fix_on_save = 1
+let g:ale_fix_on_save = 0
 
 ""Errors
-"let g:ale_sign_error = '>>'
-"let g:ale_sign_warning = '--'
-"let g:ale_set_highlights = 0
+let g:ale_sign_error = '>>'
+let g:ale_sign_warning = '--'
+let g:ale_set_highlights = 0
 
 "" Linting
-"let g:ale_lint_on_text_changed = 1
-"let g:ale_lint_on_insert_leave = 1
-"let g:ale_lint_on_enter = 1
-"let g:ale_set_loclist = 1
-"let g:ale_set_quickfix = 0
+let g:ale_lint_on_text_changed = 1
+let g:ale_lint_on_insert_leave = 1
+let g:ale_lint_on_enter = 1
+let g:ale_set_loclist = 1
+let g:ale_set_quickfix = 0
+let g:ale_ignore_lsp = 1
 
-"let g:ale_fixers = {
-"      \ 'ruby': ['rubocop'],
-"      \ 'javascript': ['prettier'],
-"      \ 'html': ['prettier']
-"      \ }
+let g:ale_fixers = {
+      \ 'ruby': ['rubocop'],
+      \ 'javascript': ['prettier'],
+      \ 'html': ['prettier']
+      \ }
 
-"nmap <silent> [a <Plug>(ale_previous_wrap)
-"nmap <silent> ]a <Plug>(ale_next_wrap)
+nmap <silent> [a <Plug>(ale_previous_wrap)
+nmap <silent> ]a <Plug>(ale_next_wrap)
 
-"nnoremap <Leader>af :ALEFindReferences<CR>
-"nnoremap <Leader>as :ALESymbolSearch
+nnoremap <Leader>af :ALEFindReferences<CR>
+nnoremap <Leader>as :ALESymbolSearch
 
 " Testing
 nmap <silent> t<C-n> :TestNearest<CR>
@@ -605,3 +593,16 @@ let g:NERDTreeQuitOnOpen = 0
 " autocmd BufNew,BufEnter,BufRead *.css,*.fzf execute 'silent! CocDisable'
 " autocmd BufLeave *.css,*.fzf execute 'silent! CocEnable'
 
+let g:coc_global_extensions = [
+      \ 'coc-tsserver',
+      \ 'coc-tailwindcss',
+      \ 'coc-vimlsp',
+      \ 'coc-solargraph',
+      \ 'coc-yaml',
+      \ 'coc-json',
+      \ 'coc-snippets',
+      \ 'coc-css',
+      \ 'coc-emmet',
+      \ 'coc-git',
+      \ 'coc-html'
+      \ ]

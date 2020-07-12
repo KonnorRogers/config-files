@@ -5,8 +5,8 @@ end$0
 endsnippet
 
 snippet init "initialize method" b
-def initialize${1/(\S+)/(?1:\()/}$1${1/(\S+)/(?1:\))/}
-  ${2:${VISUAL}}
+def initialize${1:($2)}
+  ${3:${VISUAL}}
 end$0
 endsnippet
 
@@ -60,4 +60,9 @@ snippet mod "module" b
 module $1
   ${2:${VISUAL}}
 end
+endsnippet
+
+snippet fsl
+# frozen_string_literal: true
+$0
 endsnippet
