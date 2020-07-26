@@ -401,7 +401,7 @@ nnoremap <Leader>pp :RainbowParentheses!!<CR>
 " Run ctags on current directory
 nnoremap <Leader>gt :call myfunctions#GitCtags()<CR>
 
-"" ALE
+" ALE
 let g:ale_fix_on_save = 0
 
 ""Errors
@@ -427,7 +427,8 @@ nmap <silent> [a <Plug>(ale_previous_wrap)
 nmap <silent> ]a <Plug>(ale_next_wrap)
 
 nnoremap <Leader>af :ALEFindReferences<CR>
-nnoremap <Leader>as :ALESymbolSearch
+nnoremap <Leader>as :ALESymbolSearch<CR>
+nnoremap <Leader>am :ALEFix<CR>
 
 " Testing
 nmap <silent> t<C-n> :TestNearest<CR>
