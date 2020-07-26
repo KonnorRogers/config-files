@@ -203,7 +203,7 @@ augroup END
 
 "Colorscheme / appearance
 set background=dark
-colorscheme medic_chalk
+colorscheme kolor
 " set termguicolors
 
 "Status line
