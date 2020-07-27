@@ -413,7 +413,7 @@ let g:ale_set_quickfix = 0
 let g:ale_ignore_lsp = 1
 
 let g:ale_fixers = {
-      \ 'ruby': ['rubocop'],
+      \ 'ruby': ['standardrb'],
       \ 'javascript': ['prettier'],
       \ 'html': ['prettier']
       \ }
