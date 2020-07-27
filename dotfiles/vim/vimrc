@@ -391,12 +391,7 @@ inoremap <c-x><c-k> <c-x><c-k>
 let g:rainbow#max_level = 16
 let g:rainbow#pairs = [['(', ')'], ['[', ']'], ['{', '}'], ['<', '>']]
 
-augroup rainbow_parentheses
-  autocmd!
-  autocmd VimEnter * RainbowParentheses if exists(':RainbowParentheses') == 2
-augroup END
-
-nnoremap <Leader>pp :RainbowParentheses!!<CR>
+nnoremap <Leader>rp :RainbowParentheses!!<CR>
 
 " Run ctags on current directory
 nnoremap <Leader>gt :call myfunctions#GitCtags()<CR>
