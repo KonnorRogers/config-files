@@ -19,7 +19,7 @@ install_yarn:
 
 npm_packages:
   command: npm install -g
-  packages: neovim eslint sass gatsby browser-sync prettier
+  packages: neovim eslint sass gatsby prettier
 
 pip3_packages:
   command: pip3 install --user --upgrade
