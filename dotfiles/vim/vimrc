@@ -421,8 +421,9 @@ let g:ale_fixers = {
 nmap <silent> [a <Plug>(ale_previous_wrap)
 nmap <silent> ]a <Plug>(ale_next_wrap)
 
-nnoremap <Leader>af :ALEFindReferences<CR>
-nnoremap <Leader>as :ALESymbolSearch
+nnoremap <Leader>ar :ALEFindReferences<CR>
+nnoremap <Leader>as :ALESymbolSearch<CR>
+nnoremap <Leader>af :ALEFix<CR>
 
 " Testing
 nmap <silent> t<C-n> :TestNearest<CR>
@@ -525,9 +526,9 @@ xmap <leader>ca  <Plug>(coc-codeaction-selected)
 nmap <leader>ca  <Plug>(coc-codeaction-selected)
 
 " Remap keys for applying codeAction to the current buffer.
-nmap <leader>ac  <Plug>(coc-codeaction)
+nmap <leader>cca  <Plug>(coc-codeaction)
 " Apply AutoFix to problem on the current line.
-nmap <leader>af  <Plug>(coc-fix-current)
+nmap <leader>cfc  <Plug>(coc-fix-current)
 
 " Map function and class text objects
 " NOTE: Requires 'textDocument.documentSymbol' support from the language server.
