@@ -37,7 +37,7 @@ php:
   packages: 7.3.8
 node:
   command: asdf install
-  packages: nodejs 11.15.0
+  packages: nodejs 12.9.1
 
 neovim:
   command: curl -fLo ~/nvim https://github.com/neovim/neovim/releases/download/stable/nvim.appimage &&
