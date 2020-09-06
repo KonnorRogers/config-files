@@ -1,3 +1,7 @@
+snippet req "require statement" w
+const $1 = require("$2")
+endsnippet
+
 snippet im "import default" b
 import $1 from "$2";$0
 endsnippet
@@ -158,4 +162,27 @@ snippet cyit "it('test', () => {})" b
 it("$1", () => {
   ${2:${VISUAL}}
 })$0
+endsnippet
+
+snippet envjsdom "Test environment JSDOM" w
+/**
+ * @jest-environment jsdom
+ */
+endsnippet
+
+snippet envnode "Test environment Node" w
+/**
+ * @jest-environment node
+ */
+endsnippet
+
+snippet tldom "testing library dom" w
+import {
+  getByLabelText,
+  getByText,
+  getByTestId,
+  queryByTestId,
+  waitFor,
+} from '@testing-library/dom'
+import '@testing-library/jest-dom/extend-expect'
 endsnippet
