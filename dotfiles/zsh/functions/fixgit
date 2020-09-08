@@ -1,5 +1,5 @@
 function fixgit() {
-  find .git/objects/ -type f -empty | xargs rm
+  find "$(git rev-parse --show-toplevel)/.git/objects/" -type f -empty | xargs rm -rf
   git fetch -p
   git fsck --full
 }
