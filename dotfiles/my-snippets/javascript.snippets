@@ -191,3 +191,21 @@ snippet jsdom "JSDOM" b
 const jsdom = require("jsdom");
 const { JSDOM } = jsdom;
 endsnippet
+
+snippet stimc "stimulus controller" b
+
+import { Controller } from "stimulus"
+
+export default class $1 extends Controller {
+  $2
+  ${3:initialize() {
+    $4
+  }}
+  ${5:connect() {
+    $6
+  }}
+  ${7:disconnect() {
+    $8
+  }}
+}
+
