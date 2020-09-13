@@ -1,0 +1,22 @@
+snippet dockercompose "docker-compose" b
+services:
+  web:
+    env_file:
+      - docker.env
+
+    build:
+      context: .
+
+    command: bash -c ""
+
+    volumes:
+      # make sure these line up with $APP_DIR
+      - node_modules:/home/user/app/node_modules
+      - .:/home/user/app
+
+    ports:
+      - "4000:4000"
+
+volumes:
+  node_modules:
+endsnippet
