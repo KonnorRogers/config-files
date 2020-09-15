@@ -1,0 +1,15 @@
+snippet ! "#!/bin/bash" b
+#!/bin/bash
+${0}
+endsnippet
+
+snippet dockerenv "docker environment vars" w
+DOCKER_USER_ID="$(id -u $USER)"
+DOCKER_GROUP_ID="$(id -g $USER)"
+
+export DOCKER_USER_ID
+export DOCKER_GROUP_ID
+
+export APP_DIR="/home/user/app"
+export DOCKER_USER="user"
+endsnippet

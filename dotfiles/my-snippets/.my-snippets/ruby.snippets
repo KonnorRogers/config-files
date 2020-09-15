@@ -1,0 +1,68 @@
+snippet class "create a class" b
+class $1
+  ${2:${VISUAL}}
+end$0
+endsnippet
+
+snippet init "initialize method" b
+def initialize${1:($2)}
+  ${3:${VISUAL}}
+end$0
+endsnippet
+
+snippet def "define a method" w
+def ${1:method_name}${2/(\S+)/(?2:\()/}$2${2/(\S+)/(?2:\))/}
+  ${3:${VISUAL}}
+end
+endsnippet
+
+snippet rdesc "rspec describe block" w
+RSpec.describe ${1:#class} do
+  ${2:${VISUAL}}
+end$0
+endsnippet
+
+snippet ctxt "context block" w
+options word
+context "$1" do
+  ${2:${VISUAL}}
+end$0
+endsnippet
+
+snippet it "it block for rspec" w
+it "$1" do
+  $2
+end$0
+endsnippet
+
+snippet test "testing" w
+test '${1:should do something}' do
+  ${2:${VISUAL}}
+end
+$0
+endsnippet
+
+snippet minitest "Minitest class" w
+class $1 < Minitest::Test
+  $0
+end
+endsnippet
+
+snippet as "assert" b
+assert($1)
+endsnippet
+
+snippet as= "assert_equal" b
+assert_equal($1, $2)
+endsnippet
+
+snippet mod "module" b
+module $1
+  ${2:${VISUAL}}
+end
+endsnippet
+
+snippet fsl
+# frozen_string_literal: true
+$0
+endsnippet

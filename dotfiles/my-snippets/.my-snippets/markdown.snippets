@@ -1,0 +1,42 @@
+snippet syn "syntax for markdown" i
+\`\`\`${1}
+${2:${VISUAL}}
+\`\`\`$0
+endsnippet
+
+snippet meta "Metadata" b
+---
+title: ${1}
+date: "`!v strftime("%Y-%m-%dT%H:%M:%S")`"
+description: ${2}
+---
+${0}
+endsnippet
+
+snippet link "Links for markdown" i
+[${1:#text}](${2:#link})${0}
+endsnippet
+
+snippet emt "EMTLevel snippet" b
+<EMTLevel level="$1"${2: medControl=${3:{true}}}>
+  ${4:${VISUAL}}
+</EMTLevel>
+endsnippet
+
+snippet hl "H tags" b
+<h$1 id="$2">
+  <a href="#$2">
+    ${3:${VISUAL}}
+  </a>
+</h$1>
+endsnippet
+
+snippet lq "liquid tags" w
+{{ $1 }}$0
+endsnippet
+
+snippet lqv "liquid variable" w
+{{ assign $1 }}$0
+endsnippet
+
+extends javascript

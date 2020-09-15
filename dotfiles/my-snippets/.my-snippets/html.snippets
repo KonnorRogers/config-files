@@ -1,0 +1,16 @@
+extends sabio
+extends javascript
+
+snippet hc "HTML Comment" i
+<!-- ${1:${VISUAL}} -->${0}
+endsnippet
+
+snippet anchor "Link" i
+<a href="$1" target="_blank" rel="noopener noreferrer">
+  $2
+</a>
+endsnippet
+
+snippet mail "mailto: link" w
+<a href="mailto:${1:name}">$2</a>
+endsnippet
