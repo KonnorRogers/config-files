@@ -1,9 +1,6 @@
 snippet dockercompose "docker-compose" b
 services:
   web:
-    env_file:
-      - docker.env
-
     build:
       context: .
 
