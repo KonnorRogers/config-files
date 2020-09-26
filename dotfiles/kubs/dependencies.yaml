@@ -40,7 +40,7 @@ node:
   packages: nodejs 12.9.1
 
 neovim:
-  command: curl -fLo ~/nvim https://github.com/neovim/neovim/releases/download/stable/nvim.appimage &&
+  command: curl -fLo ~/nvim https://github.com/neovim/neovim/releases/download/nightly/nvim.appimage &&
   packages: sudo chmod u+x ~/nvim &&
     sudo ln -f -s ~/nvim /usr/bin/nvim &&
     sudo ln -f -s ~/nvim /usr/share/nvim
