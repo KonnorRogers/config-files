@@ -61,7 +61,8 @@ call plug#begin("~/.vim/plugged")
 
   " Completion
   Plug 'nvim-lua/completion-nvim'
-
+  Plug 'aca/completion-tabnine', { 'do': './install.sh' }
+  Plug 'steelsojka/completion-buffers'
 call plug#end()
 
 " Path variables, prepend current directory
@@ -499,4 +500,12 @@ nnoremap <silent> <c-k>         <cmd>lua vim.lsp.buf.signature_help()<CR>
 nnoremap <silent> 1gD           <cmd>lua vim.lsp.buf.type_definition()<CR>
 nnoremap <silent> gr            <cmd>lua vim.lsp.buf.references()<CR>
 nnoremap <silent> <leader>lrn    <cmd>lua vim.lsp.buf.rename()<CR>
-    "@rollup/plugin-image": "^2.0.5",
+
+" Completion
+let g:completion_chain_complete_list = {
+    \ 'default': [
+    \    {'complete_items': ['lsp', 'snippet', 'buffers', 'tabnine' ]},
+    \    {'mode': '<c-p>'},
+    \    {'mode': '<c-n>'}
+    \]
+\}
