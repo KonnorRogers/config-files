@@ -479,7 +479,7 @@ let g:completion_enable_snippet = 'UltiSnips'
 " Load LSP servers
 :call myfunctions#InstallLanguageServers()
 
-set omnifunc=v:lua.vim.lsp.omnifunc
+set omnifunc+=v:lua.vim.lsp.omnifunc
 autocmd BufEnter * lua require'completion'.on_attach()
 
 :lua << END
@@ -498,4 +498,5 @@ nnoremap <silent> gD            <cmd>lua vim.lsp.buf.implementation()<CR>
 nnoremap <silent> <c-k>         <cmd>lua vim.lsp.buf.signature_help()<CR>
 nnoremap <silent> 1gD           <cmd>lua vim.lsp.buf.type_definition()<CR>
 nnoremap <silent> gr            <cmd>lua vim.lsp.buf.references()<CR>
-nnoremap <silent> <leader>rn    <cmd>lua vim.lsp.buf.rename()<CR>
+nnoremap <silent> <leader>lrn    <cmd>lua vim.lsp.buf.rename()<CR>
+    "@rollup/plugin-image": "^2.0.5",
