@@ -5,7 +5,7 @@ phpenv:
 
 asdf:
   command: asdf global
-  packages: nodejs 12.9.1
+  packages: nodejs 12.18.4
 
 gems:
   command: gem install
