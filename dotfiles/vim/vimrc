@@ -61,7 +61,6 @@ call plug#begin("~/.vim/plugged")
 
   " Completion
   Plug 'nvim-lua/completion-nvim'
-  Plug 'aca/completion-tabnine', { 'do': './install.sh' }
   Plug 'steelsojka/completion-buffers'
 call plug#end()
 
