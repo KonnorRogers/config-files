@@ -503,7 +503,7 @@ nnoremap <silent> <leader>lrn    <cmd>lua vim.lsp.buf.rename()<CR>
 " Completion
 let g:completion_chain_complete_list = {
     \ 'default': [
-    \    {'complete_items': ['lsp', 'snippet', 'buffers', 'tabnine' ]},
+    \    {'complete_items': ['lsp', 'snippet', 'buffers' ]},
     \    {'mode': '<c-p>'},
     \    {'mode': '<c-n>'}
     \]
