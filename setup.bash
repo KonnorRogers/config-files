@@ -63,7 +63,6 @@ install_ruby(){
 
 install_version_managers(){
   install_chruby_and_ruby_install
-  install_phpenv
   install_asdf
 }
 
@@ -111,17 +110,10 @@ install_asdf(){
   if [[ ! -z "$_ASDF_HOME" ]]; then
     git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.7.5
   fi
-
-  "$HOME/.asdf/bin/asdf" plugin-add nodejs https://github.com/asdf-vm/asdf-nodejs.git
-  bash ~/.asdf/plugins/nodejs/bin/import-release-team-keyring > /dev/null 2>&1
 }
 
 install_yarn(){
   curl -o- -L https://yarnpkg.com/install.sh | sudo bash
-}
-
-install_phpenv(){
-  curl -L https://raw.githubusercontent.com/phpenv/phpenv-installer/master/bin/phpenv-installer | bash
 }
 
 install_zsh_auto_suggestions() {

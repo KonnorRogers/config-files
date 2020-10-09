@@ -489,6 +489,7 @@ autocmd BufEnter * lua require'completion'.on_attach()
   require'nvim_lsp'.dockerls.setup{}
   require'nvim_lsp'.yamlls.setup{}
   require'nvim_lsp'.bashls.setup{}
+  require'nvim_lsp'.elixirls.setup{}
 END
 
 nnoremap <silent> gd            <cmd>lua vim.lsp.buf.declaration()<CR>

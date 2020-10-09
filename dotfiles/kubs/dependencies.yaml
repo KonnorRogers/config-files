@@ -8,14 +8,18 @@ apt:
     - software-properties-common gnupg2 less ufw ack-grep libfuse2
       apt-transport-https ca-certificates build-essential bison
       zlib1g-dev libyaml-dev libcurl4-openssl-dev libssl-dev
-      libgdbm-dev libreadline-dev libffi-dev fuse make gcc libxml2-dev
+      libgdbm-dev libreadline-dev libffi-dev fuse make gcc
+      libxml2-dev unixodbc-dev xsltproc fop libxml2-utils
       re2c libbz2-dev libjpeg-turbo8-dev libpng-dev
       libzip-dev libtidy-dev libxslt-dev automake libtool autoconf
-      flex libkrb5-dev libonig-dev libsqlite3-dev snapd
+      flex libkrb5-dev libonig-dev libsqlite3-dev libncurses-dev
+      libssh-dev m4 libncurses5-dev libwxgtk3.0-gtk3-dev
+      libgl1-mesa-dev libglu1-mesa-dev
+
 
     # Languages
     - ruby ruby-dev golang php php-mysql php-pdo python2 python3 python3-pip python2-dev
-      python3-dev python3-neovim nodejs default-jre default-jdk
+      python3-dev python3-neovim nodejs default-jre default-jdk openjdk-11-jdk
 
     # Tools
     - curl tmux git vim zsh rdoc
@@ -31,13 +35,17 @@ yarn:
   command: "curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add - &&"
   packages: echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list`
 
-# Install versions php, and node
-php:
-  command: phpenv install --skip-existing
-  packages: 7.3.8
 node:
-  command: asdf install
-  packages: nodejs 12.9.1
+  command: asdf plugin-add nodejs https://github.com/asdf-vm/asdf-nodejs.git &&
+  packages: asdf install nodejs 12.18.4 && asdf global nodejs 12.18.4
+
+erlang:
+  command: asdf plugin-add erlang https://github.com/asdf-vm/asdf-erlang.git &&
+  packages: asdf install erlang 22.3.4.9 && asdf global erlang 22.3.4.9
+
+elixir:
+  command: asdf plugin-add elixir https://github.com/asdf-vm/asdf-elixir.git &&
+  packages: asdf install elixir 1.10.4 && asdf global elixir 1.10.4
 
 neovim:
   command: curl -fLo ~/nvim https://github.com/neovim/neovim/releases/download/nightly/nvim.appimage &&
