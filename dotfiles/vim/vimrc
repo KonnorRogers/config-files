@@ -34,6 +34,9 @@ call plug#begin("~/.vim/plugged")
   Plug 'tpope/vim-rails'
   Plug 'tpope/vim-bundler'
 
+  " Elixir
+  Plug 'elixir-editors/vim-elixir'
+
   " Tests
   Plug 'janko/vim-test'
 
