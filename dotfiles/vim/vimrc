@@ -1,4 +1,5 @@
 set encoding=utf-8
+" Plugins{{{
 " Will install plugin manager if not detected
 if empty(glob('~/.vim/autoload/plug.vim'))
     silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
@@ -65,8 +66,8 @@ call plug#begin("~/.vim/plugged")
   " Completion
   Plug 'nvim-lua/completion-nvim'
   Plug 'steelsojka/completion-buffers'
-call plug#end()
-
+call plug#end()"}}}
+" Defaults {{{
 " Path variables, prepend current directory
 set path^=.,,
 
@@ -187,7 +188,8 @@ runtime macros/matchit.vim
 " Tags searching
 set tags+=./.git/tags
 set tags+=./tags
-
+"}}}
+" Autocmds {{{
 " For Kolor colorscheme
 augroup MyColors
   autocmd!
@@ -206,23 +208,24 @@ augroup FilenameCompletion
   autocmd InsertLeave * execute 'cd -'
 augroup END
 
-"Colorscheme / appearance
-set background=dark
-colorscheme kolor
-" set termguicolors
-
-"Status line
-set laststatus=2
-set statusline=
-set statusline+=\ %<%F\ %m\ %r\ %h\ %=%=%=%y\ [%c]%=
-
 " Return cursor to original position
 if has("autocmd")
   au BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$")
   \| exe "normal g'\"" | endif
 endif
+"}}}
+"Colorscheme / appearance{{{
+set background=dark
+colorscheme kolor
+" set termguicolors
 
-" Mappings
+
+"Status line
+set laststatus=2
+set statusline=
+set statusline+=\ %<%F\ %m\ %r\ %h\ %=%=%=%y\ [%c]%=
+"}}}
+" Sensible stuff{{{
 
 "<Leader> is now <space>
 let mapleader = " "
@@ -232,7 +235,8 @@ nnoremap j gj
 nnoremap k gk
 
 set helpheight=20
-
+"}}}
+" Movement{{{
 " Using splits
 map <Leader>sp :split<space>
 nnoremap <Leader>vs :vsplit<space>
@@ -273,9 +277,8 @@ map <Leader>qq :q!<CR>
 nnoremap ]q :cnext<CR>zz
 nnoremap [q :cprevious<CR>zz
 nnoremap [Q :cfirst<CR>zz
-nnoremap ]Q :clast<CR>zz
-
-" FZF options
+nnoremap ]Q :clast<CR>zz"}}}
+" FZF {{{
 let g:fzf_action = {
   \ 'ctrl-t': 'tab split',
   \ 'ctrl-x': 'split',
@@ -315,9 +318,9 @@ if has('nvim') && !exists('g:fzf_layout')
   autocmd! FileType fzf
   autocmd  FileType fzf set laststatus=0 noshowmode noruler
     \| autocmd BufLeave <buffer> set laststatus=2 showmode ruler
-endif
-
-  "Do not respect .gitignore
+endif"}}}
+" Custom commands {{{
+"Do not respect .gitignore
 nnoremap <Leader>F :Files<CR>
 
 "Respect .gitignore
@@ -361,19 +364,19 @@ map <Leader>rn :call myfunctions#RenameFile()<cr>
 
 " Create a new file
 map <Leader>to :edit <C-R>=expand('%:p:h') . '/'<CR>
-map <Leader>td :!mkdir -p <C-R>=expand('%:p:h') . '/'<CR>
-
+map <Leader>td :!mkdir -p <C-R>=expand('%:p:h') . '/'<CR>"}}}
+" Ragtag{{{
 " ragtag recommended keybinding
 inoremap <M-o> <Esc>o
 inoremap <C-j> <Down>
 
 "available globally
-let g:ragtag_global_maps = 1
-
+let g:ragtag_global_maps = 1"}}}
+" Emmet{{{
 " Dont let it override <C-y>
 let g:user_emmet_leader_key = '<C-e>'
-
-" Ultisnips
+"}}}
+" Ultisnips{{{
 let g:UltiSnipsExpandTrigger="<c-k>"
 let g:UltiSnipsJumpForwardTrigger="<c-k>"
 let g:UltiSnipsJumpBackwardTrigger="<c-j>"
@@ -390,8 +393,8 @@ nnoremap <Leader>ue :edit $HOME/.my-snippets<CR>
 let g:UltiSnipsSnippetDirectories = [$HOME.'/.my-snippets']
 
 " Remove backward jump interference
-inoremap <c-x><c-k> <c-x><c-k>
-
+inoremap <c-x><c-k> <c-x><c-k>"}}}
+" Misc {{{
 " Rainbow parentheses
 let g:rainbow#max_level = 16
 let g:rainbow#pairs = [['(', ')'], ['[', ']'], ['{', '}'], ['<', '>']]
@@ -405,9 +408,8 @@ augroup RainbowParens
 augroup END
 
 " Run ctags on current directory
-nnoremap <Leader>gt :call myfunctions#GitCtags()<CR>
-
-"" ALE
+nnoremap <Leader>gt :call myfunctions#GitCtags()<CR>"}}}
+" ALE{{{
 let g:ale_fix_on_save = 0
 
 ""Errors
@@ -435,8 +437,9 @@ nmap <silent> ]a <Plug>(ale_next_wrap)
 nnoremap <Leader>ar :ALEFindReferences<CR>
 nnoremap <Leader>as :ALESymbolSearch<CR>
 nnoremap <Leader>af :ALEFix<CR>
+"}}}
+" Testing{{{
 
-" Testing
 nmap <silent> t<C-n> :TestNearest<CR>
 nmap <silent> t<C-f> :TestFile<CR>
 nmap <silent> t<C-s> :TestSuite<CR>
@@ -444,6 +447,9 @@ nmap <silent> t<C-l> :TestLast<CR>
 nmap <silent> t<C-g> :TestVisit<CR>
 
 let g:test#strategy = "dispatch"
+
+"}}}
+"Sign Columns{{{
 
 " Always show the signcolumn, otherwise it would shift the text each time
 " diagnostics appear/become resolved.
@@ -453,8 +459,8 @@ if has("patch-8.1.1564")
 else
   set signcolumn=yes
 endif
-
-" Nerdtree
+"}}}
+" Nerdtree{{{
 map <C-n> :NERDTreeToggle<CR>
 let g:NERDTreeDirArrowExpandable = '▸'
 let g:NERDTreeDirArrowCollapsible = '▾'
@@ -462,11 +468,11 @@ let g:NERDTreeShowHidden = 1
 let g:NERDTreeHijackNetrw = 1
 let g:NERDTreeMinimalUI = 1
 let g:NERDTreeQuitOnOpen = 0
-
-" Completion
-" Give more space for displaying messages.
+"}}}
+" Completion{{{
 set cmdheight=2
 
+if has("nvim")
 " Having longer updatetime (default is 4000 ms = 4 s) leads to noticeable
 " delays and poor user experience.
 set updatetime=300
@@ -484,7 +490,6 @@ let g:completion_enable_snippet = 'UltiSnips'
 
 set omnifunc+=v:lua.vim.lsp.omnifunc
 autocmd BufEnter * lua require'completion'.on_attach()
-
 :lua << END
   require'nvim_lsp'.tsserver.setup{}
   require'nvim_lsp'.solargraph.setup{}
@@ -504,11 +509,12 @@ nnoremap <silent> 1gD           <cmd>lua vim.lsp.buf.type_definition()<CR>
 nnoremap <silent> gr            <cmd>lua vim.lsp.buf.references()<CR>
 nnoremap <silent> <leader>lrn    <cmd>lua vim.lsp.buf.rename()<CR>
 
-" Completion
 let g:completion_chain_complete_list = {
     \ 'default': [
     \    {'complete_items': ['lsp', 'snippet', 'buffers', 'tabnine' ]},
     \    {'mode': '<c-p>'},
     \    {'mode': '<c-n>'}
-    \]
-\}
+    \ ]
+\ }
+endif
+"}}}

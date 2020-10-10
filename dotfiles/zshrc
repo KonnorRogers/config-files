@@ -102,13 +102,6 @@ alias tag-gen="ctags -R --tag-relative -f .git/tags"
 source /usr/local/share/chruby/chruby.sh
 source /usr/local/share/chruby/auto.sh
 
-# phpenv
-export PHPENV_ROOT="$HOME/.phpenv"
-if [ -d "${PHPENV_ROOT}" ]; then
-  export PATH="${PHPENV_ROOT}/bin:${PATH}"
-  eval "$(phpenv init -)"
-fi
-
 # go
 export GOPATH=$HOME/go
 export PATH=$PATH:$GOPATH/bin
