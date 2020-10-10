@@ -1,21 +1,90 @@
-# Modules
+# Modules{{{
 
-snippet def "public method" b
+snippet defm "module, defmodule...do" b
+defmodule $1 do
+  ${0:${VISUAL}}
+end
+endsnippet
+#}}}
+# Functions{{{
+snippet def "public function, def...do" b
 def $1 do
   ${0:${VISUAL}}
 end
 endsnippet
 
-snippet defm "module" b
-defmodule $1 do
-  ${0:${VISUAL}}
-end
+snippet ddo "one liner public function" b
+def ${1:function}, do: ${2:return}
 endsnippet
 
-snippet defp "private method" b
+snippet dpdo "one liner public function" b
+def ${1:function}, do: ${2:return}
+endsnippet
+
+snippet defp "private function, defp...do" b
 defp $1 do
   ${0:${VISUAL}}
 end
 endsnippet
+#}}}
+# Documentation{{{
 
-# Documentation
+snippet doc "@doc" b
+@doc ~S"""
+ ${0:${VISUAL}}
+"""
+endsnippet
+
+snippet mdoc "@moduledoc" b
+@moduledoc ~S"""
+  ${0:${VISUAL}}
+"""
+endsnippet
+
+snippet before_compile "before_compile" b
+@before_compile ~S"""
+  ${0:${VISUAL}}
+"""
+endsnippet
+
+snippet @dep "Mark something as deprecated" b
+@deprecated "${0:${VISUAL}}"
+endsnippet
+#}}}
+# Types {{{
+snippet type "@type, public type" b
+@type ${1:variable} :: ${2:variable_type}
+$0
+endsnippet
+
+snippet typep "@typep, private type" b
+@type ${1:variable} :: ${2:variable_type}
+$0
+endsnippet
+
+snippet typed "@typedoc, documentation for a custom type" b
+@typedoc  ~S"""
+  ${0:${VISUAL}}
+"""
+endsnippet
+
+snippet spec "@spec, function specs" b
+@spec ${1:function} :: ${2:return_type}
+endsnippet
+
+#}}}
+# Behaviours {{{
+snippet behaviour "user-defined behaviour" b
+@behaviour ~S"""
+  ${0:${VISUAL}}
+"""
+endsnippet
+
+snippet callb "@callback, defining a callback" b
+@callback ${1:function} :: ${2:return_type}
+endsnippet
+
+snippet impl "@impl, implementing a behaviours" b
+@impl ${1:behaviour}
+endsnippet
+#}}}
