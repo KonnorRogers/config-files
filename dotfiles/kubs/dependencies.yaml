@@ -14,26 +14,25 @@ apt:
       libzip-dev libtidy-dev libxslt-dev automake libtool autoconf
       flex libkrb5-dev libonig-dev libsqlite3-dev libncurses-dev
       libssh-dev m4 libncurses5-dev libwxgtk3.0-gtk3-dev
-      libgl1-mesa-dev libglu1-mesa-dev
-
+      libgl1-mesa-dev libglu1-mesa-dev xsltproc fop
 
     # Languages
-    - ruby ruby-dev golang php php-mysql php-pdo python2 python3 python3-pip python2-dev
+    - ruby ruby-dev golang php python2 python3 python3-pip python2-dev
       python3-dev python3-neovim nodejs default-jre default-jdk openjdk-11-jdk
 
     # Tools
-    - curl tmux git vim zsh rdoc
+    - curl tmux git vim zsh
       openssh-client openssh-server dconf-cli gnome-terminal
-      pry rubygems fail2ban
+      pry fail2ban
       asciinema docker docker-compose mosh
-      silversearcher-ag virtualbox ripgrep ctags ranger i3
+      silversearcher-ag virtualbox ripgrep exuberant-ctags ranger i3
 
     # Databases
     - mysql-server sqlite3 postgresql
 
 yarn:
   command: "curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add - &&"
-  packages: echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list`
+  packages: echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
 
 node:
   command: asdf plugin-add nodejs https://github.com/asdf-vm/asdf-nodejs.git &&
@@ -48,7 +47,7 @@ elixir:
   packages: asdf install elixir 1.10.4 && asdf global elixir 1.10.4
 
 neovim:
-  command: curl -fLo ~/nvim https://github.com/neovim/neovim/releases/download/nightly/nvim.appimage &&
+  command: rm -rf ~/nvim && curl -fLo ~/nvim https://github.com/neovim/neovim/releases/download/nightly/nvim.appimage &&
   packages: sudo chmod u+x ~/nvim &&
     sudo ln -f -s ~/nvim /usr/bin/nvim &&
     sudo ln -f -s ~/nvim /usr/share/nvim

@@ -9,8 +9,8 @@ install_yarn:
   packages: " && sudo apt update && sudo apt install yarn "
 
 npm_packages:
-  command: npm install -g
-  packages: neovim eslint sass gatsby prettier
+  command: yarn global add
+  packages: neovim eslint prettier
 
 pip3_packages:
   command: pip3 install --user --upgrade

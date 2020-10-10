@@ -61,12 +61,15 @@ call plug#begin("~/.vim/plugged")
   Plug 'preservim/nerdtree'
 
   "LSP
-  Plug 'neovim/nvim-lspconfig'
+  if has("nvim-0.5")
+    Plug 'neovim/nvim-lspconfig'
 
-  " Completion
-  Plug 'nvim-lua/completion-nvim'
-  Plug 'steelsojka/completion-buffers'
-call plug#end()"}}}
+    " Completion
+    Plug 'nvim-lua/completion-nvim'
+    Plug 'steelsojka/completion-buffers'
+  endif
+call plug#end()
+"}}}
 " Defaults {{{
 " Path variables, prepend current directory
 set path^=.,,
@@ -277,7 +280,8 @@ map <Leader>qq :q!<CR>
 nnoremap ]q :cnext<CR>zz
 nnoremap [q :cprevious<CR>zz
 nnoremap [Q :cfirst<CR>zz
-nnoremap ]Q :clast<CR>zz"}}}
+nnoremap ]Q :clast<CR>zz
+"}}}
 " FZF {{{
 let g:fzf_action = {
   \ 'ctrl-t': 'tab split',
@@ -318,7 +322,8 @@ if has('nvim') && !exists('g:fzf_layout')
   autocmd! FileType fzf
   autocmd  FileType fzf set laststatus=0 noshowmode noruler
     \| autocmd BufLeave <buffer> set laststatus=2 showmode ruler
-endif"}}}
+endif
+"}}}
 " Custom commands {{{
 "Do not respect .gitignore
 nnoremap <Leader>F :Files<CR>
@@ -364,14 +369,16 @@ map <Leader>rn :call myfunctions#RenameFile()<cr>
 
 " Create a new file
 map <Leader>to :edit <C-R>=expand('%:p:h') . '/'<CR>
-map <Leader>td :!mkdir -p <C-R>=expand('%:p:h') . '/'<CR>"}}}
+map <Leader>td :!mkdir -p <C-R>=expand('%:p:h') . '/'<CR>
+"}}}
 " Ragtag{{{
 " ragtag recommended keybinding
 inoremap <M-o> <Esc>o
 inoremap <C-j> <Down>
 
 "available globally
-let g:ragtag_global_maps = 1"}}}
+let g:ragtag_global_maps = 1
+"}}}
 " Emmet{{{
 " Dont let it override <C-y>
 let g:user_emmet_leader_key = '<C-e>'
@@ -393,7 +400,8 @@ nnoremap <Leader>ue :edit $HOME/.my-snippets<CR>
 let g:UltiSnipsSnippetDirectories = [$HOME.'/.my-snippets']
 
 " Remove backward jump interference
-inoremap <c-x><c-k> <c-x><c-k>"}}}
+inoremap <c-x><c-k> <c-x><c-k>
+"}}}
 " Misc {{{
 " Rainbow parentheses
 let g:rainbow#max_level = 16
@@ -408,7 +416,8 @@ augroup RainbowParens
 augroup END
 
 " Run ctags on current directory
-nnoremap <Leader>gt :call myfunctions#GitCtags()<CR>"}}}
+nnoremap <Leader>gt :call myfunctions#GitCtags()<CR>
+"}}}
 " ALE{{{
 let g:ale_fix_on_save = 0
 
@@ -518,3 +527,4 @@ END
   \ }
 endif
 "}}}
+
