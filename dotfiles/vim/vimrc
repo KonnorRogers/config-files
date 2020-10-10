@@ -472,24 +472,24 @@ let g:NERDTreeQuitOnOpen = 0
 " Completion{{{
 set cmdheight=2
 
-if has("nvim")
-" Having longer updatetime (default is 4000 ms = 4 s) leads to noticeable
-" delays and poor user experience.
-set updatetime=300
+if has("nvim-0.5")
+  " Having longer updatetime (default is 4000 ms = 4 s) leads to noticeable
+  " delays and poor user experience.
+  set updatetime=300
 
-" Don't pass messages to |ins-completion-menu|.
-set shortmess+=c
+  " Don't pass messages to |ins-completion-menu|.
+  set shortmess+=c
 
-" Set completeopt to have a better completion experience
-set completeopt=menuone,noinsert,noselect
+  " Set completeopt to have a better completion experience
+  set completeopt=menuone,noinsert,noselect
 
-let g:completion_enable_snippet = 'UltiSnips'
+  let g:completion_enable_snippet = 'UltiSnips'
 
-" Load LSP servers
-:call myfunctions#InstallLanguageServers()
+  " Load LSP servers
+  :call myfunctions#InstallLanguageServers()
 
-set omnifunc+=v:lua.vim.lsp.omnifunc
-autocmd BufEnter * lua require'completion'.on_attach()
+  set omnifunc+=v:lua.vim.lsp.omnifunc
+  autocmd BufEnter * lua require'completion'.on_attach()
 :lua << END
   require'nvim_lsp'.tsserver.setup{}
   require'nvim_lsp'.solargraph.setup{}
@@ -500,21 +500,21 @@ autocmd BufEnter * lua require'completion'.on_attach()
   require'nvim_lsp'.elixirls.setup{}
 END
 
-nnoremap <silent> gd            <cmd>lua vim.lsp.buf.declaration()<CR>
-nnoremap <silent> gf            <cmd>lua vim.lsp.buf.definition()<CR>
-nnoremap <silent> K             <cmd>lua vim.lsp.buf.hover()<CR>
-nnoremap <silent> gD            <cmd>lua vim.lsp.buf.implementation()<CR>
-nnoremap <silent> <c-k>         <cmd>lua vim.lsp.buf.signature_help()<CR>
-nnoremap <silent> 1gD           <cmd>lua vim.lsp.buf.type_definition()<CR>
-nnoremap <silent> gr            <cmd>lua vim.lsp.buf.references()<CR>
-nnoremap <silent> <leader>lrn    <cmd>lua vim.lsp.buf.rename()<CR>
+  nnoremap <silent> gd            <cmd>lua vim.lsp.buf.declaration()<CR>
+  nnoremap <silent> gf            <cmd>lua vim.lsp.buf.definition()<CR>
+  nnoremap <silent> K             <cmd>lua vim.lsp.buf.hover()<CR>
+  nnoremap <silent> gD            <cmd>lua vim.lsp.buf.implementation()<CR>
+  nnoremap <silent> <c-k>         <cmd>lua vim.lsp.buf.signature_help()<CR>
+  nnoremap <silent> 1gD           <cmd>lua vim.lsp.buf.type_definition()<CR>
+  nnoremap <silent> gr            <cmd>lua vim.lsp.buf.references()<CR>
+  nnoremap <silent> <leader>lrn    <cmd>lua vim.lsp.buf.rename()<CR>
 
-let g:completion_chain_complete_list = {
-    \ 'default': [
-    \    {'complete_items': ['lsp', 'snippet', 'buffers', 'tabnine' ]},
-    \    {'mode': '<c-p>'},
-    \    {'mode': '<c-n>'}
-    \ ]
-\ }
+  let g:completion_chain_complete_list = {
+      \ 'default': [
+      \    {'complete_items': ['lsp', 'snippet', 'buffers', 'tabnine' ]},
+      \    {'mode': '<c-p>'},
+      \    {'mode': '<c-n>'}
+      \ ]
+  \ }
 endif
 "}}}
