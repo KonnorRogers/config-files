@@ -2,7 +2,11 @@ add_snippet() {
   file="$1.snippets"
 
   snippet_dir="$HOME/.my-snippets"
-  config_dir="$HOME/config-files/dotfiles/my-snippets"
+  config_dir="$HOME/config-files/dotfiles/my-snippets/$file"
 
-  cp "$snippet_dir/$file" "$config_dir"
+  from="$snippet_dir/$file"
+  to="$config_dir"
+
+  echo "Copying $from to $to"
+  cp "$from" "$to"
 }
