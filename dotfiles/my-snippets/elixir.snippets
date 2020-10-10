@@ -31,19 +31,19 @@ endsnippet
 
 snippet doc "@doc" b
 @doc ~S"""
- ${0:${VISUAL}}
+${0:${VISUAL}}
 """
 endsnippet
 
 snippet mdoc "@moduledoc" b
 @moduledoc ~S"""
-  ${0:${VISUAL}}
+${0:${VISUAL}}
 """
 endsnippet
 
 snippet before_compile "before_compile" b
 @before_compile ~S"""
-  ${0:${VISUAL}}
+${0:${VISUAL}}
 """
 endsnippet
 
@@ -64,7 +64,7 @@ endsnippet
 
 snippet typed "@typedoc, documentation for a custom type" b
 @typedoc  ~S"""
-  ${0:${VISUAL}}
+${0:${VISUAL}}
 """
 endsnippet
 
@@ -76,7 +76,7 @@ endsnippet
 # Behaviours {{{
 snippet behaviour "user-defined behaviour" b
 @behaviour ~S"""
-  ${0:${VISUAL}}
+${0:${VISUAL}}
 """
 endsnippet
 
@@ -86,5 +86,13 @@ endsnippet
 
 snippet impl "@impl, implementing a behaviours" b
 @impl ${1:behaviour}
+endsnippet
+#}}}
+
+# Testing {{{
+snippet test "test()" b
+test "$1" do
+  ${0:${VISUAL}}
+end
 endsnippet
 #}}}

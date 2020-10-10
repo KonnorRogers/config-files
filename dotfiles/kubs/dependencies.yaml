@@ -34,16 +34,20 @@ yarn:
   command: "curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add - &&"
   packages: echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
 
+update_asdf:
+  command: asdf update &&
+  packages: asdf plugin update --all
+
 node:
-  command: asdf plugin-add nodejs https://github.com/asdf-vm/asdf-nodejs.git &&
+  command: (asdf plugin list | grep -q nodejs || asdf plugin-add nodejs https://github.com/asdf-vm/asdf-nodejs.git) &&
   packages: asdf install nodejs 12.18.4 && asdf global nodejs 12.18.4
 
 erlang:
-  command: asdf plugin-add erlang https://github.com/asdf-vm/asdf-erlang.git &&
+  command: (asdf plugin list | grep -q erlang || asdf plugin-add erlang https://github.com/asdf-vm/asdf-erlang.git) &&
   packages: asdf install erlang 22.3.4.9 && asdf global erlang 22.3.4.9
 
 elixir:
-  command: asdf plugin-add elixir https://github.com/asdf-vm/asdf-elixir.git &&
+  command: (asdf plugin list | grep -q elixir || asdf plugin-add elixir https://github.com/asdf-vm/asdf-elixir.git) &&
   packages: asdf install elixir 1.10.4 && asdf global elixir 1.10.4
 
 neovim:

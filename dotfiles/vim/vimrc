@@ -219,7 +219,7 @@ endif
 "}}}
 "Colorscheme / appearance{{{
 set background=dark
-colorscheme kolor
+colorscheme medic_chalk
 " set termguicolors
 
 

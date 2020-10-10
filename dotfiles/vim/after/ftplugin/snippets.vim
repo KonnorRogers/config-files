@@ -1,2 +1,2 @@
 setlocal foldmethod=marker
-setlocal expandtab=true
+setlocal expandtab
