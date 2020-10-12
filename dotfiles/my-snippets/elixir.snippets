@@ -95,4 +95,16 @@ test "$1" do
   ${0:${VISUAL}}
 end
 endsnippet
+
+snippet testv "test()" b
+test "$1", ${2:variable} do
+  ${0:${VISUAL}}
+end
+endsnippet
+
+snippet setup "Setup block" b
+setup do
+  ${0:${VISUAL}}
+end
+endsnippet
 #}}}
