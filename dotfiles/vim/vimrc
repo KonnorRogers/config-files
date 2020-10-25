@@ -219,7 +219,7 @@ endif
 "}}}
 "Colorscheme / appearance{{{
 set background=dark
-colorscheme kolor
+colorscheme medic_chalk
 " set termguicolors
 
 
@@ -436,8 +436,8 @@ let g:ale_ignore_lsp = 1
 
 let g:ale_fixers = {
       \ 'ruby': ['standardrb'],
-      \ 'javascript': ['prettier'],
-      \ 'html': ['prettier']
+      \ 'javascript': ['prettier_standard'],
+      \ 'html': ['prettier_standard']
       \ }
 
 nmap <silent> [a <Plug>(ale_previous_wrap)
