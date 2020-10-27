@@ -24,6 +24,7 @@ RUN useradd --no-log-init \
 
 # Permissions crap
 RUN mkdir -p $APP_DIR
+WORKDIR $APP_DIR
 RUN chown -R $DOCKER_USER_ID:$DOCKER_GROUP_ID $APP_DIR
 
 # Define the user running the container
