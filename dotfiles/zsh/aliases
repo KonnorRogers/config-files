@@ -79,6 +79,7 @@ alias dcr='docker-compose run'
 alias dcrm='docker-compose run --rm'
 alias dra-images='docker image rm $(docker image ls -a -q) --force'
 alias ddebug='docker-compose run --service-ports'
+alias docker-clean='docker image rm $(docker image ls -a -q) --force && docker system prune --all --volumes --force '
 
 # npm
 alias npr='npm run'
