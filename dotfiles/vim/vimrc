@@ -437,7 +437,8 @@ let g:ale_ignore_lsp = 1
 let g:ale_fixers = {
       \ 'ruby': ['standardrb'],
       \ 'javascript': ['prettier_standard'],
-      \ 'html': ['prettier_standard']
+      \ 'html': ['prettier_standard'],
+      \ 'eruby': ['prettier_standard']
       \ }
 
 nmap <silent> [a <Plug>(ale_previous_wrap)
