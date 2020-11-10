@@ -427,18 +427,19 @@ let g:ale_sign_warning = '--'
 let g:ale_set_highlights = 0
 
 "" Linting
-let g:ale_lint_on_text_changed = 1
-let g:ale_lint_on_insert_leave = 1
-let g:ale_lint_on_enter = 1
+let g:ale_lint_on_text_changed = 0
+let g:ale_lint_on_insert_leave = 0
+let g:ale_lint_on_enter = 0
 let g:ale_set_loclist = 1
 let g:ale_set_quickfix = 0
 let g:ale_ignore_lsp = 1
 
 let g:ale_fixers = {
       \ 'ruby': ['standardrb'],
-      \ 'javascript': ['prettier_standard'],
-      \ 'html': ['prettier_standard'],
-      \ 'eruby': ['prettier_standard']
+      \ 'javascript': ['prettier_standard', 'prettier', 'eslint'],
+      \ 'typescript': ['prettier_standard', 'prettier', 'eslint'],
+      \ 'html': ['prettier_standard', 'prettier'],
+      \ 'eruby': ['prettier_standard', 'prettier']
       \ }
 
 nmap <silent> [a <Plug>(ale_previous_wrap)
@@ -481,22 +482,21 @@ let g:NERDTreeQuitOnOpen = 0
 "}}}
 " Completion{{{
 set cmdheight=2
+set updatetime=300
+
+" Don't pass messages to |ins-completion-menu|.
+set shortmess+=c
+
+" Set completeopt to have a better completion experience
+set completeopt=menuone,noinsert,noselect
+
+
 
 if has("nvim-0.5")
+  nnoremap <Leader>ls :call myfunctions#InstallLanguageServers()<cr>
   " Having longer updatetime (default is 4000 ms = 4 s) leads to noticeable
   " delays and poor user experience.
-  set updatetime=300
-
-  " Don't pass messages to |ins-completion-menu|.
-  set shortmess+=c
-
-  " Set completeopt to have a better completion experience
-  set completeopt=menuone,noinsert,noselect
-
   let g:completion_enable_snippet = 'UltiSnips'
-
-  " Load LSP servers
-  :call myfunctions#InstallLanguageServers()
 
   set omnifunc+=v:lua.vim.lsp.omnifunc
   autocmd BufEnter * lua require'completion'.on_attach()
@@ -519,9 +519,10 @@ END
   nnoremap <silent> gr            <cmd>lua vim.lsp.buf.references()<CR>
   nnoremap <silent> <leader>lrn    <cmd>lua vim.lsp.buf.rename()<CR>
 
+  let g:completion_matching_strategy_list = ["exact", "substring", "fuzzy"]
   let g:completion_chain_complete_list = {
       \ 'default': [
-      \    {'complete_items': ['lsp', 'snippet', 'buffers', 'tabnine' ]},
+      \    {'complete_items': ['lsp', 'snippet', 'buffers' ]},
       \    {'mode': '<c-p>'},
       \    {'mode': '<c-n>'}
       \ ]
