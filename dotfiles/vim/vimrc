@@ -325,6 +325,8 @@ if has('nvim') && !exists('g:fzf_layout')
 endif
 "}}}
 " Custom commands {{{
+nnoremap <Leader>kp :!kubs pull && kubs git_push
+nnoremap <Leader>kc :!kubs git_pull && kubs copy<cr>
 "Do not respect .gitignore
 nnoremap <Leader>F :Files<CR>
 
@@ -448,6 +450,7 @@ nmap <silent> ]a <Plug>(ale_next_wrap)
 nnoremap <Leader>ar :ALEFindReferences<CR>
 nnoremap <Leader>as :ALESymbolSearch<CR>
 nnoremap <Leader>af :ALEFix<CR>
+nnoremap <Leader>al :ALELint<CR>
 "}}}
 " Testing{{{
 
