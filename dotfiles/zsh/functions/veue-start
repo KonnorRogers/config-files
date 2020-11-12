@@ -10,5 +10,5 @@ function veue-start() {
   split-window -v \; \
   send-keys "redis-server" \; \
   split-window -v \; \
-  send-keys "bundle exec rails sidekiq" \;
+  send-keys "bundle exec sidekiq" \;
 }
