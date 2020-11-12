@@ -1,9 +1,0 @@
-function add_new_node(){
-  NODE_VERSION="$1"
-
-  fnm install "$NODE_VERSION"
-  # Restart the shell
-  source $HOME/.zshrc
-  fnm use "$NODE_VERSION"
-}
-
