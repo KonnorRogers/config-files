@@ -4,9 +4,11 @@ function veue-start() {
   new-window -n "cli" \; \
   send-keys "git pull && bundle install && yarn install --check-files && cd broadcaster && yarn install --check-files && cd -" \; \
   new-window -n "server" \; \
-  send-keys "bundle exec rails server" \; \
+  send-keys "bundle exec rails server" \; \ z
   split-window -h \; \
   send-keys "./bin/webpack-dev-server" \; \
+  split-window -v \; \
+  send-keys "ngrok http 3000" \; \
   split-window -v \; \
   send-keys "redis-server" \; \
   split-window -v \; \
