@@ -1,5 +1,6 @@
 function veue-start() {
-  tmux new-session -s "veue" \; \
+  tmux new-session -s "veue" -e PGUSER="postgres" \; \
+  set-environment -g PGUSER "postgres" \; \
   send-keys "vim ." C-m \; \
   new-window -n "cli" \; \
   send-keys "git pull && bundle install && yarn install --check-files && cd broadcaster && yarn install --check-files && cd -" \; \
