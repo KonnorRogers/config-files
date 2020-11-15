@@ -1,6 +1,5 @@
 function veue-start() {
-  tmux new-session -s "veue" -e PGUSER="postgres" \; \
-  set-environment -g PGUSER "postgres" \; \
+  tmux new-session -s "veue" \; \
   send-keys "vim ." C-m \; \
   new-window -n "cli" \; \
   send-keys "git pull && bundle install && yarn install --check-files && cd broadcaster && yarn install --check-files && cd -" \; \
@@ -8,8 +7,6 @@ function veue-start() {
   send-keys "bundle exec rails server" \; \
   split-window -h \; \
   send-keys "./bin/webpack-dev-server" \; \
-  split-window -v \; \
-  send-keys "ngrok http 3000" \; \
   split-window -v \; \
   send-keys "redis-server" \; \
   split-window -v \; \
