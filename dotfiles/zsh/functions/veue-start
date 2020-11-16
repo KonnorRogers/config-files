@@ -8,6 +8,8 @@ function veue-start() {
   split-window -h \; \
   send-keys "./bin/webpack-dev-server" \; \
   split-window -v \; \
+  send-keys "ngrok http 3000" \; \
+  split-window -v \; \
   send-keys "redis-server" \; \
   split-window -v \; \
   send-keys "bundle exec sidekiq" \;
