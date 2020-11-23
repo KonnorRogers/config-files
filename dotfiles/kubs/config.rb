@@ -13,6 +13,6 @@ KubsCLI.configure do |config|
   config.dotfiles = File.join(config.config_files, 'dotfiles')
 
   # Gnome Terminal Settings
-  config.gnome_terminal_settings = File.join(config.config_files,
-                                             'gnome-terminal-settings')
+  # config.gnome_terminal_settings = File.join(config.config_files,
+                                             # 'gnome-terminal-settings')
 end
