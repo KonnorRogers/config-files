@@ -224,7 +224,7 @@ endif
 "}}}
 "Colorscheme / appearance{{{
 set background=dark
-colorscheme challenger_deep
+colorscheme challenger-deep
 if has('nvim') || has('termguicolors')
   set termguicolors
 endif
