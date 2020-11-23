@@ -99,8 +99,10 @@ fi
 alias tag-gen="ctags -R --tag-relative -f .git/tags"
 
 # chruby
-source /usr/local/share/chruby/chruby.sh
-source /usr/local/share/chruby/auto.sh
+# source /usr/local/share/chruby/chruby.sh
+# source /usr/local/share/chruby/auto.sh
+
+export PATH="/opt/homebrew/bin:$PATH"
 
 # go
 export GOPATH=$HOME/go
