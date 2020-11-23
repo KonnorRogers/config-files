@@ -12,6 +12,7 @@ call plug#begin("~/.vim/plugged")
   Plug 'flazz/vim-colorschemes'
   Plug 'zeis/vim-kolor'
   Plug 'paramagicdev/vim-medic-chalk'
+  Plug 'challenger-deep-theme/vim', { 'as': 'challenger-deep' }
   "}}}
   "Tpope plugins{{{
   Plug 'tpope/vim-fugitive'
@@ -223,8 +224,10 @@ endif
 "}}}
 "Colorscheme / appearance{{{
 set background=dark
-colorscheme kolor
-" set termguicolors
+colorscheme challenger_deep
+if has('nvim') || has('termguicolors')
+  set termguicolors
+endif
 
 
 "Status line
