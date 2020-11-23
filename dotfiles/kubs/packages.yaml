@@ -2,11 +2,11 @@ gems:
   command: gem install
   packages: colorls neovim rake pry rubocop rails yard thor bundler solargraph
 
-install_yarn:
-  command:
-    curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
-    echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
-  packages: " && sudo apt update && sudo apt install yarn "
+# install_yarn:
+#   command:
+#     curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
+#     echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
+#   packages: " && sudo apt update && sudo apt install yarn "
 
 npm_packages:
   command: yarn global add
@@ -16,13 +16,13 @@ pip3_packages:
   command: pip3 install --user --upgrade
   packages: pynvim neovim
 
-heroku:
-  command: sudo snap install
-  packages: heroku --classic
+# heroku:
+#   command: sudo snap install
+#   packages: heroku --classic
 
-pick_colour_picker:
-  command: sudo snap install
-  packages: pick-colour-picker
+# pick_colour_picker:
+#   command: sudo snap install
+#   packages: pick-colour-picker
 
 vim_plugins:
   command: vim

@@ -10,7 +10,7 @@ alias dotvim='vim ~/.vim'
 alias ncfg='vim ~/.config/nvim/init.vim'
 alias tcfg='vim ~/.tmux.conf'
 alias lsc='colorls'
-# alias ls='ls --color=always'
+alias ls='ls'
 
 
 # git
