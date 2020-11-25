@@ -332,6 +332,7 @@ if has('nvim') && !exists('g:fzf_layout')
 endif
 "}}}
 " Custom commands {{{
+nnoremap <Leader>ra :!bundle exec rubocop -A <C-R>=expand("%")<CR><CR>
 nnoremap <Leader>kp :!kubs pull && kubs git_push
 nnoremap <Leader>kc :!kubs git_pull && kubs copy<cr>
 "Do not respect .gitignore
@@ -444,7 +445,7 @@ let g:ale_set_quickfix = 0
 let g:ale_ignore_lsp = 1
 
 let g:ale_fixers = {
-      \ 'ruby': ['standardrb'],
+      \ 'ruby': ['standardrb', 'rubocop'],
       \ 'javascript': ['prettier_standard', 'prettier', 'eslint'],
       \ 'typescript': ['prettier_standard', 'prettier', 'eslint'],
       \ 'html': ['prettier_standard', 'prettier'],
