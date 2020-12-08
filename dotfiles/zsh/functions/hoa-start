@@ -1,0 +1,22 @@
+function hoa-start() {
+  tmux new-session -s "hoalife" \; \
+  send-keys "vim ." C-m \; \
+  new-window -n "cli" \; \
+  send-keys "bundle install && yarn install --check-files" \; \
+  new-window -n "server" \; \
+  send-keys "bundle exec rails server" \; \
+  split-window -h \; \
+  send-keys "./bin/webpack-dev-server" \; \
+  split-window -v \; \
+  send-keys "docker-compose up" \; \
+  split-window -v \; \
+  send-keys "bundle exec sidekiq -C config/sidekiq.yml" \; \
+  new-window -n "localtunnel" \; \
+  send-keys "lt -p 3000 --subdomain 'dwlocal' -h 'http://loca.lt'" \; \
+  split-window -h \; \
+  send-keys "lt -p 3000 --subdomain 'violation.dwlocal' -h 'http://loca.lt'" \; \
+  split-window -v \; \
+  send-keys "lt -p 3000 --subdomain 'inspector.dwlocal' -h 'http://loca.lt'" \; \
+  split-window -v \; \
+  send-keys "lt -p 3000 --subdomain 'portal.dwlocal' -h 'http://loca.lt'"
+}
