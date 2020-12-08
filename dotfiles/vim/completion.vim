@@ -3,13 +3,13 @@ let g:completion_enable_snippet = 'UltiSnips'
 set omnifunc=v:lua.vim.lsp.omnifunc
 autocmd BufEnter * lua require'completion'.on_attach()
 :lua << END
-  require'nvim_lsp'.tsserver.setup{}
-  require'nvim_lsp'.solargraph.setup{}
-  require'nvim_lsp'.vimls.setup{}
-  require'nvim_lsp'.dockerls.setup{}
-  require'nvim_lsp'.yamlls.setup{}
-  require'nvim_lsp'.bashls.setup{}
-  require'nvim_lsp'.elixirls.setup{}
+  require'lspconfig'.tsserver.setup{}
+  require'lspconfig'.solargraph.setup{}
+  require'lspconfig'.vimls.setup{}
+  require'lspconfig'.dockerls.setup{}
+  require'lspconfig'.yamlls.setup{}
+  require'lspconfig'.bashls.setup{}
+  require'lspconfig'.elixirls.setup{}
 END
 
 nnoremap <silent> gd            <cmd>lua vim.lsp.buf.declaration()<CR>

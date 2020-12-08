@@ -210,10 +210,16 @@ export default class $1 extends Controller {
 
 endsnippet
 
-snippet uvu "b"
+snippet uvu "using uvu" b
 import { suite } from "uvu";
 import * as assert from "uvu/assert";
 
 const $1 = suite("$1")
 $0
 endsnippet
+
+snippet chai "Chai assertions" b
+import { $1 } from "@esm-bundle/chai"
+endsnippet
+
+

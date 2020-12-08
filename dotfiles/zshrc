@@ -98,15 +98,8 @@ fi
 # misc
 alias tag-gen="ctags -R --tag-relative -f .git/tags"
 
-# chruby
-# source /usr/local/share/chruby/chruby.sh
-# source /usr/local/share/chruby/auto.sh
-
-# RVM
-
-# Homebrew
-export PATH="/usr/local/homebrew/bin:$PATH"
-export PATH="$PATH:$HOME/nvim-osx64/bin"
+# Emacs *shrug*
+export PATH="$PATH:$HOME/.emacs.d/bin"
 
 # go
 export GOPATH=$HOME/go
@@ -134,12 +127,14 @@ for function in $DOT_ZSH/functions/*; do
   source $function
 done
 
-
-#source $home/.asdf/completions/asdf.bash ||
-source "$(brew --prefix asdf)/asdf.sh"
-#source $HOME/.asdf/asdf.sh ||
-source "$(brew --prefix asdf)/etc/bash_completion.d/asdf.bash"
+if [[ "$OSTYPE" =~ "linux" ]]; then
+  source $home/.asdf/completions/asdf.bash
+  source $HOME/.asdf/asdf.sh
+elif [[ "$OSTYPE" =~ "darwin" ]]; then
+  source "$(brew --prefix asdf)/asdf.sh"
+  source "$(brew --prefix asdf)/etc/bash_completion.d/asdf.bash"
+  test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh" || true
+fi
 
 autoload -Uz compinit && compinit -i
 
-export PATH="$HOME/.rvm/bin:$PATH"
