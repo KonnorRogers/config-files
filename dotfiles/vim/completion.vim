@@ -12,14 +12,16 @@ autocmd BufEnter * lua require'completion'.on_attach()
   require'lspconfig'.elixirls.setup{ on_attach=require'completion'.on_attach }
 END
 
-nnoremap <silent> <Leader>vdd            <cmd>lua vim.lsp.buf.declaration()<CR>
-nnoremap <silent> <Leader>vdf            <cmd>lua vim.lsp.buf.definition()<CR>
-nnoremap <silent> <Leader>vh             <cmd>lua vim.lsp.buf.hover()<CR>
-nnoremap <silent> <Leader>vi            <cmd>lua vim.lsp.buf.implementation()<CR>
-nnoremap <silent> <Leader>vs         <cmd>lua vim.lsp.buf.signature_help()<CR>
-nnoremap <silent> <Leader>vt           <cmd>lua vim.lsp.buf.type_definition()<CR>
-nnoremap <silent> <Leader>vr            <cmd>lua vim.lsp.buf.references()<CR>
-nnoremap <silent> <Leader>vn    <cmd>lua vim.lsp.buf.rename()<CR>
+nnoremap <silent> <Leader>vdd                 <cmd>lua vim.lsp.buf.declaration()<CR>
+nnoremap <silent> <Leader>vdf                 <cmd>lua vim.lsp.buf.definition()<CR>
+nnoremap <silent> <Leader>vh                  <cmd>lua vim.lsp.buf.hover()<CR>
+nnoremap <silent> <Leader>vi                  <cmd>lua vim.lsp.buf.implementation()<CR>
+nnoremap <silent> <Leader>vs                  <cmd>lua vim.lsp.buf.signature_help()<CR>
+nnoremap <silent> <Leader>vt                  <cmd>lua vim.lsp.buf.type_definition()<CR>
+nnoremap <silent> <Leader>vr                  <cmd>lua vim.lsp.buf.references()<CR>
+nnoremap <silent> <Leader>vn                  <cmd>lua vim.lsp.buf.rename()<CR>
+nnoremap <silent> <leader>vca                 <cmd>lua vim.lsp.buf.code_action()<CR>
+nnoremap <silent> <leader>vsd                 <cmd>lua vim.lsp.util.show_line_diagnostics(); vim.lsp.util.show_line_diagnostics()<CR>
 
 let g:completion_matching_strategy_list = ["exact", "substring", "fuzzy"]
 let g:completion_chain_complete_list = {
@@ -29,3 +31,6 @@ let g:completion_chain_complete_list = {
     \    {'mode': '<c-n>'}
     \ ]
 \ }
+
+" Treesitter
+lua require'nvim-treesitter.configs'.setup { highlight = { enable = true } }
