@@ -32,5 +32,4 @@ let g:completion_chain_complete_list = {
     \ ]
 \ }
 
-" Treesitter
 lua require'nvim-treesitter.configs'.setup { highlight = { enable = true } }
