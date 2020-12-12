@@ -12,11 +12,11 @@ function hoa-start() {
   split-window -v \; \
   send-keys "bundle exec sidekiq -C config/sidekiq.yml" \; \
   new-window -n "localtunnel" \; \
-  send-keys "lt -p 3000 --subdomain 'krlocal' -h 'http://loca.lt'" \; \
+  send-keys "ngrok start --config ngrok.yml rails" \; \
   split-window -h \; \
-  send-keys "lt -p 3000 --subdomain 'violation-krlocal' -h 'http://loca.lt'" \; \
+  send-keys "ngrok start --config ngrok.yml portal" \; \
   split-window -v \; \
-  send-keys "lt -p 3000 --subdomain 'inspector-krlocal' -h 'http://loca.lt'" \; \
+  send-keys "ngrok start --config ngrok.yml inspector" \; \
   split-window -v \; \
-  send-keys "lt -p 3000 --subdomain 'portal-krlocal' -h 'http://loca.lt'"
+  send-keys "ngrok start --config ngrok.yml violation"
 }
