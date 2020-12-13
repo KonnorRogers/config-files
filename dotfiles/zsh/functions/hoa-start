@@ -10,13 +10,5 @@ function hoa-start() {
   split-window -v \; \
   send-keys "docker-compose up" \; \
   split-window -v \; \
-  send-keys "bundle exec sidekiq -C config/sidekiq.yml" \; \
-  new-window -n "localtunnel" \; \
-  send-keys "ngrok start --config ngrok.yml rails" \; \
-  split-window -h \; \
-  send-keys "ngrok start --config ngrok.yml portal" \; \
-  split-window -v \; \
-  send-keys "ngrok start --config ngrok.yml inspector" \; \
-  split-window -v \; \
-  send-keys "ngrok start --config ngrok.yml violation"
+  send-keys "bundle exec sidekiq -C config/sidekiq.yml"
 }
