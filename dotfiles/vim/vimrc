@@ -58,6 +58,9 @@ call plug#begin("~/.vim/plugged")
   "fuzzy finding{{{
   Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
   "}}}
+  "go{{{
+  Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
+  "}}}
   "LSP{{{
   if has("nvim-0.5")
     Plug 'neovim/nvim-lspconfig'
@@ -491,10 +494,11 @@ endif
 "}}}
 " Netrw{{{
 map <C-n> :Explore<CR>
-let g:netrw_browse_split = 2
+let g:netrw_browse_split = 4
 let g:netrw_banner = 0
+let g:netrw_mkdir_cmd = 'mkdir -p'
 let g:netrw_winsize = 25
-let g:netrw_localrmdir='rm -r'
+let g:netrw_localrmdir='rm -rf'
 "}}}
 " Completion{{{
 set cmdheight=2

@@ -3,13 +3,25 @@ let g:completion_enable_snippet = 'UltiSnips'
 set omnifunc=v:lua.vim.lsp.omnifunc
 autocmd BufEnter * lua require'completion'.on_attach()
 :lua << END
-  require'lspconfig'.tsserver.setup{ on_attach=require'completion'.on_attach }
-  require'lspconfig'.solargraph.setup{ on_attach=require'completion'.on_attach }
-  require'lspconfig'.vimls.setup{ on_attach=require'completion'.on_attach }
-  require'lspconfig'.dockerls.setup{ on_attach=require'completion'.on_attach }
-  require'lspconfig'.yamlls.setup{ on_attach=require'completion'.on_attach }
-  require'lspconfig'.bashls.setup{ on_attach=require'completion'.on_attach }
-  require'lspconfig'.elixirls.setup{ on_attach=require'completion'.on_attach }
+  nvim_lsp = require "lspconfig"
+  nvim_lsp.tsserver.setup{ on_attach=require'completion'.on_attach }
+  nvim_lsp.solargraph.setup{ on_attach=require'completion'.on_attach }
+  nvim_lsp.vimls.setup{ on_attach=require'completion'.on_attach }
+  nvim_lsp.dockerls.setup{ on_attach=require'completion'.on_attach }
+  nvim_lsp.yamlls.setup{ on_attach=require'completion'.on_attach }
+  nvim_lsp.bashls.setup{ on_attach=require'completion'.on_attach }
+  nvim_lsp.elixirls.setup{ on_attach=require'completion'.on_attach }
+  nvim_lsp.gopls.setup {
+      cmd = {"gopls", "serve"},
+      settings = {
+        gopls = {
+          analyses = {
+            unusedparams = true,
+          },
+          staticcheck = true,
+        },
+      },
+    }
 END
 
 nnoremap <silent> <Leader>vdd                 <cmd>lua vim.lsp.buf.declaration()<CR>
