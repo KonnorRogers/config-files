@@ -1,6 +1,18 @@
 let g:completion_enable_snippet = 'UltiSnips'
 
+autocmd BufEnter * lua require'completion'.on_attach()
 set omnifunc=v:lua.vim.lsp.omnifunc
+
+imap <silent> <c-p> <Plug>(completion_trigger)
+let g:completion_matching_strategy_list = ["exact", "substring", "fuzzy"]
+let g:completion_chain_complete_list = {
+    \ 'default': [
+    \    {'complete_items': ['lsp', 'snippet', 'buffers', 'tags', 'path' ]},
+    \    {'mode': '<c-p>'},
+    \    {'mode': '<c-n>'}
+    \ ]
+\ }
+
 autocmd BufEnter * lua require'completion'.on_attach()
 :lua << END
   nvim_lsp = require "lspconfig"
@@ -35,14 +47,5 @@ nnoremap <silent> <Leader>vn                  <cmd>lua vim.lsp.buf.rename()<CR>
 nnoremap <silent> <leader>vca                 <cmd>lua vim.lsp.buf.code_action()<CR>
 nnoremap <silent> <leader>vsd                 <cmd>lua vim.lsp.util.show_line_diagnostics(); vim.lsp.util.show_line_diagnostics()<CR>
 
-let g:completion_matching_strategy_list = ["exact", "substring", "fuzzy"]
-let g:completion_chain_complete_list = {
-    \ 'default': [
-    \    {'complete_items': ['lsp', 'snippet', 'buffers' ]},
-    \    {'mode': '<c-p>'},
-    \    {'mode': '<c-n>'}
-    \ ]
-\ }
 
-" Treesitter
 lua require'nvim-treesitter.configs'.setup { highlight = { enable = true } }
