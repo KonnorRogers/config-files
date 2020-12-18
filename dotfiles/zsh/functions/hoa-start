@@ -10,5 +10,13 @@ function hoa-start() {
   split-window -v \; \
   send-keys "docker-compose up" \; \
   split-window -v \; \
-  send-keys "bundle exec sidekiq -C config/sidekiq.yml"
+  send-keys "bundle exec sidekiq -C config/sidekiq.yml" \; \
+  new-window -n "localtunnel" \; \
+  send-keys "lt -p 3000 --subdomain 'krlocal' -h 'http://loca.lt'" \; \
+  split-window -h \; \
+  send-keys "lt -p 3000 --subdomain 'violation-krlocal' -h 'http://loca.lt'" \; \
+  split-window -v \; \
+  send-keys "lt -p 3000 --subdomain 'inspector-krlocal' -h 'http://loca.lt'" \; \
+  split-window -v \; \
+  send-keys "lt -p 3000 --subdomain 'portal-krlocal' -h 'http://loca.lt'"
 }

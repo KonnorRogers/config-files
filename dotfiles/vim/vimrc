@@ -68,9 +68,9 @@ call plug#begin("~/.vim/plugged")
     " Completion
     Plug 'nvim-lua/completion-nvim'
     Plug 'steelsojka/completion-buffers'
+    Plug 'neovim/nvim-lspconfig'
     Plug 'tjdevries/nlua.nvim'
     Plug 'tjdevries/lsp_extensions.nvim'
-    Plug 'kristijanhusak/completion-tags'
 
     " Neovim Tree shitter{{{
     Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
@@ -339,6 +339,8 @@ endif
 "}}}
 " Custom commands {{{
 nnoremap <Leader>ra :!bundle exec rubocop -A <C-R>=expand("%")<CR><CR>
+nnoremap <Leader>yp :!yarn prettier <C-R>=expand("%")<CR> --write<CR>
+
 nnoremap <Leader>kp :!kubs pull && kubs git_push
 nnoremap <Leader>kc :!kubs git_pull && kubs copy<cr>
 "Do not respect .gitignore
@@ -352,18 +354,6 @@ nnoremap <Leader>vf :find ./**/*
 nnoremap <Leader>vF :find
 nnoremap <Leader>e :edit ./
 nnoremap <Leader>E :edit<space>
-
-" Insert filename
-inoreabbrev %f <C-R>=expand('%:t')<CR>
-
-" Insert file basename
-iabbrev %b <C-R>=expand('%:t:r')<CR>
-
-" Insert directory
-iabbrev %d <C-R>=expand('%')<CR>
-
-" Insert full path
-iabbrev %p <C-R>=expand('%')<CR>
 
 " Treat <li> and <p> tags like the block tags they are
 let g:html_indent_tags = 'li\|p'
@@ -501,7 +491,6 @@ let g:netrw_winsize = 25
 let g:netrw_localrmdir='rm -rf'
 "}}}
 " Completion{{{
-set omnifunc=syntaxcomplete#Complete
 set cmdheight=2
 set updatetime=300
 
@@ -524,6 +513,5 @@ endif
 if has("nvim-0.5")
   nnoremap <Leader>ls :call myfunctions#InstallLanguageServers()<cr>
   source $HOME/.vim/completion.vim
-
 endif
 "}}}
