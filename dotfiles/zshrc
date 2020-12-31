@@ -135,6 +135,8 @@ elif [[ "$OSTYPE" =~ "darwin" ]]; then
   export PATH="$PATH:$HOME/nvim-osx64/bin"
   source "$(brew --prefix asdf)/asdf.sh"
   source "$(brew --prefix asdf)/etc/bash_completion.d/asdf.bash"
+  alias ctags='`brew --prefix`/bin/ctags'
+  alias ls='ls -G'
   test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh" || true
 fi
 
