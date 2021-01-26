@@ -1,5 +1,28 @@
 # frozen_string_literal: true
+# Add color coding based on Rails environment for safety
 
 Pry.config.editor = 'neovim'
+
+# banner = ""
+# if defined? Rails
+#   banner = if Rails.env.production?
+#     "\e[41;97;1m #{Rails.env} \e[0m "
+#   else
+#     "\e[42;97;1m #{Rails.env} \e[0m "
+#   end
+# end
+
+# Pry.config.prompt = Pry::Prompt.new(
+#   "rails_highlight",
+#   "highlight based on rails env",
+#   [
+#     proc { banner + Pry::Prompt[:default].wait_proc.call },
+#     proc { banner + Pry::Prompt[:default].incomplete_proc.call }
+#   ]
+# )
+# Inspired by Matt Swansons .irbrc
+
+# https://gist.github.com/swanson/3ca98caff43d52f62b4b99f6f2c7444c
+
 Pry.config.prompt = proc { ">> " }
 

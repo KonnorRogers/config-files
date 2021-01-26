@@ -28,6 +28,7 @@ alias gbr='git branch'
 alias gdel='git branch -D'
 alias gst='git status'
 alias gset='git remote set-url'
+alias g-count='git rev-list --count HEAD ^origin'
 
 # tmux
 alias tm='tmux'
