@@ -62,16 +62,18 @@ call plug#begin("~/.vim/plugged")
   "Vim-Go{{{
   Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
   "}}}
+  "COC Nvim{{{
+  Plug 'neoclide/coc.nvim', {'branch': 'release'}
+  "}}}
+
   "LSP{{{
   if has("nvim-0.5")
-    Plug 'neovim/nvim-lspconfig'
-
-    " Completion
-    Plug 'nvim-lua/completion-nvim'
-    Plug 'steelsojka/completion-buffers'
-    Plug 'neovim/nvim-lspconfig'
-    Plug 'tjdevries/nlua.nvim'
-    Plug 'tjdevries/lsp_extensions.nvim'
+    " builtinCompletion
+    " Plug 'neovim/nvim-lspconfig'
+    " Plug 'nvim-lua/completion-nvim'
+    " Plug 'steelsojka/completion-buffers'
+    " Plug 'tjdevries/nlua.nvim'
+    " Plug 'tjdevries/lsp_extensions.nvim'
 
     " Neovim Tree shitter{{{
     Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
@@ -447,10 +449,10 @@ let g:ale_ignore_lsp = 1
 
 let g:ale_fixers = {
       \ 'ruby': ['rubocop'],
-      \ 'javascript': ['prettier_standard', 'prettier', 'eslint'],
-      \ 'typescript': ['prettier_standard', 'prettier', 'eslint'],
-      \ 'html': ['prettier_standard', 'prettier'],
-      \ 'eruby': ['prettier_standard', 'prettier']
+      \ 'javascript': ['eslint', 'prettier'],
+      \ 'typescript': ['eslint', 'prettier'],
+      \ 'html': ['prettier'],
+      \ 'eruby': ['prettier']
       \ }
 
 nmap <silent> [a <Plug>(ale_previous_wrap)
@@ -516,7 +518,6 @@ endif
 
 " Shelf this for later
 if has("nvim-0.5")
-  nnoremap <Leader>ls :call myfunctions#InstallLanguageServers()<cr>
   source $HOME/.vim/completion.vim
 endif
 "}}}
