@@ -27,24 +27,35 @@ function! myfunctions#InstallLanguageServers()
         \ 'docker-langserver': 'dockerfile-language-server-nodejs',
         \ 'bash-language-server': 'bash-language-server',
         \ 'yaml-language-server': 'yaml-language-server',
-        \ 'typescript-language-server': 'typescript-language-server',
+        \ 'typescript-language-server': 'typescript-language-server typescript',
         \ 'vim-language-server': 'vim-language-server',
+        \ 'diagnostic-languageserver': 'diagnostic-languageserver'
         \ }
 
   let s:npm_servers_to_install = ''
 
   for key in keys(s:npm_lang_servers)
-    if !executable(key)
-      let s:npm_servers_to_install = s:npm_servers_to_install . s:npm_lang_servers[key] . ' '
-    endif
+    let s:npm_servers_to_install = s:npm_servers_to_install . s:npm_lang_servers[key] . ' '
   endfor
 
-  if !empty(s:npm_servers_to_install)
-    execute "!npm install -g " . s:npm_servers_to_install
-    execute "!asdf reshim"
-  endif
+  execute "!yarn global add " . s:npm_servers_to_install
+  execute "!gem install solargraph"
+  execute "!asdf reshim"
 
-  if !executable('solargraph')
-    execute "!gem install solargraph"
-  endif
 endfunction
+
+
+function! myfunctions#TreesitterInstall()
+  let s:treesitter_completion = [
+    \ "ruby",
+    \ "typescript",
+    \ "javascript",
+    \ "go",
+    \ "lua",
+    \ ]
+
+  for option in s:treesitter_completion
+    execute "TSInstall " . option
+  endfor
+endfunction
+
