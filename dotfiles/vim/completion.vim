@@ -49,43 +49,48 @@ let g:completion_confirm_key = "\<C-y>"
     end
   end
 
---
---  -- Use a loop to conveniently both setup defined servers
---  -- and map buffer local keybindings when the language server attaches
---  local servers = {
---    {name = "gopls"},
---    {name = "solargraph"},
---    {
---      name = "tsserver",
---      config = {
---        -- cmd = {
---        --   "typescript-language-server",
---        --   "--stdio",
---        --   "--tsserver-log-file",
---        --   "tslog"
---        -- }
---        -- See https://github.com/neovim/nvim-lsp/issues/237
---        root_dir = nvim_lsp.util.root_pattern("tsconfig.json", ".git"),
---      }
---    },
---    {name = "vimls"},
---    {name = "dockerls"},
---    {name = "yamlls"},
---    {name = "bashls"},
---    {name = "gopls"}
---  }
 
---   for _, lsp in ipairs(servers) do
---     if lsp.config then
---       lsp.config.on_attach = on_attach
---     else
---       lsp.config = {
---         on_attach = on_attach
---       }
---     end
---
---     nvim_lsp[lsp.name].setup(lsp.config)
---   end
+  -- Use a loop to conveniently both setup defined servers
+  -- and map buffer local keybindings when the language server attaches
+  local servers = {
+    {name = "gopls"},
+    {
+      name = "solargraph",
+      config = {
+        root_dir = nvim_lsp.util.root_pattern("Gemfile", ".git")
+      }
+    },
+    {
+      name = "tsserver",
+      config = {
+        -- cmd = {
+        --   "typescript-language-server",
+        --   "--stdio",
+        --   "--tsserver-log-file",
+        --   "tslog"
+        -- }
+        -- See https://github.com/neovim/nvim-lsp/issues/237
+        root_dir = nvim_lsp.util.root_pattern("tsconfig.json", ".git"),
+      }
+    },
+    {name = "vimls"},
+    {name = "dockerls"},
+    {name = "yamlls"},
+    {name = "bashls"},
+    {name = "gopls"}
+  }
+
+   for _, lsp in ipairs(servers) do
+     if lsp.config then
+       lsp.config.on_attach = on_attach
+     else
+       lsp.config = {
+         on_attach = on_attach
+       }
+     end
+
+     nvim_lsp[lsp.name].setup(lsp.config)
+   end
 
 
   local chain_complete_list = {
