@@ -11,6 +11,7 @@ alias ncfg='vim ~/.config/nvim/init.vim'
 alias tcfg='vim ~/.tmux.conf'
 alias lsc='colorls'
 alias ls='ls --color'
+alias port='lsof -wni tcp:'
 
 
 # git
@@ -93,5 +94,3 @@ alias ynr='yarn run'
 alias yna='yarn add'
 alias ynad='yard add -D'
 alias ynag='yarn add global'
-
-

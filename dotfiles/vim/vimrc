@@ -230,7 +230,7 @@ endif
 "}}}
 "Colorscheme / appearance{{{
 set background=dark
-colorscheme nord
+colorscheme ayu
 if has('nvim') || has('termguicolors')
   set termguicolors
 endif
