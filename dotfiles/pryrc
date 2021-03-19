@@ -23,6 +23,3 @@ Pry.config.prompt = Pry::Prompt.new(
 # Inspired by Matt Swansons .irbrc
 
 # https://gist.github.com/swanson/3ca98caff43d52f62b4b99f6f2c7444c
-
-# Pry.config.prompt = proc { ">> " }
-

@@ -2,12 +2,8 @@ snippet req "require statement" w
 const $1 = require("$2")
 endsnippet
 
-snippet im "import default" b
-import $1 from "$2";$0
-endsnippet
-
-snippet imb "import named exports" b
-import { $1 } from "$2";$0
+snippet im "import" b
+import $2 from '$1';
 endsnippet
 
 snippet exd "export default" i

@@ -133,6 +133,8 @@ if [[ "$OSTYPE" =~ "linux" ]]; then
 elif [[ "$OSTYPE" =~ "darwin" ]]; then
   export PATH="/usr/local/homebrew/bin:$PATH"
   export PATH="$HOME/nvim-osx64/bin:$PATH"
+  export JAVA_HOME="$(brew --prefix java)"
+  export PATH="$JAVA_HOME/bin:$PATH"
   source "$(brew --prefix asdf)/asdf.sh"
   source "$(brew --prefix asdf)/etc/bash_completion.d/asdf.bash"
   alias ctags='`brew --prefix`/bin/ctags'

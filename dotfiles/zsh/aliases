@@ -11,8 +11,10 @@ alias ncfg='vim ~/.config/nvim/init.vim'
 alias tcfg='vim ~/.tmux.conf'
 alias lsc='colorls'
 alias ls='ls --color'
-alias port='lsof -wni tcp:'
-
+alias port='lsof -wni'
+alias rb-diff='git ls-files -m | xargs ls -1 2>/dev/null |  grep "\.rb" | xargs'
+alias js-diff='git ls-files -m | xargs ls -1 2>/dev/null | grep "\.\(jsx?\|tsx?\)" | xargs'
+alias css-diff='git ls-files -m | xargs ls -1 2>/dev/null | grep "\.s\?[ca]ss" | xargs'
 
 # git
 alias gaa='git add -A'

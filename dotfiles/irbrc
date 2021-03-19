@@ -10,6 +10,8 @@ if defined? Rails
   # Build a custom prompt
   IRB.conf[:PROMPT][:CUSTOM] = IRB.conf[:PROMPT][:DEFAULT].merge(
     PROMPT_I: banner + IRB.conf[:PROMPT][:DEFAULT][:PROMPT_I],
+    PROMPT_C: banner + IRB.conf[:PROMPT][:DEFAULT][:PROMPT_C],
+    PROMPT_S: banner + IRB.conf[:PROMPT][:DEFAULT][:PROMPT_S],
   )
 
   # Use custom prompt by default
