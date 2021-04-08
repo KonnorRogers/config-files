@@ -135,6 +135,10 @@ elif [[ "$OSTYPE" =~ "darwin" ]]; then
   export PATH="$HOME/nvim-osx64/bin:$PATH"
   export JAVA_HOME="$(brew --prefix java)"
   export PATH="$JAVA_HOME/bin:$PATH"
+
+  # Workaround for mimemagic
+  export FREEDESKTOP_MIME_TYPES_PATH="/usr/local/homebrew/share/mime/packages/freedesktop.org.xml"
+
   source "$(brew --prefix asdf)/asdf.sh"
   source "$(brew --prefix asdf)/etc/bash_completion.d/asdf.bash"
   alias ctags='`brew --prefix`/bin/ctags'

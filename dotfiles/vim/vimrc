@@ -9,10 +9,6 @@ endif
 
 call plug#begin("~/.vim/plugged")
   "Colorschemes{{{
-  Plug 'pineapplegiant/spaceduck', { 'branch': 'main' }
-  Plug 'wadackel/vim-dogrun'
-  Plug 'franbach/miramare'
-  Plug 'beikome/cosme.vim'
   Plug 'arzg/vim-colors-xcode'
   "}}}
   "Tpope plugins{{{
@@ -54,9 +50,6 @@ call plug#begin("~/.vim/plugged")
   "Misc{{{
   Plug 'junegunn/rainbow_parentheses.vim'
   "}}}
-  "Linting{{{
-  Plug 'dense-analysis/ale'
-  "}}}
   "telescope {{{
   Plug 'nvim-lua/popup.nvim'
   Plug 'nvim-lua/plenary.nvim'
@@ -71,9 +64,9 @@ call plug#begin("~/.vim/plugged")
     Plug 'neovim/nvim-lspconfig'
     Plug 'nvim-lua/completion-nvim'
     Plug 'steelsojka/completion-buffers'
+    Plug 'nvim-treesitter/completion-treesitter'
     Plug 'tjdevries/nlua.nvim'
     Plug 'tjdevries/lsp_extensions.nvim'
-    Plug 'nvim-treesitter/completion-treesitter'
 
     " Neovim Tree shitter{{{
     Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
@@ -307,6 +300,7 @@ nnoremap <leader>fh <cmd>lua require('telescope.builtin').help_tags()<cr>
 "}}}
 " Custom commands {{{
 nnoremap <Leader>ra :!bundle exec rubocop -A <C-R>=expand("%")<CR><CR>
+nnoremap <Leader>rb :!bundle exec standardrb --fix <C-R>=expand("%")<CR><CR>
 nnoremap <Leader>yp :!yarn prettier <C-R>=expand("%")<CR> --write<CR>
 
 nnoremap <Leader>kp :!kubs pull && kubs git_push
@@ -391,38 +385,6 @@ augroup END
 " Run ctags on current directory
 nnoremap <Leader>gt :call myfunctions#GitCtags()<CR>
 "}}}
-" ALE{{{
-let g:ale_fix_on_save = 0
-
-""Errors
-let g:ale_sign_error = '>>'
-let g:ale_sign_warning = '--'
-let g:ale_set_highlights = 0
-
-"" Linting
-let g:ale_lint_on_text_changed = 0
-let g:ale_lint_on_insert_leave = 0
-let g:ale_lint_on_enter = 0
-let g:ale_set_loclist = 1
-let g:ale_set_quickfix = 0
-let g:ale_ignore_lsp = 1
-
-let g:ale_fixers = {
-      \ 'ruby': ['rubocop'],
-      \ 'javascript': ['eslint', 'prettier'],
-      \ 'typescript': ['eslint', 'prettier'],
-      \ 'html': ['prettier'],
-      \ 'eruby': ['prettier']
-      \ }
-
-nmap <silent> [a <Plug>(ale_previous_wrap)
-nmap <silent> ]a <Plug>(ale_next_wrap)
-
-nnoremap <Leader>ar :ALEFindReferences<CR>
-nnoremap <Leader>as :ALESymbolSearch<CR>
-nnoremap <Leader>af :ALEFix<CR>
-nnoremap <Leader>al :ALELint<CR>
-"}}}
 " Testing{{{
 
 nmap <silent> t<C-n> :TestNearest<CR>
@@ -447,7 +409,7 @@ endif
 "}}}
 " Netrw{{{
 map <C-n> :Explore<CR>
-let g:netrw_browse_split = 2
+let g:netrw_browse_split = 1
 let g:netrw_banner = 0
 let g:netrw_mkdir_cmd = 'mkdir -p'
 let g:netrw_winsize = 25
