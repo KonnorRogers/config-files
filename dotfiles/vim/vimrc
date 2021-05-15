@@ -50,13 +50,11 @@ call plug#begin("~/.vim/plugged")
   "Misc{{{
   Plug 'junegunn/rainbow_parentheses.vim'
   "}}}
-  "telescope {{{
-  Plug 'nvim-lua/popup.nvim'
-  Plug 'nvim-lua/plenary.nvim'
-  Plug 'nvim-telescope/telescope.nvim'
-  "}}}
   "Vim-Go{{{
   Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
+  "}}}
+  "Linting{{{
+  Plug 'dense-analysis/ale'
   "}}}
   "LSP{{{
   if has("nvim-0.5")
@@ -292,12 +290,6 @@ nnoremap [q :cprevious<CR>zz
 nnoremap [Q :cfirst<CR>zz
 nnoremap ]Q :clast<CR>zz
 "}}}
-" telescope {{{
-nnoremap <leader>ff <cmd>lua require('telescope.builtin').find_files()<cr>
-nnoremap <leader>fg <cmd>lua require('telescope.builtin').live_grep()<cr>
-nnoremap <leader>fb <cmd>lua require('telescope.builtin').buffers()<cr>
-nnoremap <leader>fh <cmd>lua require('telescope.builtin').help_tags()<cr>
-"}}}
 " Custom commands {{{
 nnoremap <Leader>ra :!bundle exec rubocop -A <C-R>=expand("%")<CR><CR>
 nnoremap <Leader>rb :!bundle exec standardrb --fix <C-R>=expand("%")<CR><CR>
@@ -307,8 +299,8 @@ nnoremap <Leader>kp :!kubs pull && kubs git_push
 nnoremap <Leader>kc :!kubs git_pull && kubs copy<cr>
 
 " Vim based file navigation
-nnoremap <Leader>vf :find ./**/*
-nnoremap <Leader>vF :find
+nnoremap <Leader>ff :find ./**/*
+nnoremap <Leader>fe :find
 nnoremap <Leader>e :edit ./
 nnoremap <Leader>E :edit<space>
 
@@ -409,16 +401,51 @@ endif
 "}}}
 " Netrw{{{
 map <C-n> :Explore<CR>
-let g:netrw_browse_split = 1
+let g:netrw_browse_split = 0
 let g:netrw_banner = 0
 let g:netrw_mkdir_cmd = 'mkdir -p'
 let g:netrw_winsize = 25
 let g:netrw_localrmdir='rm -rf'
-let g:netrw_liststyle=3
+let g:netrw_liststyle=0
 "}}}
 "Vim-Go{{{
 let g:go_def_mode='gopls'
 let g:go_info_mode='gopls'
+"}}}
+" ALE{{{
+let g:ale_fix_on_save = 0
+
+""Errors
+let g:ale_sign_error = '>>'
+let g:ale_sign_warning = '--'
+let g:ale_set_highlights = 0
+
+"" Linting
+let g:ale_lint_on_text_changed = 0
+let g:ale_lint_on_insert_leave = 1
+let g:ale_lint_on_enter = 0
+let g:ale_set_loclist = 1
+let g:ale_set_quickfix = 0
+let g:ale_ignore_lsp = 1
+
+let g:ale_fixers = {
+      \ 'ruby': ['standardrb', 'rubocop'],
+      \ 'javascript': ['standard', 'eslint', 'prettier'],
+      \ 'typescript': ['ts-standard', 'eslint', 'prettier'],
+      \ 'html': ['standard', 'prettier'],
+      \ 'eruby': ['erb-lint', 'prettier']
+      \ }
+
+nmap <silent> [a <Plug>(ale_previous_wrap)
+nmap <silent> ]a <Plug>(ale_next_wrap)
+
+nnoremap <Leader>ar :ALEFindReferences<CR>
+nnoremap <Leader>as :ALESymbolSearch<CR>
+nnoremap <Leader>af :ALEFix<CR>
+nnoremap <Leader>al :ALELint<CR>
+"}}}
+"{{{ NVIM lsp
+let g:lsp_diagnostics_enabled = 0
 "}}}
 " Completion{{{
 set cmdheight=2

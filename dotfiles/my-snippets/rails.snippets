@@ -17,3 +17,11 @@ assert_difference '${1:Model.count}', ${2:1} do
   ${3:${VISUAL}}
 end
 endsnippet
+
+snippet vc "ViewComponent" b
+class $2Component < ViewComponent::Base
+  def initialize$3
+    $4
+  end
+end
+endsnippet
