@@ -50,6 +50,9 @@ call plug#begin("~/.vim/plugged")
   "Misc{{{
   Plug 'junegunn/rainbow_parentheses.vim'
   "}}}
+  "fuzzy finding{{{
+  Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+  "}}}
   "Vim-Go{{{
   Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
   "}}}
@@ -290,17 +293,65 @@ nnoremap [q :cprevious<CR>zz
 nnoremap [Q :cfirst<CR>zz
 nnoremap ]Q :clast<CR>zz
 "}}}
+" fzf {{{
+let g:fzf_action = {
+  \ 'ctrl-t': 'tab split',
+  \ 'ctrl-x': 'split',
+  \ 'ctrl-v': 'vsplit' }
+
+let g:fzf_layout = {
+    \ 'down': '~40%'
+    \ }
+
+let g:fzf_colors = {
+  \ 'fg':      ['fg', 'Normal'],
+  \ 'bg':      ['bg', 'Normal'],
+  \ 'hl':      ['fg', 'Comment'],
+  \ 'fg+':     ['fg', 'String', 'CursorColumn', 'Normal'],
+  \ 'bg+':     ['bg', 'Search', 'CursorColumn'],
+  \ 'hl+':     ['fg', 'Statement'],
+  \ 'info':    ['fg', 'PreProc'],
+  \ 'border':  ['fg', 'Ignore'],
+  \ 'prompt':  ['fg', 'Conditional'],
+  \ 'pointer': ['fg', 'Exception'],
+  \ 'marker':  ['fg', 'Keyword'],
+  \ 'spinner': ['fg', 'Label'],
+  \ 'header':  ['fg', 'Comment'] }
+
+" If ag is installed, use ag
+if executable('ag')
+  command! -bang -complete=file GitFiles call fzf#run(fzf#wrap({'source': 'ag --hidden -g ""', 'sink': 'e'}, <bang>0))
+  command! -bang -complete=file Files call fzf#run(fzf#wrap({'source': 'ag -u -g ""', 'sink': 'e'}, <bang>0))
+else
+  command! -bang -complete=file GitFiles call fzf#run(fzf#wrap({'source': 'git ls-files', 'sink': 'e'}, <bang>0))
+  command! -bang -complete=file Files call fzf#run(fzf#wrap({'source': 'find .', 'sink': 'e'}, <bang>0))
+endif
+
+if has('nvim') && !exists('g:fzf_layout')
+  autocmd! FileType fzf
+  autocmd  FileType fzf set laststatus=0 noshowmode noruler
+    \| autocmd BufLeave <buffer> set laststatus=2 showmode ruler
+endif
+
+"Do not respect .gitignore
+nnoremap <Leader>F :Files<CR>
+
+"Respect .gitignore
+nnoremap <Leader>ff :GitFiles<CR>
+"}}}
 " Custom commands {{{
 nnoremap <Leader>ra :!bundle exec rubocop -A <C-R>=expand("%")<CR><CR>
 nnoremap <Leader>rb :!bundle exec standardrb --fix <C-R>=expand("%")<CR><CR>
+nnoremap <Leader>ts :!yarn ts-standard <C-R>=expand("%")<CR> --fix<CR>
+nnoremap <Leader>js :!standard <C-R>=expand("%")<CR> --fix<CR>
 nnoremap <Leader>yp :!yarn prettier <C-R>=expand("%")<CR> --write<CR>
 
 nnoremap <Leader>kp :!kubs pull && kubs git_push
 nnoremap <Leader>kc :!kubs git_pull && kubs copy<cr>
 
 " Vim based file navigation
-nnoremap <Leader>ff :find ./**/*
-nnoremap <Leader>fe :find
+nnoremap <Leader>vf :find ./**/*
+nnoremap <Leader>vF :find
 nnoremap <Leader>e :edit ./
 nnoremap <Leader>E :edit<space>
 

@@ -123,7 +123,7 @@ DOT_ZSH="$HOME/.zsh"
 source "$DOT_ZSH/aliases"
 
 # add functions
-for function in $DOT_ZSH/functions/*; do
+for function in "$DOT_ZSH"/functions/*; do
   source $function
 done
 
@@ -146,5 +146,9 @@ elif [[ "$OSTYPE" =~ "darwin" ]]; then
   test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh" || true
 fi
 
-autoload -Uz compinit && compinit -i
+node_version="$(node -v)"
+export NODE_VERSION="${node_version:1}"
+export NODE_PATH="$HOME/.asdf/installs/nodejs/${$(node -v)}/.npm/lib"
 
+autoload -Uz compinit && compinit -i
+eval "$(direnv hook zsh)"

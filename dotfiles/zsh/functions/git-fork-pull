@@ -1,0 +1,10 @@
+git-fork-pull() {
+  reponame="$1"
+  theirname="$2"
+  theirbranch="$3"
+  mybranch="$4"
+
+  git remote add "$theirname" "git@github.com:$theirname/$reponame.git"
+  git fetch "$theirname"
+  git checkout -b "$mybranch" "$theirname/$theirbranch"
+}

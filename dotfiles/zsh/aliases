@@ -32,6 +32,7 @@ alias gdel='git branch -D'
 alias gst='git status'
 alias gset='git remote set-url'
 alias g-count='git rev-list --count HEAD ^origin'
+alias g-current='git branch --show-current'
 
 # tmux
 alias tm='tmux'
@@ -84,6 +85,7 @@ alias dcrm='docker-compose run --rm'
 alias dra-images='docker image rm $(docker image ls -a -q) --force'
 alias ddebug='docker-compose run --service-ports'
 alias docker-clean='docker image rm $(docker image ls -a -q) --force && docker system prune --all --volumes --force '
+alias dka='docker kill $(docker ps -q)'
 
 # npm
 alias npr='npm run'
@@ -96,3 +98,5 @@ alias ynr='yarn run'
 alias yna='yarn add'
 alias ynad='yard add -D'
 alias ynag='yarn add global'
+
+alias fire-in-the-hole='find . -name "node_modules" -type d -prune -print | xargs du -chs'
