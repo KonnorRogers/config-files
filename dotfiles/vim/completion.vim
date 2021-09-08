@@ -81,15 +81,12 @@ let g:completion_confirm_key = "\<C-y>"
   }
 
    for _, lsp in ipairs(servers) do
-     if lsp.config then
-       lsp.config.on_attach = on_attach
-     else
-       lsp.config = {
-         on_attach = on_attach
-       }
-     end
-
-     nvim_lsp[lsp.name].setup(lsp.config)
+      nvim_lsp[lsp].setup = {
+        on_attach = on_attach
+        flags = {
+          debounce_text_changes = 50,
+        }
+      }
    end
 
 
