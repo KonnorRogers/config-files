@@ -63,11 +63,10 @@ call plug#begin("~/.vim/plugged")
   if has("nvim-0.5")
     " builtinCompletion
     Plug 'neovim/nvim-lspconfig'
-    Plug 'nvim-lua/completion-nvim'
-    Plug 'steelsojka/completion-buffers'
-    Plug 'nvim-treesitter/completion-treesitter'
-    Plug 'tjdevries/nlua.nvim'
-    Plug 'tjdevries/lsp_extensions.nvim'
+    Plug 'hrsh7th/cmp-nvim-lsp'
+    Plug 'hrsh7th/cmp-buffer'
+    Plug 'hrsh7th/nvim-cmp'
+    Plug 'quangnguyen30192/cmp-nvim-ultisnips'
 
     " Neovim Tree shitter{{{
     Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
@@ -371,7 +370,7 @@ endif
 " bind <Leader>gw to grep word under cursor
 nnoremap <Leader>gw :grep! "\b<C-R><C-W>\b"<CR>:cw<CR>
 
-map <Leader>rn :call myfunctions#RenameFile()<cr>
+map <Leader>rf :call myfunctions#RenameFile()<cr>
 
 " Create a new file
 map <Leader>to :edit <C-R>=expand('%:p:h') . '/'<CR>
@@ -519,6 +518,7 @@ endif
 
 " <c-space> becomes completion
 inoremap <C-space> <C-x><C-o>
+set omnifunc=syntaxcomplete#Complete
 
 " Shelf this for later
 if has("nvim-0.5")
