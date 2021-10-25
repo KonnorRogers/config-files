@@ -321,11 +321,11 @@ let g:fzf_colors = {
 
 " If ag is installed, use ag
 if executable('ag')
-  command! -bang -nargs=0 -complete=file GitFiles call fzf#run(fzf#wrap({'source': 'ag --hidden -g ""', 'sink': 'e'}, <bang>0))
-  command! -bang -nargs=0 -complete=file Files call fzf#run(fzf#wrap({'source': 'ag -u -g ""', 'sink': 'e'}, <bang>0))
+  command! -bang GitFiles call fzf#run(fzf#wrap({'source': 'ag --hidden -g ""', 'sink': 'e'}, <bang>0))
+  command! -bang Files call fzf#run(fzf#wrap({'source': 'ag -u -g ""', 'sink': 'e'}, <bang>0))
 else
-  command! -bang -nargs=0 -complete=file GitFiles call fzf#run(fzf#wrap({'source': 'git ls-files', 'sink': 'e'}, <bang>0))
-  command! -bang -nargs=0 -complete=file Files call fzf#run(fzf#wrap({'source': 'find .', 'sink': 'e'}, <bang>0))
+  command! -bang GitFiles call fzf#run(fzf#wrap({'source': 'git ls-files', 'sink': 'e'}, <bang>0))
+  command! -bang Files call fzf#run(fzf#wrap({'source': 'find .', 'sink': 'e'}, <bang>0))
 endif
 
 if has('nvim') && !exists('g:fzf_layout')
