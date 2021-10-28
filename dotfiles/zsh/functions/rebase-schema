@@ -1,0 +1,5 @@
+rebase-schema () {
+  git reset HEAD db/schema.rb
+  git checkout db/schema.rb
+  rake db:migrate
+}
