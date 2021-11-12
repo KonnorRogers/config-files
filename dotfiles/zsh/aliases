@@ -36,6 +36,7 @@ alias g-current='git branch --show-current'
 
 # tmux
 alias tm='tmux'
+alias tmc='tmux new "export TERM=screen-256color; $SHELL"'
 alias tmd='tmux detach'
 
 # heroku
