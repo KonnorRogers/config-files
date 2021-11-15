@@ -153,3 +153,6 @@ export NODE_PATH="$HOME/.asdf/installs/nodejs/${$(node -v)}/.npm/lib"
 
 autoload -Uz compinit && compinit -i
 eval "$(direnv hook zsh)"
+
+export PNPM_HOME="/Users/konnorrogers/Library/pnpm"
+export PATH="$PNPM_HOME:$PATH"
