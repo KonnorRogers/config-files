@@ -33,6 +33,7 @@ alias gst='git status'
 alias gset='git remote set-url'
 alias g-count='git rev-list --count HEAD ^origin'
 alias g-current='git branch --show-current'
+alias gwt='git worktree'
 
 # tmux
 alias tm='tmux'

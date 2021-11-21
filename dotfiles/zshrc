@@ -144,6 +144,10 @@ elif [[ "$OSTYPE" =~ "darwin" ]]; then
   source "$(brew --prefix asdf)/etc/bash_completion.d/asdf.bash"
   alias ctags='`brew --prefix`/bin/ctags'
   alias ls='ls -G'
+
+  export PNPM_HOME="/Users/konnorrogers/Library/pnpm"
+  export PATH="$PNPM_HOME:$PATH"
+
   test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh" || true
 fi
 
@@ -154,5 +158,3 @@ export NODE_PATH="$HOME/.asdf/installs/nodejs/${$(node -v)}/.npm/lib"
 autoload -Uz compinit && compinit -i
 eval "$(direnv hook zsh)"
 
-export PNPM_HOME="/Users/konnorrogers/Library/pnpm"
-export PATH="$PNPM_HOME:$PATH"
