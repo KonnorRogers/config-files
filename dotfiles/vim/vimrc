@@ -378,7 +378,7 @@ inoremap <c-x><c-k> <c-x><c-k>
 
 " Rainbow parentheses
 let g:rainbow#max_level = 16
-let g:rainbow#pairs = [['(', ')'], ['[', ']'], ['{', '}'], ['<', '>']]
+let g:rainbow#pairs = [['(', ')'], ['[', ']'], ['{', '}']]
 let g:rainbow#blacklist = ["#000000"]
 
 nnoremap <Leader>rp :RainbowParentheses!!<CR>
