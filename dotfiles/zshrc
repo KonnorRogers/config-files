@@ -145,7 +145,7 @@ elif [[ "$OSTYPE" =~ "darwin" ]]; then
   alias ctags='`brew --prefix`/bin/ctags'
   alias ls='ls -G'
 
-  export PNPM_HOME="/Users/konnorrogers/Library/pnpm"
+  export PNPM_HOME="$HOME/Library/pnpm"
   export PATH="$PNPM_HOME:$PATH"
 
   test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh" || true
