@@ -470,7 +470,8 @@ set updatetime=300
 set shortmess+=c
 
 " Set completeopt to have a better completion experience
-set completeopt=menuone,noinsert,noselect
+
+set completeopt=menu,menuone,noselect
 
 " <c-space> becomes completion
 inoremap <C-space> <C-x><C-o>
