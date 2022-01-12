@@ -44,9 +44,6 @@ call plug#begin("~/.vim/plugged")
   Plug 'mattn/emmet-vim'
   Plug 'ap/vim-css-color'
   "}}}
-  " Snippets{{{
-  Plug 'SirVer/ultisnips'
-  "}}}
   "Misc{{{
   Plug 'junegunn/rainbow_parentheses.vim'
   "}}}
@@ -57,6 +54,11 @@ call plug#begin("~/.vim/plugged")
   "Vim-Go{{{
   Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
   "}}}
+  "Snippets{{{
+  Plug 'rafamadriz/friendly-snippets'
+  Plug 'hrsh7th/vim-vsnip'
+  Plug 'hrsh7th/vim-vsnip-integ'
+  "}}}
   "LSP{{{
   if has("nvim-0.5")
     " builtinCompletion
@@ -65,8 +67,11 @@ call plug#begin("~/.vim/plugged")
     Plug 'williamboman/nvim-lsp-installer'
     Plug 'hrsh7th/cmp-nvim-lsp'
     Plug 'hrsh7th/cmp-buffer'
+    Plug 'hrsh7th/cmp-path'
+    Plug 'hrsh7th/cmp-cmdline'
     Plug 'hrsh7th/nvim-cmp'
-    Plug 'quangnguyen30192/cmp-nvim-ultisnips'
+    " For vsnip users.
+    Plug 'hrsh7th/cmp-vsnip'
 
     " Neovim Tree shitter{{{
     Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
@@ -99,7 +104,6 @@ set colorcolumn=81
 
 "Left hand column numbers
 set number
-set relativenumber
 
 "Display extra whitespace
 set list listchars=tab:»·,trail:·,nbsp:·
@@ -209,13 +213,6 @@ augroup END
 
 " Strip whitespace
 autocmd BufWritePre * %s/\s\+$//e
-
-" Better file completion
-" augroup FilenameCompletion
-"   autocmd!
-"   autocmd InsertEnter * silent! execute 'cd %:h'
-"   autocmd InsertLeave * silent! execute 'cd -'
-" augroup END
 
 " Return cursor to original position
 if has("autocmd")
@@ -350,23 +347,40 @@ let g:ragtag_global_maps = 1
 " Dont let it override <C-y>
 let g:user_emmet_leader_key = '<C-e>'
 "}}}
-" Ultisnips{{{
-let g:python3_host_prog='/usr/bin/python3'
-
-let g:UltiSnipsExpandTrigger="<c-k>"
-let g:UltiSnipsJumpForwardTrigger="<c-k>"
-let g:UltiSnipsJumpBackwardTrigger="<c-j>"
-let g:UltiSnipsListSnippets="<c-l>"
-
-" If you want :UltiSnipsEdit to split your window.
-let g:UltiSnipsEditSplit="vertical"
-
+" Vsnip{{{
 " Edit snippets
-nnoremap <Leader>us :UltiSnipsEdit<CR>
-nnoremap <Leader>ue :edit $HOME/.my-snippets<CR>
+nnoremap <Leader>so :VsnipOpen<CR>
+nnoremap <Leader>se :edit $HOME/.my-snippets<CR>
+
+" Expand
+imap <expr> <C-k>   vsnip#expandable()  ? '<Plug>(vsnip-expand)'         : '<C-k>'
+smap <expr> <C-k>   vsnip#expandable()  ? '<Plug>(vsnip-expand)'         : '<C-k>'
+
+" Expand or jump
+imap <expr> <C-l>   vsnip#available(1)  ? '<Plug>(vsnip-expand-or-jump)' : '<C-l>'
+smap <expr> <C-l>   vsnip#available(1)  ? '<Plug>(vsnip-expand-or-jump)' : '<C-l>'
+
+" Jump forward or backward
+imap <expr> <C-k>   vsnip#jumpable(1)   ? '<Plug>(vsnip-jump-next)'      : '<C-k>'
+smap <expr> <C-k>   vsnip#jumpable(1)   ? '<Plug>(vsnip-jump-next)'      : '<C-k>'
+imap <expr> <C-j> vsnip#jumpable(-1)  ? '<Plug>(vsnip-jump-prev)'      : '<C-j>'
+smap <expr> <C-j> vsnip#jumpable(-1)  ? '<Plug>(vsnip-jump-prev)'      : '<C-j>'
+
+" Select or cut text to use as $TM_SELECTED_TEXT in the next snippet.
+" See https://github.com/hrsh7th/vim-vsnip/pull/50
+nmap        s   <Plug>(vsnip-select-text)
+xmap        s   <Plug>(vsnip-select-text)
+nmap        S   <Plug>(vsnip-cut-text)
+xmap        S   <Plug>(vsnip-cut-text)
+
+" If you want to use snippet for multiple filetypes, you can `g:vsnip_filetypes` for it.
+let g:vsnip_filetypes = {}
+let g:vsnip_filetypes.javascriptreact = ['javascript']
+let g:vsnip_filetypes.typescriptreact = ['typescript']
+let g:vsnip_filetypes.rails = ['ruby']
 
 " Set my snippets
-let g:UltiSnipsSnippetDirectories = [$HOME.'/.my-snippets']
+let g:vsnip_snippet_dir = [$HOME.'/.my-snippets']
 
 " Remove backward jump interference
 inoremap <c-x><c-k> <c-x><c-k>
@@ -430,12 +444,7 @@ let g:lsp_diagnostics_enabled = 1
 " Completion{{{
 set cmdheight=2
 set updatetime=300
-
-" Don't pass messages to |ins-completion-menu|.
 set shortmess+=c
-
-" Set completeopt to have a better completion experience
-
 set completeopt=menu,menuone,noselect
 
 " <c-space> becomes completion
