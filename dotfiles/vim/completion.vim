@@ -31,7 +31,6 @@ lua <<EOF
 
   -- Setup nvim-cmp.
   local cmp = require'cmp'
-  local lspkind = require'lspkind'
 
   cmp.setup({
     snippet = {
@@ -39,18 +38,6 @@ lua <<EOF
       expand = function(args)
         vim.fn["vsnip#anonymous"](args.body) -- For `vsnip` users.
       end,
-    },
-    formatting = {
-      format = lspkind.cmp_format {
-        with_text: true,
-        menu = {
-          buffer = "[buf]"
-          nvim_lsp = "[LSP]"
-          nvim_lua = "[api]"
-          path = "[path]"
-          vsnip = "[snip]"
-        }
-      }
     },
     mapping = {
       ['<C-b>'] = cmp.mapping(cmp.mapping.scroll_docs(-4), { 'i', 'c' }),
@@ -64,16 +51,28 @@ lua <<EOF
       ['<CR>'] = cmp.mapping.confirm({ select = false }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
     },
     sources = cmp.config.sources({
-      { name = 'nvim_lua' },
       { name = 'nvim_lsp' },
+      { name = 'vsnip' }, -- For vsnip users.
       { name = 'path' },
-c     { name = 'vsnip' }, -- For vsnip users.
-      { name = 'buffer', keyword_length = 5 },
+      { name = 'buffer' },
+      { name = 'cmdline' },
     })
-    experimental = {
-      native_menu = false
-    }
   })
+
+  -- Use buffer source for `/` (if you enabled `native_menu`, this won't work anymore).
+  -- cmp.setup.cmdline('/', {
+  --   sources = {
+  --     { name = 'buffer' }
+  --   }
+  -- })
+
+  -- Use cmdline & path source for ':' (if you enabled `native_menu`, this won't work anymore).
+  -- cmp.setup.cmdline(':', {
+  --   sources = cmp.config.sources({
+  --     { name = 'path' },
+  --     { name = 'cmdline' }
+  --   })
+  -- })
 
   -- nvim-cmp supports additional completion capabilities
   local capabilities = vim.lsp.protocol.make_client_capabilities()
