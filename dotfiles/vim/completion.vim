@@ -1,6 +1,3 @@
-let g:completion_enable_snippet = 'UltiSnips'
-let g:completion_confirm_key = "\<C-y>"
-
 lua <<EOF
   -- https://github.com/nvim-lua/kickstart.nvim/blob/master/init.lua#L285
   local nvim_lsp = require 'lspconfig'
@@ -34,45 +31,29 @@ lua <<EOF
 
   cmp.setup({
     snippet = {
-      -- REQUIRED - you must specify a snippet engine
       expand = function(args)
-        vim.fn["vsnip#anonymous"](args.body) -- For `vsnip` users.
+        require('snippy').expand_snippet(args.body)
       end,
     },
     mapping = {
       ['<C-b>'] = cmp.mapping(cmp.mapping.scroll_docs(-4), { 'i', 'c' }),
       ['<C-f>'] = cmp.mapping(cmp.mapping.scroll_docs(4), { 'i', 'c' }),
       ['<C-Space>'] = cmp.mapping(cmp.mapping.complete(), { 'i', 'c' }),
-      ['<C-y>'] = cmp.config.disable, -- Specify `cmp.config.disable` if you want to remove the default `<C-y>` mapping.
+      ['<C-y>'] = cmp.config.disable,
       ['<C-e>'] = cmp.mapping({
         i = cmp.mapping.abort(),
         c = cmp.mapping.close(),
       }),
-      ['<CR>'] = cmp.mapping.confirm({ select = false }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
+      ['<CR>'] = cmp.mapping.confirm({ select = false }),
     },
     sources = cmp.config.sources({
       { name = 'nvim_lsp' },
-      { name = 'vsnip' }, -- For vsnip users.
+      { name = 'snippy' },
       { name = 'path' },
       { name = 'buffer' },
       { name = 'cmdline' },
     })
   })
-
-  -- Use buffer source for `/` (if you enabled `native_menu`, this won't work anymore).
-  -- cmp.setup.cmdline('/', {
-  --   sources = {
-  --     { name = 'buffer' }
-  --   }
-  -- })
-
-  -- Use cmdline & path source for ':' (if you enabled `native_menu`, this won't work anymore).
-  -- cmp.setup.cmdline(':', {
-  --   sources = cmp.config.sources({
-  --     { name = 'path' },
-  --     { name = 'cmdline' }
-  --   })
-  -- })
 
   -- nvim-cmp supports additional completion capabilities
   local capabilities = vim.lsp.protocol.make_client_capabilities()
@@ -92,4 +73,23 @@ lua <<EOF
       capabilities = capabilities,
     }
   end
+
+  require('snippy').setup({
+      mappings = {
+        is = {
+            ['<c-k>'] = 'expand_or_advance',
+            ['<c-j>'] = 'previous',
+        },
+        nx = {
+            ['<leader>x'] = 'cut_text',
+        },
+      },
+      eruby = { '_', 'ruby', 'rails', 'html' },
+      haml = { '_', 'ruby', 'rails', 'html' },
+      ruby = { '_', 'rails' },
+      rails = { '_', 'ruby' },
+      typescript = { '_', 'javascript' },
+      javascriptreact = { '_', 'javascript' },
+      typescriptreact = { '_', 'javascript', 'typescript' },
+  })
 EOF
