@@ -78,8 +78,14 @@ lua <<EOF
   local capabilities = vim.lsp.protocol.make_client_capabilities()
   capabilities = require('cmp_nvim_lsp').update_capabilities(capabilities)
 
+  nvim_lsp.solargraph.setup {
+    on_attach = on_attach,
+    capabilities = capabilities,
+    filetypes = { "ruby", "eruby", "rails", "haml" }
+  }
+
   -- Enable the following language servers
-  local servers = { 'bashls', 'cssls', 'emmet_ls', 'gopls', 'html', 'jsonls', 'tsserver', 'solargraph', 'vimls', 'yamlls' }
+  local servers = { 'bashls', 'cssls', 'emmet_ls', 'gopls', 'html', 'jsonls', 'tsserver', 'vimls', 'yamlls' }
   for _, lsp in ipairs(servers) do
     nvim_lsp[lsp].setup {
       on_attach = on_attach,
