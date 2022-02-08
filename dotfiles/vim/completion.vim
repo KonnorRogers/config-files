@@ -81,7 +81,7 @@ lua <<EOF
             ['<c-j>'] = 'previous',
         },
         nx = {
-            ['<leader>x'] = 'cut_text',
+            ['<c-k>'] = 'cut_text',
         },
       },
       eruby = { '_', 'ruby', 'rails', 'html' },

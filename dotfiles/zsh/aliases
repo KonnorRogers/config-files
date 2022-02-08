@@ -101,4 +101,6 @@ alias yna='yarn add'
 alias ynad='yard add -D'
 alias ynag='yarn add global'
 
+alias nvimdiff='nvim -d "$LOCAL" "$REMOTE"'
+
 alias fire-in-the-hole='find . -name "node_modules" -type d -prune -print | xargs du -chs'
