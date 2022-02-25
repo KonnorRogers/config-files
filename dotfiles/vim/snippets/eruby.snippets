@@ -1,0 +1,8 @@
+snippet = "eval" i
+  <%= ${1:${VISUAL}} %>${0}
+snippet - "noeval" i
+  <% ${1:${VISUAL}} %>${0}
+snippet fwith "form_with" i
+  <%= form_with($1) do |form| %>
+    ${2:${VISUAL}}
+  <% end %>

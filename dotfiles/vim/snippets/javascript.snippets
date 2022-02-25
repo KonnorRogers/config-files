@@ -1,0 +1,29 @@
+snippet stim "Hotwired Stimulus"
+  import { Controller } from "@hotwired/stimulus"
+
+  export default class ${1:${VISUAL}} extends Controller {
+    static targets = []
+    static values = {}
+    initialize () {}
+    connect () {}
+    disconnect () {}
+  }
+
+snippet stimc "Stimulus"
+  import { Controller } from "stimulus"
+
+  export default class ${1:${VISUAL}} extends Controller {
+    static targets = []
+    static values = {}
+    initialize () {}
+    connect () {}
+    disconnect () {}
+  }
+
+snippet jsdoc "JSDOC"
+  /**
+   * ${1:${VISUAL}}
+   */
+
+snippet  jsdoci "Inline JSDOC"
+  /** ${1:${VISUAL}} */
