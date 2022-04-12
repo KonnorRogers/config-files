@@ -1,6 +1,7 @@
 lua <<EOF
   -- https://github.com/nvim-lua/kickstart.nvim/blob/master/init.lua#L285
   local nvim_lsp = require 'lspconfig'
+  local util = require 'lspconfig/util'
   local on_attach = function(_, bufnr)
     vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
 
@@ -58,6 +59,7 @@ lua <<EOF
   -- nvim-cmp supports additional completion capabilities
   local capabilities = vim.lsp.protocol.make_client_capabilities()
   capabilities = require('cmp_nvim_lsp').update_capabilities(capabilities)
+  capabilities.textDocument.completion.completionItem.snippetSupport = true
 
   nvim_lsp.solargraph.setup {
     on_attach = on_attach,
@@ -66,7 +68,7 @@ lua <<EOF
   }
 
   -- Enable the following language servers
-  local servers = { 'bashls', 'cssls', 'emmet_ls', 'gopls', 'html', 'jsonls', 'tsserver', 'vimls', 'yamlls' }
+  local servers = { 'bashls', 'cssls', 'gopls', 'html', 'jsonls', 'tsserver', 'vimls', 'yamlls' }
   for _, lsp in ipairs(servers) do
     nvim_lsp[lsp].setup {
       on_attach = on_attach,
@@ -75,15 +77,7 @@ lua <<EOF
   end
 
   require('snippy').setup({
-      mappings = {
-        is = {
-            ['<c-k>'] = 'expand_or_advance',
-            ['<c-j>'] = 'previous',
-        },
-        nx = {
-            ['<c-k>'] = 'cut_text',
-        },
-      },
+    scopes = {
       eruby = { '_', 'ruby', 'rails', 'html' },
       haml = { '_', 'ruby', 'rails', 'html' },
       ruby = { '_', 'rails' },
@@ -91,5 +85,30 @@ lua <<EOF
       typescript = { '_', 'javascript' },
       javascriptreact = { '_', 'javascript' },
       typescriptreact = { '_', 'javascript', 'typescript' },
+    },
+
+    mappings = {
+      is = {
+          ['<c-k>'] = 'expand_or_advance',
+          ['<c-j>'] = 'previous',
+      },
+      nx = {
+          ['<c-k>'] = 'cut_text',
+      },
+    },
   })
+
+  nvim_lsp.emmet_ls = {
+    on_attach = on_attach,
+    capabilities = capabilities,
+    default_config = {
+      cmd = {'emmet-language-server', '--stdio'};
+      filetypes = {
+          'html', 'typescriptreact', 'javascriptreact', 'javascript',
+          'typescript', 'javascript.jsx', 'typescript.tsx', 'css'
+      },
+      root_dir = util.root_pattern("package.json", ".git"),
+      settings = {}
+    };
+  }
 EOF
