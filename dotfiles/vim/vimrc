@@ -55,8 +55,10 @@ call plug#begin("~/.vim/plugged")
   Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
   "}}}
   "Snippets{{{
-  " Plug 'honza/vim-snippets'
   Plug 'dcampos/nvim-snippy'
+  "}}}
+  "Git{{{
+  Plug 'lewis6991/gitsigns.nvim'
   "}}}
   "LSP{{{
   if has("nvim-0.5")
@@ -74,6 +76,7 @@ call plug#begin("~/.vim/plugged")
     " Neovim Tree shitter{{{
     Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
     Plug 'nvim-treesitter/playground'
+    Plug 'jose-elias-alvarez/null-ls.nvim'
   endif "}}}
   "}}}
 call plug#end()
@@ -431,12 +434,13 @@ set updatetime=300
 set shortmess+=c
 set completeopt=menu,menuone,noselect
 
-" <c-space> becomes completion
-inoremap <C-space> <C-x><C-o>
-set omnifunc=syntaxcomplete#Complete
-
 " Shelf this for later
 if has("nvim-0.5")
-  source $HOME/.vim/completion.vim
+  source $HOME/.vim/init.lua
+else
+  " <c-space> becomes completion
+  inoremap <C-space> <C-x><C-o>
+  set omnifunc=syntaxcomplete#Complete
 endif
 "}}}
+

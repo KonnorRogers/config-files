@@ -1,0 +1,10 @@
+function git-compare () {
+  baseBranch="$1"
+  compareBranch="$2"
+
+  if [[ -z "$compareBranch" ]]; then
+    compareBranch=$(git branch --show-current)
+  fi
+
+  git rev-list --left-right --count "$baseBranch"..."$compareBranch"
+}

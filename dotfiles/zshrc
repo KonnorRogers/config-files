@@ -154,6 +154,8 @@ fi
 node_version="$(node -v)"
 export NODE_VERSION="${node_version:1}"
 export NODE_PATH="$HOME/.asdf/installs/nodejs/${$(node -v)}/.npm/lib"
+export CARGO_PATH="$HOME/.cargo/bin"
+export PATH="$CARGO_PATH:$PATH"
 
 autoload -Uz compinit && compinit -i
 autoload -U zmv
