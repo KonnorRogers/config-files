@@ -1,3 +1,12 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhistcnt =1
-let g:netrw_dirhist_1='/home/konnorrogers/.zsh/functions'
+let g:netrw_dirhistcnt =0
+let g:netrw_dirhist_0='/Users/konnorrogers/projects/veue-live/veue/app/models/concerns'
+let g:netrw_dirhist_9='/Users/konnorrogers/projects/veue-live/veue/app/models'
+let g:netrw_dirhist_8='/Users/konnorrogers/projects/personal/mrujs/src'
+let g:netrw_dirhist_7='/Users/konnorrogers/projects/personal/mrujs/.github'
+let g:netrw_dirhist_6='/Users/konnorrogers/projects/personal/mrw-process-env-issue/public'
+let g:netrw_dirhist_5='/Users/konnorrogers/projects/personal/mrujs/test/mocks'
+let g:netrw_dirhist_4='/Users/konnorrogers/projects/personal/mrujs/test'
+let g:netrw_dirhist_3='/Users/konnorrogers/projects/personal/mrujs/test/ajax'
+let g:netrw_dirhist_2='/Users/konnorrogers/projects/personal/mrujs/test/ajax/mocks'
+let g:netrw_dirhist_1='/Users/konnorrogers/projects/personal/mrujs/test/ajax'
