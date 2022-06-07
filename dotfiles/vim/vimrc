@@ -49,7 +49,7 @@ call plug#begin("~/.vim/plugged")
   "}}}
   "fuzzy finding{{{
   Plug 'nvim-lua/plenary.nvim'
-  " Plug 'nvim-telescope/telescope.nvim'
+  Plug 'nvim-telescope/telescope.nvim'
   "}}}
   "Vim-Go{{{
   Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
