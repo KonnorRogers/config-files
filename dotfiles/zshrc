@@ -103,7 +103,10 @@ export PATH="$PATH:$HOME/.emacs.d/bin"
 
 # go
 export GOPATH=$HOME/go
-export PATH=$PATH:$GOPATH/bin
+export GOROOT=/usr/lib/go
+export PATH=$PATH:$GOPATH
+export PATH=$PATH:/usr/local/go/bin
+export PATH=$PATH:$GOROOT/bin:$GOPATH/bin
 
 # various bin locations
 export PATH=$PATH:/snap/bin

@@ -10,7 +10,6 @@ local servers = {
   "sumneko_lua",
   'bashls',
   'cssls',
-  'gopls',
   'html',
   'jsonls',
   'tsserver',

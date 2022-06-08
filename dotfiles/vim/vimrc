@@ -60,6 +60,9 @@ call plug#begin("~/.vim/plugged")
   "Git{{{
   Plug 'lewis6991/gitsigns.nvim'
   "}}}
+  "Whichkey{{{
+  Plug 'folke/which-key.nvim'
+  "}}}
   "LSP{{{
   if has("nvim-0.5")
     " builtinCompletion
@@ -178,7 +181,7 @@ set hidden
 set lazyredraw
 
 "Stupid clipboard crap, configure this accordingly
-set clipboard+=unnamedplus
+set clipboard=unnamedplus
 
 "Provide a line of what column youre in
 set cursorcolumn
