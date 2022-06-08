@@ -18,24 +18,10 @@ call plug#begin("~/.vim/plugged")
   Plug 'tpope/vim-ragtag'
   Plug 'tpope/vim-dispatch'
   "}}}
-  "Javascript / React{{{
-  Plug 'yuezk/vim-js'
-  Plug 'elzr/vim-json'
-  Plug 'maxmellon/vim-jsx-pretty'
-  Plug 'jxnblk/vim-mdx-js'
-  "}}}
-  " Typescript{{{
-  Plug 'leafgarland/typescript-vim'
-  Plug 'peitalin/vim-jsx-typescript'
-  "}}}
   "ruby / rails{{{
   Plug 'vim-ruby/vim-ruby'
   Plug 'tpope/vim-rails'
   Plug 'tpope/vim-bundler'
-  Plug 'onemanstartup/vim-slim'
-  "}}}
-  " Elixir{{{
-  Plug 'elixir-editors/vim-elixir'
   "}}}
   " Tests{{{
   Plug 'janko/vim-test'
@@ -50,9 +36,6 @@ call plug#begin("~/.vim/plugged")
   "fuzzy finding{{{
   Plug 'nvim-lua/plenary.nvim'
   Plug 'nvim-telescope/telescope.nvim'
-  "}}}
-  "Vim-Go{{{
-  Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
   "}}}
   "Snippets{{{
   Plug 'dcampos/nvim-snippy'
