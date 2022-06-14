@@ -26,3 +26,64 @@ snippet jsdoc "JSDOC"
    */
 snippet jsdoci "Inline JSDOC"
   /** ${1:${VISUAL}} */
+snippet lit "New lit element" b
+  import { css, html, LitElement } from 'lit'
+
+  export class $1 extends LitElement {
+    /** import("lit").PropertyValues */
+    static get properties () {
+      return {}
+    }
+
+    /** import("lit").CSSResult */
+    static get styles () {
+      return css``
+    }
+
+    /** import("lit").TemplateResult */
+    render () {
+      return html``
+    }
+  }
+
+snippet lit-ts "New lit typescript element" b
+  import { css, html, LitElement, CSSResult, TemplateResult, PropertyValues } from 'lit'
+
+  export class $1 extends LitElement {
+    static get properties (): PropertyValues {
+      return {}
+    }
+
+    static get styles (): CSSResult {
+      return css``
+    }
+
+    render (): TemplateResult {
+      return html``
+    }
+  }
+
+snippet wc "Vanilla web component" b
+  export class $1 extends HTMLElement {
+    constructor () {
+      super()
+      this.attachShadow({ mode: 'open'});
+      this.shadowRoot.appendChild(template.content.cloneNode(true));
+    }
+
+    get template () {
+      const template = document.createElement("template")
+
+      template.innerHTML = `
+        <style>${this.styles}</style>
+      `
+
+      return template
+    }
+
+    get styles () {
+      return ``
+    }
+  }
+
+
