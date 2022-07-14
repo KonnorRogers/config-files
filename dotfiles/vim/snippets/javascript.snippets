@@ -30,60 +30,147 @@ snippet lit "New lit element" b
   import { css, html, LitElement } from 'lit'
 
   export class $1 extends LitElement {
-    /** import("lit").PropertyValues */
+    /** import("lit").PropertyDeclarations */
     static get properties () {
       return {}
     }
 
     /** import("lit").CSSResult */
     static get styles () {
-      return css``
+      return css\`\`
     }
 
     /** import("lit").TemplateResult */
     render () {
-      return html``
+      return html\`\`
     }
   }
 
 snippet lit-ts "New lit typescript element" b
-  import { css, html, LitElement, CSSResult, TemplateResult, PropertyValues } from 'lit'
+  import { css, html, LitElement, CSSResult, TemplateResult, PropertyDeclarations } from 'lit'
 
   export class $1 extends LitElement {
-    static get properties (): PropertyValues {
+    static get properties (): PropertyDeclarations {
       return {}
     }
 
     static get styles (): CSSResult {
-      return css``
+      return css\`\`
     }
 
     render (): TemplateResult {
-      return html``
+      return html\`\`
     }
   }
 
-snippet wc "Vanilla web component" b
+snippet wc "Vanilla web component"
   export class $1 extends HTMLElement {
     constructor () {
       super()
       this.attachShadow({ mode: 'open'});
-      this.shadowRoot.appendChild(template.content.cloneNode(true));
+      this.shadowRoot.appendChild(this.templateContent);
+    }
+
+    get styles () {
+      return \`\`
+    }
+
+    get templateContent () {
+      return this.template.content.cloneNode(true)
     }
 
     get template () {
       const template = document.createElement("template")
-
-      template.innerHTML = `
-        <style>${this.styles}</style>
-      `
-
+      template.innerHTML = this.render()
       return template
     }
 
-    get styles () {
-      return ``
+    render () {
+      return \`\`
     }
+
+    connectedCallback() {
+      super.connectedCallback()
+    }
+    disconnectedCallback() {
+      super.disconnectedCallback()
+    }
+    adoptedCallback() {
+      super.adoptedCallback()
+    }
+    attributeChangedCallback(name, oldValue, newValue) {}
+  }
+
+snippet be "Base Element"
+  import { BaseElement } from "../base-element"
+
+  /** @extends import("../base-element").BaseElement */
+  export class $1 extends BaseElement {
+    constructor () {
+      super()
+    }
+
+    /** @returns {string} */
+    static get baseName() {
+      return ""
+    }
+
+    /** @returns {string} */
+    get styles () {
+      return \`\`
+    }
+
+    /** @returns {string} */
+    render () {
+      return \`\`
+    }
+
+    /** @returns {string[]} */
+    get observableAttributes () {
+      return []
+    }
+
+    /** @returns {void} */
+    connectedCallback() {
+      super.connectedCallback()
+    }
+
+    /** @returns {void} */
+    disconnectedCallback() {}
+
+    /** @returns {void} */
+    adoptedCallback() {}
   }
 
 
+snippet bets "Base Element"
+  import { BaseElement } from "../base-element"
+
+  export class $1 extends BaseElement {
+    constructor () {
+      super()
+    }
+
+    static get baseName(): string {
+      return ""
+    }
+
+    static get observedAttributes (): string[] {
+      return []
+    }
+
+    get styles (): string {
+      return \`\`
+    }
+
+    render (): string {
+      return \`\`
+    }
+
+    connectedCallback(): void {
+      super.connectedCallback()
+    }
+    disconnectedCallback(): void {}
+    adoptedCallback(): void {}
+    attributeChangedCallback(name: string, oldValue: string, newValue: string) {}
+  }

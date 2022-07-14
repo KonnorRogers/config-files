@@ -6,7 +6,7 @@ require('snippy').setup({
     rails = { '_', 'ruby' },
     typescript = { '_', 'javascript' },
     javascriptreact = { '_', 'javascript' },
-    typescriptreact = { '_', 'javascript', 'typescript' },
+    typescriptreact = { '_', 'javascriptreact', 'javascript', 'typescript' },
   },
 
   mappings = {
