@@ -287,9 +287,9 @@ nnoremap <leader>fh <cmd>Telescope help_tags<cr>
 " Custom commands {{{
 nnoremap <Leader>ra :!bundle exec rubocop -A <C-R>=expand("%")<CR><CR>
 nnoremap <Leader>rb :!bundle exec standardrb --fix <C-R>=expand("%")<CR><CR>
-nnoremap <Leader>ts :!yarn ts-standard <C-R>=expand("%")<CR> --fix<CR>
-nnoremap <Leader>js :!standard <C-R>=expand("%")<CR> --fix<CR>
-nnoremap <Leader>yp :!yarn prettier <C-R>=expand("%")<CR> --write<CR>
+nnoremap <Leader>ts :!npx ts-standard <C-R>=expand("%")<CR> --fix<CR>
+nnoremap <Leader>js :!npx standard <C-R>=expand("%")<CR> --fix<CR>
+nnoremap <Leader>yp :!npx prettier <C-R>=expand("%")<CR> --write<CR>
 
 nnoremap <Leader>kp :!kubs pull && kubs git_push
 nnoremap <Leader>kc :!kubs git_pull && kubs copy<cr>
