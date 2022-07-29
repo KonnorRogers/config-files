@@ -34,6 +34,7 @@ alias gset='git remote set-url'
 alias g-count='git rev-list --count HEAD ^origin'
 alias g-current='git branch --show-current'
 alias gwt='git worktree'
+alias gclean='git branch --merged | egrep -v "(^\*master|develop|main)" | xargs git branch -d; git remote prune origin'
 
 # tmux
 alias tm='tmux'
