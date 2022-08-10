@@ -10,6 +10,7 @@ endif
 call plug#begin("~/.vim/plugged")
   "Colorschemes{{{
   Plug 'arzg/vim-colors-xcode'
+  Plug 'rafi/awesome-vim-colorschemes'
   "}}}
   "Tpope plugins{{{
   Plug 'tpope/vim-fugitive'
