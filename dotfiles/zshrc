@@ -164,3 +164,8 @@ autoload -Uz compinit && compinit -i
 autoload -U zmv
 eval "$(direnv hook zsh)"
 
+
+# pnpm
+export PNPM_HOME="/home/konnorrogers/.local/share/pnpm"
+export PATH="$PNPM_HOME:$PATH"
+# pnpm end

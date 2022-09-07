@@ -215,10 +215,10 @@ if exists('+termguicolors')
   set termguicolors
 endif
 
-set background=light
-colorscheme xcodelighthc
-" set background=dark
-" colorscheme xcodedarkhc
+" set background=light
+" colorscheme xcodelighthc
+set background=dark
+colorscheme xcodedarkhc
 
 "Status line
 set laststatus=2
