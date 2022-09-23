@@ -135,13 +135,13 @@ if [[ "$OSTYPE" =~ "linux" ]]; then
   source $HOME/.asdf/completions/asdf.bash
   source $HOME/.asdf/asdf.sh
 elif [[ "$OSTYPE" =~ "darwin" ]]; then
-  export PATH="/usr/local/homebrew/bin:$PATH"
+  export PATH="$(brew --prefix)/bin:$PATH"
   export PATH="$HOME/nvim-osx64/bin:$PATH"
   export JAVA_HOME="$(brew --prefix java)"
   export PATH="$JAVA_HOME/bin:$PATH"
 
-  # Workaround for mimemagic
-  export FREEDESKTOP_MIME_TYPES_PATH="/usr/local/homebrew/share/mime/packages/freedesktop.org.xml"
+  # # Workaround for mimemagic
+  export FREEDESKTOP_MIME_TYPES_PATH="$(brew --prefix)/share/mime/packages/freedesktop.org.xml"
 
   source "$(brew --prefix asdf)/asdf.sh"
   source "$(brew --prefix asdf)/etc/bash_completion.d/asdf.bash"
@@ -169,3 +169,4 @@ eval "$(direnv hook zsh)"
 export PNPM_HOME="$HOME/.local/share/pnpm"
 export PATH="$PNPM_HOME:$PATH"
 # pnpm end
+export HOMEBREW_PREFIX="/opt/homebrew"

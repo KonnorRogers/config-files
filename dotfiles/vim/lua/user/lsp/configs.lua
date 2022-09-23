@@ -6,8 +6,9 @@ end
 local lspconfig = require("lspconfig")
 
 local servers = {
+  "solargraph",
   "jsonls",
-  "sumneko_lua",
+  -- "sumneko_lua",
   'bashls',
   'cssls',
   'html',
