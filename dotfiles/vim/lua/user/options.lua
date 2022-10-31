@@ -80,7 +80,7 @@ vim.opt.filetype.on = true
 vim.opt.backup = false
 vim.opt.writebackup = false
 vim.opt.swapfile = false
-vim.opt.undodir = "$HOME/.vim/undodir"
+vim.opt.undodir = vim.fs.normalize('$HOME/.vim/undodir')
 vim.opt.undofile = true
 
 vim.opt.backspace = "indent,eol,start" -- fixes backspace in vim
