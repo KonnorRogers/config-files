@@ -1,20 +1,15 @@
+require "user.impatient"
+require "user.options"
+require "user.keymaps"
+require "user.plugins"
+require "user.autocommands"
+require "user.colorscheme"
+require "user.cmp"
+require "user.telescope"
 require "user.gitsigns"
-require "user.which-key"
 require "user.treesitter"
-require "user.nvim-cmp"
-require "user.snippy"
+require "user.comment"
+require "user.project"
+require "user.alpha"
 require "user.lsp"
-
-if vim.fn.has "wsl" == 1 then
-  vim.g.clipboard = {
-    copy = {
-      ["+"] = "win32yank.exe -i --crlf",
-      ["*"] = "win32yank.exe -i --crlf",
-    },
-    paste = {
-      ["+"] = "win32yank.exe -o --lf",
-      ["*"] = "win32yank.exe -o --lf",
-    },
-  }
-end
-
+require "user.dap"
