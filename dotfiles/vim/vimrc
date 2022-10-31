@@ -13,13 +13,13 @@ endif
 
 let g:ragtag_global_maps = 1
 
-" Emmet{{{
+" Emmet
 " Dont let it override <C-y>
 let g:user_emmet_leader_key = '<C-e>'
 
 " Remove backward jump interference
 inoremap <c-x><c-k> <c-x><c-k>
-"}}}
+
 
 " Rainbow parentheses
 let g:rainbow#max_level = 16
@@ -27,13 +27,7 @@ let g:rainbow#pairs = [['(', ')'], ['[', ']'], ['{', '}']]
 let g:rainbow#blacklist = ["#000000"]
 
 
-augroup RainbowParens
-  autocmd!
-  autocmd Syntax * RainbowParentheses
-  autocmd VimEnter * RainbowParentheses
-augroup END
-
-" Netrw{{{
+" Netrw
 map <C-n> :Explore<CR>
 let g:netrw_browse_split = 0
 let g:netrw_banner = 0
@@ -43,11 +37,11 @@ let g:netrw_liststyle=0
 let g:netrw_keepdir = 1
 let g:netrw_localcopydircmd = 'cp -r'
 
-"}}}
-"Vim-Go{{{
+
+"Vim-Go
 let g:go_def_mode='gopls'
 let g:go_info_mode='gopls'
-"}}}
+
 
 " 'matchit.vim' is built-in so let's enable it!
 " " Hit '%' on 'if' to jump to 'else'.
@@ -63,7 +57,7 @@ if has("autocmd")
 endif
 "}}}
 
-"Colorscheme / appearance{{{
+"Colorscheme / appearance
 if exists('+termguicolors')
   let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
   let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
@@ -74,7 +68,7 @@ endif
 set laststatus=2
 set statusline=
 set statusline+=\ %<%F\ %m\ %r\ %h\ %=%=%=%y\ [%c]%=
-"}}}
+
 
 " Shelf this for later
 if has("nvim-0.5")
