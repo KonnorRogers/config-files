@@ -2,9 +2,11 @@ function install-nvim() {
   cd "$HOME"
   if [[ "$OSTYPE" =~ "linux" ]]; then
     mkdir -p "$HOME/bin"
-    curl -L https://github.com/neovim/neovim/releases/download/latest/nvim.appimage -o "$HOME/nvim.appimage"
+    curl -L https://github.com/neovim/neovim/releases/download/v0.8.0/nvim.appimage -o "$HOME/nvim.appimage"
     chmod u+x "$HOME/nvim.appimage"
-    mv nvim.appimage "$HOME/bin/nvim"
+    cp nvim.appimage "$HOME/bin/nvim"
+    cp nvim.appimage "$HOME/.local/bin/nvim"
+    rm nvim.appimage
   elif [[ "$OSTYPE" =~ "darwin" ]]; then
     curl -LO https://github.com/neovim/neovim/releases/download/nightly/nvim-macos.tar.gz
     tar xzf nvim-macos.tar.gz
