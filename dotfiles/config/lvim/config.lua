@@ -12,6 +12,11 @@ an executable
 lvim.log.level = "warn"
 lvim.format_on_save = false
 lvim.colorscheme = "xcodelighthc"
+lvim.builtin.autopairs.active = false
+lvim.builtin.nvimtree.active = false
+lvim.builtin.lualine.active = false
+lvim.builtin.bufferline.active = false
+
 -- to disable icons and use a minimalist setup, uncomment the following
 -- lvim.use_icons = false
 
@@ -58,6 +63,50 @@ lvim.builtin.alpha.mode = "dashboard"
 lvim.builtin.terminal.active = true
 -- lvim.builtin.nvimtree.setup.view.side = "left"
 -- lvim.builtin.nvimtree.setup.renderer.icons.show.git = false
+--
+vim.cmd([[
+function! RenameFile()
+  let old_name = expand('%')
+  let new_name = input('New file name: ', expand('%'), 'file')
+  if new_name != '' && new_name != old_name
+    exec ':saveas ' . new_name
+    exec ':silent !rm ' . old_name
+    exec ':e ' . new_name
+    exec ':bwipeout ' . old_name
+    redraw!
+  endif
+endfunction
+
+" Run ctags
+function! GitCtags()
+  let s:git_root = systemlist('git rev-parse --show-toplevel')[0]
+  let s:tag_dir = '/.git/tags'
+
+  execute "!ctags -R --tag-relative -f " . s:git_root . s:tag_dir
+endfunction
+
+" Strip whitespace
+autocmd BufWritePre * %s/\s\+$//e
+
+" Return cursor to original position
+if has("autocmd")
+  au BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$")
+  \| exe "normal g'\"" | endif
+endif
+"}}}
+
+"Colorscheme / appearance
+if exists('+termguicolors')
+  let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
+  let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
+  set termguicolors
+endif
+
+"Status line
+set laststatus=2
+set statusline=
+set statusline+=\ %<%F\ %m\ %r\ %h\ %=%=%=%y\ [%c]%=
+]])
 
 -- if you don't want all the parsers change this to a table of the ones you want
 lvim.builtin.treesitter.ensure_installed = {
@@ -183,10 +232,6 @@ lvim.plugins = {
     "folke/trouble.nvim"
   },
 }
-
-lvim.builtin.autopairs.active = false
-lvim.builtin.nvimtree.active = false
-
 lvim.keys.normal_mode["]d"] = "<cmd>lua vim.diagnostic.goto_next({buffer=0})<cr>"
 lvim.keys.normal_mode["[d"] = "<cmd>lua vim.diagnostic.goto_prev({buffer=0})<cr>"
 
@@ -202,7 +247,7 @@ vim.opt.pumheight = 10                          -- pop up menu height
 vim.opt.showmode = false                        -- we don't need to see things like -- INSERT -- anymore
 vim.opt.showtabline = 0                         -- always show tabs
 vim.opt.smartcase = true                        -- smart case
-vim.opt.smartindent = true                      -- make indenting smarter again
+-- vim.opt.smartindent = true                      -- make indenting smarter again
 vim.opt.splitbelow = true                       -- force all horizontal splits to go below current window
 vim.opt.splitright = true                       -- force all vertical splits to go to the right of current window
 vim.opt.swapfile = false                        -- creates a swapfile
@@ -239,6 +284,7 @@ vim.opt.smartindent = true
 vim.opt.autoindent = true
 vim.opt.preserveindent = true
 vim.opt.copyindent = true
+
 
 vim.opt.expandtab = false -- expand tabs into spaces
 vim.opt.tabstop = 2 -- when indenting with '>', use 2 spaces width
@@ -295,7 +341,7 @@ vim.opt.hidden = true -- Keep buffers alive in background
 vim.opt.lazyredraw = true -- Fixes files at the end of macros, better performance
 
 -- Stupid clipboard crap, configure this accordingly
-vim.opt.clipboard = vim.opt.clipboard + "unnamedplus"
+-- vim.opt.clipboard = vim.opt.clipboard + "unnamedplus"
 
 vim.opt.cursorcolumn = true -- Provide a line of what column youre in
 vim.opt.cursorline = true -- Adds a horizontal highlight to current line
@@ -366,14 +412,14 @@ lvim.keys.normal_mode["<Leader>E"] = ":edit<space>"
 -- bind <Leader>gw to grep word under cursor
 lvim.keys.normal_mode["<Leader>gw"] = ':grep! "\b<C-R><C-W>\b"<CR>:cw<CR>'
 
-lvim.keys.normal_mode["<Leader>rf"] = ":call myfunctions#RenameFile()<cr>"
+lvim.keys.normal_mode["<Leader>rf"] = ":call RenameFile()<cr>"
 
 -- Create a new file
 lvim.keys.normal_mode["<Leader>to"] = ":edit <C-R>=expand('%:p:h') . '/'<CR>"
 lvim.keys.normal_mode["<Leader>td"] = ":!mkdir -p <C-R>=expand('%:p:h') . '/'<CR>"
 
 -- Run ctags on current directory
-lvim.keys.normal_mode["<Leader>gt"] = ":call myfunctions#GitCtags()<CR>"
+lvim.keys.normal_mode["<Leader>gt"] = ":call GitCtags()<CR>"
 
 -- RainbowParentheses
 lvim.keys.normal_mode["<Leader>rp"] = ":RainbowParentheses!!<CR>"
@@ -393,3 +439,10 @@ vim.g.netrw_winsize = 25
 vim.g.netrw_liststyle=0
 vim.g.netrw_keepdir = 1
 vim.g.netrw_localcopydircmd = 'cp -r'
+
+local status, ls = pcall(require, 'luasnip')
+if status then
+	ls.filetype_extend("typescript", { "javascript", "typescriptreact", "javascriptreact" })
+	ls.filetype_extend("javascriptreact", { "javascript" })
+	ls.filetype_extend("typescriptreact", { "typescript", "typescriptreact", "javascriptreact" })
+end
