@@ -1,0 +1,4 @@
+worktree-clean () {
+	git worktree list --porcelain | grep "$1" | sed 's/worktree //' | xargs -n 1 -t git worktree remove
+}
+
