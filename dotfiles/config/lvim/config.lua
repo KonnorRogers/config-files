@@ -17,6 +17,13 @@ lvim.builtin.nvimtree.active = false
 lvim.builtin.lualine.active = false
 lvim.builtin.bufferline.active = false
 
+-- vim.g.loaded_netrw = 1
+-- vim.g.loaded_netrwPlugin = 1
+
+-- set termguicolors to enable highlight groups
+-- vim.opt.termguicolors = true
+
+
 -- to disable icons and use a minimalist setup, uncomment the following
 -- lvim.use_icons = false
 
@@ -228,6 +235,7 @@ lvim.plugins = {
   { "junegunn/rainbow_parentheses.vim" },
   { "tpope/vim-surround" },
   { "tpope/vim-ragtag" },
+  { "tpope/vim-fugitive" },
   {
     "folke/trouble.nvim"
   },
@@ -431,6 +439,7 @@ lvim.keys.insert_mode["<C-j>"] = "<Down>"
 lvim.keys.normal_mode["<C-n>"] = ":Explore<CR>"
 lvim.keys.insert_mode["<C-n>"] = ":Explore<CR>"
 lvim.keys.visual_mode["<C-n>"] = ":Explore<CR>"
+
 
 vim.g.netrw_browse_split = 0
 vim.g.netrw_banner = 0
