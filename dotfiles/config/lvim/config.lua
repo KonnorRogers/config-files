@@ -16,21 +16,18 @@ lvim.builtin.autopairs.active = false
 lvim.builtin.nvimtree.active = false
 lvim.builtin.lualine.active = false
 lvim.builtin.bufferline.active = false
+lvim.builtin.indentlines.options.show_current_context_start = true
+lvim.builtin.indentlines.options.show_current_context = true
 
--- vim.g.loaded_netrw = 1
--- vim.g.loaded_netrwPlugin = 1
-
+lvim.leader = "space"
 -- set termguicolors to enable highlight groups
 -- vim.opt.termguicolors = true
-
-
 -- to disable icons and use a minimalist setup, uncomment the following
 -- lvim.use_icons = false
 
 -- keymappings [view all the defaults by pressing <leader>Lk]
-lvim.leader = "space"
 -- add your own keymapping
-lvim.keys.normal_mode["<C-s>"] = ":w<cr>"
+-- lvim.keys.normal_mode["<C-s>"] = ":w<cr>"
 -- lvim.keys.normal_mode["<S-l>"] = ":BufferLineCycleNext<CR>"
 -- lvim.keys.normal_mode["<S-h>"] = ":BufferLineCyclePrev<CR>"
 -- unmap a default keymapping
@@ -40,37 +37,31 @@ lvim.keys.normal_mode["<C-s>"] = ":w<cr>"
 
 -- Change Telescope navigation to use j and k for navigation and n and p for history in both input and normal mode.
 -- we use protected-mode (pcall) just in case the plugin wasn't loaded yet.
--- local _, actions = pcall(require, "telescope.actions")
--- lvim.builtin.telescope.defaults.mappings = {
---   -- for input mode
---   i = {
---     ["<C-j>"] = actions.move_selection_next,
---     ["<C-k>"] = actions.move_selection_previous,
---     ["<C-n>"] = actions.cycle_history_next,
---     ["<C-p>"] = actions.cycle_history_prev,
---   },
---   -- for normal mode
---   n = {
---     ["<C-j>"] = actions.move_selection_next,
---     ["<C-k>"] = actions.move_selection_previous,
---   },
--- }
-
--- Change theme settings
--- lvim.builtin.theme.options.dim_inactive = true
--- lvim.builtin.theme.options.style = "storm"
+local _, actions = pcall(require, "telescope.actions")
+lvim.builtin.telescope.defaults.mappings = {
+  -- for input mode
+  i = {
+    ["<C-j>"] = actions.move_selection_next,
+    ["<C-k>"] = actions.move_selection_previous,
+    ["<C-n>"] = actions.cycle_history_next,
+    ["<C-p>"] = actions.cycle_history_prev,
+  },
+  -- for normal mode
+  n = {
+    ["<C-j>"] = actions.move_selection_next,
+    ["<C-k>"] = actions.move_selection_previous,
+  },
+}
 
 -- Use which-key to add extra bindings with the leader-key prefix
--- lvim.builtin.which_key.mappings["P"] = { "<cmd>Telescope projects<CR>", "Projects" }
+lvim.builtin.which_key.mappings["P"] = { "<cmd>Telescope projects<CR>", "Projects" }
 
--- TODO: User Config for predefined plugins
 -- After changing plugin config exit and reopen LunarVim, Run :PackerInstall :PackerCompile
 lvim.builtin.alpha.active = true
 lvim.builtin.alpha.mode = "dashboard"
 lvim.builtin.terminal.active = true
--- lvim.builtin.nvimtree.setup.view.side = "left"
--- lvim.builtin.nvimtree.setup.renderer.icons.show.git = false
---
+
+
 vim.cmd([[
 function! RenameFile()
   let old_name = expand('%')
@@ -102,18 +93,31 @@ if has("autocmd")
 endif
 "}}}
 
-"Colorscheme / appearance
-if exists('+termguicolors')
-  let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
-  let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
-  set termguicolors
-endif
-
 "Status line
 set laststatus=2
 set statusline=
 set statusline+=\ %<%F\ %m\ %r\ %h\ %=%=%=%y\ [%c]%=
+
+if executable('ag')
+  set grepprg=ag\ --vimgrep
+  set grepformat=%f:%l:%c%m
+
+  "populate quickfix with \
+  command! -nargs=+ -complete=file -bar Ag silent! grep! <args>|cwindow|redraw!
+  nnoremap \ :Ag<space>
+endif
+
+let g:ragtag_global_maps = 1
+
+" Emmet
+" Dont let it override <C-y>
+let g:user_emmet_leader_key = '<C-e>'
+
+" Remove backward jump interference
+inoremap <c-x><c-k> <c-x><c-k>
 ]])
+
+lvim.builtin.treesitter.rainbow.enable = true
 
 -- if you don't want all the parsers change this to a table of the ones you want
 lvim.builtin.treesitter.ensure_installed = {
@@ -232,14 +236,12 @@ lvim.plugins = {
   { "arzg/vim-colors-xcode" },
   { "mattn/emmet-vim" },
   { "ap/vim-css-color" },
-  { "junegunn/rainbow_parentheses.vim" },
   { "tpope/vim-surround" },
   { "tpope/vim-ragtag" },
   { "tpope/vim-fugitive" },
-  {
-    "folke/trouble.nvim"
-  },
+	{ "p00f/nvim-ts-rainbow" },
 }
+
 lvim.keys.normal_mode["]d"] = "<cmd>lua vim.diagnostic.goto_next({buffer=0})<cr>"
 lvim.keys.normal_mode["[d"] = "<cmd>lua vim.diagnostic.goto_prev({buffer=0})<cr>"
 
@@ -300,6 +302,7 @@ vim.opt.shiftwidth = 2 -- On pressing tab, -- insert 2 spaces
 vim.opt.shiftround = true -- always even spaces
 vim.opt.colorcolumn = "81" -- Make it obvious where 80 characters is
 vim.opt.number = true -- Left hand column numbers
+vim.opt.list = true
 vim.opt.listchars = { eol = '↲', tab = '▸ ', trail = '·', nbsp = '·' } -- Display extra whitespace
 vim.opt.showmatch = true -- show matching brackets
 vim.opt.ruler = true -- show cursor position at all times
@@ -429,9 +432,6 @@ lvim.keys.normal_mode["<Leader>td"] = ":!mkdir -p <C-R>=expand('%:p:h') . '/'<CR
 -- Run ctags on current directory
 lvim.keys.normal_mode["<Leader>gt"] = ":call GitCtags()<CR>"
 
--- RainbowParentheses
-lvim.keys.normal_mode["<Leader>rp"] = ":RainbowParentheses!!<CR>"
-
 -- Ragtag
 lvim.keys.insert_mode["<M-o>"] = "<Esc>o"
 lvim.keys.insert_mode["<C-j>"] = "<Down>"
@@ -439,7 +439,6 @@ lvim.keys.insert_mode["<C-j>"] = "<Down>"
 lvim.keys.normal_mode["<C-n>"] = ":Explore<CR>"
 lvim.keys.insert_mode["<C-n>"] = ":Explore<CR>"
 lvim.keys.visual_mode["<C-n>"] = ":Explore<CR>"
-
 
 vim.g.netrw_browse_split = 0
 vim.g.netrw_banner = 0
@@ -455,3 +454,4 @@ if status then
 	ls.filetype_extend("javascriptreact", { "javascript" })
 	ls.filetype_extend("typescriptreact", { "typescript", "typescriptreact", "javascriptreact" })
 end
+
