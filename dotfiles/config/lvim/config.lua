@@ -16,7 +16,7 @@ lvim.builtin.autopairs.active = false
 lvim.builtin.nvimtree.active = false
 lvim.builtin.lualine.active = false
 lvim.builtin.bufferline.active = false
-lvim.builtin.indentlines.options.show_current_context_start = true
+lvim.builtin.indentlines.options.show_current_context_start = false
 lvim.builtin.indentlines.options.show_current_context = true
 
 lvim.leader = "space"
@@ -356,7 +356,7 @@ vim.opt.lazyredraw = true -- Fixes files at the end of macros, better performanc
 
 vim.opt.cursorcolumn = true -- Provide a line of what column youre in
 vim.opt.cursorline = true -- Adds a horizontal highlight to current line
--- vim.opt.gdefault = true -- Global substitutions by default
+vim.opt.gdefault = true -- Global substitutions by default
 
 -- -- Fixing splits to be more natural
 vim.opt.splitright = true
@@ -455,3 +455,8 @@ if status then
 	ls.filetype_extend("typescriptreact", { "typescript", "typescriptreact", "javascriptreact" })
 end
 
+  -- Move current line / block with Alt-j/k ala vscode.
+lvim.keys.insert_mode["<A-j>"] = false -- "<Esc>:m .+1<CR>==gi",
+
+-- Move current line / block with Alt-j/k ala vscode.
+lvim.keys.insert_mode["<A-k>"] = false -- "<Esc>:m .-2<CR>==gi",
