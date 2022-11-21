@@ -478,3 +478,9 @@ lvim.builtin.indentlines.options.indent_blankline_use_treesitter_scope = true
 --   "IndentBlanklineIndent5",
 --   "IndentBlanklineIndent6",
 -- }
+
+-- Move current line / block with Alt-j/k ala vscode.
+lvim.keys.insert_mode["<A-j>"] = false -- "<Esc>:m .+1<CR>==gi",
+
+-- Move current line / block with Alt-j/k ala vscode.
+lvim.keys.insert_mode["<A-k>"] = false -- "<Esc>:m .-2<CR>==gi",
