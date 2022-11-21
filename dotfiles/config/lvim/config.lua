@@ -16,8 +16,6 @@ lvim.builtin.autopairs.active = false
 lvim.builtin.nvimtree.active = false
 lvim.builtin.lualine.active = false
 lvim.builtin.bufferline.active = false
-lvim.builtin.indentlines.options.show_current_context_start = true
-lvim.builtin.indentlines.options.show_current_context = true
 
 lvim.leader = "space"
 -- set termguicolors to enable highlight groups
@@ -240,6 +238,11 @@ lvim.plugins = {
   { "tpope/vim-ragtag" },
   { "tpope/vim-fugitive" },
 	{ "p00f/nvim-ts-rainbow" },
+	{
+  	"ray-x/lsp_signature.nvim",
+  	event = "BufRead",
+  	config = function() require"lsp_signature".on_attach() end,
+  }
 }
 
 lvim.keys.normal_mode["]d"] = "<cmd>lua vim.diagnostic.goto_next({buffer=0})<cr>"
@@ -352,11 +355,11 @@ vim.opt.hidden = true -- Keep buffers alive in background
 vim.opt.lazyredraw = true -- Fixes files at the end of macros, better performance
 
 -- Stupid clipboard crap, configure this accordingly
--- vim.opt.clipboard = vim.opt.clipboard + "unnamedplus"
+vim.opt.clipboard = "unnamedplus" -- allows neovim to access the system clipboard
 
 vim.opt.cursorcolumn = true -- Provide a line of what column youre in
 vim.opt.cursorline = true -- Adds a horizontal highlight to current line
--- vim.opt.gdefault = true -- Global substitutions by default
+vim.opt.gdefault = true -- Global substitutions by default
 
 -- -- Fixing splits to be more natural
 vim.opt.splitright = true
@@ -455,3 +458,23 @@ if status then
 	ls.filetype_extend("typescriptreact", { "typescript", "typescriptreact", "javascriptreact" })
 end
 
+lvim.builtin.indentlines.options.show_current_context_start = false
+lvim.builtin.indentlines.options.show_current_context = true
+lvim.builtin.indentlines.options.use_treesitter = true
+lvim.builtin.indentlines.options.indent_blankline_use_treesitter_scope = true
+
+-- vim.cmd [[highlight IndentBlanklineIndent1 guifg=#E06C75 gui=nocombine]]
+-- vim.cmd [[highlight IndentBlanklineIndent2 guifg=#E5C07B gui=nocombine]]
+-- vim.cmd [[highlight IndentBlanklineIndent3 guifg=#98C379 gui=nocombine]]
+-- vim.cmd [[highlight IndentBlanklineIndent4 guifg=#56B6C2 gui=nocombine]]
+-- vim.cmd [[highlight IndentBlanklineIndent5 guifg=#61AFEF gui=nocombine]]
+-- vim.cmd [[highlight IndentBlanklineIndent6 guifg=#C678DD gui=nocombine]]
+
+-- lvim.builtin.indentlines.options.char_highlight_list = {
+--   "IndentBlanklineIndent1",
+--   "IndentBlanklineIndent2",
+--   "IndentBlanklineIndent3",
+--   "IndentBlanklineIndent4",
+--   "IndentBlanklineIndent5",
+--   "IndentBlanklineIndent6",
+-- }
