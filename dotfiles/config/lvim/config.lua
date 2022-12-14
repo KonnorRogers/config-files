@@ -14,6 +14,7 @@ lvim.format_on_save = false
 lvim.colorscheme = "xcodedarkhc"
 lvim.builtin.autopairs.active = false
 lvim.builtin.nvimtree.active = false
+lvim.builtin.lir.active = false
 lvim.builtin.lualine.active = false
 lvim.builtin.bufferline.active = false
 
