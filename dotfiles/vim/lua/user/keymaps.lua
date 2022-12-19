@@ -100,7 +100,7 @@ keymap("n", "<Leader>tc", ":tabclose<CR>", opts)
 -- editing vim config
 keymap("n", "<Leader>rc", ":edit $HOME/.vim/vimrc<CR>", opts)
 keymap("n", "<Leader>dv", ":edit $HOME/.vim<CR>", opts)
-keymap("n", "<Leader>rv", ":source $MYVIMRC<CR>", opts)
+keymap("n", "<Leader>rv", ":source $HOME/.config/nvim/init.vim<CR>", opts)
 
 -- saving made eaiser
 keymap("n", "<Leader>ww", ":w!<CR>", opts)
@@ -142,3 +142,10 @@ keymap("n", "<Leader>rp", ":RainbowParentheses!!<CR>", opts)
 -- Ragtag
 keymap("i", "<M-o>", "<Esc>o", opts)
 keymap("i", "<C-j>", "<Down>", opts)
+
+keymap("i", "<C-n>", ":Explore<CR>", opts)
+keymap("n", "<C-n>", ":Explore<CR>", opts)
+keymap("v", "<C-n>", ":Explore<CR>", opts)
+
+keymap("n", "<Leader>cl", ":colorscheme xcodelighthc<CR>", opts)
+keymap("n", "<Leader>cd", ":colorscheme xcodedarkhc<CR>", opts)

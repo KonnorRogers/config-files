@@ -21,23 +21,6 @@ let g:user_emmet_leader_key = '<C-e>'
 inoremap <c-x><c-k> <c-x><c-k>
 
 
-" Rainbow parentheses
-let g:rainbow#max_level = 16
-let g:rainbow#pairs = [['(', ')'], ['[', ']'], ['{', '}']]
-let g:rainbow#blacklist = ["#000000"]
-
-
-" Netrw
-map <C-n> :Explore<CR>
-let g:netrw_browse_split = 0
-let g:netrw_banner = 0
-let g:netrw_mkdir_cmd = 'mkdir -p'
-let g:netrw_winsize = 25
-let g:netrw_liststyle=0
-let g:netrw_keepdir = 1
-let g:netrw_localcopydircmd = 'cp -r'
-
-
 "Vim-Go
 let g:go_def_mode='gopls'
 let g:go_info_mode='gopls'
@@ -68,7 +51,6 @@ endif
 set laststatus=2
 set statusline=
 set statusline+=\ %<%F\ %m\ %r\ %h\ %=%=%=%y\ [%c]%=
-
 
 " Shelf this for later
 if has("nvim-0.5")

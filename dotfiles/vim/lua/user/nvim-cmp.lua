@@ -4,8 +4,8 @@ if not cmp_status_ok then
   return
 end
 
-local snip_status_ok, snippy = pcall(require, "snippy")
-if not snip_status_ok then
+local luasnip_ok, luasnip = pcall(require, "luasnip")
+if not luasnip_ok then
   return
 end
 
@@ -47,7 +47,7 @@ local kind_icons = {
 cmp.setup {
   snippet = {
     expand = function(args)
-      snippy.expand_snippet(args.body)
+      luasnip.expand_snippet(args.body)
     end,
   },
   mapping = {
@@ -72,7 +72,7 @@ cmp.setup {
       vim_item.kind = string.format("%s", kind_icons[vim_item.kind])
       -- vim_item.kind = string.format('%s %s', kind_icons[vim_item.kind], vim_item.kind) -- This concatonates the icons with the name of the item kind
       vim_item.menu = ({
-        snippy = "[Snippet]",
+        luasnip = "[Snippet]",
         nvim_lsp = "[LSP]",
         buffer = "[Buffer]",
         path = "[Path]",
@@ -82,9 +82,9 @@ cmp.setup {
     end,
   },
   sources = {
-    { name = "snippy" },
     { name = "nvim_lsp" },
     { name = "buffer" },
+    { name = "snippy" },
     { name = "path" },
     { name = 'cmdline' },
   },

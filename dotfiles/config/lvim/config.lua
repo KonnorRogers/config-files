@@ -11,12 +11,14 @@ an executable
 -- general
 lvim.log.level = "warn"
 lvim.format_on_save = false
-lvim.colorscheme = "xcodedarkhc"
+-- lvim.colorscheme = "xcodedarkhc"
+lvim.colorscheme = "xcodelighthc"
 lvim.builtin.autopairs.active = false
 lvim.builtin.nvimtree.active = false
 lvim.builtin.lir.active = false
 lvim.builtin.lualine.active = false
 lvim.builtin.bufferline.active = false
+lvim.builtin.breadcrumbs.active = false
 
 lvim.leader = "space"
 -- set termguicolors to enable highlight groups
@@ -273,7 +275,6 @@ vim.opt.writebackup = false                     -- if a file is being edited by 
 vim.opt.expandtab = true                        -- convert tabs to spaces
 vim.opt.shiftwidth = 2                          -- the number of spaces inserted for each indentation
 vim.opt.tabstop = 2                             -- insert 2 spaces for a tab
-vim.opt.cursorline = true                       -- highlight the current line
 vim.opt.number = true                           -- set numbered lines
 vim.opt.laststatus = 3                          -- only the last window will always have a status line
 vim.opt.showcmd = false                         -- hide (partial) command in the last line of the screen (for performance)
@@ -354,6 +355,8 @@ vim.opt.showcmd = true -- show command line
 vim.opt.history = 50 -- keep small history
 vim.opt.hidden = true -- Keep buffers alive in background
 vim.opt.lazyredraw = true -- Fixes files at the end of macros, better performance
+vim.opt.ttyfast = true
+vim.opt.synmaxcol = 200
 
 -- Stupid clipboard crap, configure this accordingly
 vim.opt.clipboard = "unnamedplus" -- allows neovim to access the system clipboard
@@ -464,9 +467,9 @@ lvim.builtin.indentlines.options.show_current_context = true
 lvim.builtin.indentlines.options.use_treesitter = true
 lvim.builtin.indentlines.options.indent_blankline_use_treesitter_scope = true
 
--- vim.cmd [[highlight IndentBlanklineIndent1 guifg=#E06C75 gui=nocombine]]
--- vim.cmd [[highlight IndentBlanklineIndent2 guifg=#E5C07B gui=nocombine]]
--- vim.cmd [[highlight IndentBlanklineIndent3 guifg=#98C379 gui=nocombine]]
+-- vim.cmd [[highlight indentblanklineindent1 guifg=#e06c75 gui=nocombine]]
+-- vim.cmd [[highlight indentblanklineindent2 guifg=#e5c07b gui=nocombine]]
+-- vim.cmd [[highlight indentblanklineindent3 guifg=#98c379 gui=nocombine]]
 -- vim.cmd [[highlight IndentBlanklineIndent4 guifg=#56B6C2 gui=nocombine]]
 -- vim.cmd [[highlight IndentBlanklineIndent5 guifg=#61AFEF gui=nocombine]]
 -- vim.cmd [[highlight IndentBlanklineIndent6 guifg=#C678DD gui=nocombine]]
@@ -485,3 +488,7 @@ lvim.keys.insert_mode["<A-j>"] = false -- "<Esc>:m .+1<CR>==gi",
 
 -- Move current line / block with Alt-j/k ala vscode.
 lvim.keys.insert_mode["<A-k>"] = false -- "<Esc>:m .-2<CR>==gi",
+
+lvim.keys.normal_mode["<Leader>off"] = ":set syntax=off foldmethod=manual noshowmatch<CR>"
+lvim.keys.normal_mode["<Leader>cl"] = ":colorscheme xcodelighthc<CR>"
+lvim.keys.normal_mode["<Leader>cd"] = ":colorscheme xcodedarkhc<CR>"
