@@ -25,15 +25,6 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
 })
 
 
-vim.cmd("autocmd BufEnter * ++nested if winnr('$') == 1 && bufname() == 'NvimTree_' . tabpagenr() | quit | endif")
--- vim.api.nvim_create_autocmd({ "BufEnter" }, {
---   callback = function()
---     vim.cmd [[
---       if winnr('$') == 1 && bufname() == 'NvimTree_' . tabpagenr() | quit | endif
---     ]]
---   end,
--- })
-
 vim.api.nvim_create_autocmd({ "VimResized" }, {
 	callback = function()
 		vim.cmd("tabdo wincmd =")
@@ -64,10 +55,11 @@ vim.api.nvim_create_autocmd({ "BufWritePost" }, {
 	end,
 })
 
-vim.api.nvim_create_autocmd({ "VimEnter" }, {
-	callback = function()
-		vim.cmd("hi link illuminatedWord LspReferenceText")
-	end,
-})
+
+-- vim.api.nvim_create_autocmd({ "VimEnter" }, {
+-- 	callback = function()
+-- 		vim.cmd("hi link illuminatedWord LspReferenceText")
+-- 	end,
+-- })
 
 
