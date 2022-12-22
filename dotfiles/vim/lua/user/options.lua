@@ -49,7 +49,6 @@ vim.opt.autoindent = true
 vim.opt.preserveindent = true
 vim.opt.copyindent = true
 
-vim.opt.expandtab = false -- expand tabs into spaces
 vim.opt.tabstop = 2 -- when indenting with '>', use 2 spaces width
 vim.opt.shiftwidth = 2 -- On pressing tab, -- insert 2 spaces
 vim.opt.shiftround = true -- always even spaces

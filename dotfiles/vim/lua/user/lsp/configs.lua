@@ -1,14 +1,11 @@
-local status_ok, lsp_installer = pcall(require, "nvim-lsp-installer")
-if not status_ok then
-	return
-end
+local _, lsp_installer = pcall(require, "nvim-lsp-installer")
 
 local lspconfig = require("lspconfig")
 
 local servers = {
   "solargraph",
   "jsonls",
-  -- "sumneko_lua",
+  "sumneko_lua",
   'bashls',
   'cssls',
   'html',
