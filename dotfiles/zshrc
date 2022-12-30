@@ -170,3 +170,7 @@ export PNPM_HOME="$HOME/.local/share/pnpm"
 export PATH="$PNPM_HOME:$PATH"
 # pnpm end
 export HOMEBREW_PREFIX="/opt/homebrew"
+
+if [[ ! -z "$HOME/.cf2_secrets" ]]; then
+  source "$HOME/.cf2_secrets"
+fi

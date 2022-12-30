@@ -14,6 +14,15 @@ local check_backspace = function()
   return col == 0 or vim.fn.getline("."):sub(col, col):match "%s"
 end
 
+require("luasnip.loaders.from_vscode").lazy_load()
+require("luasnip.loaders.from_lua").lazy_load({
+	paths = { "~/.vim/luasnippets" }
+})
+
+luasnip.filetype_extend("typescript", { "javascript", "typescriptreact", "javascriptreact" })
+luasnip.filetype_extend("javascriptreact", { "javascript" })
+luasnip.filetype_extend("typescriptreact", { "typescript", "typescriptreact", "javascriptreact" })
+
 --   פּ ﯟ   some other good icons
 local kind_icons = {
   Text = "",
@@ -47,7 +56,7 @@ local kind_icons = {
 cmp.setup {
   snippet = {
     expand = function(args)
-      luasnip.expand_snippet(args.body)
+      luasnip.lsp_expand(args.body)
     end,
   },
   mapping = {
@@ -84,7 +93,7 @@ cmp.setup {
   sources = {
     { name = "nvim_lsp" },
     { name = "buffer" },
-    { name = "snippy" },
+    { name = "luasnip", option = { show_autosnippets = true } },
     { name = "path" },
     { name = 'cmdline' },
   },

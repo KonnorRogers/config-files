@@ -149,3 +149,4 @@ keymap("v", "<C-n>", ":Explore<CR>", opts)
 
 keymap("n", "<Leader>cl", ":colorscheme xcodelighthc<CR>", opts)
 keymap("n", "<Leader>cd", ":colorscheme xcodedarkhc<CR>", opts)
+

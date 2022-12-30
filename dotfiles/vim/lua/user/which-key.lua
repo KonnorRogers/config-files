@@ -25,7 +25,7 @@ end
 --   },
 --   -- add operators that will trigger motion and text object completion
 --   -- to enable all native operators, set the preset / operators plugin above
---   -- operators = { gc = "Comments" },
+--   operators = { gc = "Comments" },
 --   key_labels = {
 --     -- override the label used to display some keys. It doesn't effect WK in any other way.
 --     -- For example:
@@ -68,7 +68,7 @@ end
 --     v = { "j", "k" },
 --   },
 -- }
-
+--
 -- local opts = {
 --   mode = "n", -- NORMAL mode
 --   prefix = "<leader>",
@@ -77,7 +77,7 @@ end
 --   noremap = true, -- use `noremap` when creating keymaps
 --   nowait = true, -- use `nowait` when creating keymaps
 -- }
-
+--
 -- local mappings = {
 --   ["a"] = { "<cmd>Alpha<cr>", "Alpha" },
 --   ["b"] = {
@@ -95,7 +95,7 @@ end
 --   },
 --   ["F"] = { "<cmd>Telescope live_grep theme=ivy<cr>", "Find Text" },
 --   ["P"] = { "<cmd>lua require('telescope').extensions.projects.projects()<cr>", "Projects" },
-
+--
 --   p = {
 --     name = "Packer",
 --     c = { "<cmd>PackerCompile<cr>", "Compile" },
@@ -104,7 +104,7 @@ end
 --     S = { "<cmd>PackerStatus<cr>", "Status" },
 --     u = { "<cmd>PackerUpdate<cr>", "Update" },
 --   },
-
+--
 --   g = {
 --     name = "Git",
 --     g = { "<cmd>lua _LAZYGIT_TOGGLE()<CR>", "Lazygit" },
@@ -127,7 +127,7 @@ end
 --       "Diff",
 --     },
 --   },
-
+--
 --   l = {
 --     name = "LSP",
 --     a = { "<cmd>lua vim.lsp.buf.code_action()<cr>", "Code Action" },
@@ -170,7 +170,7 @@ end
 --     k = { "<cmd>Telescope keymaps<cr>", "Keymaps" },
 --     C = { "<cmd>Telescope commands<cr>", "Commands" },
 --   },
-
+--
 --   t = {
 --     name = "Terminal",
 --     n = { "<cmd>lua _NODE_TOGGLE()<cr>", "Node" },
@@ -182,6 +182,6 @@ end
 --     v = { "<cmd>ToggleTerm size=80 direction=vertical<cr>", "Vertical" },
 --   },
 -- }
-
+--
 -- which_key.setup(setup)
 -- which_key.register(mappings, opts)
