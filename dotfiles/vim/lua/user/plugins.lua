@@ -55,7 +55,7 @@ return packer.startup(function(use)
   use "folke/neodev.nvim" -- LSP stuff for plugins
   use "b0o/schemastore.nvim" -- JSON schemas
 	use "folke/which-key.nvim" -- Show a menu of keys available
-	use "ahmedkhalf/project.nvim"
+	-- use "ahmedkhalf/project.nvim"
 
   -- Colorschemes
   use "lunarvim/lunar.nvim"
