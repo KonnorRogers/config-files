@@ -5,7 +5,7 @@ vim.opt.cmdheight = 1                           -- more space in the neovim comm
 vim.opt.completeopt = { "menuone", "noselect" } -- mostly just for cmp
 vim.opt.conceallevel = 0                        -- so that `` is visible in markdown files
 vim.opt.hlsearch = true                         -- highlight all matches on previous search pattern
-vim.opt.ignorecase = true                       -- ignore case in search patterns
+-- vim.opt.ignorecase = true                       -- ignore case in search patterns
 vim.opt.mouse = "a"                             -- allow the mouse to be used in neovim
 vim.opt.pumheight = 10                          -- pop up menu height
 vim.opt.showmode = false                        -- we don't need to see things like -- INSERT -- anymore
@@ -138,3 +138,16 @@ vim.opt.fillchars.eob=" "                       -- show empty lines at the end o
 vim.opt.shortmess:append "c"                    -- hide all the completion messages, e.g. "-- XXX completion (YYY)", "match 1 of 2", "The only match", "Pattern not found"
 vim.opt.whichwrap:append("<,>,[,],h,l")         -- keys allowed to move to the previous/next line when the beginning/end of line is reached
 vim.opt.iskeyword:append("-")                   -- treats words with `-` as single words
+
+local in_wsl = os.getenv('WSL_DISTRO_NAME') ~= nil
+
+if in_wsl then
+    vim.g.clipboard = {
+        name = 'wsl clipboard',
+        copy =  { ["+"] = { "clip.exe" },   ["*"] = { "clip.exe" } },
+        paste = { ["+"] = { "nvim-paste" }, ["*"] = { "nvim-paste" } },
+        cache_enabled = true
+    }
+end
+
+vim.opt.maxmempattern = 9999999

@@ -15,6 +15,7 @@ alias port='lsof -wni'
 alias rb-diff='git ls-files -m | xargs ls -1 2>/dev/null |  grep "\.rb" | xargs'
 alias js-diff='git ls-files -m | xargs ls -1 2>/dev/null | grep "\.\(jsx?\|tsx?\)" | xargs'
 alias css-diff='git ls-files -m | xargs ls -1 2>/dev/null | grep "\.s\?[ca]ss" | xargs'
+alias mvim='vim -U ~/.vim/minimal.lua'
 
 # git
 alias gaa='git add -A'
