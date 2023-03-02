@@ -11,8 +11,8 @@ an executable
 -- general
 lvim.log.level = "warn"
 lvim.format_on_save = false
--- lvim.colorscheme = "xcodedarkhc"
-lvim.colorscheme = "xcodelighthc"
+lvim.colorscheme = "xcodedarkhc"
+-- lvim.colorscheme = "xcodelighthc"
 lvim.builtin.autopairs.active = false
 lvim.builtin.nvimtree.active = false
 lvim.builtin.lir.active = false
@@ -224,13 +224,20 @@ lvim.builtin.treesitter.highlight.enable = true
 --   -- enable wrap mode for json files only
 --   command = "setlocal wrap",
 -- })
--- vim.api.nvim_create_autocmd("FileType", {
---   pattern = "zsh",
---   callback = function()
---     -- let treesitter use bash highlight for zsh files as well
---     require("nvim-treesitter.highlight").attach(0, "bash")
---   end,
--- })
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = { "*" },
+  callback = function()
+		local lang = vim.bo.filetype
+
+		local filetypes = lang == "TelescopePrompt" or lang == "netrw" or lang == "markdown"
+		local buffer_number = vim.api.nvim_win_get_buf(0)
+
+
+		if filetypes or vim.api.nvim_buf_line_count(buffer_number) > 2000 then
+			lvim.builtin.treesitter.highlight.disable(lang, buffer_number)
+		end
+  end,
+})
 --
   -- Tpope
 lvim.plugins = {

@@ -4,6 +4,7 @@ local lspconfig = require("lspconfig")
 
 local servers = {
   "solargraph",
+  "csharp_ls",
   "jsonls",
   "sumneko_lua",
   'bashls',
@@ -13,7 +14,7 @@ local servers = {
   'tsserver',
   'emmet_ls',
   'vimls',
-  'yamlls'
+  'yamlls',
 }
 
 lsp_installer.setup {

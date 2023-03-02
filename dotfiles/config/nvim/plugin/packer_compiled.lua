@@ -229,6 +229,11 @@ _G.packer_plugins = {
     path = "/home/konnorrogers/.local/share/nvim/site/pack/packer/start/nvim-ts-rainbow",
     url = "https://github.com/p00f/nvim-ts-rainbow"
   },
+  ["omnisharp-extended-lsp.nvim"] = {
+    loaded = true,
+    path = "/home/konnorrogers/.local/share/nvim/site/pack/packer/start/omnisharp-extended-lsp.nvim",
+    url = "https://github.com/Hoffs/omnisharp-extended-lsp.nvim"
+  },
   ["packer.nvim"] = {
     loaded = true,
     path = "/home/konnorrogers/.local/share/nvim/site/pack/packer/start/packer.nvim",
