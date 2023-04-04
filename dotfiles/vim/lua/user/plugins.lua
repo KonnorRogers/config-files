@@ -75,12 +75,14 @@ return packer.startup(function(use)
   	requires = {
   		"hrsh7th/cmp-buffer", -- buffer completions
   		"hrsh7th/cmp-path", -- path completions
-  		"saadparwaiz1/cmp_luasnip", -- snippet completions
+  		"hrsh7th/cmp-vsnip", -- snippet completions
   		"hrsh7th/cmp-nvim-lsp",
   		"hrsh7th/cmp-nvim-lua",
   	}
   }
   -- snippets
+  use 'hrsh7th/vim-vsnip'
+  use 'hrsh7th/vim-vsnip-integ'
   use "L3MON4D3/LuaSnip" --snippet engine
   use "rafamadriz/friendly-snippets" -- a bunch of snippets to use
 

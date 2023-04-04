@@ -4,7 +4,6 @@ local lspconfig = require("lspconfig")
 
 local servers = {
   "solargraph",
-  "csharp_ls",
   "jsonls",
   "sumneko_lua",
   'bashls',
@@ -16,6 +15,11 @@ local servers = {
   'vimls',
   'yamlls',
 }
+
+
+if vim.fn.executable("dotnet") == 1 then
+  table.insert(servers, "csharp_ls")
+end
 
 lsp_installer.setup {
 	ensure_installed = servers

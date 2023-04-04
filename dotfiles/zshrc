@@ -143,7 +143,8 @@ elif [[ "$OSTYPE" =~ "darwin" ]]; then
   # # Workaround for mimemagic
   export FREEDESKTOP_MIME_TYPES_PATH="$(brew --prefix)/share/mime/packages/freedesktop.org.xml"
 
-  source "$(brew --prefix asdf)/asdf.sh"
+/opt/homebrew/opt/asdf/libexec/asdf.sh
+  source "$(brew --prefix asdf)/libexec/asdf.sh"
   source "$(brew --prefix asdf)/etc/bash_completion.d/asdf.bash"
   alias ctags='`brew --prefix`/bin/ctags'
   alias ls='ls -G'

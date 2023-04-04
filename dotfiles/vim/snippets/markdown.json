@@ -1,0 +1,14 @@
+{
+  "Header Link": {
+    "prefix": ["hl"],
+    "body": [
+      "<h$1 id=\"$2\">",
+      "  <a href=\"#$2\">",
+      "    ${3:$TM_SELECTED_TEXT}",
+      "  </a>",
+      "</h$1>",
+      "$0"
+    ],
+    "description": "Header links"
+  }
+}

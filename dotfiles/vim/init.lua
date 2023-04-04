@@ -11,11 +11,10 @@ require "user.dap"
 require "user.gitsigns"
 require "user.impatient"
 require "user.indent-blankline"
-require "user.luasnip"
 require "user.nvim-cmp"
 require "user.plugins"
 require "user.telescope"
 require "user.treesitter"
+require "user.vsnip"
 require "user.which-key"
-
 

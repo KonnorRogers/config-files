@@ -4,24 +4,10 @@ if not cmp_status_ok then
   return
 end
 
-local luasnip_ok, luasnip = pcall(require, "luasnip")
-if not luasnip_ok then
-  return
-end
-
 local check_backspace = function()
   local col = vim.fn.col "." - 1
   return col == 0 or vim.fn.getline("."):sub(col, col):match "%s"
 end
-
-require("luasnip.loaders.from_vscode").lazy_load()
-require("luasnip.loaders.from_lua").lazy_load({
-	paths = { "~/.vim/luasnippets" }
-})
-
-luasnip.filetype_extend("typescript", { "javascript", "typescriptreact", "javascriptreact" })
-luasnip.filetype_extend("javascriptreact", { "javascript" })
-luasnip.filetype_extend("typescriptreact", { "typescript", "typescriptreact", "javascriptreact" })
 
 --   פּ ﯟ   some other good icons
 local kind_icons = {
@@ -52,16 +38,35 @@ local kind_icons = {
   TypeParameter = "",
 }
 -- find more here: https://www.nerdfonts.com/cheat-sheet
+local feedkey = function(key, mode)
+  vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes(key, true, true, true), mode, true)
+end
 
 cmp.setup {
   snippet = {
     expand = function(args)
-      luasnip.lsp_expand(args.body)
-    end,
+      vim.fn["vsnip#anonymous"](args.body) -- For `vsnip` users.
+    end
   },
   mapping = {
-    ["<C-k>"] = cmp.mapping.select_prev_item(),
-		["<C-j>"] = cmp.mapping.select_next_item(),
+    ["<C-k>"] = cmp.mapping(function (fallback)
+      if vim.fn['vsnip#jumpable'](1) == 1 then
+          feedkey('<Plug>(vsnip-jump-next)', "")
+      elseif cmp.visible() then
+          cmp.select_prev_item()
+      else
+          fallback()
+      end
+    end, {"i", "s"}),
+		["<C-j>"] = cmp.mapping(function (fallback)
+      if vim.fn['vsnip#jumpable'](-1) == 1 then
+          feedkey('<Plug>(vsnip-jump-prev)', '')
+      elseif cmp.visible() then
+          cmp.select_next_item()
+      else
+          fallback()
+      end
+    end, {"i", "s"}),
     ["<C-b>"] = cmp.mapping(cmp.mapping.scroll_docs(-1), { "i", "c" }),
     ["<C-f>"] = cmp.mapping(cmp.mapping.scroll_docs(1), { "i", "c" }),
     ["<C-Space>"] = cmp.mapping(cmp.mapping.complete(), { "i", "c" }),
@@ -81,7 +86,7 @@ cmp.setup {
       vim_item.kind = string.format("%s", kind_icons[vim_item.kind])
       -- vim_item.kind = string.format('%s %s', kind_icons[vim_item.kind], vim_item.kind) -- This concatonates the icons with the name of the item kind
       vim_item.menu = ({
-        luasnip = "[Snippet]",
+        vsnip = "[Snippet]",
         nvim_lsp = "[LSP]",
         buffer = "[Buffer]",
         path = "[Path]",
@@ -93,7 +98,7 @@ cmp.setup {
   sources = {
     { name = "nvim_lsp" },
     { name = "buffer" },
-    { name = "luasnip", option = { show_autosnippets = true } },
+    { name = "vsnip" },
     { name = "path" },
     { name = 'cmdline' },
   },
@@ -105,6 +110,9 @@ cmp.setup {
     documentation = {
       border = { "╭", "─", "╮", "│", "╯", "─", "╰", "│" },
     },
+
+    -- completion = cmp.config.window.bordered(),
+    -- documentation = cmp.config.window.bordered(),
   },
   experimental = {
     ghost_text = false,

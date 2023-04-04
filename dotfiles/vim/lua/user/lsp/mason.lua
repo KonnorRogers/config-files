@@ -8,8 +8,12 @@ local servers = {
 	"jsonls",
 	"yamlls",
 	"solargraph",
-	"csharp_ls"
 }
+
+
+if vim.fn.executable("dotnet") == 1 then
+  table.insert(servers, "csharp_ls")
+end
 
 local settings = {
 	ui = {
