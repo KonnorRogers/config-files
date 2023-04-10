@@ -15,8 +15,8 @@ smap <expr> <C-k>   vsnip#jumpable(1)  ? '<Plug>(vsnip-jump-next)' : '<C-k>'
 imap <expr> <C-j> vsnip#jumpable(-1)  ? '<Plug>(vsnip-jump-prev)'      : '<C-j>'
 smap <expr> <C-j> vsnip#jumpable(-1)  ? '<Plug>(vsnip-jump-prev)'      : '<C-j>'
 
-imap <expr> <C-m>   vsnip#expandable()  ? '<Plug>(vsnip-expand)'         : '<C-m>'
-smap <expr> <C-m>   vsnip#expandable()  ? '<Plug>(vsnip-expand)'         : '<C-m>'
+imap <expr> <C-y>   vsnip#expandable()  ? '<Plug>(vsnip-expand)'         : '<C-y>'
+smap <expr> <C-y>   vsnip#expandable()  ? '<Plug>(vsnip-expand)'         : '<C-y>'
 
 " Select or cut text to use as $TM_SELECTED_TEXT in the next snippet.
 " See https://github.com/hrsh7th/vim-vsnip/pull/50
