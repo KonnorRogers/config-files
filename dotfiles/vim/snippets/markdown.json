@@ -10,5 +10,15 @@
       "$0"
     ],
     "description": "Header links"
+  },
+  "Documentation Frontmatter": {
+    "prefix": "dfmt",
+    "body": [
+      "---",
+      "title: $1${VIM:expand(\"%:t:r\")}",
+      "permalink: /$2${VIM:expand(\"%:t:r\")}/",
+      "---"
+    ],
+    "description": "Documentation frontmatter"
   }
 }

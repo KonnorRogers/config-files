@@ -114,6 +114,9 @@ return packer.startup(function(use)
     run = function()
       pcall(require('nvim-treesitter.install').update { with_sync = true })
     end,
+    requires = {
+      "Shopify/tree-sitter-liquid"
+    }
   }
 
   use { -- Additional text objects via treesitter

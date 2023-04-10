@@ -27,7 +27,7 @@ configs.setup({
 	indent = { enable = true, disable = disable_fn },
 
 	context_commentstring = {
-		enable = true,
+		enable = false,
 		enable_autocmd = false,
 		disable = disable_fn
 	},
