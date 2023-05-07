@@ -1,0 +1,18 @@
+{
+  "jsdoc": {
+    "prefix": ["jsdoc"],
+    "body": [
+      "/**",
+      " * $1",
+      " */"
+    ],
+    "description": "jsdoc"
+  },
+  "jsdoc inline": {
+    "prefix": ["jsdoci"],
+    "body": [
+      "/** $1 */"
+    ],
+    "description": "JSDOC inline"
+  }
+}
