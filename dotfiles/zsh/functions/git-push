@@ -1,0 +1,3 @@
+git-push () {
+  cd "$1" && git add . && git commit -v && git push && cd -
+}
