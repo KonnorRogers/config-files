@@ -267,6 +267,11 @@ _G.packer_plugins = {
     path = "/Users/konnor/.local/share/nvim/site/pack/packer/start/telescope.nvim",
     url = "https://github.com/nvim-telescope/telescope.nvim"
   },
+  ["tree-sitter-liquid"] = {
+    loaded = true,
+    path = "/Users/konnor/.local/share/nvim/site/pack/packer/start/tree-sitter-liquid",
+    url = "https://github.com/Shopify/tree-sitter-liquid"
+  },
   ["vim-colors-xcode"] = {
     loaded = true,
     path = "/Users/konnor/.local/share/nvim/site/pack/packer/start/vim-colors-xcode",

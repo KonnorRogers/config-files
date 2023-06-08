@@ -1,12 +1,24 @@
 local M = {}
 
-local _, cmp_nvim_lsp = pcall(require, "cmp_nvim_lsp")
+local cmp_status, cmp_nvim_lsp = pcall(require, "cmp_nvim_lsp")
+local fidget_status, fidget = pcall(require, "fidget")
+local neodev_status, neodev = pcall(require, "neodev")
 
-require("fidget").setup()
-require('neodev').setup()
+if not cmp_status then
+  return false
+end
+
+if fidget_status then
+  fidget.setup()
+end
+
+if neodev_status then
+  neodev.setup()
+end
 
 M.capabilities = vim.lsp.protocol.make_client_capabilities()
 M.capabilities.textDocument.completion.completionItem.snippetSupport = true
+
 M.capabilities = cmp_nvim_lsp.default_capabilities(M.capabilities)
 
 M.setup = function()

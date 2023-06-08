@@ -1,5 +1,10 @@
 pcall(require, "lspconfig")
 
-require "user.lsp.mason"
-require("user.lsp.handlers").setup()
-require "user.lsp.null-ls"
+pcall(require, "user.lsp.mason")
+handlers = require("user.lsp.handlers")
+
+if handlers then
+  handlers.setup()
+end
+
+pcall(require, "user.lsp.null-ls")
