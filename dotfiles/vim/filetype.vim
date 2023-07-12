@@ -8,6 +8,9 @@ augroup filetypedetect
   autocmd BufNewFile,BufRead *.liquid set filetype=liquid.html
   autocmd BufNewFile,BufRead */.vim set filetype=netrw
   autocmd BufNewFile,BufRead * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
+
+  autocmd BufNewFile,BufRead *.ts set filetype=javascript.typescript.javascriptreact.typescriptreact.react
+  autocmd BufNewFile,BufRead *.tsx set filetype=javascript.typescript.javascriptreact.typescriptreact.react
 augroup END
 
 
