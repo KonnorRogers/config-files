@@ -96,7 +96,7 @@ return packer.startup(function(use)
       'williamboman/nvim-lsp-installer',
 
       -- Useful status updates for LSP
-      'j-hui/fidget.nvim',
+      { 'j-hui/fidget.nvim', tag = "legacy" },
     },
   }
   use "jose-elias-alvarez/null-ls.nvim" -- for formatters and linters
@@ -135,6 +135,7 @@ return packer.startup(function(use)
   -- Tpope
   use 'tpope/vim-surround'
   use 'tpope/vim-ragtag'
+  use "tpope/vim-fugitive"
 
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins

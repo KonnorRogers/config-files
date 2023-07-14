@@ -282,6 +282,11 @@ _G.packer_plugins = {
     path = "/Users/konnor/.local/share/nvim/site/pack/packer/start/vim-css-color",
     url = "https://github.com/ap/vim-css-color"
   },
+  ["vim-fugitive"] = {
+    loaded = true,
+    path = "/Users/konnor/.local/share/nvim/site/pack/packer/start/vim-fugitive",
+    url = "https://github.com/tpope/vim-fugitive"
+  },
   ["vim-ragtag"] = {
     loaded = true,
     path = "/Users/konnor/.local/share/nvim/site/pack/packer/start/vim-ragtag",
