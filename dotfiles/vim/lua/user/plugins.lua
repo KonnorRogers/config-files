@@ -61,7 +61,7 @@ return packer.startup(function(use)
   use "arzg/vim-colors-xcode"
   use "mattn/emmet-vim"
   use "ap/vim-css-color" -- Add color to .css files
-	use "p00f/nvim-ts-rainbow" -- Rainbows!
+	-- use "p00f/nvim-ts-rainbow" -- Rainbows!
 
 	use {
   	"ray-x/lsp_signature.nvim",

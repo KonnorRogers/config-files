@@ -224,11 +224,6 @@ _G.packer_plugins = {
     path = "/Users/konnor/.local/share/nvim/site/pack/packer/start/nvim-ts-context-commentstring",
     url = "https://github.com/JoosepAlviste/nvim-ts-context-commentstring"
   },
-  ["nvim-ts-rainbow"] = {
-    loaded = true,
-    path = "/Users/konnor/.local/share/nvim/site/pack/packer/start/nvim-ts-rainbow",
-    url = "https://github.com/p00f/nvim-ts-rainbow"
-  },
   ["omnisharp-extended-lsp.nvim"] = {
     loaded = true,
     path = "/Users/konnor/.local/share/nvim/site/pack/packer/start/omnisharp-extended-lsp.nvim",
