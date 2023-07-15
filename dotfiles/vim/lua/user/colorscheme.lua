@@ -1,4 +1,4 @@
-local colorscheme = "xcodelighthc"
+local colorscheme = os.getenv("COLORSCHEME") or "xcodelighthc"
 -- local colorscheme = "xcodedarkhc"
 
 local status_ok, _ = pcall(vim.cmd, "colorscheme " .. colorscheme)
