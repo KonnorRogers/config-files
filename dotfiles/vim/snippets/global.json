@@ -1,0 +1,17 @@
+{
+  "Date": {
+    "prefix": "date",
+    "body": [
+      "${VIM:expand(strftime(\"%Y-%m-%d %H:%M:%S %z\"))}"
+    ],
+    "description": "Current date in yyyy-mm-dd h:m:s %z"
+  },
+  "ISODate": {
+    "prefix": "iso",
+    "body": [
+      "${VIM:expand(strftime(\"%FT%T%z\"))}"
+    ],
+    "description": "Current date in ISO8601"
+  }
+
+}
