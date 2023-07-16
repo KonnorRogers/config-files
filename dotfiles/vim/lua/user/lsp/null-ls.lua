@@ -12,10 +12,10 @@ local diagnostics = null_ls.builtins.diagnostics
 null_ls.setup {
   debug = true,
   sources = {
-    diagnostics.eslint_d,
+    -- diagnostics.eslint_d,
     -- diagnostics.prettier,
     -- formatting.eslint,
-    formatting.prettier,
+    -- formatting.prettier,
     -- diagnostics.luv,
     -- formatting.luv,
     formatting.black.with { extra_args = { "--fast" } },

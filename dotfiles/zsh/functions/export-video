@@ -1,0 +1,5 @@
+function export-video () {
+  input="$1"
+  output="$2"
+  ffmpeg -i "$input" -vf "scale=1920:1080, fps=30" -c:v libx264 -c:a copy "$output"
+}
