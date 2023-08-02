@@ -144,7 +144,6 @@ elif [[ "$OSTYPE" =~ "darwin" ]]; then
   # # Workaround for mimemagic
   export FREEDESKTOP_MIME_TYPES_PATH="$(brew --prefix)/share/mime/packages/freedesktop.org.xml"
 
-/opt/homebrew/opt/asdf/libexec/asdf.sh
   source "$(brew --prefix asdf)/libexec/asdf.sh"
   source "$(brew --prefix asdf)/etc/bash_completion.d/asdf.bash"
   alias ctags='`brew --prefix`/bin/ctags'
@@ -161,6 +160,7 @@ export NODE_VERSION="${node_version:1}"
 export NODE_PATH="$HOME/.asdf/installs/nodejs/${$(node -v)}/.npm/lib"
 export CARGO_PATH="$HOME/.cargo/bin"
 export PATH="$CARGO_PATH:$PATH"
+export PATH="$HOME/.config/emacs/bin:$PATH"
 
 autoload -Uz compinit && compinit -i
 autoload -U zmv
