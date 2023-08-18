@@ -34,7 +34,7 @@ M.setup = function()
 	end
 
 	local config = {
-		virtual_text = false, -- disable virtual text
+		virtual_text = true, -- disable virtual text
 		signs = {
 			active = signs, -- show signs
 		},
@@ -110,6 +110,7 @@ keymap('n', '<leader>dd', '<cmd>Telescope diagnostics<CR>', opts)
 
 M.on_attach = function(client, bufnr)
 	if client.name == "tsserver" then
+	  -- Turn off auto formatting
 		client.server_capabilities.documentFormattingProvider = false
 	end
 

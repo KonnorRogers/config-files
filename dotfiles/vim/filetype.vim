@@ -9,8 +9,10 @@ augroup filetypedetect
   autocmd BufNewFile,BufRead */.vim set filetype=netrw
   autocmd BufNewFile,BufRead * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
 
-  autocmd BufNewFile,BufRead *.jsx set filetype=javascript
-  autocmd BufNewFile,BufRead *.tsx set filetype=typescript
+  autocmd BufNewFile,BufRead *.js set filetype=javascriptreact
+  autocmd BufNewFile,BufRead *.ts set filetype=typescriptreact
+  autocmd BufNewFile,BufRead *.jsx set filetype=javascriptreact
+  autocmd BufNewFile,BufRead *.tsx set filetype=typescriptreact
 augroup END
 
 
