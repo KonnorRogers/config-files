@@ -1,0 +1,40 @@
+#!/usr/bin/env zsh
+
+# https://gist.github.com/0xjac/85097472043b697ab57ba1b1c7530274
+# @example
+#   git-private-fork <upstream-url> <your-fork-url> <directory-name>
+#   git-private-fork https://github.com/konnorrogers/repo.git https://github.com/billybob/fork.git ./my-fork
+#
+git-private-fork () {
+  base_url="$1"
+  fork_url="$2"
+  directory="$3"
+
+  # https://unix.stackexchange.com/questions/30091/fix-or-alternative-for-mktemp-in-os-x
+  tmp_dir=$(mktemp -d 2>/dev/null || mktemp -d -t 'tmp_dir')
+
+  # Clone then push to the fork url
+  git clone --bare "$base_url" "$tmp_dir"
+  cd "$tmp_dir"
+  git push --mirror "$fork_url"
+
+  # Go back to start
+  cd -
+
+  # clean up tmp_dir
+  rm -rf "$tmp_dir"
+
+  git clone "$fork_url" "$directory"
+
+  cd "$directory"
+
+  # Add the upstream, and disable pushing to to it.
+  git remote add upstream "$base_url"
+
+  echo "Disabling pushing to upstream..."
+  git remote set-url --push upstream DISABLE
+
+  echo "Fork complete. To grab changes from upstream do:"
+  echo "git fetch upstream"
+  echo "git rebase upstream/master"
+}

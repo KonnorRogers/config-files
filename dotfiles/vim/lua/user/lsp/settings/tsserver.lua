@@ -1,5 +1,5 @@
 local opts = {
-  filetypes = { "typescript", "javascript", "typescriptreact", "typescript.typescriptreact", "javascript.javascriptreact" }
+  filetypes = { "typescript", "javascript", "typescriptreact", "javascriptreact" }
 }
 
 return opts
