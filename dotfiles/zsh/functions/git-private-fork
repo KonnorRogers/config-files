@@ -1,5 +1,6 @@
 #!/usr/bin/env zsh
 
+# Make sure to create a private blank repository to use as the "fork_url"
 # https://gist.github.com/0xjac/85097472043b697ab57ba1b1c7530274
 # @example
 #   git-private-fork <upstream-url> <your-fork-url> <directory-name>

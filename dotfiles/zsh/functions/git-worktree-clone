@@ -1,0 +1,18 @@
+#!/usr/bin/env sh
+
+##
+# @example
+#   for a new directory:
+#   git-worktree-clone my-project https://
+git-worktree-clone () {
+  directory="$1"
+  url="$2"
+
+  git clone --bare "$url" "$directory"
+  cd "$directory"
+  echo "gitdir: ./.bare" > .git
+
+  echo "Your worktree has been created! To start using it do the following:"
+  echo "cd $directory"
+  echo "git worktree add main"
+}
