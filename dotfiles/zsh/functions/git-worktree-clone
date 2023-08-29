@@ -8,8 +8,9 @@ git-worktree-clone () {
   directory="$1"
   url="$2"
 
-  git clone --bare "$url" "$directory"
+  mkdir -p "$directory"
   cd "$directory"
+  git clone --bare "$url" ".bare"
   echo "gitdir: ./.bare" > .git
 
   echo "Your worktree has been created! To start using it do the following:"
