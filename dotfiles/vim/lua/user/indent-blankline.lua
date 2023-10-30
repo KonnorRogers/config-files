@@ -1,11 +1,16 @@
-local status, blankline = pcall(require, "indent_blankline")
+local status, blankline = pcall(require, "ibl")
 
 if not status then
   return
 end
 
 blankline.setup({
-  show_current_context = true,
-  show_current_context_start = false,
-  char = "│"
+  scope = {
+    enabled = true,
+    show_start = false
+  },
+  indent = {
+    char = "│"
+  }
 })
+

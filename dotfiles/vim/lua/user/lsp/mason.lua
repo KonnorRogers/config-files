@@ -7,7 +7,7 @@ local servers = {
 	"bashls",
 	"jsonls",
 	"yamlls",
-	"solargraph",
+	-- "solargraph",
 }
 
 
@@ -48,21 +48,25 @@ mason_lspconfig.setup({
 
 local _, lspconfig = pcall(require, "lspconfig")
 
-local opts = {}
+local opts = {
+	on_attach = require("user.lsp.handlers").on_attach,
+	capabilities = require("user.lsp.handlers").capabilities,
+}
+
+
+require('lspconfig-bundler').setup()
+lspconfig.solargraph.setup(opts)
 
 for _, server in pairs(servers) do
-	opts = {
-		on_attach = require("user.lsp.handlers").on_attach,
-		capabilities = require("user.lsp.handlers").capabilities,
-	}
+  local extended_opts = {}
 
 	server = vim.split(server, "@")[1]
 
 	local status_ok, conf_opts = pcall(require, "user.lsp.settings." .. server)
 
 	if status_ok then
-          opts = vim.tbl_deep_extend("force", conf_opts, opts)
+          extended_opts = vim.tbl_deep_extend("force", conf_opts, opts)
 	end
 
-	lspconfig[server].setup(opts)
+	lspconfig[server].setup(extended_opts)
 end

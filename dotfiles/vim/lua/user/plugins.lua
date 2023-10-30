@@ -49,7 +49,7 @@ return packer.startup(function(use)
   use "numToStr/Comment.nvim" -- Comment stuff
   use "JoosepAlviste/nvim-ts-context-commentstring" -- Treesitter extension
   use "lewis6991/impatient.nvim" -- Faster loading
-  use "lukas-reineke/indent-blankline.nvim" -- Indent guide
+  use "lukas-reineke/indent-blankline.nvim"
   use "goolord/alpha-nvim"
   use "nvim-lua/popup.nvim" -- Experimental popup api
   use "folke/neodev.nvim" -- LSP stuff for plugins
@@ -99,6 +99,9 @@ return packer.startup(function(use)
       { 'j-hui/fidget.nvim', tag = "legacy" },
     },
   }
+
+  use { 'mihyaeru21/nvim-lspconfig-bundler', requires = 'neovim/nvim-lspconfig' }
+
   use "jose-elias-alvarez/null-ls.nvim" -- for formatters and linters
   use "Hoffs/omnisharp-extended-lsp.nvim"
 

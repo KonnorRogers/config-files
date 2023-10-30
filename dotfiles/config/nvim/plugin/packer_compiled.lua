@@ -207,6 +207,11 @@ _G.packer_plugins = {
     path = "/Users/konnor/.local/share/nvim/site/pack/packer/start/nvim-lspconfig",
     url = "https://github.com/neovim/nvim-lspconfig"
   },
+  ["nvim-lspconfig-bundler"] = {
+    loaded = true,
+    path = "/Users/konnor/.local/share/nvim/site/pack/packer/start/nvim-lspconfig-bundler",
+    url = "https://github.com/mihyaeru21/nvim-lspconfig-bundler"
+  },
   ["nvim-treesitter"] = {
     loaded = true,
     path = "/Users/konnor/.local/share/nvim/site/pack/packer/start/nvim-treesitter",
