@@ -4,6 +4,7 @@ local lspconfig = require("lspconfig")
 
 local servers = {
   "solargraph",
+  "ruby_ls",
   "jsonls",
   "sumneko_lua",
   'bashls',
@@ -37,5 +38,3 @@ for _, server in pairs(servers) do
 	end
 	lspconfig[server].setup(opts)
 end
-
-lspconfig.solargraph.setup(opts)

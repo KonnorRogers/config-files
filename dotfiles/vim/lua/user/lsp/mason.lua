@@ -7,7 +7,8 @@ local servers = {
 	"bashls",
 	"jsonls",
 	"yamlls",
-	-- "solargraph",
+	"solargraph",
+	"ruby_ls"
 }
 
 
@@ -54,8 +55,8 @@ local opts = {
 }
 
 
-require('lspconfig-bundler').setup()
-lspconfig.solargraph.setup(opts)
+-- require('lspconfig-bundler').setup()
+-- lspconfig.solargraph.setup(opts)
 
 for _, server in pairs(servers) do
   local extended_opts = {}
