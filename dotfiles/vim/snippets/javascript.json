@@ -14,5 +14,15 @@
       "/** $1 */"
     ],
     "description": "JSDOC inline"
+  },
+  "dirname": {
+    "prefix": ["dirname", "__dirname"],
+    "body": [
+      "import * as url from 'node:url';",
+      "const __filename = url.fileURLToPath(import.meta.url);",
+      "const __dirname = url.fileURLToPath(new URL('.', import.meta.url));"
+    ],
+    "description": "esm based __dirname"
   }
+
 }

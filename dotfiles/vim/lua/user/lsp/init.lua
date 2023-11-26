@@ -1,9 +1,11 @@
-pcall(require, "lspconfig")
+local _, lspconfig = pcall(require, "lspconfig")
 
 pcall(require, "user.lsp.mason")
 handlers = require("user.lsp.handlers")
 
 vim.g["ruby_host_prog"] = "$HOME/.asdf/shims/neovim-ruby-host"
+-- require('lspconfig-bundler').setup()
+-- lspconfig.solargraph.setup()
 
 if handlers then
   handlers.setup()

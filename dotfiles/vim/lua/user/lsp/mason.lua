@@ -54,10 +54,6 @@ local opts = {
 	capabilities = require("user.lsp.handlers").capabilities,
 }
 
-
--- require('lspconfig-bundler').setup()
--- lspconfig.solargraph.setup(opts)
-
 for _, server in pairs(servers) do
   local extended_opts = {}
 
