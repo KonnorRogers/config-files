@@ -8,7 +8,8 @@ local servers = {
 	"jsonls",
 	"yamlls",
 	"solargraph",
-	"ruby_ls"
+	"ruby_ls",
+  -- "custom_elements_ls"
 }
 
 
@@ -30,13 +31,18 @@ local settings = {
 }
 
 
-local status, mason = pcall(require, 'mason')
-if not status then
+local mason_status, mason = pcall(require, 'mason')
+if not mason_status then
   return
 end
 
-local status, mason_lspconfig = pcall(require, 'mason-lspconfig')
-if not status then
+local lsp_status, lspconfig = pcall(require, "lspconfig")
+if not lsp_status then
+  return
+end
+
+local mason_lsp_status, mason_lspconfig = pcall(require, 'mason-lspconfig')
+if not mason_lsp_status then
   return
 end
 
@@ -47,27 +53,25 @@ mason_lspconfig.setup({
 	automatic_installation = true,
 })
 
-local _, lspconfig = pcall(require, "lspconfig")
 
 local opts = {
 	on_attach = require("user.lsp.handlers").on_attach,
 	capabilities = require("user.lsp.handlers").capabilities,
 }
 
+mason_lspconfig.setup_handlers {
+    -- The first entry (without a key) will be the default handler
+    -- and will be called for each installed server that doesn't have
+    -- a dedicated handler.
+    function (server_name) -- default handler (optional)
+        local extended_opts = {}
 
--- require('lspconfig-bundler').setup()
--- lspconfig.solargraph.setup(opts)
+	      local status_ok, conf_opts = pcall(require, "user.lsp.settings." .. server_name)
 
-for _, server in pairs(servers) do
-  local extended_opts = {}
-
-	server = vim.split(server, "@")[1]
-
-	local status_ok, conf_opts = pcall(require, "user.lsp.settings." .. server)
-
-	if status_ok then
+	      if status_ok then
           extended_opts = vim.tbl_deep_extend("force", conf_opts, opts)
-	end
+	      end
 
-	lspconfig[server].setup(extended_opts)
-end
+	      lspconfig[server_name].setup(extended_opts)
+    end,
+}

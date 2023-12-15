@@ -93,7 +93,6 @@ return packer.startup(function(use)
       -- Automatically install LSPs to stdpath for neovim
       'williamboman/mason.nvim',
       'williamboman/mason-lspconfig.nvim',
-      'williamboman/nvim-lsp-installer',
 
       -- Useful status updates for LSP
       { 'j-hui/fidget.nvim', tag = "legacy" },
@@ -129,6 +128,13 @@ return packer.startup(function(use)
 
   -- Git
   use "lewis6991/gitsigns.nvim"
+  use({
+      "kdheepak/lazygit.nvim",
+      -- optional for floating window border decoration
+      requires = {
+          "nvim-lua/plenary.nvim",
+      },
+  })
 
   -- DAP
   use "mfussenegger/nvim-dap"
