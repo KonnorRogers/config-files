@@ -1,0 +1,26 @@
+{
+  "Yardoc": {
+    "prefix": ["yard"],
+    "body": [
+      "# $1",
+      "#",
+      "# $0"
+    ],
+    "description": "Start a yard doc"
+  },
+  "Yard Param": {
+    "prefix": ["param"],
+    "body": [
+      "@param ${1:param_name} [${2:Type}] - ${3:Description}"
+    ],
+    "description": "Add params"
+  },
+    "Yard Return": {
+    "prefix": ["return"],
+    "body": [
+      "@return [${1:ReturnType}] ${2:Description}"
+    ],
+    "description": "Add params"
+  }
+
+}

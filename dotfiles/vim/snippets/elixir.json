@@ -1,0 +1,20 @@
+{
+  "Controller": {
+    "prefix": ["controller"],
+    "body": [
+      "defmodule $1.$2Controller do",
+      "  use $1, :controller",
+      "end"
+    ],
+    "description": "A phoenix controller"
+  },
+  "Route": {
+    "prefix": ["route"],
+    "body": [
+      "def $1(conn, params) do",
+      "  $2",
+      "end"
+    ],
+    "description": "Create a controller route"
+  }
+}
