@@ -137,9 +137,9 @@ return packer.startup(function(use)
   })
 
   -- DAP
-  use "mfussenegger/nvim-dap"
-  use "rcarriga/nvim-dap-ui"
-  use "ravenxrz/DAPInstall.nvim"
+  -- use "mfussenegger/nvim-dap"
+  -- use "rcarriga/nvim-dap-ui"
+  -- use "ravenxrz/DAPInstall.nvim"
 
   -- Tpope
   use 'tpope/vim-surround'

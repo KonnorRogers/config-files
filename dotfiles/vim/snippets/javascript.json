@@ -16,13 +16,19 @@
     "description": "JSDOC inline"
   },
   "dirname": {
-    "prefix": ["dirname", "__dirname"],
+    "prefix": ["dirname"],
     "body": [
-      "import * as url from 'node:url';",
-      "const __filename = url.fileURLToPath(import.meta.url);",
+      "import * as url from 'url';",
       "const __dirname = url.fileURLToPath(new URL('.', import.meta.url));"
     ],
-    "description": "esm based __dirname"
+    "description": "Adds __dirname to an ESM file."
+  },
+  "filename": {
+    "prefix": ["filename"],
+    "body": [
+      "import * as url from 'url';",
+      "const __filename = url.fileURLToPath(new URL(import.meta.url));"
+    ],
+    "description": "Adds __filename to an ESM file."
   }
-
 }
