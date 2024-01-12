@@ -1,3 +1,5 @@
+-- vim.loader.enable()
+
 -- Automatically install lazy.nvim
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazypath) then
@@ -10,8 +12,8 @@ if not vim.loop.fs_stat(lazypath) then
     lazypath,
   })
 end
--- vim.opt.rtp:prepend(lazypath)
--- vim.loader.enable()
+
+vim.opt.runtimepath:prepend(lazypath)
 
 -- Use a protected call so we don't error out on first use
 local status_ok, lazy = pcall(require, "lazy")
@@ -20,7 +22,7 @@ if not status_ok then
 end
 
 -- Install your plugins here
-return lazy.setup({
+lazy.setup({
   -- Colorscheme
   {
     "arzg/vim-colors-xcode",
@@ -145,3 +147,8 @@ return lazy.setup({
 --   -- use "ravenxrz/DAPInstall.nvim"
 --
 })
+
+
+vim.opt.runtimepath:prepend("~/.vim")
+vim.opt.runtimepath:append("~/.vim/after")
+
