@@ -57,8 +57,6 @@ lazy.setup({
   { "mattn/emmet-vim" }, -- HTML shortcuts
   { "nvim-lua/plenary.nvim" }, -- Useful lua functions used by lots of plugins
   { "nvim-lua/popup.nvim" }, -- Experimental popup api
-  { "numToStr/Comment.nvim" }, -- Comment stuff
-  { "JoosepAlviste/nvim-ts-context-commentstring" }, -- Treesitter extension
 
   -- LSP Configuration & Plugins
   {
@@ -76,8 +74,7 @@ lazy.setup({
       { 'folke/neodev.nvim' },
     },
   },
-  { "lukas-reineke/indent-blankline.nvim" },
-  { "goolord/alpha-nvim" }, -- Startup screen
+
   { "b0o/schemastore.nvim" }, -- JSON schemas
   -- { 'folke/which-key.nvim', opts = {} }, -- Show a menu of keys available
   {
@@ -95,13 +92,14 @@ lazy.setup({
       { "rafamadriz/friendly-snippets" }, -- a bunch of snippets to use
 
       -- Completions
-    	{ "hrsh7th/cmp-buffer" }, -- buffer completions
-    	{ "hrsh7th/cmp-path" }, -- path completions
-    	{ "hrsh7th/cmp-vsnip" }, -- snippet completions
-    	{ "hrsh7th/cmp-nvim-lsp" },
-    	{ "hrsh7th/cmp-nvim-lua" },
+      { "hrsh7th/cmp-buffer" }, -- buffer completions
+      { "hrsh7th/cmp-path" }, -- path completions
+      { "hrsh7th/cmp-vsnip" }, -- snippet completions
+      { "hrsh7th/cmp-nvim-lsp" },
+      { "hrsh7th/cmp-nvim-lua" },
     }
   },
+  { "goolord/alpha-nvim" }, -- Startup screen
   { "jose-elias-alvarez/null-ls.nvim" },-- for formatters and linters
 --   use "Hoffs/omnisharp-extended-lsp.nvim"
 --
@@ -141,6 +139,10 @@ lazy.setup({
     end,
     dependencies = {
       { "Shopify/tree-sitter-liquid" },
+
+      { "numToStr/Comment.nvim" }, -- Comment stuff
+      { "JoosepAlviste/nvim-ts-context-commentstring" }, -- Treesitter extension
+      { "lukas-reineke/indent-blankline.nvim" },
       {
         "nvim-treesitter/nvim-treesitter-textobjects",
         config = function()

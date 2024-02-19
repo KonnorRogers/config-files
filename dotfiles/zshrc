@@ -176,3 +176,4 @@ export HOMEBREW_PREFIX="/opt/homebrew"
 if [[ -f "$HOME/.cf2_secrets" ]]; then
   source "$HOME/.cf2_secrets"
 fi
+export PATH="/opt/homebrew/opt/libpq/bin:$PATH"
