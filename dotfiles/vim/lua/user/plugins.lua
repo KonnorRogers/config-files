@@ -39,10 +39,10 @@ lazy.setup({
       vim.cmd.colorscheme(colorscheme)
     end,
   },
-  -- Other color stuff
-  { "ap/vim-css-color" }, -- Add color to .css files
   { "p00f/nvim-ts-rainbow" }, -- Rainbows!
 
+  -- Other color stuff
+  { "ap/vim-css-color" }, -- Add color to .css files
   -- Git related plugins
   { 'tpope/vim-fugitive' },
   { 'tpope/vim-rhubarb' },
