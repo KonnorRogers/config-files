@@ -12,7 +12,6 @@ require "user.impatient"
 require "user.indent-blankline"
 require "user.nvim-cmp"
 require "user.telescope"
-require "user.treesitter"
 require "user.vsnip"
 require "user.which-key"
 
