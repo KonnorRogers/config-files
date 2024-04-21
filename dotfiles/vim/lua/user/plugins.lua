@@ -140,7 +140,6 @@ lazy.setup({
       { "p00f/nvim-ts-rainbow" }, -- Rainbows!
       { "numToStr/Comment.nvim" }, -- Comment stuff
       { "JoosepAlviste/nvim-ts-context-commentstring" }, -- Treesitter extension
-      { "lukas-reineke/indent-blankline.nvim" },
     },
     cmd = { "TSUpdateSync", "TSUpdate", "TSInstall" },
     keys = {
@@ -151,7 +150,6 @@ lazy.setup({
     ---@diagnostic disable-next-line: missing-fields
     opts = {
       highlight = { enable = true },
-      indent = { enable = true },
       ensure_installed = {
         "bash",
         "c",
@@ -204,7 +202,6 @@ lazy.setup({
 	    enable = true, -- false will disable the whole extension
 	    disable = disable_fn, -- list of language that will be disabled
 	  },
-	  indent = { enable = true, disable = disable_fn },
 	  context_commentstring = {
 	    enable = false,
 	    enable_autocmd = false,
