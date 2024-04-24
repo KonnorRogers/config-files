@@ -98,11 +98,7 @@ alias npi='npm install'
 alias npid='npm install --save-dev'
 
 # yarn
-alias yn='yarn'
-alias ynr='yarn run'
-alias yna='yarn add'
-alias ynad='yard add -D'
-alias ynag='yarn add global'
+alias yarn1='npx yarn@^1'
 
 alias nvimdiff='nvim -d "$LOCAL" "$REMOTE"'
 

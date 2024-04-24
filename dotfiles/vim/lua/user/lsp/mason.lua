@@ -8,8 +8,8 @@ local servers = {
 	"jsonls",
 	"yamlls",
 	"solargraph",
-	"ruby_ls",
-  -- "custom_elements_ls"
+	-- "ruby_ls",
+  	-- "custom_elements_ls"
 }
 
 

@@ -48,7 +48,27 @@ lazy.setup({
   -- Tpope
   { 'tpope/vim-surround' },
   { 'tpope/vim-ragtag' },
-
+  {
+    'tpope/vim-commentary',
+    config = function ()
+      -- https://github.com/tpope/vim-commentary/issues/68
+      vim.api.nvim_create_autocmd("FileType", {
+        pattern = {"typescriptreact", "javascriptreact", "javascript", "typescript"},
+        callback = function()
+          vim.cmd[[
+            if exists('g:context#commentstring#table')
+              let g:context#commentstring#table['javascript.jsx'] = {
+                          \ 'jsComment' : '// %s',
+                          \ 'jsImport' : '// %s',
+                          \ 'jsxStatment' : '// %s',
+                          \ 'jsxRegion' : '{/*%s*/}',
+                          \}
+            endif
+          ]]
+        end,
+      })
+    end
+  },
   -- Detect tabstop and shiftwidth automatically
   { 'tpope/vim-sleuth' },
 
@@ -121,105 +141,48 @@ lazy.setup({
       },
     }
   },
-  {
-    "nvim-treesitter/nvim-treesitter",
-    version = false, -- last release is way too old and doesn't work on Windows
-    build = ":TSUpdate",
-    event = { "VeryLazy" },
-    init = function(plugin)
-      -- PERF: add nvim-treesitter queries to the rtp and it's custom query predicates early
-      -- This is needed because a bunch of plugins no longer `require("nvim-treesitter")`, which
-      -- no longer trigger the **nvim-treeitter** module to be loaded in time.
-      -- Luckily, the only thins that those plugins need are the custom queries, which we make available
-      -- during startup.
-      require("lazy.core.loader").add_to_rtp(plugin)
-      require("nvim-treesitter.query_predicates")
-    end,
-    dependencies = {
-      { "Shopify/tree-sitter-liquid" },
-      { "p00f/nvim-ts-rainbow" }, -- Rainbows!
-      { "numToStr/Comment.nvim" }, -- Comment stuff
-      { "JoosepAlviste/nvim-ts-context-commentstring" }, -- Treesitter extension
-    },
-    cmd = { "TSUpdateSync", "TSUpdate", "TSInstall" },
-    keys = {
-      { "<c-space>", desc = "Increment selection" },
-      { "<bs>", desc = "Decrement selection", mode = "x" },
-    },
-    ---@type TSConfig
-    ---@diagnostic disable-next-line: missing-fields
-    opts = {
-      highlight = { enable = true },
-      ensure_installed = {
-        "bash",
-        "c",
-        "diff",
-        "html",
-        "javascript",
-        "jsdoc",
-        "json",
-        "jsonc",
-        "lua",
-        "luadoc",
-        "luap",
-        "markdown",
-        "markdown_inline",
-        "python",
-        "query",
-        "regex",
-        "toml",
-        "tsx",
-        "typescript",
-        "vim",
-        "vimdoc",
-        "yaml",
-      },
-    },
-    ---@param opts TSConfig
-    config = function(_, opts)
-      if type(opts.ensure_installed) == "table" then
-        ---@type table<string, boolean>
-        local added = {}
-        opts.ensure_installed = vim.tbl_filter(function(lang)
-          if added[lang] then
-            return false
-          end
-          added[lang] = true
-          return true
-        end, opts.ensure_installed)
-      end
-
-      local disable_fn = function(lang, bufnr) -- Disable in large C++ buffers
-	      local filetypes = lang == "TelescopePrompt" or lang == "netrw" or lang == "markdown"
-	      return filetypes or vim.api.nvim_buf_line_count(bufnr) > 2000
-      end
-      require("nvim-treesitter.configs").setup(
-        vim.tbl_deep_extend("force", opts, {
-	  ignore_install = { "" }, -- List of parsers to ignore installing
-	  sync_install = false, -- install languages synchronously (only applied to `ensure_installed`)
-	  disable = disable_fn,
-          highlight = {
-	    enable = true, -- false will disable the whole extension
-	    disable = disable_fn, -- list of language that will be disabled
-	  },
-	  context_commentstring = {
-	    enable = false,
-	    enable_autocmd = false,
-	    disable = disable_fn
-	  },
-          rainbow = {
-	    disable = disable_fn,
-            enable = true,
-            -- disable = { "jsx", "cpp" }, list of languages you want to disable the plugin for
-            extended_mode = true, -- Also highlight non-bracket delimiters like html tags, boolean or table: lang -> boolean
-            max_file_lines = 2000, -- Do not enable for files with more than n lines, int
-            -- colors = {}, -- table of hex strings
-            -- termcolors = {} -- table of colour name strings
-          }
-        })
-      )
-    end,
-  },
+  -- Treesitter causes major slowdowns on any semi-large TypeScript file.
+  -- {
+  --   "nvim-treesitter/nvim-treesitter",
+  --   version = false, -- last release is way too old and doesn't work on Windows
+  --   build = ":TSUpdate",
+  --   dependencies = {
+  --     { "Shopify/tree-sitter-liquid" },
+  --     { "p00f/nvim-ts-rainbow" }, -- Rainbows!
+  --     { "numToStr/Comment.nvim" }, -- Comment stuff
+  --     { "JoosepAlviste/nvim-ts-context-commentstring" }, -- Treesitter extension
+  --   },
+  --   config = function ()
+  --     local configs = require("nvim-treesitter.configs")
+  --
+  --     local disable_fn = function(lang, bufnr) -- Disable in large C++ buffers
+	 --      local filetypes = lang == "TelescopePrompt" or lang == "netrw" or lang == "markdown"
+	 --      return filetypes or vim.api.nvim_buf_line_count(bufnr) > 2000
+  --     end
+  --
+  --     configs.setup({
+  --         ensure_installed = { "c", "lua", "vim", "vimdoc", "query", "elixir", "heex", "javascript", "html" },
+	 --  sync_install = false, -- install languages synchronously (only applied to `ensure_installed`)
+	 --  disable = disable_fn,
+  --         highlight = {
+	 --    enable = true, -- false will disable the whole extension
+	 --    disable = disable_fn, -- list of language that will be disabled
+	 --  },
+	 --  comment = {
+	 --    enable = true
+	 --  },
+  --         rainbow = {
+	 --    disable = disable_fn,
+  --           enable = false,
+  --           -- disable = { "jsx", "cpp" }, list of languages you want to disable the plugin for
+  --           extended_mode = true, -- Also highlight non-bracket delimiters like html tags, boolean or table: lang -> boolean
+  --           max_file_lines = 2000, -- Do not enable for files with more than n lines, int
+  --           -- colors = {}, -- table of hex strings
+  --           -- termcolors = {} -- table of colour name strings
+  --         }
+  --       })
+  --   end
+  -- },
   -- Git
   { "lewis6991/gitsigns.nvim" },
   {
