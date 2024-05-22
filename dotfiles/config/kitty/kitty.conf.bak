@@ -2508,6 +2508,6 @@ font_size 18.0
 
 
 # BEGIN_KITTY_THEME
-# 3024 Day
+# Xcodelighthc
 include current-theme.conf
 # END_KITTY_THEME

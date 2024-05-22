@@ -1,0 +1,9 @@
+git-worktree-sync () {
+  REMOTE="$1"
+
+  if [[ -z "$REMOTE" ]]; then
+      REMOTE="origin"
+  fi
+
+  git config remote.'$REMOTE'.fetch "+refs/heads/*:refs/remotes/$REMOTE/*"
+}
