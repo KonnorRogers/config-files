@@ -95,11 +95,19 @@ lazy.setup({
 
   { "b0o/schemastore.nvim" }, -- JSON schemas
   -- { 'folke/which-key.nvim', opts = {} }, -- Show a menu of keys available
-  {
-  	"ray-x/lsp_signature.nvim",
-  	event = "BufRead",
-  	config = function() require"lsp_signature".on_attach() end,
-  },
+  -- {
+  --   "ray-x/lsp_signature.nvim",
+  --   event = "BufRead",
+  --   config = function(_, opts)
+  --     require('lsp_signature').setup({
+  --       log_path = vim.fn.expand("$HOME") .. "/tmp/sig.log",
+  --       debug = true,
+  --       hint_enable = false,
+  --       handler_opts = { border = "single" },
+  --       max_width = 80,
+  --     })
+  --   end
+  -- },
   -- Completion
   {
     "hrsh7th/nvim-cmp", -- The completion plugin
@@ -142,49 +150,40 @@ lazy.setup({
     }
   },
   -- Treesitter causes major slowdowns on any semi-large TypeScript file.
-  -- {
-  --   "nvim-treesitter/nvim-treesitter",
-  --   version = false, -- last release is way too old and doesn't work on Windows
-  --   build = ":TSUpdate",
-  --   dependencies = {
-  --     { "Shopify/tree-sitter-liquid" },
-  --     { "p00f/nvim-ts-rainbow" }, -- Rainbows!
-  --     { "numToStr/Comment.nvim" }, -- Comment stuff
-  --     { "JoosepAlviste/nvim-ts-context-commentstring" }, -- Treesitter extension
-  --   },
-  --   config = function ()
-  --     local configs = require("nvim-treesitter.configs")
-  --
-  --     local disable_fn = function(lang, bufnr) -- Disable in large C++ buffers
-	 --      local filetypes = lang == "TelescopePrompt" or lang == "netrw" or lang == "markdown"
-	 --      return filetypes or vim.api.nvim_buf_line_count(bufnr) > 2000
-  --     end
-  --
-  --     configs.setup({
-  --         ensure_installed = { "c", "lua", "vim", "vimdoc", "query", "elixir", "heex", "javascript", "html" },
-	 --  sync_install = false, -- install languages synchronously (only applied to `ensure_installed`)
-	 --  disable = disable_fn,
-  --         highlight = {
-	 --    enable = true, -- false will disable the whole extension
-	 --    disable = disable_fn, -- list of language that will be disabled
-	 --  },
-	 --  comment = {
-	 --    enable = true
-	 --  },
-  --         rainbow = {
-	 --    disable = disable_fn,
-  --           enable = false,
-  --           -- disable = { "jsx", "cpp" }, list of languages you want to disable the plugin for
-  --           extended_mode = true, -- Also highlight non-bracket delimiters like html tags, boolean or table: lang -> boolean
-  --           max_file_lines = 2000, -- Do not enable for files with more than n lines, int
-  --           -- colors = {}, -- table of hex strings
-  --           -- termcolors = {} -- table of colour name strings
-  --         }
-  --       })
-  --   end
-  -- },
+  {
+    "nvim-treesitter/nvim-treesitter",
+    version = false,
+    init = function(plugin)
+      -- PERF: add nvim-treesitter queries to the rtp and it's custom query predicates early
+      -- This is needed because a bunch of plugins no longer `require("nvim-treesitter")`, which
+      -- no longer trigger the **nvim-treesitter** module to be loaded in time.
+      -- Luckily, the only things that those plugins need are the custom queries, which we make available
+      -- during startup.
+      require("lazy.core.loader").add_to_rtp(plugin)
+      require("nvim-treesitter.query_predicates")
+    end,
+    build = ":TSUpdate",
+    config = function ()
+      local configs = require("nvim-treesitter.configs")
+
+      local disable_fn = function(lang, bufnr) -- Disable in large C++ buffers
+              local filetypes = lang == "TelescopePrompt" or lang == "netrw" or lang == "markdown"
+              return filetypes or vim.api.nvim_buf_line_count(bufnr) > 2000
+      end
+
+      configs.setup({
+        ensure_installed = { "c", "lua", "vim", "vimdoc", "query", "elixir", "heex", "javascript", "html" },
+        sync_install = false, -- install languages synchronously (only applied to `ensure_installed`)
+        disable = disable_fn,
+        highlight = {
+          enable = true, -- false will disable the whole extension
+          disable = disable_fn, -- list of language that will be disabled
+        },
+     })
+    end,
+   },
   -- Git
-  { "lewis6991/gitsigns.nvim" },
+  -- { "lewis6991/gitsigns.nvim" },
   {
       "kdheepak/lazygit.nvim",
       -- optional for floating window border decoration

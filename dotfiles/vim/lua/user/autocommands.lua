@@ -60,3 +60,4 @@ vim.api.nvim_create_autocmd({ "BufWritePost" }, {
 -- 		vim.cmd("hi link illuminatedWord LspReferenceText")
 -- 	end,
 -- })
+

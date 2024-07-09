@@ -104,3 +104,4 @@ alias nvimdiff='nvim -d "$LOCAL" "$REMOTE"'
 
 alias fire-in-the-hole='find . -name "node_modules" -type d -prune -print | xargs du -chs'
 alias git-sync='git fetch origin "refs/heads/*:refs/heads/*"'
+alias push-notes='cd ~/notes && git add . && git commit -m "update notes" && git push && cd -'
