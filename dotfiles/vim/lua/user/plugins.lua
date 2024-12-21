@@ -32,6 +32,9 @@ lazy.setup({
   {
     "arzg/vim-colors-xcode",
     -- lazy = false, -- make sure we load this during startup if it is your main colorscheme
+    dependencies = {
+      "rebelot/kanagawa.nvim"
+    },
     priority = 1000, -- make sure to load this before all the other start plugins
     config = function()
       -- load the colorscheme here
@@ -89,7 +92,7 @@ lazy.setup({
       { 'j-hui/fidget.nvim', opts = {} },
 
       -- Additional lua configuration, makes nvim stuff amazing!
-      { 'folke/neodev.nvim' },
+      { "folke/neodev.nvim", opts = {} }
     },
   },
 

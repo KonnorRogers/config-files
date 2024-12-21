@@ -99,6 +99,7 @@ alias npid='npm install --save-dev'
 
 # yarn
 alias yarn1='npx yarn@^1'
+alias yarn='npx yarn@^1'
 
 alias nvimdiff='nvim -d "$LOCAL" "$REMOTE"'
 

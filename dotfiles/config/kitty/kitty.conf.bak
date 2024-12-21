@@ -5,9 +5,10 @@
 #: kitty has very powerful font management. You can configure
 #: individual font faces and even specify special fonts for particular
 #: characters.
+# font_family      VictorMono Nerd Font Mono
+# font_features    VictorMono Nerd Font Mono -liga
 
-font_family      VictorMono Nerd Font Mono
-font_features    VictorMono Nerd Font Mono -liga
+
 # bold_font        auto
 
 # italic_font      auto
@@ -26,7 +27,7 @@ font_features    VictorMono Nerd Font Mono -liga
 #:     italic_font      Operator Mono Book Italic
 #:     bold_italic_font Operator Mono Medium Italic
 
-font_size 20.0
+font_size 22.0
 
 #: Font size (in pts).
 
@@ -2510,6 +2511,15 @@ modify_font baseline 2
 
 
 # BEGIN_KITTY_THEME
-# Xcodelighthc
+# Kanagawa
 include current-theme.conf
 # END_KITTY_THEME
+
+
+# BEGIN_KITTY_FONTS
+font_family      IosevkaTerm Nerd Font Mono
+font_features    IosevkaTerm Nerd Font Mono -liga
+bold_font        auto
+italic_font      auto
+bold_italic_font auto
+# END_KITTY_FONTS

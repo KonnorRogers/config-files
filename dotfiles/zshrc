@@ -63,7 +63,7 @@ COMPLETION_WAITING_DOTS="true"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(vi-mode docker-compose docker-machine git bundler rails zsh-autosuggestions zsh-syntax-highlighting yarn npm docker colored-man-pages)
+plugins=(vi-mode docker-compose git bundler rails zsh-autosuggestions zsh-syntax-highlighting yarn npm docker colored-man-pages)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -140,6 +140,7 @@ elif [[ "$OSTYPE" =~ "darwin" ]]; then
   export PATH="$HOME/nvim-osx64/bin:$PATH"
   export JAVA_HOME="$(brew --prefix java)"
   export PATH="$JAVA_HOME/bin:$PATH"
+  export PATH="$(brew --prefix grep)/libexec/gnubin:$PATH"
 
   # # Workaround for mimemagic
   export FREEDESKTOP_MIME_TYPES_PATH="$(brew --prefix)/share/mime/packages/freedesktop.org.xml"
@@ -168,8 +169,11 @@ eval "$(direnv hook zsh)"
 
 
 # pnpm
-export PNPM_HOME="$HOME/.local/share/pnpm"
-export PATH="$PNPM_HOME:$PATH"
+export PNPM_HOME="/Users/konnorrogers/.local/share/pnpm"
+case ":$PATH:" in
+  *":$PNPM_HOME:"*) ;;
+  *) export PATH="$PNPM_HOME:$PATH" ;;
+esac
 # pnpm end
 export HOMEBREW_PREFIX="/opt/homebrew"
 
@@ -177,3 +181,8 @@ if [[ -f "$HOME/.cf2_secrets" ]]; then
   source "$HOME/.cf2_secrets"
 fi
 export PATH="/opt/homebrew/opt/libpq/bin:$PATH"
+export PATH="$HOME/aseprite/build/bin:$PATH"
+export PATH="/opt/homebrew/opt/libpq/bin:$PATH"
+export PKG_CONFIG_PATH="/opt/homebrew/opt/libpq/lib/pkgconfig"
+export PKG_CONFIG_PATH="/opt/homebrew/bin/pkg-config:$(brew --prefix icu4c)/lib/pkgconfig:$(brew --prefix curl)/lib/pkgconfig:$(brew --prefix zlib)/lib/pkgconfig"
+export PATH="/opt/homebrew/opt/postgresql@17/bin:$PATH"
