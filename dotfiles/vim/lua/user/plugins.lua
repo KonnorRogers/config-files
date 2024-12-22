@@ -14,9 +14,7 @@ if not vim.loop.fs_stat(lazypath) then
 end
 
 vim.opt.runtimepath:prepend(lazypath)
-vim.opt.runtimepath:prepend("~/.vim")
-vim.opt.runtimepath:append("~/.vim/after")
-
+vim.opt.runtimepath:append("~/.vim/")
 
 -- Use a protected call so we don't error out on first use
 local status_ok, lazy = pcall(require, "lazy")
@@ -207,7 +205,6 @@ lazy.setup({
   }
 })
 
-vim.opt.runtimepath:prepend("~/.vim")
-vim.opt.runtimepath:append("~/.vim/after")
+vim.opt.runtimepath:append("~/.vim/")
 
-
+require("plugins.lsp_test")
