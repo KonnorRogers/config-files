@@ -57,4 +57,3 @@ if has("nvim-0.5")
   source $HOME/.vim/init.lua
 endif
 "}}}
-
