@@ -1,0 +1,39 @@
+install-addon() {
+    temp_zip="/tmp/$addon_name.zip"
+    url="$1"
+    addon_name="$2"
+    addon_dir="$HOME/turtle-wow/Interface/Addons"
+
+    # Create the target directory if it doesn't exist
+    mkdir -p "$addon_dir"
+
+    # Download the latest pfQuest zip
+    echo "Downloading $addon_name..."
+    curl -L "$url" -o "$temp_zip"
+
+    # Delete old
+    rm -rf "$addon_dir/$addon_name"
+
+    # Unzip the contents into the addon directory
+    echo "Extracting..."
+    unzip -o "$temp_zip" -d "/tmp/$addon_name"
+
+    # Find the first file and rename it
+    first_file=$(ls -1 "/tmp/$addon_name" | head -n 1)
+    if [[ -n "$first_file" ]]; then
+        mv "/tmp/$addon_name/$first_file" "/tmp/$addon_name/$addon_name"
+        echo "Renamed $first_file to $addon_name"
+    else
+        echo "No files found to rename."
+        rm "/tmp/$addon_name"
+        exit 1
+    fi
+
+    echo "Moving /tmp/$addon_name/$addon_name to $addon_dir/$addon_name"
+    mv "/tmp/$addon_name/$addon_name" "$addon_dir/$addon_name"
+
+    # Clean up the downloaded zip file
+    # rm "$temp_zip"
+
+    echo "$addon_name installed successfully in $addon_dir"
+}

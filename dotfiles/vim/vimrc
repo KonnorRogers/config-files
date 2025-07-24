@@ -49,8 +49,7 @@ endif
 
 "Status line
 set laststatus=2
-set statusline=
-set statusline+=\ %<%F\ %m\ %r\ %h\ %=%=%=%y\ [%c]%=
+set statusline=\ %<%F\ %m\ %r\ %h\ %=%=%=%y\ [%c]%=
 
 " Shelf this for later
 if has("nvim-0.5")

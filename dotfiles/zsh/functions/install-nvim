@@ -9,8 +9,9 @@ function install-nvim() {
     rm nvim.appimage
   elif [[ "$OSTYPE" =~ "darwin" ]]; then
     curl -LO https://github.com/neovim/neovim/releases/download/nightly/nvim-macos-arm64.tar.gz
+    xattr -c ./nvim-macos-arm64.tar.gz
     tar xzf nvim-macos-arm64.tar.gz
-    rm nvim-macos
+    rm -rf nvim-macos
     mv nvim-macos-arm64 nvim-macos
   fi
   cd -

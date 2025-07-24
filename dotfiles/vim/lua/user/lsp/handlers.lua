@@ -2,7 +2,6 @@ local M = {}
 
 local cmp_status, cmp_nvim_lsp = pcall(require, "cmp_nvim_lsp")
 local fidget_status, fidget = pcall(require, "fidget")
-local neodev_status, neodev = pcall(require, "neodev")
 
 if not cmp_status then
   return false
@@ -10,10 +9,6 @@ end
 
 if fidget_status then
   fidget.setup()
-end
-
-if neodev_status then
-  neodev.setup()
 end
 
 M.capabilities = vim.lsp.protocol.make_client_capabilities()

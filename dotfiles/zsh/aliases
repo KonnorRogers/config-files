@@ -16,6 +16,7 @@ alias rb-diff='git ls-files -m | xargs ls -1 2>/dev/null |  grep "\.rb" | xargs'
 alias js-diff='git ls-files -m | xargs ls -1 2>/dev/null | grep "\.\(jsx?\|tsx?\)" | xargs'
 alias css-diff='git ls-files -m | xargs ls -1 2>/dev/null | grep "\.s\?[ca]ss" | xargs'
 alias mvim='vim -U ~/.vim/minimal.lua'
+alias lazyvim='NVIM_APPNAME=lazyvim nvim'
 
 # git
 alias gaa='git add -A'
@@ -106,3 +107,4 @@ alias nvimdiff='nvim -d "$LOCAL" "$REMOTE"'
 alias fire-in-the-hole='find . -name "node_modules" -type d -prune -print | xargs du -chs'
 alias git-sync='git fetch origin "refs/heads/*:refs/heads/*"'
 alias push-notes='cd ~/notes && git add . && git commit -m "update notes" && git push && cd -'
+alias drpid="echo $(ps -e | grep 'dragonruby' | grep -v 'grep' | awk '{print $1}' | head -n 1)"

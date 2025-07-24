@@ -31,7 +31,9 @@ lazy.setup({
     "arzg/vim-colors-xcode",
     -- lazy = false, -- make sure we load this during startup if it is your main colorscheme
     dependencies = {
-      "rebelot/kanagawa.nvim"
+      "rebelot/kanagawa.nvim",
+      "spaceduck-theme/nvim",
+      { "catppuccin/nvim", name = "catppuccin" }
     },
     priority = 1000, -- make sure to load this before all the other start plugins
     config = function()
@@ -77,21 +79,75 @@ lazy.setup({
   { "nvim-lua/plenary.nvim" }, -- Useful lua functions used by lots of plugins
   { "nvim-lua/popup.nvim" }, -- Experimental popup api
 
+  {
+    -- `lazydev` configures Lua LSP for your Neovim config, runtime and plugins
+    -- used for completion, annotations and signatures of Neovim apis
+    'folke/lazydev.nvim',
+    ft = 'lua',
+    opts = {
+      library = {
+        -- Load luvit types when the `vim.uv` word is found
+        { path = '${3rd}/luv/library', words = { 'vim%.uv' } },
+      },
+    },
+  },
+
   -- LSP Configuration & Plugins
   {
     'neovim/nvim-lspconfig',
     dependencies = {
       -- Automatically install LSPs to stdpath for neovim
-      { 'williamboman/mason.nvim', config = true },
+      { 'williamboman/mason.nvim', opts = {} },
       { 'williamboman/mason-lspconfig.nvim' },
+      'WhoIsSethDaniel/mason-tool-installer.nvim',
 
       -- Useful status updates for LSP
       -- NOTE: `opts = {}` is the same as calling `require('fidget').setup({})`
       { 'j-hui/fidget.nvim', opts = {} },
 
-      -- Additional lua configuration, makes nvim stuff amazing!
-      { "folke/neodev.nvim", opts = {} }
+      -- Allows extra capabilities provided by blink.cmp
+      'saghen/blink.cmp',
     },
+    config = function()
+      -- keybindings etc.
+      vim.filetype.add {
+        extension = {
+          njk = 'html.jinja',
+        },
+      }
+
+      -- LSP servers and clients are able to communicate to each other what features they support.
+      --  By default, Neovim doesn't support everything that is in the LSP specification.
+      --  When you add blink.cmp, luasnip, etc. Neovim now has *more* capabilities.
+      --  So, we create new capabilities with blink.cmp, and then broadcast that to the servers.
+        local capabilities = require('blink.cmp').get_lsp_capabilities()
+
+        local servers = {
+          jinja_lsp = {
+            capabilities = capabilities,
+            filetypes = { "nunjucks", "njk", "jinja", "html.jinja" },
+            root_markers = { "package.json", ".git" },
+            settings = {
+              template_extensions = { "njk", "html.jinja" },
+              templates = './src/pages',
+              backend = { './src' },
+              lang = "python"
+            }
+          }
+        }
+      local ensure_installed = vim.tbl_keys(servers or {})
+      vim.list_extend(ensure_installed, {
+        'stylua', -- Used to format Lua code
+      })
+      -- require('mason-tool-installer').setup { ensure_installed = ensure_installed }
+
+      -- For some reason `require("lspconfig")["jinja_lsp"] doesn't quite work right in v0.12 if neovim :shrug:`
+      vim.lsp.config["jinja_lsp"] = servers.jinja_lsp
+      require("mason").setup()
+      require('mason-lspconfig').setup({
+        automatic_enable = true
+      })
+    end
   },
 
   { "b0o/schemastore.nvim" }, -- JSON schemas
@@ -179,7 +235,8 @@ lazy.setup({
         highlight = {
           enable = true, -- false will disable the whole extension
           disable = disable_fn, -- list of language that will be disabled
-        },
+          additional_vim_regex_highlighting = true,
+        }
      })
     end,
    },
