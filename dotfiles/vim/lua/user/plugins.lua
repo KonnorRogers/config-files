@@ -112,7 +112,7 @@ lazy.setup({
       -- keybindings etc.
       vim.filetype.add {
         extension = {
-          njk = 'html.jinja',
+          -- njk = 'html.jinja',
         },
       }
 
@@ -125,10 +125,10 @@ lazy.setup({
         local servers = {
           jinja_lsp = {
             capabilities = capabilities,
-            filetypes = { "nunjucks", "njk", "jinja", "html.jinja" },
+            filetypes = { "jinja", "html.jinja" },
             root_markers = { "package.json", ".git" },
             settings = {
-              template_extensions = { "njk", "html.jinja" },
+              -- template_extensions = { "njk", "html.jinja" },
               templates = './src/pages',
               backend = { './src' },
               lang = "python"

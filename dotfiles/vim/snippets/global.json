@@ -12,6 +12,12 @@
       "${VIM:expand(strftime(\"%FT%T%z\"))}"
     ],
     "description": "Current date in ISO8601"
+  },
+  "date-Ymd": {
+    "prefix": "date",
+    "body": [
+      "${VIM:expand(strftime(\"%Y-%m-%d\"))}"
+    ],
+    "description": "Current date in yyyy-mm-dd"
   }
-
 }
