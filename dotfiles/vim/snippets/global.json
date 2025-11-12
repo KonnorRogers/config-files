@@ -13,7 +13,7 @@
     ],
     "description": "Current date in ISO8601"
   },
-  "date-Ymd": {
+  "date-ymd": {
     "prefix": "date",
     "body": [
       "${VIM:expand(strftime(\"%Y-%m-%d\"))}"

@@ -20,5 +20,12 @@
       "---"
     ],
     "description": "Documentation frontmatter"
+  },
+  "date-ymd": {
+    "prefix": ["date", "date-y"],
+    "body": [
+      "${VIM:expand(strftime(\"%Y-%m-%d\"))}"
+    ],
+    "description": "Current date in yyyy-mm-dd"
   }
 }
