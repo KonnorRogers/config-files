@@ -151,3 +151,10 @@ if in_wsl then
 end
 
 vim.opt.maxmempattern = 9999999
+
+-- Sets a sleek green border with a transparent/default floating background
+-- vim.api.nvim_set_hl(0, "FloatBorder", { fg = "#7aa2f7", bg = "NONE" })
+
+-- Links the border style directly to your normal diagnostic details
+-- vim.api.nvim_set_hl(0, "NormalFloat", { bg = "NONE" })
+vim.o.winborder = "rounded"

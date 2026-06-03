@@ -106,7 +106,7 @@ lazy.setup({
       { 'j-hui/fidget.nvim', opts = {} },
 
       -- Allows extra capabilities provided by blink.cmp
-      'saghen/blink.cmp',
+      { 'saghen/blink.cmp', dependencies = { 'saghen/blink.lib' } },
     },
     config = function()
       -- keybindings etc.
@@ -183,7 +183,6 @@ lazy.setup({
     }
   },
   { "goolord/alpha-nvim" }, -- Startup screen
-  { "jose-elias-alvarez/null-ls.nvim" },-- for formatters and linters
 --   use "Hoffs/omnisharp-extended-lsp.nvim"
 --
 -- 	-- Fuzzy Finder (files, lsp, etc)

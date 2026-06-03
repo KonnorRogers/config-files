@@ -7,6 +7,7 @@ if not cmp_status then
   return false
 end
 
+
 if fidget_status then
   fidget.setup()
 end
@@ -52,9 +53,6 @@ M.setup = function()
 	-- 	border = "rounded",
 	-- })
 
-	vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, {
-		border = "rounded",
-	})
 end
 
 local hover = vim.lsp.buf.hover

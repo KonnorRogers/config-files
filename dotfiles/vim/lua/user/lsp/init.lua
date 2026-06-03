@@ -11,8 +11,5 @@ pcall(require, "user.lsp.configs")
 -- pcall(require, "user.lsp.mason")
 
 
-
-
 vim.g["ruby_host_prog"] = "$HOME/.asdf/shims/neovim-ruby-host"
 
-pcall(require, "user.lsp.null-ls")
