@@ -108,12 +108,15 @@ cmp.setup {
     select = false,
   },
   window = {
-    documentation = {
-      border = { "╭", "─", "╮", "│", "╯", "─", "╰", "│" },
+    completion = {
+      border = "rounded",
+      side_padding = 0,
     },
-
-    completion = cmp.config.window.bordered(),
-    -- documentation = cmp.config.window.bordered(),
+    documentation = {
+      border = "rounded",
+      max_width = 80,   -- keeps it from wrapping so aggressively
+      -- no side_padding available here
+    },
   },
   experimental = {
     ghost_text = false,
