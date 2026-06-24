@@ -145,6 +145,8 @@ elif [[ "$OSTYPE" =~ "darwin" ]]; then
   alias ctags='`brew --prefix`/bin/ctags'
   alias ls='ls -G'
 
+  export HAXE_STD_PATH="$(brew --prefix)/lib/haxe/std"
+
   export PNPM_HOME="$HOME/Library/pnpm"
   export PATH="$PNPM_HOME:$PATH"
 

@@ -16,6 +16,7 @@ local servers = {
   'emmet_ls',
   'vimls',
   'yamlls',
+  'haxe_language_server'
 }
 
 

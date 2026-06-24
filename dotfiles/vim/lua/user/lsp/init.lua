@@ -13,3 +13,4 @@ pcall(require, "user.lsp.configs")
 
 vim.g["ruby_host_prog"] = "$HOME/.asdf/shims/neovim-ruby-host"
 
+
