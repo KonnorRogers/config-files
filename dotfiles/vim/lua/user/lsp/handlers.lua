@@ -83,8 +83,6 @@ local function lsp_keymaps(bufnr)
 	keymap(bufnr, "n", "<leader>sh", "<cmd>lua vim.lsp.buf.signature_help()<CR>", opts)
 	keymap(bufnr, "n", "<leader>lq", "<cmd>lua vim.diagnostic.setloclist()<CR>", opts)
   keymap(bufnr, 'n', '<leader>do', '<cmd>lua vim.diagnostic.open_float()<CR>', opts)
-  keymap(bufnr, 'n', ']d', '<cmd>lua vim.diagnostic.goto_next()<CR>', opts)
-  keymap(bufnr, 'n', '[d', '<cmd>lua vim.diagnostic.goto_prev()<CR>', opts)
   -- The following command requires plug-ins "nvim-telescope/telescope.nvim", "nvim-lua/plenary.nvim", and optionally "kyazdani42/nvim-web-devicons" for icon support
   keymap(bufnr, 'n', '<leader>dd', '<cmd>Telescope diagnostics<CR>', opts)
 end

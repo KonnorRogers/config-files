@@ -133,9 +133,10 @@ keymap("n", "<Leader>rp", ":RainbowParentheses!!<CR>", opts)
 keymap("i", "<M-o>", "<Esc>o", opts)
 keymap("i", "<C-j>", "<Down>", opts)
 
-keymap("i", "<C-n>", ":Explore<CR>", opts)
-keymap("n", "<C-n>", ":Explore<CR>", opts)
-keymap("v", "<C-n>", ":Explore<CR>", opts)
+vim.keymap.set({ 'n', 'i', 'v' }, '<C-n>', function()
+  vim.cmd('Explore ' .. vim.fn.fnameescape(vim.fn.expand('%:p:h')))
+end, { desc = 'Explore current file directory' })
+
 
 keymap("n", "<Leader>cl", ":colorscheme xcodelighthc<CR>", opts)
 keymap("n", "<Leader>cd", ":colorscheme xcodedarkhc<CR>", opts)

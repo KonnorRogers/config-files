@@ -90,12 +90,12 @@ vim.opt.wildmenu = true
 vim.opt.wildmode = "full"
 vim.opt.wildignorecase = true
 
-vim.opt.wildignore = vim.opt.wildignore
-		+ "*/node_modules/*"
-		+ "*/coverage/*"
-		+ "*/public/*"
-		+ "*/.git/*,*/tmp/*,*/.tmp/*"
-		+ "*/.bundle/*,*/vendor/*,*/log/*"
+-- vim.opt.wildignore = vim.opt.wildignore
+-- 		+ "*/node_modules/*"
+-- 		+ "*/coverage/*"
+-- 		+ "*/public/*"
+-- 		+ "*/.git/*,*/tmp/*,*/.tmp/*"
+-- 		+ "*/.bundle/*,*/vendor/*,*/log/*"
 
 vim.opt.showcmd = true -- show command line
 vim.opt.history = 50 -- keep small history
@@ -113,7 +113,7 @@ vim.opt.gdefault = true -- Global substitutions by default
 vim.opt.splitright = true
 vim.opt.splitbelow = true
 vim.opt.diffopt = vim.opt.diffopt + "vertical" -- Always use vertical diffs
-vim.opt.tags = vim.opt.tags + "./.git/tags" + "./tags"
+-- vim.opt.tags = vim.opt.tags + "./.git/tags" + "./tags"
 
 vim.opt.cmdheight = 2
 vim.opt.updatetime = 300
@@ -129,7 +129,7 @@ vim.g.netrw_banner = 0
 vim.g.netrw_mkdir_cmd = 'mkdir -p'
 vim.g.netrw_winsize = 25
 vim.g.netrw_liststyle=0
-vim.g.netrw_keepdir = 1
+vim.g.netrw_keepdir = 0
 vim.g.netrw_localcopydircmd = 'cp -r'
 
 vim.g.autochdir = false

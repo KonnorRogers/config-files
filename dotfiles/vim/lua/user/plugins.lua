@@ -182,7 +182,6 @@ lazy.setup({
       { "hrsh7th/cmp-nvim-lua" },
     }
   },
-  { "goolord/alpha-nvim" }, -- Startup screen
 --   use "Hoffs/omnisharp-extended-lsp.nvim"
 --
 -- 	-- Fuzzy Finder (files, lsp, etc)

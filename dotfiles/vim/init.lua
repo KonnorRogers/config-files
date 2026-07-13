@@ -4,7 +4,6 @@ require "user.plugins"
 
 require "user.lsp"
 -- require "user.treesitter"
-require "user.alpha"
 require "user.autocommands"
 require "user.comment"
 require "user.dap"
