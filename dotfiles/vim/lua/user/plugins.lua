@@ -187,58 +187,53 @@ lazy.setup({
 --
 -- 	-- Fuzzy Finder (files, lsp, etc)
   {
-    'nvim-telescope/telescope.nvim',
-    branch = '0.1.x',
+    'nvim-telescope/telescope.nvim', version = '*',
     dependencies = {
-      { 'nvim-lua/plenary.nvim' },
-      -- Fuzzy Finder Algorithm which requires local dependencies to be built.
-      -- Only load if `make` is available. Make sure you have the system
-      -- requirements installed.
-      {
-        'nvim-telescope/telescope-fzf-native.nvim',
-        -- NOTE: If you are having trouble with this installation,
-        --       refer to the README for telescope-fzf-native for more instructions.
-        build = 'make',
-        cond = function()
-          return vim.fn.executable 'make' == 1
-        end,
-      },
+        'nvim-lua/plenary.nvim',
+        -- optional but recommended
+        { 'nvim-telescope/telescope-fzf-native.nvim', build = 'make' },
     }
   },
   -- Treesitter causes major slowdowns on any semi-large TypeScript file.
   {
     "nvim-treesitter/nvim-treesitter",
-    version = false,
-    init = function(plugin)
-      -- PERF: add nvim-treesitter queries to the rtp and it's custom query predicates early
-      -- This is needed because a bunch of plugins no longer `require("nvim-treesitter")`, which
-      -- no longer trigger the **nvim-treesitter** module to be loaded in time.
-      -- Luckily, the only things that those plugins need are the custom queries, which we make available
-      -- during startup.
-      require("lazy.core.loader").add_to_rtp(plugin)
-      require("nvim-treesitter.query_predicates")
-    end,
+    branch = "main",
+    lazy = false, -- main branch does not support lazy-loading
     build = ":TSUpdate",
-    config = function ()
-      local configs = require("nvim-treesitter.configs")
+    config = function()
+      local ts = require("nvim-treesitter")
 
-      local disable_fn = function(lang, bufnr) -- Disable in large C++ buffers
-              local filetypes = lang == "TelescopePrompt" or lang == "netrw" or lang == "markdown"
-              return filetypes or vim.api.nvim_buf_line_count(bufnr) > 2000
-      end
+      local ensure_installed = {
+        "c", "lua", "vim", "vimdoc", "query",
+        "elixir", "heex", "javascript", "html",
+      }
 
-      configs.setup({
-        ensure_installed = { "c", "lua", "vim", "vimdoc", "query", "elixir", "heex", "javascript", "html" },
-        sync_install = false, -- install languages synchronously (only applied to `ensure_installed`)
-        disable = disable_fn,
-        highlight = {
-          enable = true, -- false will disable the whole extension
-          disable = disable_fn, -- list of language that will be disabled
-          additional_vim_regex_highlighting = true,
-        }
-     })
+      -- install only missing parsers so it doesn't recompile every startup
+      local ok, cfg = pcall(require, "nvim-treesitter.config")
+      local installed = ok and cfg.get_installed() or {}
+      local missing = vim.tbl_filter(function(p)
+        return not vim.tbl_contains(installed, p)
+      end, ensure_installed)
+      if #missing > 0 then ts.install(missing) end
+
+      -- highlighting is core now: enable per-buffer with your old disable logic
+      vim.api.nvim_create_autocmd("FileType", {
+        callback = function(args)
+          local buf = args.buf
+          local ft = vim.bo[buf].filetype
+          if ft == "markdown" or ft == "TelescopePrompt" or ft == "netrw" then
+            return
+          end
+          if vim.api.nvim_buf_line_count(buf) > 2000 then
+            return
+          end
+          -- starts treesitter highlighting; leaving 'syntax' on is the
+          -- equivalent of your old additional_vim_regex_highlighting = true
+          pcall(vim.treesitter.start, buf)
+        end,
+      })
     end,
-   },
+  },
   -- Git
   -- { "lewis6991/gitsigns.nvim" },
   {
@@ -254,6 +249,14 @@ lazy.setup({
 --   -- use "rcarriga/nvim-dap-ui"
 --   -- use "ravenxrz/DAPInstall.nvim"
 --
+  -- {
+  --   "jdonaldson/vim-haxe",
+  --   ft = "haxe",
+  --   init = function()
+  --     vim.g.loaded_haxecomplete = 1  -- match the actual guard var in that file
+  --   end,
+  -- }
+
 },
 {
   install = {

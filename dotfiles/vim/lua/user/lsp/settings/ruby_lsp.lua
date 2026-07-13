@@ -12,4 +12,3 @@ local opts = {
 }
 
 return opts
-

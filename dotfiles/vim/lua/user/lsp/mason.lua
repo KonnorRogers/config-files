@@ -8,6 +8,7 @@ local servers = {
 	"jsonls",
 	"yamlls",
 	"solargraph",
+	"ruby_lsp",
 	"jinja_lsp"
 	-- "ruby_ls",
   	-- "custom_elements_ls"
@@ -49,32 +50,18 @@ end
 
 mason.setup(settings)
 
-mason_lspconfig.setup({
-	ensure_installed = servers,
-	automatic_installation = true,
-	handlers = {
-    		-- The first entry (without a key) will be the default handler
-    		-- and will be called for each installed server that doesn't have
-    		-- a dedicated handler.
-    		function (server_name) -- default handler (optional)
-            		local server = servers[server_name] or {}
+-- 1. Register per-server overrides FIRST, before anything gets enabled.
+--    vim.lsp.config(name, opts) deep-merges onto nvim-lspconfig's defaults.
+for _, name in ipairs(servers) do
+  local ok, custom = pcall(require, "user.lsp.settings." .. name)
+  if ok then
+    vim.lsp.config(name, custom)
+  end
+end
 
-	      		local status_ok, custom_opts = pcall(require, "user.lsp.settings." .. server_name)
-
-	      		if status_ok then
-            			server = vim.tbl_deep_extend('force', {}, custom_opts, server)
-	      		end
-            		-- This handles overriding only values explicitly passed
-            		-- by the server configuration above. Useful when disabling
-            		-- certain features of an LSP (for example, turning off formatting for ts_ls)
-	      		lspconfig[server_name].setup(server)
-    		end,
-	}
+-- 2. Install + auto-enable. `automatic_enable` defaults to true, so mason
+--    calls vim.lsp.enable() for you on each installed server.
+require("mason-lspconfig").setup({
+  ensure_installed = servers,
+  -- automatic_installation is also gone in v2 — ensure_installed covers it.
 })
-
-
--- local opts = {
-	-- on_attach = require("user.lsp.handlers").on_attach,
-	-- capabilities = require("user.lsp.handlers").capabilities,
--- }
-

@@ -58,3 +58,46 @@
 --   end
 -- })
 
+
+local server_name = "11ty-lsp"
+local server_path = vim.fn.expand("$HOME/projects/oss/" .. server_name .. "/server/out/server.js")
+
+vim.lsp.config(server_name, {
+  cmd = { "node", server_path, "--stdio" },   -- no stray '--'
+  filetypes = { "html", "liquid", "markdown", "njk", "nunjucks", "javascript" },
+  root_markers = {
+    "eleventy.config.js", "eleventy.config.mjs", "eleventy.config.cjs",
+    ".eleventy.js", "package.json", ".git",
+  },
+  init_options = {
+    maxNumberOfProblems = 1000,
+    enabledFeatures = { completion = true, diagnostics = true, hover = true },
+  },
+  settings = {
+    [server_name] = {
+      maxNumberOfProblems = 1000,
+      enabledFeatures = { completion = true, diagnostics = true, hover = true },
+    },
+  },
+})
+
+
+vim.api.nvim_create_autocmd("LspAttach", {
+  callback = function(args)
+    local client = vim.lsp.get_client_by_id(args.data.client_id)
+    if client and client.name == server_name then
+      vim.notify(server_name .. " attached", vim.log.levels.INFO)
+    end
+  end,
+})
+
+vim.lsp.enable(server_name)
+
+-- Optional: Add filetype detection for .njk files
+vim.api.nvim_create_autocmd({"BufRead", "BufNewFile"}, {
+  pattern = {"*.njk", "*.nunjucks"},
+  callback = function()
+    vim.bo.filetype = "nunjucks"
+  end
+})
+

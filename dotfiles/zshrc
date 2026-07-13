@@ -196,5 +196,6 @@ export PATH="/opt/homebrew/opt/postgresql@17/bin:$PATH"
 # Add Visual Studio Code (code)
 export PATH="$PATH:/Applications/Visual Studio Code.app/Contents/Resources/app/bin"
 
+export PATH="$HOME/.drenv/bin:$PATH"
 export CC=clang
 export CXX=clang++

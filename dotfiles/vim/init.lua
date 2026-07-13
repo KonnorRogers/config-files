@@ -3,6 +3,7 @@ require "user.options"
 require "user.plugins"
 
 require "user.lsp"
+-- require "user.treesitter"
 require "user.alpha"
 require "user.autocommands"
 require "user.comment"
