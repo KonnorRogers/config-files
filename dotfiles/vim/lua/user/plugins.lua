@@ -43,7 +43,7 @@ lazy.setup({
     end,
   },
   -- Other color stuff
-  { "ap/vim-css-color" }, -- Add color to .css files
+  -- { "ap/vim-css-color" }, -- Add color to .css files
   -- Git related plugins
   { 'tpope/vim-fugitive' },
   { 'tpope/vim-rhubarb' },
