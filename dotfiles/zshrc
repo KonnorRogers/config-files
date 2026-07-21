@@ -199,3 +199,7 @@ export PATH="$PATH:/Applications/Visual Studio Code.app/Contents/Resources/app/b
 export PATH="$HOME/.drenv/bin:$PATH"
 export CC=clang
 export CXX=clang++
+
+# Vault Config
+export VAULT_ADDR=https://vault.fontawesome-aws.net
+alias getvault='unset VAULT_TOKEN; export VAULT_TOKEN=$(AWS_PROFILE=fortawesome vault login -method=aws role=vault-developer -format=json | jq -r .auth.client_token); echo $VAULT_TOKEN'

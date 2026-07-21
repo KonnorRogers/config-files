@@ -17,6 +17,7 @@ alias js-diff='git ls-files -m | xargs ls -1 2>/dev/null | grep "\.\(jsx?\|tsx?\
 alias css-diff='git ls-files -m | xargs ls -1 2>/dev/null | grep "\.s\?[ca]ss" | xargs'
 alias mvim='vim -U ~/.vim/minimal.lua'
 alias lazyvim='NVIM_APPNAME=lazyvim nvim'
+alias lvim='NVIM_APPNAME=lazyvim nvim'
 
 # git
 alias gaa='git add -A'
