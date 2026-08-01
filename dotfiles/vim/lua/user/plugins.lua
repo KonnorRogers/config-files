@@ -191,7 +191,6 @@ lazy.setup({
         'nvim-lua/plenary.nvim',
         -- optional but recommended
         { 'nvim-telescope/telescope-fzf-native.nvim', build = 'make' },
-        'nvim-telescope/telescope-media-files.nvim'
     }
   },
   -- Treesitter causes major slowdowns on any semi-large TypeScript file.
