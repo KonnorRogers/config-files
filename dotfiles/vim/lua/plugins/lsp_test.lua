@@ -87,7 +87,7 @@ vim.filetype.add({
 })
 
 local server_name = "11ty-lsp"
-local server_path = vim.fn.expand("$HOME/projects/oss/" .. server_name .. "/server/out/server.js")
+local server_path = vim.fn.expand("$HOME/projects/webawesome-repos/" .. server_name .. "/server/out/server.js")
 
 local root_markers = {
   "eleventy.config.js", "eleventy.config.mjs", "eleventy.config.cjs",
@@ -110,8 +110,8 @@ local cfg = {
   },
 }
 
-vim.lsp.config(server_name, cfg)
-vim.lsp.enable(server_name)
+-- vim.lsp.config(server_name, cfg)
+-- vim.lsp.enable(server_name)
 
 -- Attach for template buffers. Autocmd patterns match the FULL &filetype string,
 -- so a dotted "jinja.html" won't match a bare "jinja" pattern — we split it ourselves,
