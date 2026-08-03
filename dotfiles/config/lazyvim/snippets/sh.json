@@ -1,0 +1,24 @@
+{
+  "#!/bin/bash": {
+    "prefix": "!",
+    "body": [
+      "#!/bin/bash",
+      "${0}"
+    ],
+    "description": "#!/bin/bash"
+  },
+  "docker environment vars": {
+    "prefix": "dockerenv",
+    "body": [
+      "DOCKER_USER_ID=\"\\$(id -u \\$USER)\"",
+      "DOCKER_GROUP_ID=\"\\$(id -g \\$USER)\"",
+      "",
+      "export DOCKER_USER_ID",
+      "export DOCKER_GROUP_ID",
+      "",
+      "export APP_DIR=\"/home/user/app\"",
+      "export DOCKER_USER=\"user\""
+    ],
+    "description": "docker environment vars"
+  }
+}

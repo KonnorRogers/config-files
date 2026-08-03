@@ -1,0 +1,11 @@
+{
+  "Create a snippet": {
+    "prefix": "snip",
+    "body": [
+      "snippet ${1:name} \"${2:Description}\" ${3:options}",
+      "${4:$TM_SELECTED_TEXT}",
+      "${5:endsnippet}$0"
+    ],
+    "description": "Create a snippet"
+  }
+}

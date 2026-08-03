@@ -1,0 +1,15 @@
+{
+  "docz block": {
+    "prefix": "docz",
+    "body": [
+      "---",
+      "name: $1",
+      "route: $2",
+      "menu: $3",
+      "---",
+      "",
+      "$0"
+    ],
+    "description": "docz block"
+  }
+}

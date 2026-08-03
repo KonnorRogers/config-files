@@ -1,0 +1,80 @@
+{
+  "name": "my-snippets",
+  "contributes": {
+    "snippets": [
+      {
+        "language": "dockerfile",
+        "path": "./dockerfile.json"
+      },
+      {
+        "language": "elixir",
+        "path": "./elixir.json"
+      },
+      {
+        "language": "eruby",
+        "path": "./eruby.json"
+      },
+      {
+        "language": "all",
+        "path": "./global.json"
+      },
+      {
+        "language": "html",
+        "path": "./html.json"
+      },
+      {
+        "language": [
+          "javascript",
+          "javascriptreact",
+          "typescript",
+          "typescriptreact"
+        ],
+        "path": "./javascript.json"
+      },
+      {
+        "language": "json",
+        "path": "./json.json"
+      },
+      {
+        "language": "markdown",
+        "path": "./markdown.json"
+      },
+      {
+        "language": "mdx",
+        "path": "./mdx.json"
+      },
+      {
+        "language": "php",
+        "path": "./php.json"
+      },
+      {
+        "language": "ruby",
+        "path": "./rails.json"
+      },
+      {
+        "language": "ruby",
+        "path": "./ruby.json"
+      },
+      {
+        "language": "sabio",
+        "path": "./sabio.json"
+      },
+      {
+        "language": [
+          "sh",
+          "bash",
+          "zsh"
+        ],
+        "path": "./sh.json"
+      },
+      {
+        "language": "snippets",
+        "path": "./snippets.json"
+      },
+      {
+        "language": "yaml",
+        "path": "./yaml.json"
+      }
+    ]
+  }
+}

@@ -1,0 +1,25 @@
+{
+  "HTML Comment": {
+    "prefix": "hc",
+    "body": [
+      "<!-- ${1:$TM_SELECTED_TEXT} -->${0}"
+    ],
+    "description": "HTML Comment"
+  },
+  "Link": {
+    "prefix": "anchor",
+    "body": [
+      "<a href=\"$1\" target=\"_blank\" rel=\"noopener noreferrer\">",
+      "  $2",
+      "</a>"
+    ],
+    "description": "Link"
+  },
+  "mailto: link": {
+    "prefix": "mail",
+    "body": [
+      "<a href=\"mailto:${1:name}\">$2</a>"
+    ],
+    "description": "mailto: link"
+  }
+}

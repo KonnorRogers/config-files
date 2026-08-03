@@ -2,46 +2,46 @@
 -- Default options that are always set: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/options.lua
 -- Add any additional options here
 
-vim.opt.fileencoding = "utf-8"                  -- the encoding written to a file
-vim.opt.backup = false                          -- creates a backup file
-vim.opt.clipboard = "unnamedplus"               -- allows neovim to access the system clipboard
-vim.opt.cmdheight = 1                           -- more space in the neovim command line for displaying messages
+vim.opt.fileencoding = "utf-8" -- the encoding written to a file
+vim.opt.backup = false -- creates a backup file
+vim.opt.clipboard = "unnamedplus" -- allows neovim to access the system clipboard
+vim.opt.cmdheight = 1 -- more space in the neovim command line for displaying messages
 vim.opt.completeopt = { "menuone", "noselect" } -- mostly just for cmp
-vim.opt.conceallevel = 0                        -- so that `` is visible in markdown files
-vim.opt.hlsearch = true                         -- highlight all matches on previous search pattern
+vim.opt.conceallevel = 0 -- so that `` is visible in markdown files
+vim.opt.hlsearch = true -- highlight all matches on previous search pattern
 -- vim.opt.ignorecase = true                       -- ignore case in search patterns
-vim.opt.mouse = "a"                             -- allow the mouse to be used in neovim
-vim.opt.pumheight = 10                          -- pop up menu height
-vim.opt.showmode = false                        -- we don't need to see things like -- INSERT -- anymore
-vim.opt.showtabline = 0                         -- always show tabs
-vim.opt.smartcase = true                        -- smart case
-vim.opt.smartindent = true                      -- make indenting smarter again
-vim.opt.splitbelow = true                       -- force all horizontal splits to go below current window
-vim.opt.splitright = true                       -- force all vertical splits to go to the right of current window
-vim.opt.swapfile = false                        -- creates a swapfile
-vim.opt.termguicolors = true                    -- set term gui colors (most terminals support this)
-vim.opt.timeoutlen = 1000                       -- time to wait for a mapped sequence to complete (in milliseconds)
-vim.opt.undofile = true                         -- enable persistent undo
-vim.opt.updatetime = 300                        -- faster completion (4000ms default)
-vim.opt.writebackup = false                     -- if a file is being edited by another program (or was written to file while editing with another program), it is not allowed to be edited
-vim.opt.expandtab = true                        -- convert tabs to spaces
-vim.opt.shiftwidth = 2                          -- the number of spaces inserted for each indentation
-vim.opt.tabstop = 2                             -- insert 2 spaces for a tab
-vim.opt.cursorline = true                       -- highlight the current line
-vim.opt.number = true                           -- set numbered lines
-vim.opt.laststatus = 3                          -- only the last window will always have a status line
-vim.opt.showcmd = false                         -- hide (partial) command in the last line of the screen (for performance)
-vim.opt.ruler = false                           -- hide the line and column number of the cursor position
-vim.opt.numberwidth = 4                         -- minimal number of columns to use for the line number {default 4}
-vim.opt.signcolumn = "yes"                      -- always show the sign column, otherwise it would shift the text each time
-vim.opt.wrap = false                            -- display lines as one long line
-vim.opt.scrolloff = 8                           -- minimal number of screen lines to keep above and below the cursor
-vim.opt.sidescrolloff = 8                       -- minimal number of screen columns to keep to the left and right of the cursor if wrap is `false`
-vim.opt.guifont = "monospace:h17"               -- the font used in graphical neovim applications
-vim.opt.fillchars.eob=" "                       -- show empty lines at the end of a buffer as ` ` {default `~`}
-vim.opt.shortmess:append "c"                    -- hide all the completion messages, e.g. "-- XXX completion (YYY)", "match 1 of 2", "The only match", "Pattern not found"
-vim.opt.whichwrap:append("<,>,[,],h,l")         -- keys allowed to move to the previous/next line when the beginning/end of line is reached
-vim.opt.iskeyword:append("-")                   -- treats words with `-` as single words
+vim.opt.mouse = "a" -- allow the mouse to be used in neovim
+vim.opt.pumheight = 10 -- pop up menu height
+vim.opt.showmode = false -- we don't need to see things like -- INSERT -- anymore
+vim.opt.showtabline = 0 -- always show tabs
+vim.opt.smartcase = true -- smart case
+vim.opt.smartindent = true -- make indenting smarter again
+vim.opt.splitbelow = true -- force all horizontal splits to go below current window
+vim.opt.splitright = true -- force all vertical splits to go to the right of current window
+vim.opt.swapfile = false -- creates a swapfile
+vim.opt.termguicolors = true -- set term gui colors (most terminals support this)
+vim.opt.timeoutlen = 1000 -- time to wait for a mapped sequence to complete (in milliseconds)
+vim.opt.undofile = true -- enable persistent undo
+vim.opt.updatetime = 300 -- faster completion (4000ms default)
+vim.opt.writebackup = false -- if a file is being edited by another program (or was written to file while editing with another program), it is not allowed to be edited
+vim.opt.expandtab = true -- convert tabs to spaces
+vim.opt.shiftwidth = 2 -- the number of spaces inserted for each indentation
+vim.opt.tabstop = 2 -- insert 2 spaces for a tab
+vim.opt.cursorline = true -- highlight the current line
+vim.opt.number = true -- set numbered lines
+vim.opt.laststatus = 3 -- only the last window will always have a status line
+vim.opt.showcmd = false -- hide (partial) command in the last line of the screen (for performance)
+vim.opt.ruler = false -- hide the line and column number of the cursor position
+vim.opt.numberwidth = 4 -- minimal number of columns to use for the line number {default 4}
+vim.opt.signcolumn = "yes" -- always show the sign column, otherwise it would shift the text each time
+vim.opt.wrap = false -- display lines as one long line
+vim.opt.scrolloff = 8 -- minimal number of screen lines to keep above and below the cursor
+vim.opt.sidescrolloff = 8 -- minimal number of screen columns to keep to the left and right of the cursor if wrap is `false`
+vim.opt.guifont = "monospace:h17" -- the font used in graphical neovim applications
+vim.opt.fillchars.eob = " " -- show empty lines at the end of a buffer as ` ` {default `~`}
+vim.opt.shortmess:append("c") -- hide all the completion messages, e.g. "-- XXX completion (YYY)", "match 1 of 2", "The only match", "Pattern not found"
+vim.opt.whichwrap:append("<,>,[,],h,l") -- keys allowed to move to the previous/next line when the beginning/end of line is reached
+vim.opt.iskeyword:append("-") -- treats words with `-` as single words
 
 -- Path variables, prepend current directory
 vim.opt.path = vim.opt.path ^ ".,,"
@@ -58,15 +58,15 @@ vim.opt.shiftwidth = 2 -- On pressing tab, -- insert 2 spaces
 vim.opt.shiftround = true -- always even spaces
 vim.opt.colorcolumn = "81" -- Make it obvious where 80 characters is
 vim.opt.number = true -- Left hand column numbers
-vim.opt.listchars = { eol = '↲', tab = '▸ ', trail = '·', nbsp = '·' } -- Display extra whitespace
+vim.opt.listchars = { eol = "↲", tab = "▸ ", trail = "·", nbsp = "·" } -- Display extra whitespace
 vim.opt.showmatch = true -- show matching brackets
 vim.opt.ruler = true -- show cursor position at all times
 vim.opt.hls = false -- don't highlight the previous search term
 vim.opt.incsearch = true -- incremental searching
 
 -- incremental commands
-if vim.fn.exists('+inccommand') == 1 then
-	vim.opt.inccommand = "nosplit"
+if vim.fn.exists("+inccommand") == 1 then
+  vim.opt.inccommand = "nosplit"
 end
 
 vim.opt.wrap = true -- turn on visual word wrapping
@@ -83,7 +83,7 @@ vim.opt.filetype.on = true
 vim.opt.backup = false
 vim.opt.writebackup = false
 vim.opt.swapfile = false
-vim.opt.undodir = vim.fs.normalize('$HOME/.vim/undodir')
+vim.opt.undodir = vim.fs.normalize("$HOME/.vim/undodir")
 vim.opt.undofile = true
 
 vim.opt.backspace = "indent,eol,start" -- fixes backspace in vim
@@ -127,31 +127,30 @@ vim.opt.helpheight = 20
 vim.opt.wrap = true
 vim.opt.linebreak = true
 
-
 vim.g.netrw_browse_split = 0
 vim.g.netrw_banner = 0
-vim.g.netrw_mkdir_cmd = 'mkdir -p'
+vim.g.netrw_mkdir_cmd = "mkdir -p"
 vim.g.netrw_winsize = 25
-vim.g.netrw_liststyle=0
+vim.g.netrw_liststyle = 0
 vim.g.netrw_keepdir = 1
-vim.g.netrw_localcopydircmd = 'cp -r'
+vim.g.netrw_localcopydircmd = "cp -r"
 
 vim.g.autochdir = false
 
-vim.opt.fillchars.eob=" "                       -- show empty lines at the end of a buffer as ` ` {default `~`}
-vim.opt.shortmess:append "c"                    -- hide all the completion messages, e.g. "-- XXX completion (YYY)", "match 1 of 2", "The only match", "Pattern not found"
-vim.opt.whichwrap:append("<,>,[,],h,l")         -- keys allowed to move to the previous/next line when the beginning/end of line is reached
-vim.opt.iskeyword:append("-")                   -- treats words with `-` as single words
+vim.opt.fillchars.eob = " " -- show empty lines at the end of a buffer as ` ` {default `~`}
+vim.opt.shortmess:append("c") -- hide all the completion messages, e.g. "-- XXX completion (YYY)", "match 1 of 2", "The only match", "Pattern not found"
+vim.opt.whichwrap:append("<,>,[,],h,l") -- keys allowed to move to the previous/next line when the beginning/end of line is reached
+vim.opt.iskeyword:append("-") -- treats words with `-` as single words
 
-local in_wsl = os.getenv('WSL_DISTRO_NAME') ~= nil
+local in_wsl = os.getenv("WSL_DISTRO_NAME") ~= nil
 
 if in_wsl then
-    vim.g.clipboard = {
-        name = 'wsl clipboard',
-        copy =  { ["+"] = { "clip.exe" },   ["*"] = { "clip.exe" } },
-        paste = { ["+"] = { "nvim-paste" }, ["*"] = { "nvim-paste" } },
-        cache_enabled = true
-    }
+  vim.g.clipboard = {
+    name = "wsl clipboard",
+    copy = { ["+"] = { "clip.exe" }, ["*"] = { "clip.exe" } },
+    paste = { ["+"] = { "nvim-paste" }, ["*"] = { "nvim-paste" } },
+    cache_enabled = true,
+  }
 end
 
 vim.opt.maxmempattern = 9999999
@@ -162,3 +161,7 @@ vim.opt.maxmempattern = 9999999
 -- Links the border style directly to your normal diagnostic details
 -- vim.api.nvim_set_hl(0, "NormalFloat", { bg = "NONE" })
 vim.o.winborder = "rounded"
+
+vim.opt.laststatus = 3
+vim.opt.statusline = " %<%F %m %r %h %=%=%=%y [%c]%=" -- match plain-vim statusline
+vim.g.autoformat = false

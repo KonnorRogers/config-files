@@ -1,0 +1,135 @@
+{
+  "php tag": {
+    "prefix": "?",
+    "body": [
+      "<?php",
+      "",
+      "${0:$TM_SELECTED_TEXT}"
+    ],
+    "description": "php tag"
+  },
+  "Open close php tag": {
+    "prefix": "--",
+    "body": [
+      "<?php",
+      "  ${0:$TM_SELECTED_TEXT}",
+      "?>"
+    ],
+    "description": "Open close php tag"
+  },
+  "Inline open close php tag": {
+    "prefix": "-",
+    "body": [
+      "<?php ${0:$TM_SELECTED_TEXT} ?>"
+    ],
+    "description": "Inline open close php tag"
+  },
+  "Php echo": {
+    "prefix": "=",
+    "body": [
+      "<?= ${1:$TM_SELECTED_TEXT} ?>${0}"
+    ],
+    "description": "Php echo"
+  },
+  "Key value pairing": {
+    "prefix": "=>",
+    "body": [
+      "  ${1} => ${2}${0}"
+    ],
+    "description": "Key value pairing"
+  },
+  "foreach": {
+    "prefix": "foreach",
+    "body": [
+      "<?php foreach ($${1:#array} as $${2:#item}) : ?>",
+      "  ${3:$TM_SELECTED_TEXT}",
+      "<?php endforeach; ?>${0}"
+    ]
+  },
+  "For each key value": {
+    "prefix": "fekv",
+    "body": [
+      "<?php foreach ($${1:#array} as $${2:key} => $${3:value}) : ?>",
+      "  ${4:$TM_SELECTED_TEXT}",
+      "<?php endforeach; ?>${0}"
+    ],
+    "description": "For each key value"
+  },
+  "Php enter exit": {
+    "prefix": "pee",
+    "body": [
+      "<?php ${1} ?>",
+      "  ${3:$TM_SELECTED_TEXT}",
+      "<?php ${2} ?>${0}"
+    ],
+    "description": "Php enter exit"
+  },
+  "function": {
+    "prefix": "fn",
+    "body": [
+      "function ${1:#funcname}(${2:#args}){",
+      "  ${3:$TM_SELECTED_TEXT}",
+      "}${0}"
+    ],
+    "description": "function"
+  },
+  "public-function": {
+    "prefix": "pubfn",
+    "body": [
+      "public function ${1:#funcname}(${2:#args}){",
+      "  ${3:$TM_SELECTED_TEXT}",
+      "}${0}"
+    ],
+    "description": "public-function"
+  },
+  "protected-function": {
+    "prefix": "profn",
+    "body": [
+      "protected function ${1:#funcname}(${2:#args}){",
+      "  ${3:$TM_SELECTED_TEXT}",
+      "}${0}"
+    ],
+    "description": "protected-function"
+  },
+  "private-function": {
+    "prefix": "prifn",
+    "body": [
+      "private function ${1:#funcname}(${2:#args}){",
+      "  ${3:$TM_SELECTED_TEXT}",
+      "}${0}"
+    ],
+    "description": "private-function"
+  },
+  "construct": {
+    "prefix": "const",
+    "body": [
+      "public function __construct(${1}){",
+      "  ${2:$TM_SELECTED_TEXT}",
+      "}${0}"
+    ],
+    "description": "construct"
+  },
+  "try catch block": {
+    "prefix": "try",
+    "body": [
+      "try {",
+      "  ${1}",
+      "} catch(${2:#Exception}${3:\\$e}){",
+      "  ${4}",
+      "}${0}"
+    ],
+    "description": "try catch block"
+  },
+  "Class": {
+    "prefix": "class",
+    "body": [
+      "class ${1:#Class}",
+      "{",
+      "  ${2:#Variables}",
+      "",
+      "  ${3:#Methods}",
+      "}"
+    ],
+    "description": "Class"
+  }
+}

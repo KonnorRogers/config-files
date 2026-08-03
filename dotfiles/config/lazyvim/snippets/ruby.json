@@ -1,0 +1,134 @@
+{
+  "Yardoc": {
+    "prefix": [
+      "yard"
+    ],
+    "body": [
+      "# $1",
+      "#",
+      "# $0"
+    ],
+    "description": "Start a yard doc"
+  },
+  "Yard Param": {
+    "prefix": [
+      "param"
+    ],
+    "body": [
+      "@param ${1:param_name} [${2:Type}] - ${3:Description}"
+    ],
+    "description": "Add params"
+  },
+  "Yard Return": {
+    "prefix": [
+      "return"
+    ],
+    "body": [
+      "@return [${1:ReturnType}] ${2:Description}"
+    ],
+    "description": "Add params"
+  },
+  "create a class": {
+    "prefix": "class",
+    "body": [
+      "class $1",
+      "  ${2:$TM_SELECTED_TEXT}",
+      "end$0"
+    ],
+    "description": "create a class"
+  },
+  "initialize method": {
+    "prefix": "init",
+    "body": [
+      "def initialize${1:($2)}",
+      "  ${3:$TM_SELECTED_TEXT}",
+      "end$0"
+    ],
+    "description": "initialize method"
+  },
+  "define a method": {
+    "prefix": "def",
+    "body": [
+      "def ${1:method_name}(${2:args})",
+      "  ${3:$TM_SELECTED_TEXT}",
+      "end"
+    ],
+    "description": "define a method"
+  },
+  "rspec describe block": {
+    "prefix": "rdesc",
+    "body": [
+      "RSpec.describe ${1:#class} do",
+      "  ${2:$TM_SELECTED_TEXT}",
+      "end$0"
+    ],
+    "description": "rspec describe block"
+  },
+  "context block": {
+    "prefix": "ctxt",
+    "body": [
+      "context \"$1\" do",
+      "  ${2:$TM_SELECTED_TEXT}",
+      "end$0"
+    ],
+    "description": "context block"
+  },
+  "it block for rspec": {
+    "prefix": "it",
+    "body": [
+      "it \"$1\" do",
+      "  $2",
+      "end$0"
+    ],
+    "description": "it block for rspec"
+  },
+  "testing": {
+    "prefix": "test",
+    "body": [
+      "test '${1:should do something}' do",
+      "  ${2:$TM_SELECTED_TEXT}",
+      "end",
+      "$0"
+    ],
+    "description": "testing"
+  },
+  "Minitest class": {
+    "prefix": "minitest",
+    "body": [
+      "class $1 < Minitest::Test",
+      "  $0",
+      "end"
+    ],
+    "description": "Minitest class"
+  },
+  "assert": {
+    "prefix": "as",
+    "body": [
+      "assert($1)"
+    ],
+    "description": "assert"
+  },
+  "assert_equal": {
+    "prefix": "as=",
+    "body": [
+      "assert_equal($1, $2)"
+    ],
+    "description": "assert_equal"
+  },
+  "module": {
+    "prefix": "mod",
+    "body": [
+      "module $1",
+      "  ${2:$TM_SELECTED_TEXT}",
+      "end"
+    ],
+    "description": "module"
+  },
+  "fsl": {
+    "prefix": "fsl",
+    "body": [
+      "# frozen_string_literal: true",
+      "$0"
+    ]
+  }
+}

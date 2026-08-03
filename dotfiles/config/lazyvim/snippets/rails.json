@@ -1,0 +1,27 @@
+{
+  "redirect_to": {
+    "prefix": "redir",
+    "body": [
+      "redirect_to ${1:path}"
+    ],
+    "description": "redirect_to"
+  },
+  "assert_no_difference": {
+    "prefix": "anodif",
+    "body": [
+      "assert_no_difference '${1:Model.count}', ${2:1} do",
+      "  ${3:$TM_SELECTED_TEXT}",
+      "end$0"
+    ],
+    "description": "assert_no_difference"
+  },
+  "assert_difference": {
+    "prefix": "adif",
+    "body": [
+      "assert_difference '${1:Model.count}', ${2:1} do",
+      "  ${3:$TM_SELECTED_TEXT}",
+      "end"
+    ],
+    "description": "assert_difference"
+  }
+}

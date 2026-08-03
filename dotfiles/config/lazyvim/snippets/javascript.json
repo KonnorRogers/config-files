@@ -1,0 +1,362 @@
+{
+  "jsdoc": {
+    "prefix": [
+      "jsdoc"
+    ],
+    "body": [
+      "/**",
+      " * $1",
+      " */"
+    ],
+    "description": "jsdoc"
+  },
+  "jsdoc inline": {
+    "prefix": [
+      "jsdoci"
+    ],
+    "body": [
+      "/** $1 */"
+    ],
+    "description": "JSDOC inline"
+  },
+  "dirname": {
+    "prefix": [
+      "dirname"
+    ],
+    "body": [
+      "import * as url from 'url';",
+      "const __dirname = url.fileURLToPath(new URL('.', import.meta.url));"
+    ],
+    "description": "Adds __dirname to an ESM file."
+  },
+  "filename": {
+    "prefix": [
+      "filename"
+    ],
+    "body": [
+      "import * as url from 'url';",
+      "const __filename = url.fileURLToPath(new URL(import.meta.url));"
+    ],
+    "description": "Adds __filename to an ESM file."
+  },
+  "require statement": {
+    "prefix": "req",
+    "body": [
+      "const $1 = require(\"$2\")"
+    ],
+    "description": "require statement"
+  },
+  "import default": {
+    "prefix": "im",
+    "body": [
+      "import $1 from \"$2\";$0"
+    ],
+    "description": "import default"
+  },
+  "import named exports": {
+    "prefix": "imb",
+    "body": [
+      "import { $1 } from \"$2\";$0"
+    ],
+    "description": "import named exports"
+  },
+  "export default": {
+    "prefix": "exd",
+    "body": [
+      "export default () => (",
+      "  ${1:$TM_SELECTED_TEXT}",
+      ")$0"
+    ],
+    "description": "export default"
+  },
+  "HTML tag": {
+    "prefix": "html",
+    "body": [
+      "<$1 $2>${3:$TM_SELECTED_TEXT}</$1>$0"
+    ],
+    "description": "HTML tag"
+  },
+  "class": {
+    "prefix": "class",
+    "body": [
+      "class $1 {",
+      "  ${2:constructor() {",
+      "    $3",
+      "  }",
+      "",
+      "  }${4:$TM_SELECTED_TEXT}",
+      "}$0"
+    ],
+    "description": "class"
+  },
+  "React class": {
+    "prefix": "rclass",
+    "body": [
+      "class $1 extends React.Component {",
+      "  ${2:$TM_SELECTED_TEXT}",
+      "}$0"
+    ],
+    "description": "React class"
+  },
+  "rndr": {
+    "prefix": "rndr",
+    "body": [
+      "render() {",
+      "  ${1:$TM_SELECTED_TEXT}",
+      "}$0"
+    ]
+  },
+  "function": {
+    "prefix": "fn",
+    "body": [
+      "function $1($2) {",
+      "  ${3:$TM_SELECTED_TEXT}",
+      "}$0"
+    ],
+    "description": "function"
+  },
+  "Arrow function": {
+    "prefix": "=-",
+    "body": [
+      "${1:const} = ${2:($3)} => ${4:$TM_SELECTED_TEXT}$0"
+    ],
+    "description": "Arrow function"
+  },
+  "Multiline arrow function": {
+    "prefix": "==-",
+    "body": [
+      "${1:const} $2 = ${3:($4)} => {",
+      "  ${5:$TM_SELECTED_TEXT}",
+      "}$0"
+    ],
+    "description": "Multiline arrow function"
+  },
+  "query selector": {
+    "prefix": "qs",
+    "body": [
+      "document.querySelector(${1:$TM_SELECTED_TEXT});$0"
+    ],
+    "description": "query selector"
+  },
+  "query selector all": {
+    "prefix": "qsa",
+    "body": [
+      "document.querySelectorAll(${1:$TM_SELECTED_TEXT});$0"
+    ],
+    "description": "query selector all"
+  },
+  "Jest test block": {
+    "prefix": "jest",
+    "body": [
+      "test('${1:#Should do X}', () => {",
+      "  ${2:$TM_SELECTED_TEXT}",
+      "});$0"
+    ],
+    "description": "Jest test block"
+  },
+  "Describe block": {
+    "prefix": "desc",
+    "body": [
+      "describe('${1:#Do y}', () => {",
+      "${2:$TM_SELECTED_TEXT}",
+      "});$0"
+    ],
+    "description": "Describe block"
+  },
+  "Expect X": {
+    "prefix": "expect",
+    "body": [
+      "expect($1).${2:toBe}(${3:true});$0"
+    ],
+    "description": "Expect X"
+  },
+  "JSDoc snippet": {
+    "prefix": "jsdoc",
+    "body": [
+      "/**",
+      "* ${1:$TM_SELECTED_TEXT}",
+      "*/$0"
+    ],
+    "description": "JSDoc snippet"
+  },
+  "Inline jsdoc": {
+    "prefix": "jsdoci",
+    "body": [
+      "/** ${1:$TM_SELECTED_TEXT} */$0"
+    ],
+    "description": "Inline jsdoc"
+  },
+  "Parameters": {
+    "prefix": "@param",
+    "body": [
+      "@param {${1:type}} ${2:parameter} - ${3:description}"
+    ],
+    "description": "Parameters"
+  },
+  "Return value": {
+    "prefix": "@return",
+    "body": [
+      "@return {${1:type}} - ${2:description}"
+    ],
+    "description": "Return value"
+  },
+  "console.log": {
+    "prefix": "cl",
+    "body": [
+      "console.log(${1:$TM_SELECTED_TEXT})$0"
+    ],
+    "description": "console.log"
+  },
+  "console.table": {
+    "prefix": "ct",
+    "body": [
+      "console.table(${1:$TM_SELECTED_TEXT});$0"
+    ],
+    "description": "console.table"
+  },
+  "console.trace": {
+    "prefix": "ctr",
+    "body": [
+      "console.trace(${1:$TM_SELECTED_TEXT});$0"
+    ],
+    "description": "console.trace"
+  },
+  "jsx pragma": {
+    "prefix": "jsx",
+    "body": [
+      "/** @jsx jsx */$0"
+    ],
+    "description": "jsx pragma"
+  },
+  "import react": {
+    "prefix": "react",
+    "body": [
+      "import * as React from \"react\";$0"
+    ],
+    "description": "import react"
+  },
+  "import emotion": {
+    "prefix": "emotion",
+    "body": [
+      "import { css${1:, jsx} } from \"@emotion/core\"$0"
+    ],
+    "description": "import emotion"
+  },
+  "import theme-ui": {
+    "prefix": "theme-ui",
+    "body": [
+      "import { jsx } from 'theme-ui'$0"
+    ],
+    "description": "import theme-ui"
+  },
+  "import PropTypes from 'prop-types'": {
+    "prefix": "proptypes",
+    "body": [
+      "import ${1:PropTypes} from \"prop-types\"$0"
+    ],
+    "description": "import PropTypes from 'prop-types'"
+  },
+  "import react-testing-library": {
+    "prefix": "rtl",
+    "body": [
+      "import { $1 } from \"@testing-library/react\""
+    ],
+    "description": "import react-testing-library"
+  },
+  "jquery's $('') function": {
+    "prefix": "jq",
+    "body": [
+      "\\$(${1:'$2'})$0"
+    ],
+    "description": "jquery's $('') function"
+  },
+  "for loop": {
+    "prefix": "for",
+    "body": [
+      "for(${1:i = 0; i < $2; i++}) {",
+      "\t${3:$TM_SELECTED_TEXT}",
+      "}",
+      "$0"
+    ],
+    "description": "for loop"
+  },
+  "Cypress reference": {
+    "prefix": "refcy",
+    "body": [
+      "/// <reference types=\"Cypress\" />",
+      "$0"
+    ],
+    "description": "Cypress reference"
+  },
+  "it('test', () => {})": {
+    "prefix": "cyit",
+    "body": [
+      "it(\"$1\", () => {",
+      "  ${2:$TM_SELECTED_TEXT}",
+      "})$0"
+    ],
+    "description": "it('test', () => {})"
+  },
+  "Test environment JSDOM": {
+    "prefix": "envjsdom",
+    "body": [
+      "/**",
+      " * @jest-environment jsdom",
+      " */"
+    ],
+    "description": "Test environment JSDOM"
+  },
+  "Test environment Node": {
+    "prefix": "envnode",
+    "body": [
+      "/**",
+      " * @jest-environment node",
+      " */"
+    ],
+    "description": "Test environment Node"
+  },
+  "testing library dom": {
+    "prefix": "tldom",
+    "body": [
+      "import {",
+      "  getByLabelText,",
+      "  getByText,",
+      "  getByTestId,",
+      "  queryByTestId,",
+      "  waitFor,",
+      "} from '@testing-library/dom'",
+      "import '@testing-library/jest-dom/extend-expect'"
+    ],
+    "description": "testing library dom"
+  },
+  "JSDOM": {
+    "prefix": "jsdom",
+    "body": [
+      "const jsdom = require(\"jsdom\");",
+      "const { JSDOM } = jsdom;"
+    ],
+    "description": "JSDOM"
+  },
+  "stimulus controller": {
+    "prefix": "stimc",
+    "body": [
+      "",
+      "import { Controller } from \"stimulus\"",
+      "",
+      "export default class $1 extends Controller {",
+      "  $2",
+      "  ${3:initialize() {",
+      "    $4",
+      "  }}",
+      "  ${5:connect() {",
+      "    $6",
+      "  }}",
+      "  ${7:disconnect() {",
+      "    $8",
+      "  }}",
+      "}",
+      ""
+    ],
+    "description": "stimulus controller"
+  }
+}

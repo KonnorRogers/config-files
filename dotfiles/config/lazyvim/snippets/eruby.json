@@ -1,0 +1,25 @@
+{
+  "eval": {
+    "prefix": "=",
+    "body": [
+      "<%= ${1:$TM_SELECTED_TEXT} %>${0}"
+    ],
+    "description": "eval"
+  },
+  "noeval": {
+    "prefix": "-",
+    "body": [
+      "<% ${1:$TM_SELECTED_TEXT} %>${0}"
+    ],
+    "description": "noeval"
+  },
+  "form_with": {
+    "prefix": "fwith",
+    "body": [
+      "<%= form_with($1) do |form| %>",
+      "  ${2:$TM_SELECTED_TEXT}",
+      "<% end %>"
+    ],
+    "description": "form_with"
+  }
+}

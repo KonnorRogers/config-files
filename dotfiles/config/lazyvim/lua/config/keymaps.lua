@@ -11,6 +11,12 @@ local opts = { silent = true }
 keymap("", "<Space>", "<Nop>", opts)
 vim.g.mapleader = " "
 
+-- Disable LazyVim's Alt-j/Alt-k "move line" mappings
+for _, mode in ipairs({ "n", "i", "v" }) do
+  pcall(vim.keymap.del, mode, "<A-j>")
+  pcall(vim.keymap.del, mode, "<A-k>")
+end
+
 -- Modes
 --   normal_mode = "n",
 --   insert_mode = "i",

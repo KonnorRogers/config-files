@@ -1,0 +1,54 @@
+{
+  "Date": {
+    "prefix": "date",
+    "body": [
+      "${CURRENT_YEAR}-${CURRENT_MONTH}-${CURRENT_DATE} ${CURRENT_HOUR}:${CURRENT_MINUTE}:${CURRENT_SECOND} ${CURRENT_TIMEZONE_OFFSET}"
+    ],
+    "description": "Current date in yyyy-mm-dd h:m:s %z"
+  },
+  "ISODate": {
+    "prefix": "iso",
+    "body": [
+      "${CURRENT_YEAR}-${CURRENT_MONTH}-${CURRENT_DATE}T${CURRENT_HOUR}:${CURRENT_MINUTE}:${CURRENT_SECOND}${CURRENT_TIMEZONE_OFFSET}"
+    ],
+    "description": "Current date in ISO8601"
+  },
+  "date-ymd": {
+    "prefix": "date",
+    "body": [
+      "${CURRENT_YEAR}-${CURRENT_MONTH}-${CURRENT_DATE}"
+    ],
+    "description": "Current date in yyyy-mm-dd"
+  },
+  "Liquid component": {
+    "prefix": "%",
+    "body": [
+      "{% ${1:$TM_SELECTED_TEXT} %}$0"
+    ],
+    "description": "Liquid component"
+  },
+  "Render": {
+    "prefix": "{",
+    "body": [
+      "{{ ${1:$TM_SELECTED_TEXT} }}$0"
+    ],
+    "description": "Render"
+  },
+  "Provides the date via vim": {
+    "prefix": "date",
+    "body": [
+      "${CURRENT_YEAR}-${CURRENT_MONTH}-${CURRENT_DATE}T${CURRENT_HOUR}:${CURRENT_MINUTE}:${CURRENT_SECOND}"
+    ],
+    "description": "Provides the date via vim"
+  },
+  "frontmatter": {
+    "prefix": "fmt",
+    "body": [
+      "---",
+      "$1",
+      "---",
+      "$0"
+    ],
+    "description": "frontmatter"
+  }
+}
