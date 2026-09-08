@@ -128,8 +128,6 @@ done
 if [[ "$OSTYPE" =~ "linux" ]]; then
   source $HOME/.asdf/completions/asdf.bash
   source $HOME/.asdf/asdf.sh
-
-  export GOROOT=/usr/local/go
 elif [[ "$OSTYPE" =~ "darwin" ]]; then
   export PATH="$(brew --prefix)/bin:$PATH"
   export PATH="$HOME/nvim-osx64/bin:$PATH"
@@ -155,7 +153,6 @@ elif [[ "$OSTYPE" =~ "darwin" ]]; then
 fi
 
 
-export GOROOT=/usr/local/go
 export GOPATH=$HOME/go
 export PATH=$PATH:$GOPATH
 export PATH=$PATH:$GOROOT/bin
@@ -199,3 +196,5 @@ export PATH="$PATH:/Applications/Visual Studio Code.app/Contents/Resources/app/b
 export PATH="$HOME/.drenv/bin:$PATH"
 export CC=clang
 export CXX=clang++
+
+source $HOME/get-vault.sh
