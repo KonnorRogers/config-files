@@ -7,6 +7,8 @@ return {
   { "rebelot/kanagawa.nvim" },
   { "spaceduck-theme/nvim" },
   { "catppuccin/nvim", name = "catppuccin" },
+  { 'AlexvZyl/nordic.nvim' },
+  { "EdenEast/nightfox.nvim" },
 
   -- Configure LazyVim to load gruvbox
   {

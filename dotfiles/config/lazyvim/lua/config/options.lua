@@ -58,11 +58,17 @@ vim.opt.shiftwidth = 2 -- On pressing tab, -- insert 2 spaces
 vim.opt.shiftround = true -- always even spaces
 vim.opt.colorcolumn = "81" -- Make it obvious where 80 characters is
 vim.opt.number = true -- Left hand column numbers
-vim.opt.listchars = { eol = "↲", tab = "▸ ", trail = "·", nbsp = "·" } -- Display extra whitespace
+vim.opt.listchars = {
+  -- eol = "↲",
+  tab = "▸ ",
+  trail = "·",
+  -- nbsp = "·"
+} -- Display extra whitespace
 vim.opt.showmatch = true -- show matching brackets
 vim.opt.ruler = true -- show cursor position at all times
 vim.opt.hls = false -- don't highlight the previous search term
 vim.opt.incsearch = true -- incremental searching
+vim.opt.relativenumber = false
 
 -- incremental commands
 if vim.fn.exists("+inccommand") == 1 then

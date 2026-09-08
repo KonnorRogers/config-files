@@ -109,3 +109,6 @@ alias fire-in-the-hole='find . -name "node_modules" -type d -prune -print | xarg
 alias git-sync='git fetch origin "refs/heads/*:refs/heads/*"'
 alias push-notes='cd ~/notes && git add . && git commit -m "update notes" && git push && cd -'
 alias drpid="echo $(ps -e | grep 'dragonruby' | grep -v 'grep' | awk '{print $1}' | head -n 1)"
+
+alias dim='doom emacs -nw'
+alias aim='emacs --init-directory="$HOME/evil-code-editor" -nw'

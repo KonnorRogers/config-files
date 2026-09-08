@@ -17,12 +17,4 @@ return {
 
   { "MeanderingProgrammer/render-markdown.nvim", enabled = false },
   { "nvim-mini/mini.pairs", enabled = false },
-  { 
-    "snacks.nvim", 
-    opts = { 
-      words = { 
-        enabled = false 
-      } 
-    } 
-  }
 }

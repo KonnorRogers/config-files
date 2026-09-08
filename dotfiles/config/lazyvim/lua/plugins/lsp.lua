@@ -7,6 +7,9 @@ return {
       elixirls = { mason = false },
       erlangls = { mason = false },
       fsautocomplete = { mason = false },
+      rubocop = {
+        enabled = false
+      }
     },
     -- turn off ghost variable annotations
     inlay_hints = { enabled = false },
