@@ -31,9 +31,14 @@ lazy.setup({
     "arzg/vim-colors-xcode",
     -- lazy = false, -- make sure we load this during startup if it is your main colorscheme
     dependencies = {
-      "rebelot/kanagawa.nvim",
-      "spaceduck-theme/nvim",
-      { "catppuccin/nvim", name = "catppuccin" }
+      -- add gruvbox
+      { "ellisonleao/gruvbox.nvim" },
+      { "arzg/vim-colors-xcode" },
+      { "rebelot/kanagawa.nvim" },
+      { "spaceduck-theme/nvim" },
+      { "catppuccin/nvim", name = "catppuccin" },
+      { 'AlexvZyl/nordic.nvim' },
+      { "EdenEast/nightfox.nvim" },
     },
     priority = 1000, -- make sure to load this before all the other start plugins
     config = function()
