@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: Yard Param
+# key: param
+# --
+@param ${1:param_name} [${2:Type}] - ${3:Description}

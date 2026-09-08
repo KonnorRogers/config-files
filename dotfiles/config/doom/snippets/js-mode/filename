@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: filename
+# key: filename
+# --
+import * as url from 'url';
+const __filename = url.fileURLToPath(new URL(import.meta.url));

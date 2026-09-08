@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: Yardoc
+# key: yard
+# --
+# $1
+#
+# $0

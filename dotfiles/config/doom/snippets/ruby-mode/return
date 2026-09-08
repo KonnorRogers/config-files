@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: Yard Return
+# key: return
+# --
+@return [${1:ReturnType}] ${2:Description}

@@ -1,0 +1,10 @@
+# -*- mode: snippet -*-
+# name: Header Link
+# key: hl
+# --
+<h$1 id="$2">
+  <a href="#$2">
+    ${3:`(or yas-selected-text "")`}
+  </a>
+</h$1>
+$0

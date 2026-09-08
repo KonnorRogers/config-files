@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: Route
+# key: route
+# --
+def $1(conn, params) do
+  $2
+end

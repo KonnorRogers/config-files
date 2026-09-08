@@ -1,0 +1,8 @@
+# -*- mode: snippet -*-
+# name: Documentation Frontmatter
+# key: dfmt
+# --
+---
+title: $1`(file-name-base (or (buffer-file-name) ""))`
+permalink: /$2`(file-name-base (or (buffer-file-name) ""))`/
+---

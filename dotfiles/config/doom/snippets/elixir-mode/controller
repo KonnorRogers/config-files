@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: Controller
+# key: controller
+# --
+defmodule $1.$2Controller do
+  use $1, :controller
+end

@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: ISO8601 Date
+# key: iso
+# --
+`(format-time-string "%FT%T%z")`
