@@ -264,3 +264,6 @@
 
 (setq delete-trailing-lines nil)     ; but don't strip blank lines at EOF
 (add-hook 'before-save-hook #'delete-trailing-whitespace)
+
+;; (treesit-auto-install-grammar 'always) ; EMACS-31
+;; (treesit-enabled-modes t)              ; EMACS-31
