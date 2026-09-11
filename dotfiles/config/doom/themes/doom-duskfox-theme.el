@@ -1,17 +1,21 @@
-;;; doom-duskfox-theme.el --- duskfox from nightfox.nvim -*- lexical-binding: t; no-byte-compile: t; -*-
+;;; doom-duskfox-theme.el --- Duskfox using: https://github.com/EdenEast/nightfox.nvim/blob/main/lua/nightfox/palette/nightfox.lua as the basis  -*- lexical-binding: t; no-byte-compile: t; -*-
 ;;
-;; Port of EdenEast/nightfox.nvim (duskfox) to doom-themes. Palette values were
-;; resolved from lua/nightfox/palette/duskfox.lua and its generate_spec().
+;; Source: https://github.com/EdenEast/nightfox.nvim/blob/main/lua/nightfox/palette/nightfox.lua
+;;
+;;; Commentary:
+;;
+;; Duskfox ported for doom, using https://github.com/doomemacs/themes/blob/master/themes/doom-one-theme.el as the basis.
 ;;
 ;;; Code:
 
 (require 'doom-themes)
 
+;; https://github.com/EdenEast/nightfox.nvim/blob/main/extra/duskfox/kitty.conf - Used as the basis.
 ;;
 ;;; Variables
 
 (defgroup doom-duskfox-theme nil
-  "Options for the `doom-duskfox' theme."
+  "Options for the `doom-duskfox-theme' theme."
   :group 'doom-themes)
 
 (defcustom doom-duskfox-brighter-modeline nil
@@ -24,110 +28,114 @@
   :group 'doom-duskfox-theme
   :type 'boolean)
 
+(defcustom doom-duskfox-comment-bg doom-duskfox-brighter-comments
+  "If non-nil, comments will have a subtle highlight to enhance their
+legibility."
+  :group 'doom-duskfox-theme
+  :type 'boolean)
+
 (defcustom doom-duskfox-padded-modeline doom-themes-padded-modeline
   "If non-nil, adds a 4px padding to the mode-line.
 Can be an integer to determine the exact padding."
   :group 'doom-duskfox-theme
   :type '(choice integer boolean))
 
+
+
 ;;
 ;;; Theme definition
 
 (def-doom-theme doom-duskfox
-  "A dark theme ported from nightfox.nvim's duskfox variant."
-  :family 'doom-nightfox
+  "A dark theme inspired by Atom One Dark."
+  :family 'doom-duskfox
   :background-mode 'dark
 
-  ;; name        gui / 256 / 16
-  ((bg         '("#232136" "#232136" "black"))
-   (fg         '("#e0def4" "#e0def4" "brightwhite"))
-   (bg-alt     '("#191726" "#191726" "black"))
-   (fg-alt     '("#cdcbe0" "#cdcbe0" "white"))
+  ;; name        default   256           16
+  ((bg         '("#232136" "black"   "black"  ))
+   (fg         '("#e0def4" "#bfbfbf" "brightwhite"))
 
-   ;; nightfox bg0..bg4 / fg3 / comment / fg2 / fg0, in doom's base0..base8 order
-   (base0      '("#191726" "#191726" "black"))
-   (base1      '("#232136" "#232136" "brightblack"))
-   (base2      '("#2d2a45" "#2d2a45" "brightblack"))
-   (base3      '("#373354" "#373354" "brightblack"))
-   (base4      '("#4b4673" "#4b4673" "brightblack"))
-   (base5      '("#6e6a86" "#6e6a86" "brightblack"))
-   (base6      '("#817c9c" "#817c9c" "brightblack"))
-   (base7      '("#cdcbe0" "#cdcbe0" "brightblack"))
-   (base8      '("#eae8ff" "#eae8ff" "white"))
+   ;; These are off-color variants of bg/fg, used primarily for `solaire-mode',
+   ;; but can also be useful as a basis for subtle highlights (e.g. for hl-line
+   ;; or region), especially when paired with the `doom-darken', `doom-lighten',
+   ;; and `doom-blend' helper functions.
+   (bg-alt     '("#191726" "black"   "black"  ))
+   (fg-alt     '("#cdcbe0" "#2d2d2d" "white"  ))
+
+   ;; These should represent a spectrum from bg to fg, where base0 is a starker
+   ;; bg and base8 is a starker fg. For example, if bg is light grey and fg is
+   ;; dark grey, base0 should be white and base8 should be black.
+   (base0      '("#191726" "black"   "black"        ))   ; bg0
+   (base1      '("#232136" "#1e1e1e" "brightblack"  ))   ; bg1
+   (base2      '("#2d2a45" "#2e2e2e" "brightblack"  ))   ; bg2
+   (base3      '("#373354" "#262626" "brightblack"  ))   ; bg3
+   (base4      '("#4b4673" "#3f3f3f" "brightblack"  ))   ; bg4
+   (base5      '("#6e6a86" "#525252" "brightblack"  ))   ; fg3
+   (base6      '("#817c9c" "#6b6b6b" "brightblack"  ))   ; comment
+   (base7      '("#b1acde" "#979797" "brightblack"  ))   ; white.dim
+   (base8      '("#eae8ff" "#dfdfdf" "white"        ))   ; fg0
 
    (grey       base4)
-   (red        '("#eb6f92" "#eb6f92" "red"))
-   (orange     '("#ea9a97" "#ea9a97" "brightred"))
-   (green      '("#a3be8c" "#a3be8c" "green"))
-   (teal       '("#b1d196" "#b1d196" "brightgreen"))
-   (yellow     '("#f6c177" "#f6c177" "yellow"))
-   (blue       '("#569fba" "#569fba" "brightblue"))
-   (dark-blue  '("#4a869c" "#4a869c" "blue"))
-   (magenta    '("#c4a7e7" "#c4a7e7" "brightmagenta"))
-   (violet     '("#a580d2" "#a580d2" "magenta"))
-   (cyan       '("#9ccfd8" "#9ccfd8" "brightcyan"))
-   (dark-cyan  '("#7bb8c1" "#7bb8c1" "cyan"))
+   (red        '("#eb6f92" "#ff6655" "red"          ))
+   (orange     '("#ea9a97" "#dd8844" "brightred"    ))
+   (green      '("#a3be8c" "#99bb66" "green"        ))
+   (teal       '("#7bb8c1" "#44b9b1" "brightgreen"  ))   ; cyan.dim
+   (yellow     '("#f6c177" "#ECBE7B" "yellow"       ))
+   (blue       '("#569fba" "#51afef" "brightblue"   ))
+   (dark-blue  '("#4a869c" "#2257A0" "blue"         ))   ; blue.dim
+   (magenta    '("#c4a7e7" "#c678dd" "brightmagenta"))
+   (violet     '("#eb98c3" "#a9a1e1" "magenta"      ))   ; pink
+   (cyan       '("#9ccfd8" "#46D9FF" "brightcyan"   ))
+   (dark-cyan  '("#65b1cd" "#5699AF" "cyan"         ))   ; blue.bright
 
-   ;; extra nightfox colors, exposed for user overrides
-   (pink       '("#eb98c3" "#eb98c3" "magenta"))
-   (black      '("#393552" "#393552" "black"))
-   (white      '("#e0def4" "#e0def4" "white"))
-   (sel0       '("#433c59" "#433c59" "brightblack"))
-   (preproc    '("#f0a6cc" "#f0a6cc" "magenta"))
-   (regex      '("#f9cb8c" "#f9cb8c" "yellow"))
-   (sel1       '("#63577d" "#63577d" "brightblack"))
-
-   ;; face categories -- mapped from nightfox's generate_spec()
+   ;; These are the "universal syntax classes" that doom-themes establishes.
+   ;; These *must* be included in every doom themes, or your theme will throw an
+   ;; error, as they are used in the base theme defined in doom-themes-base.
    (highlight      blue)
-   (vertical-bar   base0)
-   (selection      sel1)
-   (builtin        '("#eb6f92" "#eb6f92" "red"))
-   (comments       (if doom-duskfox-brighter-comments dark-cyan base6))
-   (doc-comments   (doom-lighten (if doom-duskfox-brighter-comments dark-cyan base6) 0.2))
-   (constants      '("#f0a4a2" "#f0a4a2" "brightred"))
-   (functions      '("#65b1cd" "#65b1cd" "blue"))
-   (keywords       '("#c4a7e7" "#c4a7e7" "magenta"))
-   (methods        '("#65b1cd" "#65b1cd" "blue"))
-   (operators      '("#cdcbe0" "#cdcbe0" "white"))
-   (type           '("#f6c177" "#f6c177" "yellow"))
-   (strings        '("#a3be8c" "#a3be8c" "green"))
-   (variables      '("#e0def4" "#e0def4" "white"))
-   (numbers        '("#ea9a97" "#ea9a97" "brightred"))
-   (region         sel0)
-   (error          '("#eb6f92" "#eb6f92" "red"))
-   (warning        '("#f6c177" "#f6c177" "yellow"))
-   (success        '("#a3be8c" "#a3be8c" "green"))
-   (vc-modified    '("#f6c177" "#f6c177" "yellow"))
-   (vc-added       '("#a3be8c" "#a3be8c" "green"))
-   (vc-deleted     '("#eb6f92" "#eb6f92" "red"))
+   (vertical-bar   (doom-darken base1 0.1))
+   (selection      '("#433c59"))
+   (builtin        magenta)
+   (comments       (if doom-duskfox-brighter-comments dark-cyan base5))
+   (doc-comments   (doom-lighten (if doom-duskfox-brighter-comments dark-cyan base5) 0.25))
+   (constants      violet)
+   (functions      magenta)
+   (keywords       blue)
+   (methods        cyan)
+   (operators      blue)
+   (type           yellow)
+   (strings        green)
+   (variables      (doom-lighten magenta 0.4))
+   (numbers        orange)
+   (region         '("#63577d"))
+   (error          red)
+   (warning        yellow)
+   (success        green)
+   (vc-modified    orange)
+   (vc-added       green)
+   (vc-deleted     red)
 
-   ;; custom categories
+   ;; These are extra color variables used only in this theme; i.e. they aren't
+   ;; mandatory for derived themes.
    (modeline-fg              fg)
    (modeline-fg-alt          base5)
-   (modeline-bg              (if doom-duskfox-brighter-modeline base3 base0))
-   (modeline-bg-alt          (if doom-duskfox-brighter-modeline base3 base0))
-   (modeline-bg-inactive     base0)
-   (modeline-bg-inactive-alt base0)
+   (modeline-bg              (if doom-duskfox-brighter-modeline
+                                 (doom-darken blue 0.45)
+                               (doom-darken bg-alt 0.1)))
+   (modeline-bg-alt          (if doom-duskfox-brighter-modeline
+                                 (doom-darken blue 0.475)
+                               `(,(doom-darken (car bg-alt) 0.15) ,@(cdr bg))))
+   (modeline-bg-inactive     `(,(car bg-alt) ,@(cdr base1)))
+   (modeline-bg-inactive-alt `(,(doom-darken (car bg-alt) 0.1) ,@(cdr bg)))
+
    (-modeline-pad
     (when doom-duskfox-padded-modeline
       (if (integerp doom-duskfox-padded-modeline) doom-duskfox-padded-modeline 4))))
 
-  ;;;; Base theme face overrides
-  (((line-number &override) :foreground base5)
-   ((line-number-current-line &override) :foreground fg :background base3)
-   (hl-line :background base3)
-   (cursor :background fg)
-   (fringe :background bg)
-   (vertical-border :foreground base0 :background base0)
-   (window-divider :foreground base0)
-   (isearch :foreground bg :background yellow :weight 'bold)
-   (lazy-highlight :background sel1)
-   (match :background sel1)
-   (show-paren-match :background base4 :foreground fg :weight 'bold)
-   (font-lock-preprocessor-face :foreground preproc)
-   (font-lock-regexp-grouping-backslash :foreground regex)
-   (font-lock-regexp-grouping-construct :foreground regex)
 
+  ;;;; Base theme face overrides
+  (((line-number &override) :foreground base4)
+   ((line-number-current-line &override) :foreground fg)
+   ((font-lock-comment-face &override)
+    :background (if doom-duskfox-comment-bg (doom-lighten bg 0.05) 'unspecified))
    (mode-line
     :background modeline-bg :foreground modeline-fg
     :box (if -modeline-pad `(:line-width ,-modeline-pad :color ,modeline-bg)))
@@ -136,44 +144,39 @@ Can be an integer to determine the exact padding."
     :box (if -modeline-pad `(:line-width ,-modeline-pad :color ,modeline-bg-inactive)))
    (mode-line-emphasis :foreground (if doom-duskfox-brighter-modeline base8 highlight))
 
+   ;;;; css-mode <built-in> / scss-mode
+   (css-proprietary-property :foreground orange)
+   (css-property             :foreground green)
+   (css-selector             :foreground blue)
    ;;;; doom-modeline
    (doom-modeline-bar :background (if doom-duskfox-brighter-modeline modeline-bg highlight))
    (doom-modeline-buffer-file :inherit 'mode-line-buffer-id :weight 'bold)
    (doom-modeline-buffer-path :inherit 'mode-line-emphasis :weight 'bold)
    (doom-modeline-buffer-project-root :foreground green :weight 'bold)
+   ;;;; elscreen
+   (elscreen-tab-other-screen-face :background "#353a42" :foreground "#1e2022")
+   ;;;; ivy
+   (ivy-current-match :background dark-blue :distant-foreground base0 :weight 'normal)
+   ;;;; LaTeX-mode
+   (font-latex-math-face :foreground green)
+   ;;;; markdown-mode
+   (markdown-markup-face :foreground base5)
+   (markdown-header-face :inherit 'bold :foreground red)
+   ((markdown-code-face &override) :background (doom-lighten base3 0.05))
+   ;;;; rjsx-mode
+   (rjsx-tag :foreground red)
+   (rjsx-attr :foreground orange)
    ;;;; solaire-mode
    (solaire-mode-line-face
-    :inherit 'mode-line :background modeline-bg-alt
+    :inherit 'mode-line
+    :background modeline-bg-alt
     :box (if -modeline-pad `(:line-width ,-modeline-pad :color ,modeline-bg-alt)))
    (solaire-mode-line-inactive-face
-    :inherit 'mode-line-inactive :background modeline-bg-inactive-alt
-    :box (if -modeline-pad `(:line-width ,-modeline-pad :color ,modeline-bg-inactive-alt)))
-   ;;;; ivy / vertico / selection lists
-   (ivy-current-match :background sel0 :distant-foreground nil)
-   (vertico-current :background sel0)
-   ;;;; magit
-   (magit-diff-hunk-heading-highlight :foreground bg :background blue :weight 'bold)
-   (magit-diff-hunk-heading :foreground bg :background dark-blue)
-   ;;;; org
-   (org-block :background base0)
-   (org-block-begin-line :background base0 :foreground comments)
-   (org-block-end-line :background base0 :foreground comments)
-   (org-level-1 :foreground blue :weight 'bold :height 1.2)
-   (org-level-2 :foreground magenta :weight 'bold)
-   (org-level-3 :foreground green :weight 'bold)
-   (org-level-4 :foreground yellow)
-   (org-level-5 :foreground cyan)
-   (org-level-6 :foreground orange)
-   ;;;; rainbow-delimiters
-   (rainbow-delimiters-depth-1-face :foreground red)
-   (rainbow-delimiters-depth-2-face :foreground yellow)
-   (rainbow-delimiters-depth-3-face :foreground blue)
-   (rainbow-delimiters-depth-4-face :foreground orange)
-   (rainbow-delimiters-depth-5-face :foreground green)
-   (rainbow-delimiters-depth-6-face :foreground magenta)
-   (rainbow-delimiters-depth-7-face :foreground cyan))
+    :inherit 'mode-line-inactive
+    :background modeline-bg-inactive-alt
+    :box (if -modeline-pad `(:line-width ,-modeline-pad :color ,modeline-bg-inactive-alt))))
 
-  ;;;; Base theme variable overrides
+  ;;;; Base theme variable overrides-
   ())
 
 ;;; doom-duskfox-theme.el ends here

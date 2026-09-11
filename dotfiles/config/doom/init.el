@@ -7,6 +7,7 @@
 ;;   documentation. There you'll find a link to Doom's Module Index where all of
 ;;   our modules are listed, including what flags they support.
 
+
 ;; NOTE: Move your cursor over a module's name (or its flags) and press 'K' (or
 ;;   'C-c c k' for non-vim users) to view its documentation. This works on flags
 ;;   as well (those symbols that start with a plus).
