@@ -301,4 +301,8 @@
         (assq-delete-all 'file marginalia-annotators))
   )
 
+(after! eglot
+    (add-to-list 'eglot-server-programs
+                '((ruby-mode ruby-ts-mode) . ("ruby-lsp"))))
+
 (load! "plugins/treesitter")
