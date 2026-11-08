@@ -33,7 +33,7 @@
 ;; available. You can either set `doom-theme' or manually load a theme with the
 ;; `load-theme' function. This is the default:
 ;; (setq doom-theme 'doom-one)
-(setq doom-theme 'doom-duskfox)
+(setq doom-theme 'doom-moonlight)
 ;; Specify both a dark and light theme, like so and Doom will choose which one
 ;; to load based on your system light/dark setting:
 ;;
@@ -181,7 +181,9 @@
 
 
 (after! corfu
-  (setq corfu-auto-delay 0.02
+  (global-corfu-mode)
+  (setq corfu-auto-delay 0
+        corfu-auto t
         corfu-auto-prefix 1
         corfu-preselect 'prompt
         corfu-preview-current 'insert   ; insert candidate on navigation
@@ -304,5 +306,7 @@
 (after! eglot
     (add-to-list 'eglot-server-programs
                 '((ruby-mode ruby-ts-mode) . ("ruby-lsp"))))
+
+(add-hook 'eglot-managed-mode-hook (lambda () (eglot-inlay-hints-mode -1)))
 
 (load! "plugins/treesitter")

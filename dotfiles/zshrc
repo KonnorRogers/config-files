@@ -199,3 +199,5 @@ export PATH="$PATH:/Applications/Visual Studio Code.app/Contents/Resources/app/b
 export PATH="$HOME/.drenv/bin:$PATH"
 export CC=clang
 export CXX=clang++
+export PATH="/Users/konnorrogers/.config/herd-lite/bin:$PATH"
+export PHP_INI_SCAN_DIR="/Users/konnorrogers/.config/herd-lite/bin:$PHP_INI_SCAN_DIR"
