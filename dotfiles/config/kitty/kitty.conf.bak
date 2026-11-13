@@ -2511,7 +2511,7 @@ modify_font baseline 2
 
 
 # BEGIN_KITTY_THEME
-# Xcodelighthc
+# Kanagawa
 include current-theme.conf
 # END_KITTY_THEME
 

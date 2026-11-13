@@ -158,3 +158,6 @@ vim.opt.maxmempattern = 9999999
 -- Links the border style directly to your normal diagnostic details
 -- vim.api.nvim_set_hl(0, "NormalFloat", { bg = "NONE" })
 vim.o.winborder = "rounded"
+
+-- Always read latest changes to a file
+vim.o.autoread = true

@@ -199,3 +199,4 @@ export PATH="$PATH:/Applications/Visual Studio Code.app/Contents/Resources/app/b
 export PATH="$HOME/.drenv/bin:$PATH"
 export CC=clang
 export CXX=clang++
+source /Users/konnor/.config/op/plugins.sh

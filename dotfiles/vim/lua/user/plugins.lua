@@ -247,6 +247,15 @@ lazy.setup({
           "nvim-lua/plenary.nvim",
       },
   },
+  {
+    "wc-toolkit/wc-language-server",
+    ft = { "html", "javascript", "typescript", "javascriptreact", "typescriptreact", "astro", "svelte", "vue", "markdown", "mdx" },
+    config = function(plugin)
+      -- the plugin lives in a subdirectory of the repo
+      vim.opt.rtp:append(plugin.dir .. "/packages/neovim")
+      require("wc_language_server").setup()
+    end,
+  },
 --
 --   -- DAP
 --   -- use "mfussenegger/nvim-dap"
@@ -260,7 +269,49 @@ lazy.setup({
   --     vim.g.loaded_haxecomplete = 1  -- match the actual guard var in that file
   --   end,
   -- }
+  -- lazy.nvim spec
+  {
+    "stevearc/conform.nvim",
+    event = "BufWritePre",
+    config = function()
+      local function has_prettier_fix(ctx)
+        local pkg = vim.fs.find("package.json", { upward = true, path = ctx.dirname })[1]
+        if not pkg then
+          return false
+        end
+        local ok, data = pcall(vim.json.decode, table.concat(vim.fn.readfile(pkg), "\n"))
+        return ok
+          and type(data) == "table"
+          and type(data.scripts) == "table"
+          and data.scripts["prettier:fix"] ~= nil
+      end
 
+      local prettier = { "prettierd", "prettier", stop_after_first = true }
+
+      require("conform").setup({
+        formatters_by_ft = {
+          javascript = prettier,
+          javascriptreact = prettier,
+          typescript = prettier,
+          typescriptreact = prettier,
+          json = prettier,
+          css = prettier,
+          scss = prettier,
+          html = prettier,
+          markdown = prettier,
+          vue = prettier,
+        },
+        formatters = {
+          prettier = { condition = function(_, ctx) return has_prettier_fix(ctx) end },
+          prettierd = { condition = function(_, ctx) return has_prettier_fix(ctx) end },
+        },
+        format_on_save = {
+          timeout_ms = 3000,
+          lsp_format = "never",
+        },
+      })
+    end,
+  }
 },
 {
   install = {

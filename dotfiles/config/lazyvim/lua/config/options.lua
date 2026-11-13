@@ -171,3 +171,6 @@ vim.o.winborder = "rounded"
 vim.opt.laststatus = 3
 vim.opt.statusline = " %<%F %m %r %h %=%=%=%y [%c]%=" -- match plain-vim statusline
 vim.g.autoformat = false
+
+---@type "vtsls" | "tsgo"
+vim.g.lazyvim_ts_lsp = "vtsls" -- currently the default
