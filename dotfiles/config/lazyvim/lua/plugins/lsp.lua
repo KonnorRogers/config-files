@@ -9,7 +9,10 @@ return {
       fsautocomplete = { mason = false },
       rubocop = {
         enabled = false
-      }
+      },
+      -- solargraph = {
+      --   enabled = true
+      -- },
     },
     -- turn off ghost variable annotations
     inlay_hints = { enabled = false },

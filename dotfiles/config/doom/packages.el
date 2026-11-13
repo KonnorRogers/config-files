@@ -61,3 +61,4 @@
 (package! jsdoc)
 (package! docstr)
 (package! vertico-posframe)
+(package! better-jumper)

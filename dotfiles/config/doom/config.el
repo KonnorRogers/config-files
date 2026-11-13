@@ -32,7 +32,8 @@
 ;; There are two ways to load a theme. Both assume the theme is installed and
 ;; available. You can either set `doom-theme' or manually load a theme with the
 ;; `load-theme' function. This is the default:
-(setq doom-theme 'doom-one)
+;; (setq doom-theme 'doom-one)
+(setq doom-theme 'doom-moonlight)
 ;; Specify both a dark and light theme, like so and Doom will choose which one
 ;; to load based on your system light/dark setting:
 ;;
@@ -150,6 +151,15 @@
   (evil-define-key '(normal visual) 'global (kbd "\\") #'+default/search-project)
 )
 
+(map! :after evil
+      :nv "C-n" #'dired-jump
+      :nv "\\" #'+default/search-project
+      :nv "C-i" #'better-jumper-jump-forward
+      :nv "<C-i>" #'better-jumper-jump-forward
+      :nv "C-o" #'better-jumper-jump-backward
+      :nv "<C-o>" #'better-jumper-jump-backward
+)
+
 (map! :leader :desc "Find file in project" "ff" #'consult-fd)
 
 
@@ -171,22 +181,25 @@
 
 
 (after! corfu
-  (setq corfu-auto-delay 0.02        ; default 0.2
-        corfu-auto-prefix 1)
-  (setq corfu-preselect 'prompt      ; noselect — nothing highlighted by default
-        corfu-preview-current nil    ; no ghost text
+  (global-corfu-mode)
+  (setq corfu-auto-delay 0
+        corfu-auto t
+        corfu-auto-prefix 1
+        corfu-preselect 'prompt
+        corfu-preview-current 'insert   ; insert candidate on navigation
         corfu-cycle t
         corfu-count 8)
 
   (map! :map corfu-map
         "C-j" #'corfu-next
         "C-k" #'corfu-previous
-        "C-SPC" #'completion-at-point
+        "RET" #'corfu-insert            ; confirm
         "C-y" #'corfu-insert
         "C-e" #'corfu-quit
+        "C-SPC" #'completion-at-point
         "C-b" #'corfu-popupinfo-scroll-down
         "C-f" #'corfu-popupinfo-scroll-up)
-)       ; default 2 — popup after 1 char
+)
 
 ;; (defun +my/add-yasnippet-capf ()
 ;;   (add-hook 'completion-at-point-functions #'yasnippet-capf 100 t))
@@ -238,24 +251,6 @@
   ;; (consult-fd :preview-key 'any)
 )
 
-(after! vertico
-  (require 'vertico-multiform nil t)
-  (vertico-multiform-mode 1)
-;;   (add-to-list 'vertico-multiform-commands
-;;                '(consult-fd
-;;                  buffer
-;;                  (vertico-buffer-display-action
-;;                   . (display-buffer-in-side-window
-;;                      (side . left)
-;;                      (window-width . 0.35)))))
-
-;; (add-to-list 'display-buffer-alist
-;;                '("\\`\\*consult-preview\\*\\'"
-;;                  (display-buffer-in-side-window)
-;;                  (side . right)
-;;                  (window-width . 0.5)))
-)
-
 (map! :leader :desc "Find file in project" "ff" #'consult-fd)
 
 
@@ -265,5 +260,53 @@
 (setq delete-trailing-lines nil)     ; but don't strip blank lines at EOF
 (add-hook 'before-save-hook #'delete-trailing-whitespace)
 
-;; (treesit-auto-install-grammar 'always) ; EMACS-31
-;; (treesit-enabled-modes t)              ; EMACS-31
+(after! vertico
+    (setq vertico-multiform-commands
+        '((consult-line
+            posframe
+            (vertico-posframe-poshandler . posframe-poshandler-frame-top-center)
+            (vertico-posframe-border-width . 10)
+            ;; NOTE: This is useful when emacs is used in both in X and
+            ;; terminal, for posframe do not work well in terminal, so
+            ;; vertico-buffer-mode will be used as fallback at the
+            ;; moment.
+            (vertico-posframe-fallback-mode . vertico-buffer-mode))
+            (t posframe)))
+    (vertico-multiform-mode 1)
+)
+
+
+(after! vertico-posframe
+  (setq
+        vertico-posframe-mode 1
+        vertico-posframe-poshandler #'posframe-poshandler-frame-center
+        vertico-posframe-width 100
+        vertico-posframe-min-height 15
+        vertico-posframe-border-width 2
+        vertico-posframe-parameters '((left-fringe . 32) (right-fringe . 32))
+  )
+)
+
+; Hacky way to add padding
+(defun +my/vertico-pad-candidates (orig cand prefix suffix index start)
+  (funcall orig cand (concat "  " prefix) suffix index start))
+
+(advice-add #'vertico--format-candidate :around #'+my/vertico-pad-candidates)
+
+(after! better-jumper
+  (better-jumper-mode +1)
+)
+
+; Strip permissions and modified time
+(after! marginalia
+    (setq marginalia-annotators
+        (assq-delete-all 'file marginalia-annotators))
+  )
+
+(after! eglot
+    (add-to-list 'eglot-server-programs
+                '((ruby-mode ruby-ts-mode) . ("ruby-lsp"))))
+
+(add-hook 'eglot-managed-mode-hook (lambda () (eglot-inlay-hints-mode -1)))
+
+(load! "plugins/treesitter")
